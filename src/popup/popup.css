@@ -61,6 +61,7 @@ body {
     background: linear-gradient(135deg, #0a1628 0%, #00d9a3 100%);
     color: white;
     box-shadow: 0 4px 12px rgba(0, 217, 163, 0.2);
+    gap: 12px;
 }
 
 .header h1 {
@@ -69,6 +70,9 @@ body {
     flex: 1;
     text-align: center;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .content {
@@ -193,6 +197,134 @@ body {
 .welcome p {
     color: #a0aec0;
     font-size: 14px;
+}
+
+/* Wallet Options */
+.wallet-options {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.wallet-option-btn {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    text-align: left;
+    height: auto;
+}
+
+.option-icon {
+    font-size: 32px;
+    flex-shrink: 0;
+}
+
+.option-text {
+    flex: 1;
+}
+
+.option-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.option-desc {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+/* Info Boxes */
+.info-box {
+    display: flex;
+    gap: 12px;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    border-left: 4px solid;
+}
+
+.info-box.warning {
+    background: rgba(237, 137, 54, 0.1);
+    border-color: #ed8936;
+}
+
+.info-box.critical {
+    background: rgba(252, 129, 129, 0.1);
+    border-color: #fc8181;
+}
+
+.info-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.info-text {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #e2e8f0;
+}
+
+.info-text strong {
+    color: #00d9a3;
+}
+
+/* Key Display */
+.key-display {
+    margin-bottom: 20px;
+}
+
+.key-display label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #a0aec0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.key-value {
+    padding: 16px;
+    background: #152033;
+    border: 2px solid #1a2f45;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: #00d9a3;
+    word-break: break-all;
+    line-height: 1.6;
+    margin-bottom: 12px;
+    user-select: all;
+}
+
+.key-value.small {
+    font-size: 11px;
+}
+
+/* Backup Confirm */
+.backup-confirm {
+    padding: 16px;
+    background: #152033;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #e2e8f0;
+}
+
+.checkbox-label input[type='checkbox'] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #00d9a3;
 }
 
 /* Unlock Form */

@@ -65,9 +65,86 @@ function showCreateWallet() {
       <div class="content">
         <div class="welcome">
           <h2>Welcome!</h2>
-          <p>Create a new wallet to get started</p>
+          <p>Choose how to get started</p>
         </div>
         
+        <div class="wallet-options">
+          <button id="createNewBtn" class="btn btn-primary wallet-option-btn">
+            <div class="option-icon">🔑</div>
+            <div class="option-text">
+              <div class="option-title">Create New Wallet</div>
+              <div class="option-desc">Generate a new wallet</div>
+            </div>
+          </button>
+          
+          <button id="importBtn" class="btn btn-secondary wallet-option-btn">
+            <div class="option-icon">📥</div>
+            <div class="option-text">
+              <div class="option-title">Import Existing Wallet</div>
+              <div class="option-desc">Use your private key</div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('createNewBtn')!.addEventListener('click', showGenerateWallet);
+  document.getElementById('importBtn')!.addEventListener('click', showImportWallet);
+}
+
+// Show generate new wallet screen
+function showGenerateWallet() {
+  app.innerHTML = `
+    <div class="screen">
+      <div class="header">
+        <button id="backBtn" class="btn-icon">←</button>
+        <h1>Create New Wallet</h1>
+        <div style="width: 32px;"></div>
+      </div>
+      
+      <div class="content">
+        <div class="info-box warning">
+          <div class="info-icon">⚠️</div>
+          <div class="info-text">
+            <strong>Important:</strong> Save your private key securely. You'll need it to restore your wallet. Never share it with anyone!
+          </div>
+        </div>
+        
+        <div class="form">
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Create password" />
+          </div>
+          
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" placeholder="Confirm password" />
+          </div>
+          
+          <div class="error" id="error"></div>
+          
+          <button id="generateBtn" class="btn btn-primary">Generate Wallet</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('backBtn')!.addEventListener('click', showCreateWallet);
+  document.getElementById('generateBtn')!.addEventListener('click', handleGenerateWallet);
+}
+
+// Show import wallet screen
+function showImportWallet() {
+  app.innerHTML = `
+    <div class="screen">
+      <div class="header">
+        <button id="backBtn" class="btn-icon">←</button>
+        <h1>Import Wallet</h1>
+        <div style="width: 32px;"></div>
+      </div>
+      
+      <div class="content">
         <div class="form">
           <div class="form-group">
             <label for="privateKey">Private Key (hex)</label>
@@ -86,13 +163,14 @@ function showCreateWallet() {
           
           <div class="error" id="error"></div>
           
-          <button id="createBtn" class="btn btn-primary">Create Wallet</button>
+          <button id="importWalletBtn" class="btn btn-primary">Import Wallet</button>
         </div>
       </div>
     </div>
   `;
 
-  document.getElementById('createBtn')!.addEventListener('click', handleCreateWallet);
+  document.getElementById('backBtn')!.addEventListener('click', showCreateWallet);
+  document.getElementById('importWalletBtn')!.addEventListener('click', handleImportWallet);
 }
 
 // Show unlock wallet screen
@@ -259,8 +337,116 @@ async function showPendingRequest(requestId: string) {
   `;
 }
 
-// Handle create wallet
-async function handleCreateWallet() {
+// Handle generate new wallet
+async function handleGenerateWallet() {
+  const password = (document.getElementById('password') as HTMLInputElement).value;
+  const confirmPassword = (document.getElementById('confirmPassword') as HTMLInputElement).value;
+  const errorEl = document.getElementById('error')!;
+
+  errorEl.textContent = '';
+
+  // Validation
+  if (!password || !confirmPassword) {
+    errorEl.textContent = 'Password is required';
+    return;
+  }
+
+  if (password !== confirmPassword) {
+    errorEl.textContent = 'Passwords do not match';
+    return;
+  }
+
+  if (password.length < 8) {
+    errorEl.textContent = 'Password must be at least 8 characters';
+    return;
+  }
+
+  try {
+    // Generate new keypair
+    const response = await chrome.runtime.sendMessage({
+      type: 'GENERATE_WALLET',
+      data: { password },
+    });
+
+    if (!response.success) {
+      throw new Error(response.error);
+    }
+
+    // Show the generated private key
+    showBackupPrivateKey(response.data.privateKey, response.data.address);
+  } catch (error: any) {
+    errorEl.textContent = error.message || 'Failed to generate wallet';
+  }
+}
+
+// Show backup private key screen
+function showBackupPrivateKey(privateKey: string, address: string) {
+  app.innerHTML = `
+    <div class="screen">
+      <div class="header">
+        <h1>Backup Private Key</h1>
+      </div>
+      
+      <div class="content">
+        <div class="info-box critical">
+          <div class="info-icon">🔐</div>
+          <div class="info-text">
+            <strong>Save this private key!</strong><br>
+            Write it down and store it in a safe place. You'll need it to restore your wallet.
+          </div>
+        </div>
+        
+        <div class="key-display">
+          <label>Your Private Key</label>
+          <div class="key-value" id="keyValue">${privateKey}</div>
+          <button id="copyKeyBtn" class="btn btn-secondary">📋 Copy to Clipboard</button>
+        </div>
+        
+        <div class="key-display">
+          <label>Your Address</label>
+          <div class="key-value small" id="addressValue">${address}</div>
+        </div>
+        
+        <div class="backup-confirm">
+          <label class="checkbox-label">
+            <input type="checkbox" id="confirmBackup" />
+            <span>I have saved my private key securely</span>
+          </label>
+        </div>
+        
+        <button id="continueBtn" class="btn btn-primary" disabled>Continue</button>
+      </div>
+    </div>
+  `;
+
+  // Copy button
+  document.getElementById('copyKeyBtn')!.addEventListener('click', () => {
+    navigator.clipboard.writeText(privateKey).then(() => {
+      const btn = document.getElementById('copyKeyBtn')!;
+      const originalText = btn.textContent;
+      btn.textContent = '✓ Copied!';
+      setTimeout(() => {
+        btn.textContent = originalText;
+      }, 2000);
+    });
+  });
+
+  // Enable continue button when checkbox is checked
+  const checkbox = document.getElementById('confirmBackup') as HTMLInputElement;
+  const continueBtn = document.getElementById('continueBtn') as HTMLButtonElement;
+
+  checkbox.addEventListener('change', () => {
+    continueBtn.disabled = !checkbox.checked;
+  });
+
+  continueBtn.addEventListener('click', async () => {
+    // Wallet already created, just show unlock screen
+    showUnlockWallet();
+  });
+}
+
+// Handle import wallet
+async function handleImportWallet() {
   const privateKey = (document.getElementById('privateKey') as HTMLInputElement).value.trim();
   const password = (document.getElementById('password') as HTMLInputElement).value;
   const confirmPassword = (document.getElementById('confirmPassword') as HTMLInputElement).value;
@@ -290,7 +476,7 @@ async function handleCreateWallet() {
   }
 
   try {
-    // Import wallet (will be implemented in background)
+    // Import wallet
     const response = await chrome.runtime.sendMessage({
       type: 'IMPORT_WALLET',
       data: { privateKey, password },
@@ -300,10 +486,10 @@ async function handleCreateWallet() {
       throw new Error(response.error);
     }
 
-    // Wallet created, show unlock screen
+    // Wallet imported, show unlock screen
     showUnlockWallet();
   } catch (error: any) {
-    errorEl.textContent = error.message || 'Failed to create wallet';
+    errorEl.textContent = error.message || 'Failed to import wallet';
   }
 }
 

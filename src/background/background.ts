@@ -114,6 +114,9 @@ async function handleMessage(message: ExtensionMessage, sender: chrome.runtime.M
       return handleConnectionApproval(data.requestId, false);
 
     // Popup-specific messages
+    case 'GENERATE_WALLET':
+      return handleGenerateWallet(data);
+
     case 'IMPORT_WALLET':
       return handleImportWallet(data);
 
@@ -149,6 +152,41 @@ async function handleMessage(message: ExtensionMessage, sender: chrome.runtime.M
 // ============================================================================
 // Popup Handlers
 // ============================================================================
+
+/**
+ * Generate new wallet
+ */
+async function handleGenerateWallet(data: { password: string }): Promise<any> {
+  const { password } = data;
+
+  try {
+    const keyPair = HoosatCrypto.generateKeyPair('mainnet');
+
+    // Convert private key to hex string
+    const privateKeyHex = keyPair.privateKey.toString('hex');
+    const address = keyPair.address;
+
+    // Encrypt private key
+    const encryptedPrivateKey = encryptPrivateKey(privateKeyHex, password);
+
+    // Create wallet data
+    const walletData: WalletData = {
+      address,
+      encryptedPrivateKey,
+      createdAt: Date.now(),
+    };
+
+    // Save to storage
+    await addWallet(walletData);
+
+    console.log('✅ Wallet generated:', address);
+
+    return { address, privateKey: privateKeyHex };
+  } catch (error: any) {
+    console.error('❌ Failed to generate wallet:', error);
+    throw new Error(error.message || 'Failed to generate wallet');
+  }
+}
 
 /**
  * Import/Create wallet from private key
