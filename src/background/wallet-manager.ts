@@ -3,7 +3,7 @@ import { decryptPrivateKey } from '../shared/crypto';
 import { DEFAULT_NODE_URL, DEFAULT_NETWORK } from '../shared/constants';
 import type { Network } from '../shared/constants';
 import type { UnlockedWallet } from '../shared/types';
-import { HoosatTxBuilder, HoosatUtils, HoosatWebClient } from 'hoosat-sdk-web';
+import { HoosatTxBuilder, HoosatUtils, HoosatWebClient, HoosatCrypto } from 'hoosat-sdk-web';
 
 export class WalletManager {
   private client: HoosatWebClient;
@@ -111,6 +111,13 @@ export class WalletManager {
   }
 
   /**
+   * Calculate transaction fee
+   */
+  private calculateFee(inputs: number, outputs: number): string {
+    return HoosatCrypto.calculateFee(inputs, outputs);
+  }
+
+  /**
    * Send transaction
    */
   async sendTransaction(params: { to: string; amount: number | string; payload?: string }): Promise<string> {
@@ -125,7 +132,13 @@ export class WalletManager {
       }
 
       // Convert amount to sompi if needed
-      const amountSompi = typeof params.amount === 'string' ? params.amount : params.amount.toString();
+      const amountSompi = typeof params.amount === 'string' ? params.amount : Math.floor(params.amount * 100000000).toString();
+
+      console.log('💸 Sending transaction:', {
+        to: params.to,
+        amount: amountSompi,
+        payload: params.payload,
+      });
 
       // Get UTXOs for current wallet
       const utxos = await this.getUtxos(this.unlockedWallet.address);
@@ -134,54 +147,71 @@ export class WalletManager {
         throw new Error('No UTXOs available');
       }
 
+      // Calculate total available balance
+      const totalAvailable = utxos.reduce((sum, utxo) => {
+        return sum + BigInt(utxo.utxoEntry.amount);
+      }, BigInt(0));
+
+      console.log('💰 Total available:', totalAvailable.toString(), 'sompi');
+      console.log('📊 UTXOs count:', utxos.length);
+
+      // Calculate fee (assume we'll have change output)
+      const numInputs = utxos.length;
+      const numOutputs = 2; // recipient + change
+      const estimatedFee = this.calculateFee(numInputs, numOutputs);
+
+      console.log('💵 Estimated fee:', estimatedFee, 'sompi for', numInputs, 'inputs and', numOutputs, 'outputs');
+
+      // Check if we have enough funds (amount + fee)
+      const totalRequired = BigInt(amountSompi) + BigInt(estimatedFee);
+
+      if (totalAvailable < totalRequired) {
+        throw new Error(
+          `Insufficient funds. Available: ${totalAvailable} sompi, Required: ${totalRequired} sompi (${amountSompi} + ${estimatedFee} fee)`
+        );
+      }
+
+      // Calculate change
+      const change = totalAvailable - totalRequired;
+      console.log('💵 Change:', change.toString(), 'sompi');
+
       // Build transaction
       const txBuilder = new HoosatTxBuilder({ debug: false });
 
-      // Add inputs (UTXOs)
+      // Add inputs with private key (IMPORTANT!)
       for (const utxo of utxos) {
-        txBuilder.addInput({
-          outpoint: utxo.outpoint,
-          utxoEntry: {
-            amount: utxo.utxoEntry.amount,
-            scriptPublicKey: {
-              script: utxo.utxoEntry.scriptPublicKey.script,
-              version: utxo.utxoEntry.scriptPublicKey.version,
-            },
-            blockDaaScore: utxo.utxoEntry.blockDaaScore,
-            isCoinbase: utxo.utxoEntry.isCoinbase,
-          },
-        });
+        txBuilder.addInput(utxo, this.unlockedWallet.privateKey);
       }
 
       // Add output (recipient)
       txBuilder.addOutput(params.to, amountSompi);
 
+      // Set fee
+      txBuilder.setFee(estimatedFee);
+
       // Add change output
       txBuilder.addChangeOutput(this.unlockedWallet.address);
 
-      // Estimate and set fee
-      const estimatedFee = txBuilder.estimateFee();
-      txBuilder.setFee(estimatedFee);
-
       // Add payload if provided
       if (params.payload) {
-        // Payload will be added in transaction structure
-        // For now, hoosat-sdk TxBuilder doesn't have explicit addPayload method
-        // We'll need to add it to the transaction after building
+        console.log('📝 Payload:', params.payload);
+        // Payload might need special handling depending on SDK version
       }
 
-      // Sign transaction
-      const signedTx = txBuilder.sign(this.unlockedWallet.privateKey);
+      // Sign transaction (NO parameters - keys already in inputs!)
+      console.log('✍️ Signing transaction...');
+      const signedTx = txBuilder.sign();
 
       // Add payload to signed transaction if provided
-      if (params.payload) {
+      if (params.payload && signedTx) {
         signedTx.payload = params.payload;
       }
 
       // Submit transaction
+      console.log('📤 Submitting transaction...');
       const result = await this.client.submitTransaction(signedTx);
 
-      if (!result) {
+      if (!result || !result.transactionId) {
         throw new Error('Failed to submit transaction');
       }
 

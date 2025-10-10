@@ -1,8 +1,10 @@
 // Background service worker - manages wallet state and handles RPC requests
 
-import { RPCMethod, MessageType, ExtensionMessage, DAppRequest, ErrorCode, RPCError } from '../shared/types';
-import { getCurrentWallet, isOriginConnected, addConnectedSite } from '../shared/storage';
+import { RPCMethod, MessageType, ExtensionMessage, DAppRequest, ErrorCode, RPCError, WalletData } from '../shared/types';
+import { getCurrentWallet, isOriginConnected, addConnectedSite, addWallet, clearAllData, hasWallet } from '../shared/storage';
+import { encryptPrivateKey } from '../shared/crypto';
 import { WalletManager } from './wallet-manager';
+import { HoosatUtils, HoosatCrypto } from 'hoosat-sdk-web';
 
 console.log('🦊 Hoosat Wallet background script started');
 
@@ -85,10 +87,199 @@ async function handleMessage(message: ExtensionMessage, sender: chrome.runtime.M
     case MessageType.CONNECTION_REJECTED:
       return handleConnectionApproval(data.requestId, false);
 
+    // Popup-specific messages
+    case 'IMPORT_WALLET':
+      return handleImportWallet(data);
+
+    case 'UNLOCK_WALLET':
+      return handleUnlockWallet(data);
+
+    case 'LOCK_WALLET':
+      return handleLockWallet();
+
+    case 'RESET_WALLET':
+      return handleResetWallet();
+
+    case 'GET_BALANCE':
+      return handleGetBalanceFromPopup(data);
+
+    case 'SEND_TRANSACTION':
+      return handleSendTransactionFromPopup(data);
+
+    case 'CHECK_WALLET':
+      return handleCheckWallet();
+
+    case 'CONTENT_SCRIPT_READY':
+      return { success: true };
+
     default:
       throw new Error(`Unknown message type: ${type}`);
   }
 }
+
+// ============================================================================
+// Popup Handlers
+// ============================================================================
+
+/**
+ * Import/Create wallet from private key
+ */
+async function handleImportWallet(data: { privateKey: string; password: string }): Promise<any> {
+  const { privateKey, password } = data;
+
+  try {
+    // Validate private key format (hex string)
+    if (!/^[0-9a-fA-F]{64}$/.test(privateKey)) {
+      throw new Error('Invalid private key format. Must be 64-character hex string');
+    }
+
+    // Derive address from private key using HoosatCrypto
+    const keyPair = HoosatCrypto.importKeyPair(privateKey);
+
+    if (!keyPair || !keyPair.address) {
+      throw new Error('Failed to derive address from private key');
+    }
+
+    const address = keyPair.address;
+
+    // Encrypt private key
+    const encryptedPrivateKey = encryptPrivateKey(privateKey, password);
+
+    // Create wallet data
+    const walletData: WalletData = {
+      address,
+      encryptedPrivateKey,
+      createdAt: Date.now(),
+    };
+
+    // Save to storage
+    await addWallet(walletData);
+
+    console.log('✅ Wallet imported:', address);
+
+    return { address };
+  } catch (error: any) {
+    console.error('❌ Failed to import wallet:', error);
+    throw new Error(error.message || 'Failed to import wallet');
+  }
+}
+
+/**
+ * Unlock wallet with password
+ */
+async function handleUnlockWallet(data: { password: string }): Promise<any> {
+  const { password } = data;
+
+  try {
+    const address = await walletManager.unlock(password);
+    isUnlocked = true;
+    resetSessionTimeout();
+
+    console.log('✅ Wallet unlocked via popup:', address);
+
+    return { address };
+  } catch (error: any) {
+    console.error('❌ Failed to unlock wallet:', error);
+    throw new Error(error.message || 'Invalid password');
+  }
+}
+
+/**
+ * Lock wallet
+ */
+async function handleLockWallet(): Promise<any> {
+  walletManager.lock();
+  isUnlocked = false;
+
+  if (sessionTimeout) {
+    clearTimeout(sessionTimeout);
+    sessionTimeout = null;
+  }
+
+  console.log('🔒 Wallet locked via popup');
+
+  return { success: true };
+}
+
+/**
+ * Reset/Delete wallet
+ */
+async function handleResetWallet(): Promise<any> {
+  try {
+    // Clear all data
+    await clearAllData();
+
+    // Lock wallet
+    walletManager.lock();
+    isUnlocked = false;
+
+    if (sessionTimeout) {
+      clearTimeout(sessionTimeout);
+      sessionTimeout = null;
+    }
+
+    console.log('🗑️ Wallet reset');
+
+    return { success: true };
+  } catch (error: any) {
+    console.error('❌ Failed to reset wallet:', error);
+    throw new Error('Failed to reset wallet');
+  }
+}
+
+/**
+ * Get balance from popup
+ */
+async function handleGetBalanceFromPopup(data: { address: string }): Promise<string> {
+  const { address } = data;
+
+  try {
+    const balance = await walletManager.getBalance(address);
+    return balance;
+  } catch (error: any) {
+    console.error('❌ Failed to get balance:', error);
+    throw new Error(error.message || 'Failed to get balance');
+  }
+}
+
+/**
+ * Send transaction from popup
+ */
+async function handleSendTransactionFromPopup(data: { to: string; amount: number | string; payload?: string }): Promise<string> {
+  if (!isUnlocked) {
+    throw new Error('Wallet is locked');
+  }
+
+  try {
+    // Convert amount to sompi (smallest unit)
+    const amountInSompi = typeof data.amount === 'number' ? Math.floor(data.amount * 100000000).toString() : data.amount;
+
+    const txId = await walletManager.sendTransaction({
+      to: data.to,
+      amount: amountInSompi,
+      payload: data.payload,
+    });
+
+    console.log('✅ Transaction sent from popup:', txId);
+
+    return txId;
+  } catch (error: any) {
+    console.error('❌ Failed to send transaction:', error);
+    throw new Error(error.message || 'Transaction failed');
+  }
+}
+
+/**
+ * Check if wallet exists
+ */
+async function handleCheckWallet(): Promise<any> {
+  const exists = await hasWallet();
+  return { exists };
+}
+
+// ============================================================================
+// RPC Handlers (from DApps)
+// ============================================================================
 
 async function handleRPCRequest(request: any, sender: chrome.runtime.MessageSender): Promise<any> {
   const { method, params } = request;
@@ -260,7 +451,13 @@ async function handleTransactionApproval(requestId: string, approved: boolean): 
   return { success: true };
 }
 
-// Helper: Open popup with pending request
+// ============================================================================
+// Helper Functions
+// ============================================================================
+
+/**
+ * Open popup with pending request
+ */
 async function openPopupWithRequest(requestId: string): Promise<void> {
   // Store requestId in session for popup to fetch
   await chrome.storage.session.set({ pendingRequestId: requestId });
@@ -269,7 +466,9 @@ async function openPopupWithRequest(requestId: string): Promise<void> {
   await chrome.action.openPopup();
 }
 
-// Helper: Create RPC error
+/**
+ * Create RPC error
+ */
 function createRPCError(code: ErrorCode, message: string): RPCError {
   return { code, message };
 }

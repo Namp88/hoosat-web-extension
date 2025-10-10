@@ -1,0 +1,389 @@
+/* Hoosat Wallet Popup Styles - Official Theme */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 360px;
+    min-height: 600px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: #0a1628;
+    color: #e2e8f0;
+}
+
+#app {
+    width: 100%;
+    min-height: 600px;
+}
+
+/* Loading */
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 600px;
+    background: linear-gradient(135deg, #0a1628 0%, #1a2f45 100%);
+    color: #00d9a3;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(0, 217, 163, 0.2);
+    border-top-color: #00d9a3;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Screen Layout */
+.screen {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #0a1628;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #0a1628 0%, #00d9a3 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 217, 163, 0.2);
+}
+
+.header h1 {
+    font-size: 18px;
+    font-weight: 600;
+    flex: 1;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: #0a1628;
+}
+
+/* Buttons */
+.btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #00d9a3 0%, #00a87e 100%);
+    color: #0a1628;
+    box-shadow: 0 2px 8px rgba(0, 217, 163, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 217, 163, 0.5);
+}
+
+.btn-secondary {
+    background: #1a2f45;
+    color: #00d9a3;
+    border: 2px solid #00d9a3;
+}
+
+.btn-secondary:hover {
+    background: #243d5c;
+}
+
+.btn-danger {
+    background: #fc8181;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #f56565;
+}
+
+.btn-icon {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 4px 8px;
+    color: white;
+    opacity: 0.9;
+}
+
+.btn-icon:hover {
+    opacity: 1;
+}
+
+/* Forms */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #a0aec0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-group input {
+    padding: 10px 12px;
+    border: 2px solid #1a2f45;
+    background: #152033;
+    color: #e2e8f0;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #00d9a3;
+    box-shadow: 0 0 0 3px rgba(0, 217, 163, 0.1);
+}
+
+.form-group input::placeholder {
+    color: #4a5568;
+}
+
+/* Welcome Screen */
+.welcome {
+    text-align: center;
+    margin-bottom: 32px;
+    padding: 20px;
+    background: linear-gradient(135deg, #0a1628 0%, #1a2f45 100%);
+    border-radius: 12px;
+}
+
+.welcome h2 {
+    font-size: 24px;
+    color: #00d9a3;
+    margin-bottom: 8px;
+}
+
+.welcome p {
+    color: #a0aec0;
+    font-size: 14px;
+}
+
+/* Unlock Form */
+.unlock-form {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.unlock-form h2 {
+    text-align: center;
+    margin-bottom: 24px;
+    color: #00d9a3;
+}
+
+.unlock-form .btn {
+    margin-top: 24px;
+}
+
+/* Wallet Info */
+.wallet-info {
+    background: linear-gradient(135deg, #0a1628 0%, #1a3f3a 100%);
+    padding: 20px;
+    border-radius: 12px;
+    color: white;
+    margin-bottom: 20px;
+    border: 1px solid rgba(0, 217, 163, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 217, 163, 0.1);
+}
+
+.address,
+.balance {
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.address:last-child,
+.balance:last-child {
+    margin-bottom: 0;
+}
+
+.address label,
+.balance label {
+    font-size: 12px;
+    opacity: 0.8;
+    margin-bottom: 4px;
+    display: block;
+    color: #a0aec0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.address-value,
+.balance-value {
+    font-size: 14px;
+    font-weight: 600;
+    word-break: break-all;
+    padding-right: 30px;
+    color: #00d9a3;
+}
+
+.balance-value {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.address .btn-icon,
+.balance .btn-icon {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    font-size: 16px;
+    color: #00d9a3;
+}
+
+/* Actions */
+.actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+/* Transactions */
+.transactions h3 {
+    font-size: 16px;
+    color: #00d9a3;
+    margin-bottom: 12px;
+}
+
+.tx-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.tx-list .empty {
+    text-align: center;
+    color: #4a5568;
+    padding: 20px;
+    font-size: 14px;
+    background: #152033;
+    border-radius: 8px;
+}
+
+/* Send Screen */
+.balance-info {
+    padding: 12px;
+    background: #152033;
+    border: 1px solid #1a2f45;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #a0aec0;
+    text-align: center;
+}
+
+/* Receive Screen */
+.receive-info {
+    text-align: center;
+}
+
+.receive-info h3 {
+    font-size: 16px;
+    color: #00d9a3;
+    margin-bottom: 16px;
+}
+
+.address-display {
+    padding: 16px;
+    background: #152033;
+    border: 2px dashed #00d9a3;
+    border-radius: 8px;
+    word-break: break-all;
+    font-size: 13px;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 20px;
+    color: #e2e8f0;
+}
+
+/* Settings */
+.settings {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Error Messages */
+.error {
+    padding: 10px 12px;
+    background: rgba(252, 129, 129, 0.1);
+    border: 1px solid #fc8181;
+    border-radius: 6px;
+    color: #fc8181;
+    font-size: 13px;
+    display: none;
+}
+
+.error:not(:empty) {
+    display: block;
+}
+
+/* Request Screen */
+.request {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.request h2 {
+    font-size: 20px;
+    color: #00d9a3;
+    margin-bottom: 12px;
+}
+
+.request p {
+    color: #a0aec0;
+    font-size: 14px;
+}
+
+/* Scrollbar Styling */
+.content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.content::-webkit-scrollbar-track {
+    background: #0a1628;
+}
+
+.content::-webkit-scrollbar-thumb {
+    background: #1a2f45;
+    border-radius: 3px;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+    background: #00d9a3;
+}
