@@ -725,3 +725,96 @@ body {
     padding: 12px;
     font-size: 14px;
 }
+
+/* Transaction Preview Modal */
+.tx-preview-modal {
+    max-width: 340px;
+}
+
+.tx-preview-modal .modal-body {
+    text-align: left;
+    padding: 20px;
+}
+
+.tx-preview-section {
+    margin-bottom: 16px;
+}
+
+.tx-preview-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #a0aec0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+}
+
+.tx-preview-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: #e2e8f0;
+}
+
+.address-preview {
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    color: #00d9a3;
+}
+
+.tx-preview-full {
+    font-size: 10px;
+    font-family: 'Courier New', monospace;
+    color: #718096;
+    margin-top: 4px;
+    word-break: break-all;
+    line-height: 1.4;
+}
+
+.amount-value {
+    color: #00d9a3;
+    font-size: 20px;
+}
+
+.fee-value {
+    color: #ed8936;
+    font-size: 14px;
+}
+
+.payload-value {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: #a0aec0;
+    word-break: break-all;
+    line-height: 1.4;
+}
+
+.tx-preview-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #1a2f45, transparent);
+    margin: 20px 0;
+}
+
+.total-section {
+    background: rgba(0, 217, 163, 0.05);
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 217, 163, 0.2);
+}
+
+.total-value {
+    color: #00d9a3;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.tx-preview-warning {
+    margin-top: 16px;
+    padding: 12px;
+    background: rgba(237, 137, 54, 0.1);
+    border: 1px solid rgba(237, 137, 54, 0.3);
+    border-radius: 8px;
+    font-size: 12px;
+    color: #ed8936;
+    text-align: center;
+    line-height: 1.5;
+}

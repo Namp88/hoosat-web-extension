@@ -693,12 +693,51 @@ async function handleSendTransaction() {
 
   errorEl.textContent = '';
 
+  // Validation
   if (!recipient || !amount) {
     errorEl.textContent = 'Recipient and amount are required';
     return;
   }
 
+  if (!recipient.startsWith('hoosat:')) {
+    errorEl.textContent = 'Invalid address format. Must start with "hoosat:"';
+    return;
+  }
+
+  const amountNum = parseFloat(amount);
+  if (isNaN(amountNum) || amountNum <= 0) {
+    errorEl.textContent = 'Invalid amount';
+    return;
+  }
+
+  // Check if amount exceeds balance
+  const balanceSompi = BigInt(balance);
+  const amountSompi = BigInt(Math.floor(amountNum * 100000000));
+  const feeSompi = BigInt(2500); // Approximate fee
+
+  if (amountSompi + feeSompi > balanceSompi) {
+    errorEl.textContent = 'Insufficient balance (including fee)';
+    return;
+  }
+
   try {
+    // Calculate fee estimate (approximate)
+    const feeEstimate = 0.000025; // ~2500 sompi
+    const total = amountNum + feeEstimate;
+
+    // Show transaction preview
+    const confirmed = await showTransactionPreview({
+      to: recipient,
+      amount: amountNum,
+      fee: feeEstimate,
+      total: total,
+      payload: payload || undefined,
+    });
+
+    if (!confirmed) {
+      return; // User cancelled
+    }
+
     // Disable button during sending
     const sendBtn = document.getElementById('sendBtn') as HTMLButtonElement;
     const originalText = sendBtn.textContent;
@@ -709,7 +748,7 @@ async function handleSendTransaction() {
       type: 'SEND_TRANSACTION',
       data: {
         to: recipient,
-        amount: parseFloat(amount),
+        amount: amountNum,
         payload: payload || undefined,
       },
     });
@@ -730,8 +769,10 @@ async function handleSendTransaction() {
     errorEl.textContent = error.message || 'Transaction failed';
     // Re-enable button
     const sendBtn = document.getElementById('sendBtn') as HTMLButtonElement;
-    sendBtn.disabled = false;
-    sendBtn.textContent = 'Send Transaction';
+    if (sendBtn) {
+      sendBtn.disabled = false;
+      sendBtn.textContent = 'Send Transaction';
+    }
   }
 }
 
@@ -775,6 +816,103 @@ function showConfirmDialog(title: string, message: string): Promise<boolean> {
       <div class="modal-actions">
         <button id="modalCancel" class="btn btn-secondary">Cancel</button>
         <button id="modalConfirm" class="btn btn-danger">Confirm</button>
+      </div>
+    `;
+
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    // Animate in
+    setTimeout(() => {
+      overlay.classList.add('show');
+    }, 10);
+
+    // Handle buttons
+    const closeModal = (confirmed: boolean) => {
+      overlay.classList.remove('show');
+      setTimeout(() => {
+        overlay.remove();
+        resolve(confirmed);
+      }, 300);
+    };
+
+    document.getElementById('modalCancel')!.addEventListener('click', () => closeModal(false));
+    document.getElementById('modalConfirm')!.addEventListener('click', () => closeModal(true));
+
+    // Close on overlay click
+    overlay.addEventListener('click', e => {
+      if (e.target === overlay) {
+        closeModal(false);
+      }
+    });
+  });
+}
+
+// Show transaction preview modal
+interface TransactionPreviewData {
+  to: string;
+  amount: number;
+  fee: number;
+  total: number;
+  payload?: string;
+}
+
+function showTransactionPreview(data: TransactionPreviewData): Promise<boolean> {
+  return new Promise(resolve => {
+    // Create modal overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+
+    // Create modal content
+    const modal = document.createElement('div');
+    modal.className = 'modal-content tx-preview-modal';
+
+    modal.innerHTML = `
+      <div class="modal-header">
+        <h2>Confirm Transaction</h2>
+      </div>
+      <div class="modal-body">
+        <div class="tx-preview-section">
+          <div class="tx-preview-label">Sending to</div>
+          <div class="tx-preview-value address-preview">${formatAddress(data.to)}</div>
+          <div class="tx-preview-full">${data.to}</div>
+        </div>
+        
+        <div class="tx-preview-section">
+          <div class="tx-preview-label">Amount</div>
+          <div class="tx-preview-value amount-value">${data.amount.toFixed(8)} HTN</div>
+        </div>
+        
+        ${
+          data.payload
+            ? `
+        <div class="tx-preview-section">
+          <div class="tx-preview-label">Payload</div>
+          <div class="tx-preview-value payload-value">${data.payload}</div>
+        </div>
+        `
+            : ''
+        }
+        
+        <div class="tx-preview-divider"></div>
+        
+        <div class="tx-preview-section">
+          <div class="tx-preview-label">Network Fee</div>
+          <div class="tx-preview-value fee-value">${data.fee.toFixed(8)} HTN</div>
+        </div>
+        
+        <div class="tx-preview-section total-section">
+          <div class="tx-preview-label">Total</div>
+          <div class="tx-preview-value total-value">${data.total.toFixed(8)} HTN</div>
+        </div>
+        
+        <div class="tx-preview-warning">
+          ⚠️ Please verify all details before confirming
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button id="modalCancel" class="btn btn-secondary">Cancel</button>
+        <button id="modalConfirm" class="btn btn-primary">Confirm & Send</button>
       </div>
     `;
 
