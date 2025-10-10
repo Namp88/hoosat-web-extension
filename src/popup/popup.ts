@@ -388,14 +388,14 @@ async function handleGenerateWallet() {
     }
 
     // Show the generated private key
-    showBackupPrivateKey(response.data.privateKey, response.data.address);
+    showBackupPrivateKey(response.data.privateKey, response.data.address, password);
   } catch (error: any) {
     errorEl.textContent = error.message || 'Failed to generate wallet';
   }
 }
 
 // Show backup private key screen
-function showBackupPrivateKey(privateKey: string, address: string) {
+function showBackupPrivateKey(privateKey: string, address: string, password: string) {
   app.innerHTML = `
     <div class="screen">
       <div class="header">
@@ -458,8 +458,32 @@ function showBackupPrivateKey(privateKey: string, address: string) {
   });
 
   continueBtn.addEventListener('click', async () => {
-    // Wallet already created, just show unlock screen
-    showUnlockWallet();
+    try {
+      // Auto-unlock with the password
+      const unlockResponse = await chrome.runtime.sendMessage({
+        type: 'UNLOCK_WALLET',
+        data: { password },
+      });
+
+      if (!unlockResponse.success) {
+        throw new Error(unlockResponse.error);
+      }
+
+      // Notify background that wallet is unlocked
+      await chrome.runtime.sendMessage({
+        type: MessageType.WALLET_UNLOCKED,
+      });
+
+      isUnlocked = true;
+
+      // Show wallet directly
+      await showWallet();
+      showSuccessMessage('🎉 Wallet created successfully!', 2000);
+    } catch (error: any) {
+      console.error('Failed to unlock after wallet creation:', error);
+      // Fallback to unlock screen if auto-unlock fails
+      showUnlockWallet();
+    }
   });
 }
 
@@ -504,8 +528,26 @@ async function handleImportWallet() {
       throw new Error(response.error);
     }
 
-    // Wallet imported, show unlock screen
-    showUnlockWallet();
+    // Auto-unlock with the password user just entered
+    const unlockResponse = await chrome.runtime.sendMessage({
+      type: 'UNLOCK_WALLET',
+      data: { password },
+    });
+
+    if (!unlockResponse.success) {
+      throw new Error(unlockResponse.error);
+    }
+
+    // Notify background that wallet is unlocked
+    await chrome.runtime.sendMessage({
+      type: MessageType.WALLET_UNLOCKED,
+    });
+
+    isUnlocked = true;
+
+    // Show wallet directly
+    await showWallet();
+    showSuccessMessage('🎉 Wallet imported successfully!', 2000);
   } catch (error: any) {
     errorEl.textContent = error.message || 'Failed to import wallet';
   }
