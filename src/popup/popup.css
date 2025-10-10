@@ -286,6 +286,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    margin-bottom: 12px;
 }
 
 .tx-list .empty {
@@ -295,6 +296,88 @@ body {
     font-size: 14px;
     background: #152033;
     border-radius: 8px;
+}
+
+.tx-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: #152033;
+    border: 1px solid #1a2f45;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.tx-item:hover {
+    background: #1a2f45;
+    border-color: #00d9a3;
+    transform: translateX(4px);
+}
+
+.tx-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.tx-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.tx-type {
+    font-size: 14px;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin-bottom: 2px;
+}
+
+.tx-address {
+    font-size: 11px;
+    color: #718096;
+    font-family: 'Courier New', monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tx-time {
+    font-size: 11px;
+    color: #4a5568;
+    margin-top: 2px;
+}
+
+.tx-amount {
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.tx-amount.positive {
+    color: #48bb78;
+}
+
+.tx-amount.negative {
+    color: #fc8181;
+}
+
+.btn-link {
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    color: #00d9a3;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.btn-link:hover {
+    color: #00ffba;
+    text-decoration: underline;
 }
 
 /* Send Screen */
@@ -386,4 +469,25 @@ body {
 
 .content::-webkit-scrollbar-thumb:hover {
     background: #00d9a3;
+}
+
+/* Success Toast */
+.success-toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: linear-gradient(135deg, #00d9a3 0%, #00a87e 100%);
+    color: #0a1628;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 217, 163, 0.5);
+    z-index: 9999;
+    transition: transform 0.3s ease;
+}
+
+.success-toast.show {
+    transform: translateX(-50%) translateY(0);
 }

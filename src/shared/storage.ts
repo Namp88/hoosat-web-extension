@@ -1,12 +1,16 @@
 // Chrome storage utilities
 
-import { WalletData, StoredWallet, ConnectedSite } from './types';
+import { WalletData, StoredWallet, ConnectedSite, TransactionHistory } from './types';
 
 const STORAGE_KEYS = {
   WALLET: 'hoosat_wallet',
   CONNECTED_SITES: 'hoosat_connected_sites',
   SETTINGS: 'hoosat_settings',
+  TX_HISTORY: 'hoosat_tx_history',
 } as const;
+
+// Maximum number of transactions to store
+const MAX_TX_HISTORY = 50;
 
 /**
  * Save wallet data to chrome storage
@@ -172,6 +176,59 @@ export async function removeConnectedSite(origin: string): Promise<void> {
   const sites = await loadConnectedSites();
   const filtered = sites.filter(site => site.origin !== origin);
   await saveConnectedSites(filtered);
+}
+
+/**
+ * Save transaction to history
+ */
+export async function saveTransactionToHistory(tx: TransactionHistory): Promise<void> {
+  return new Promise((resolve, reject) => {
+    chrome.storage.local.get(STORAGE_KEYS.TX_HISTORY, result => {
+      if (chrome.runtime.lastError) {
+        reject(chrome.runtime.lastError);
+        return;
+      }
+
+      const history: TransactionHistory[] = result[STORAGE_KEYS.TX_HISTORY] || [];
+
+      // Check if transaction already exists (prevent duplicates)
+      const exists = history.some(t => t.txId === tx.txId);
+      if (exists) {
+        console.log('⚠️ Transaction already in history:', tx.txId);
+        resolve();
+        return;
+      }
+
+      // Add new transaction at the beginning
+      history.unshift(tx);
+
+      // Keep only the last MAX_TX_HISTORY transactions
+      const trimmedHistory = history.slice(0, MAX_TX_HISTORY);
+
+      chrome.storage.local.set({ [STORAGE_KEYS.TX_HISTORY]: trimmedHistory }, () => {
+        if (chrome.runtime.lastError) {
+          reject(chrome.runtime.lastError);
+        } else {
+          resolve();
+        }
+      });
+    });
+  });
+}
+
+/**
+ * Load transaction history
+ */
+export async function loadTransactionHistory(): Promise<TransactionHistory[]> {
+  return new Promise((resolve, reject) => {
+    chrome.storage.local.get(STORAGE_KEYS.TX_HISTORY, result => {
+      if (chrome.runtime.lastError) {
+        reject(chrome.runtime.lastError);
+      } else {
+        resolve(result[STORAGE_KEYS.TX_HISTORY] || []);
+      }
+    });
+  });
 }
 
 /**

@@ -58,9 +58,9 @@ export function getExplorerUrl(network: Network): string {
 }
 
 export function getExplorerTxUrl(network: Network, txId: string): string {
-  return `${getExplorerUrl(network)}/tx/${txId}`;
+  return `${getExplorerUrl(network)}/txs/${txId}`;
 }
 
 export function getExplorerAddressUrl(network: Network, address: string): string {
-  return `${getExplorerUrl(network)}/address/${address}`;
+  return `${getExplorerUrl(network)}/addresses/${address}`;
 }

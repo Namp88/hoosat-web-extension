@@ -38,6 +38,17 @@ export interface ConnectedSite {
   permissions: string[];
 }
 
+// Transaction history
+export interface TransactionHistory {
+  txId: string;
+  type: 'sent' | 'received';
+  amount: string; // sompi
+  to?: string;
+  from?: string;
+  timestamp: number;
+  payload?: string;
+}
+
 // RPC Methods that DApps can call
 export enum RPCMethod {
   REQUEST_ACCOUNTS = 'hoosat_requestAccounts',

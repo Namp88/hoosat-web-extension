@@ -1,7 +1,24 @@
 // Background service worker - manages wallet state and handles RPC requests
 
-import { RPCMethod, MessageType, ExtensionMessage, DAppRequest, ErrorCode, RPCError, WalletData } from '../shared/types';
-import { getCurrentWallet, isOriginConnected, addConnectedSite, addWallet, clearAllData, hasWallet } from '../shared/storage';
+import {
+  RPCMethod,
+  MessageType,
+  ExtensionMessage,
+  DAppRequest,
+  ErrorCode,
+  RPCError,
+  WalletData,
+  TransactionHistory,
+} from '../shared/types';
+import {
+  getCurrentWallet,
+  isOriginConnected,
+  addConnectedSite,
+  addWallet,
+  clearAllData,
+  hasWallet,
+  saveTransactionToHistory,
+} from '../shared/storage';
 import { encryptPrivateKey } from '../shared/crypto';
 import { WalletManager } from './wallet-manager';
 import { HoosatUtils, HoosatCrypto } from 'hoosat-sdk-web';
@@ -262,6 +279,23 @@ async function handleSendTransactionFromPopup(data: { to: string; amount: number
 
     console.log('✅ Transaction sent from popup:', txId);
 
+    // Save to history
+    const wallet = await getCurrentWallet();
+    if (wallet) {
+      const transaction: TransactionHistory = {
+        txId: txId,
+        type: 'sent',
+        amount: amountInSompi,
+        to: data.to,
+        from: wallet.address,
+        timestamp: Date.now(),
+        payload: data.payload,
+      };
+
+      await saveTransactionToHistory(transaction);
+      console.log('💾 Transaction saved to history');
+    }
+
     return txId;
   } catch (error: any) {
     console.error('❌ Failed to send transaction:', error);
@@ -438,6 +472,27 @@ async function handleTransactionApproval(requestId: string, approved: boolean): 
     // Sign and send transaction
     try {
       const txId = await walletManager.sendTransaction(request.params);
+
+      // Save to history
+      const wallet = await getCurrentWallet();
+      if (wallet) {
+        const amountInSompi =
+          typeof request.params.amount === 'number' ? Math.floor(request.params.amount * 100000000).toString() : request.params.amount;
+
+        const transaction: TransactionHistory = {
+          txId: txId,
+          type: 'sent',
+          amount: amountInSompi,
+          to: request.params.to,
+          from: wallet.address,
+          timestamp: Date.now(),
+          payload: request.params.payload,
+        };
+
+        await saveTransactionToHistory(transaction);
+        console.log('💾 Transaction from DApp saved to history');
+      }
+
       resolveApproval(requestId, txId);
     } catch (error: any) {
       rejectApproval(requestId, createRPCError(ErrorCode.DISCONNECTED, error.message));

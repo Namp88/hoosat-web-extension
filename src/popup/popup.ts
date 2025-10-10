@@ -1,8 +1,8 @@
 // Popup UI script - main wallet interface
 
-import { hasWallet, getCurrentWallet, loadWallet } from '../shared/storage';
-import { MessageType } from '../shared/types';
-import { APP_NAME } from '../shared/constants';
+import { hasWallet, getCurrentWallet, loadWallet, loadTransactionHistory } from '../shared/storage';
+import { MessageType, TransactionHistory } from '../shared/types';
+import { APP_NAME, getExplorerTxUrl, getExplorerAddressUrl } from '../shared/constants';
 
 console.log('🦊 Hoosat Wallet popup loaded');
 
@@ -121,6 +121,9 @@ async function showWallet() {
   // Get balance
   await updateBalance();
 
+  // Load transaction history
+  const txHistory = await loadTransactionHistory();
+
   app.innerHTML = `
     <div class="screen">
       <div class="header">
@@ -151,8 +154,9 @@ async function showWallet() {
         <div class="transactions">
           <h3>Recent Transactions</h3>
           <div class="tx-list" id="txList">
-            <p class="empty">No transactions yet</p>
+            ${txHistory.length > 0 ? renderTransactions(txHistory.slice(0, 10)) : '<p class="empty">No transactions yet</p>'}
           </div>
+          ${txHistory.length > 0 ? `<button id="viewHistoryBtn" class="btn-link">View Full History in Explorer →</button>` : ''}
         </div>
       </div>
     </div>
@@ -164,6 +168,57 @@ async function showWallet() {
   document.getElementById('sendBtn')!.addEventListener('click', showSendScreen);
   document.getElementById('receiveBtn')!.addEventListener('click', showReceiveScreen);
   document.getElementById('settingsBtn')!.addEventListener('click', showSettingsScreen);
+
+  if (txHistory.length > 0) {
+    document.getElementById('viewHistoryBtn')!.addEventListener('click', () => {
+      window.open(getExplorerAddressUrl('mainnet', currentAddress!), '_blank');
+    });
+
+    // Add click listeners to each transaction
+    document.querySelectorAll('.tx-item').forEach((item, index) => {
+      item.addEventListener('click', () => {
+        window.open(getExplorerTxUrl('mainnet', txHistory[index].txId), '_blank');
+      });
+    });
+  }
+}
+
+// Render transaction list
+function renderTransactions(transactions: TransactionHistory[]): string {
+  return transactions
+    .map(
+      tx => `
+    <div class="tx-item" data-txid="${tx.txId}">
+      <div class="tx-icon">${tx.type === 'sent' ? '📤' : '📥'}</div>
+      <div class="tx-details">
+        <div class="tx-type">${tx.type === 'sent' ? 'Sent' : 'Received'}</div>
+        <div class="tx-address">${tx.type === 'sent' ? 'To: ' + formatAddress(tx.to!) : 'From: ' + formatAddress(tx.from || 'Unknown')}</div>
+        <div class="tx-time">${formatTime(tx.timestamp)}</div>
+      </div>
+      <div class="tx-amount ${tx.type === 'sent' ? 'negative' : 'positive'}">
+        ${tx.type === 'sent' ? '-' : '+'}${formatBalance(tx.amount)} HTN
+      </div>
+    </div>
+  `
+    )
+    .join('');
+}
+
+// Format timestamp
+function formatTime(timestamp: number): string {
+  const date = new Date(timestamp);
+  const now = new Date();
+  const diffMs = now.getTime() - date.getTime();
+  const diffMins = Math.floor(diffMs / 60000);
+  const diffHours = Math.floor(diffMs / 3600000);
+  const diffDays = Math.floor(diffMs / 86400000);
+
+  if (diffMins < 1) return 'Just now';
+  if (diffMins < 60) return `${diffMins}m ago`;
+  if (diffHours < 24) return `${diffHours}h ago`;
+  if (diffDays < 7) return `${diffDays}d ago`;
+
+  return date.toLocaleDateString();
 }
 
 // Show pending request (connection or transaction)
@@ -409,6 +464,12 @@ async function handleSendTransaction() {
   }
 
   try {
+    // Disable button during sending
+    const sendBtn = document.getElementById('sendBtn') as HTMLButtonElement;
+    const originalText = sendBtn.textContent;
+    sendBtn.disabled = true;
+    sendBtn.textContent = 'Sending...';
+
     const response = await chrome.runtime.sendMessage({
       type: 'SEND_TRANSACTION',
       data: {
@@ -422,12 +483,40 @@ async function handleSendTransaction() {
       throw new Error(response.error);
     }
 
+    // Wait a bit for background to save the transaction
+    await new Promise(resolve => setTimeout(resolve, 100));
+
     // Show success and return to wallet
-    alert(`Transaction sent! TX ID: ${response.data}`);
     await showWallet();
+
+    // Show success message after returning to wallet
+    showSuccessMessage(`Transaction sent! TX ID: ${response.data.substring(0, 16)}...`);
   } catch (error: any) {
     errorEl.textContent = error.message || 'Transaction failed';
+    // Re-enable button
+    const sendBtn = document.getElementById('sendBtn') as HTMLButtonElement;
+    sendBtn.disabled = false;
+    sendBtn.textContent = 'Send Transaction';
   }
+}
+
+// Show success message
+function showSuccessMessage(message: string) {
+  const successDiv = document.createElement('div');
+  successDiv.className = 'success-toast';
+  successDiv.textContent = message;
+  document.body.appendChild(successDiv);
+
+  setTimeout(() => {
+    successDiv.classList.add('show');
+  }, 10);
+
+  setTimeout(() => {
+    successDiv.classList.remove('show');
+    setTimeout(() => {
+      successDiv.remove();
+    }, 300);
+  }, 3000);
 }
 
 // Handle lock wallet
