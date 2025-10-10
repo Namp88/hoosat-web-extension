@@ -59,7 +59,10 @@ function showCreateWallet() {
   app.innerHTML = `
     <div class="screen">
       <div class="header">
-        <h1>${APP_NAME}</h1>
+        <div class="header-left">
+          <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
+          <h1>${APP_NAME}</h1>
+        </div>
       </div>
       
       <div class="content">
@@ -99,7 +102,10 @@ function showGenerateWallet() {
     <div class="screen">
       <div class="header">
         <button id="backBtn" class="btn-icon">←</button>
-        <h1>Create New Wallet</h1>
+        <div class="header-center">
+          <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
+          <h1>Create New Wallet</h1>
+        </div>
         <div style="width: 32px;"></div>
       </div>
       
@@ -140,7 +146,10 @@ function showImportWallet() {
     <div class="screen">
       <div class="header">
         <button id="backBtn" class="btn-icon">←</button>
-        <h1>Import Wallet</h1>
+        <div class="header-center">
+          <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
+          <h1>Import Wallet</h1>
+        </div>
         <div style="width: 32px;"></div>
       </div>
       
@@ -178,7 +187,10 @@ function showUnlockWallet() {
   app.innerHTML = `
     <div class="screen">
       <div class="header">
-        <h1>${APP_NAME}</h1>
+        <div class="header-left">
+          <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
+          <h1>${APP_NAME}</h1>
+        </div>
       </div>
       
       <div class="content">
@@ -224,7 +236,10 @@ async function showWallet() {
   app.innerHTML = `
     <div class="screen">
       <div class="header">
-        <h1>${APP_NAME}</h1>
+        <div class="header-left">
+          <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
+          <h1>${APP_NAME}</h1>
+        </div>
         <button id="settingsBtn" class="btn-icon">⚙️</button>
       </div>
       
@@ -384,7 +399,10 @@ function showBackupPrivateKey(privateKey: string, address: string) {
   app.innerHTML = `
     <div class="screen">
       <div class="header">
-        <h1>Backup Private Key</h1>
+        <div class="header-left">
+          <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
+          <h1>Backup Private Key</h1>
+        </div>
       </div>
       
       <div class="content">
@@ -572,7 +590,11 @@ function showSendScreen() {
     <div class="screen">
       <div class="header">
         <button id="backBtn" class="btn-icon">←</button>
-        <h1>Send HTN</h1>
+        <div class="header-center">
+          <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
+          <h1>Send HTN</h1>
+        </div>
+        <div style="width: 32px;"></div>
       </div>
       
       <div class="content">
@@ -614,7 +636,11 @@ function showReceiveScreen() {
     <div class="screen">
       <div class="header">
         <button id="backBtn" class="btn-icon">←</button>
-        <h1>Receive HTN</h1>
+        <div class="header-center">
+          <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
+          <h1>Receive HTN</h1>
+        </div>
+        <div style="width: 32px;"></div>
       </div>
       
       <div class="content">
@@ -637,7 +663,11 @@ function showSettingsScreen() {
     <div class="screen">
       <div class="header">
         <button id="backBtn" class="btn-icon">←</button>
-        <h1>Settings</h1>
+        <div class="header-center">
+          <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
+          <h1>Settings</h1>
+        </div>
+        <div style="width: 32px;"></div>
       </div>
       
       <div class="content">
