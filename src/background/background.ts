@@ -34,11 +34,15 @@ const pendingRequests = new Map<string, DAppRequest>();
 // Session state (cleared on extension reload)
 let isUnlocked = false;
 let sessionTimeout: number | null = null;
+let lastActivityTime: number = 0;
 
 // Auto-lock after inactivity
 const SESSION_TIMEOUT_MS = 30 * 60 * 1000; // 30 minutes
+const GRACE_PERIOD_MS = 2 * 60 * 1000; // 2 minutes - no password needed if reopened within this time
 
 function resetSessionTimeout() {
+  lastActivityTime = Date.now();
+
   if (sessionTimeout) {
     clearTimeout(sessionTimeout);
   }
@@ -83,6 +87,11 @@ chrome.runtime.onMessage.addListener((message: ExtensionMessage, sender, sendRes
 async function handleMessage(message: ExtensionMessage, sender: chrome.runtime.MessageSender): Promise<any> {
   const { type, data } = message;
 
+  // Update activity time on any message (except status checks)
+  if (isUnlocked && type !== 'CHECK_UNLOCK_STATUS' && type !== 'CHECK_WALLET') {
+    resetSessionTimeout();
+  }
+
   switch (type) {
     case MessageType.RPC_REQUEST:
       return handleRPCRequest(data, sender);
@@ -125,6 +134,9 @@ async function handleMessage(message: ExtensionMessage, sender: chrome.runtime.M
 
     case 'CHECK_WALLET':
       return handleCheckWallet();
+
+    case 'CHECK_UNLOCK_STATUS':
+      return handleCheckUnlockStatus();
 
     case 'CONTENT_SCRIPT_READY':
       return { success: true };
@@ -309,6 +321,31 @@ async function handleSendTransactionFromPopup(data: { to: string; amount: number
 async function handleCheckWallet(): Promise<any> {
   const exists = await hasWallet();
   return { exists };
+}
+
+/**
+ * Check unlock status and grace period
+ */
+async function handleCheckUnlockStatus(): Promise<any> {
+  // Check if unlocked
+  if (!isUnlocked) {
+    return { isUnlocked: false, inGracePeriod: false };
+  }
+
+  // Check grace period
+  const timeSinceLastActivity = Date.now() - lastActivityTime;
+  const inGracePeriod = timeSinceLastActivity < GRACE_PERIOD_MS;
+
+  // Update activity time on check
+  if (inGracePeriod) {
+    resetSessionTimeout();
+  }
+
+  return {
+    isUnlocked: true,
+    inGracePeriod,
+    address: walletManager.getCurrentAddress(),
+  };
 }
 
 // ============================================================================

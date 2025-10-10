@@ -45,6 +45,9 @@ export const SOMPI_PER_HTN = 100000000; // 1 HTN = 100,000,000 sompi
 // Session timeout (auto-lock after 30 minutes of inactivity)
 export const SESSION_TIMEOUT = 30 * 60 * 1000; // 30 minutes
 
+// Grace period - time after closing popup when password is not required again
+export const GRACE_PERIOD = 2 * 60 * 1000; // 2 minutes
+
 // Validation
 export const MIN_PASSWORD_LENGTH = 8;
 export const ADDRESS_MIN_LENGTH = 10;

@@ -23,15 +23,34 @@ async function init() {
 
   if (!walletExists) {
     showCreateWallet();
-  } else {
-    // Check if there's a pending request
-    const session = await chrome.storage.session.get('pendingRequestId');
+    return;
+  }
 
-    if (session.pendingRequestId) {
-      showPendingRequest(session.pendingRequestId);
-    } else {
-      showUnlockWallet();
+  // Check if wallet is unlocked (in background)
+  try {
+    const response = await chrome.runtime.sendMessage({ type: 'CHECK_UNLOCK_STATUS' });
+
+    if (response.success && response.data.isUnlocked) {
+      // Wallet is unlocked in background, show wallet directly
+      console.log('✅ Wallet is unlocked, showing wallet screen');
+      isUnlocked = true;
+      await showWallet();
+
+      // Show brief welcome message
+      showSuccessMessage('👋 Welcome back!', 1500);
+      return;
     }
+  } catch (error) {
+    console.log('Could not check unlock status:', error);
+  }
+
+  // Check if there's a pending request
+  const session = await chrome.storage.session.get('pendingRequestId');
+
+  if (session.pendingRequestId) {
+    showPendingRequest(session.pendingRequestId);
+  } else {
+    showUnlockWallet();
   }
 }
 
@@ -501,7 +520,7 @@ async function handleSendTransaction() {
 }
 
 // Show success message
-function showSuccessMessage(message: string) {
+function showSuccessMessage(message: string, duration: number = 3000) {
   const successDiv = document.createElement('div');
   successDiv.className = 'success-toast';
   successDiv.textContent = message;
@@ -516,7 +535,60 @@ function showSuccessMessage(message: string) {
     setTimeout(() => {
       successDiv.remove();
     }, 300);
-  }, 3000);
+  }, duration);
+}
+
+// Show custom confirm dialog
+function showConfirmDialog(title: string, message: string): Promise<boolean> {
+  return new Promise(resolve => {
+    // Create modal overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+
+    // Create modal content
+    const modal = document.createElement('div');
+    modal.className = 'modal-content';
+
+    modal.innerHTML = `
+      <div class="modal-header">
+        <h2>${title}</h2>
+      </div>
+      <div class="modal-body">
+        <p>${message}</p>
+      </div>
+      <div class="modal-actions">
+        <button id="modalCancel" class="btn btn-secondary">Cancel</button>
+        <button id="modalConfirm" class="btn btn-danger">Confirm</button>
+      </div>
+    `;
+
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    // Animate in
+    setTimeout(() => {
+      overlay.classList.add('show');
+    }, 10);
+
+    // Handle buttons
+    const closeModal = (confirmed: boolean) => {
+      overlay.classList.remove('show');
+      setTimeout(() => {
+        overlay.remove();
+        resolve(confirmed);
+      }, 300);
+    };
+
+    document.getElementById('modalCancel')!.addEventListener('click', () => closeModal(false));
+    document.getElementById('modalConfirm')!.addEventListener('click', () => closeModal(true));
+
+    // Close on overlay click
+    overlay.addEventListener('click', e => {
+      if (e.target === overlay) {
+        closeModal(false);
+      }
+    });
+  });
 }
 
 // Handle lock wallet
@@ -528,7 +600,12 @@ async function handleLock() {
 
 // Handle reset wallet
 async function handleReset() {
-  if (confirm('Are you sure? This will delete your wallet. Make sure you have backed up your private key!')) {
+  const confirmed = await showConfirmDialog(
+    'Reset Wallet',
+    'Are you sure? This will delete your wallet. Make sure you have backed up your private key!'
+  );
+
+  if (confirmed) {
     await chrome.runtime.sendMessage({ type: 'RESET_WALLET' });
     showCreateWallet();
   }
