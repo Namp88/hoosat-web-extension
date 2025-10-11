@@ -29,7 +29,7 @@ export interface DAppRequest {
 export interface TransactionRequest {
   to: string;
   amount: number | string;
-  payload?: string;
+  fee?: string; // Optional custom fee in sompi
 }
 
 export interface ConnectedSite {
@@ -46,7 +46,7 @@ export interface TransactionHistory {
   to?: string;
   from?: string;
   timestamp: number;
-  payload?: string;
+  fee?: string; // actual fee paid in sompi
 }
 
 // Fee estimate

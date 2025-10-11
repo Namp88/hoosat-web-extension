@@ -247,14 +247,18 @@ async function showWallet() {
         <div class="wallet-info">
           <div class="address">
             <label>Address</label>
-            <div class="address-value" id="address">${formatAddress(currentAddress)}</div>
-            <button id="copyBtn" class="btn-icon">📋</button>
-          </div>
+            <div class="address-row">
+              <div class="address-value" id="address">${formatAddress(currentAddress)}</div>
+              <button id="copyBtn" class="btn-icon">📋</button>
+            </div>
+          </div> 
           
           <div class="balance">
             <label>Balance</label>
-            <div class="balance-value" id="balance">${formatBalance(balance)} HTN</div>
-            <button id="refreshBtn" class="btn-icon">🔄</button>
+            <div class="balance-row">
+              <div class="balance-value" id="balance">${formatBalance(balance)} HTN</div>
+              <button id="refreshBtn" class="btn-icon">🔄</button>
+            </div>
           </div>
         </div>
         
@@ -651,11 +655,6 @@ function showSendScreen() {
             <input type="number" id="amount" step="0.00000001" placeholder="0.00" />
           </div>
           
-          <div class="form-group">
-            <label for="payload">Payload (optional)</label>
-            <input type="text" id="payload" placeholder="Message or data" />
-          </div>
-          
           <div class="balance-info">
             Available: ${formatBalance(balance)} HTN
           </div>
@@ -732,7 +731,6 @@ function showSettingsScreen() {
 async function handleSendTransaction() {
   const recipient = (document.getElementById('recipient') as HTMLInputElement).value.trim();
   const amount = (document.getElementById('amount') as HTMLInputElement).value;
-  const payload = (document.getElementById('payload') as HTMLInputElement).value.trim();
   const errorEl = document.getElementById('error')!;
 
   errorEl.textContent = '';
@@ -775,12 +773,12 @@ async function handleSendTransaction() {
     }
 
     const feeEstimate = feeEstimateResponse.data;
-    const feeSompi = BigInt(feeEstimate.fee);
-    const feeHTN = parseFloat(feeEstimate.fee) / 100000000;
+    const minFeeSompi = BigInt(feeEstimate.fee);
+    const minFeeHTN = parseFloat(feeEstimate.fee) / 100000000;
 
-    console.log('💵 Real fee estimate:', {
+    console.log('💵 Minimum fee estimate:', {
       fee: feeEstimate.fee + ' sompi',
-      feeHTN: feeHTN.toFixed(8) + ' HTN',
+      feeHTN: minFeeHTN.toFixed(8) + ' HTN',
       inputs: feeEstimate.inputs,
       outputs: feeEstimate.outputs,
     });
@@ -792,28 +790,24 @@ async function handleSendTransaction() {
     // Check if amount exceeds balance
     const balanceSompi = BigInt(balance);
     const amountSompi = BigInt(Math.floor(amountNum * 100000000));
-    const totalRequired = amountSompi + feeSompi;
+    const totalRequired = amountSompi + minFeeSompi;
 
     if (totalRequired > balanceSompi) {
-      errorEl.textContent = `Insufficient balance. Need ${(parseFloat(totalRequired.toString()) / 100000000).toFixed(8)} HTN (including ${feeHTN.toFixed(8)} HTN fee)`;
+      errorEl.textContent = `Insufficient balance. Need ${(parseFloat(totalRequired.toString()) / 100000000).toFixed(8)} HTN (including ${minFeeHTN.toFixed(8)} HTN fee)`;
       return;
     }
 
-    // Calculate total
-    const total = amountNum + feeHTN;
-
-    // Show transaction preview with real fee
-    const confirmed = await showTransactionPreview({
+    // Show transaction preview with option to edit fee
+    const result = await showTransactionPreview({
       to: recipient,
       amount: amountNum,
-      fee: feeHTN,
-      total: total,
-      payload: payload || undefined,
+      minFee: minFeeHTN,
+      minFeeSompi: feeEstimate.fee,
       inputs: feeEstimate.inputs,
       outputs: feeEstimate.outputs,
     });
 
-    if (!confirmed) {
+    if (!result.confirmed) {
       return; // User cancelled
     }
 
@@ -821,12 +815,15 @@ async function handleSendTransaction() {
     sendBtn.disabled = true;
     sendBtn.textContent = 'Sending...';
 
+    // Use custom fee if provided, otherwise use minimum
+    const finalFeeSompi = result.customFeeSompi || feeEstimate.fee;
+
     const response = await chrome.runtime.sendMessage({
       type: 'SEND_TRANSACTION',
       data: {
         to: recipient,
         amount: amountNum,
-        payload: payload || undefined,
+        fee: finalFeeSompi,
       },
     });
 
@@ -929,15 +926,23 @@ function showConfirmDialog(title: string, message: string): Promise<boolean> {
 interface TransactionPreviewData {
   to: string;
   amount: number;
-  fee: number;
-  total: number;
-  payload?: string;
+  minFee: number; // in HTN
+  minFeeSompi: string; // in sompi
   inputs?: number;
   outputs?: number;
 }
 
-function showTransactionPreview(data: TransactionPreviewData): Promise<boolean> {
+interface TransactionPreviewResult {
+  confirmed: boolean;
+  customFeeSompi?: string;
+}
+
+function showTransactionPreview(data: TransactionPreviewData): Promise<TransactionPreviewResult> {
   return new Promise(resolve => {
+    let isEditingFee = false;
+    let customFeeHTN = data.minFee;
+    let customFeeSompi = data.minFeeSompi;
+
     // Create modal overlay
     const overlay = document.createElement('div');
     overlay.className = 'modal-overlay';
@@ -946,60 +951,96 @@ function showTransactionPreview(data: TransactionPreviewData): Promise<boolean> 
     const modal = document.createElement('div');
     modal.className = 'modal-content tx-preview-modal';
 
-    modal.innerHTML = `
-      <div class="modal-header">
-        <h2>Confirm Transaction</h2>
-      </div>
-      <div class="modal-body">
-        <div class="tx-preview-section">
-          <div class="tx-preview-label">Sending to</div>
-          <div class="tx-preview-value address-preview">${formatAddress(data.to)}</div>
-          <div class="tx-preview-full">${data.to}</div>
+    function renderModal() {
+      const total = data.amount + customFeeHTN;
+      const isCustomFee = customFeeSompi !== data.minFeeSompi;
+      const feeMultiplier = customFeeHTN / data.minFee;
+      const showWarning = feeMultiplier > 10;
+
+      modal.innerHTML = `
+        <div class="modal-header">
+          <h2>Confirm Transaction</h2>
         </div>
-        
-        <div class="tx-preview-section">
-          <div class="tx-preview-label">Amount</div>
-          <div class="tx-preview-value amount-value">${data.amount.toFixed(8)} HTN</div>
-        </div>
-        
-        ${
-          data.payload
-            ? `
-        <div class="tx-preview-section">
-          <div class="tx-preview-label">Payload</div>
-          <div class="tx-preview-value payload-value">${data.payload}</div>
-        </div>
-        `
-            : ''
-        }
-        
-        <div class="tx-preview-divider"></div>
-        
-        <div class="tx-preview-section">
-          <div class="tx-preview-label">Network Fee</div>
-          <div class="tx-preview-value fee-value">${data.fee.toFixed(8)} HTN</div>
+        <div class="modal-body">
+          <div class="tx-preview-section">
+            <div class="tx-preview-label">Sending to</div>
+            <div class="tx-preview-value address-preview">${formatAddress(data.to)}</div>
+            <div class="tx-preview-full">${data.to}</div>
+          </div>
+          
+          <div class="tx-preview-section">
+            <div class="tx-preview-label">Amount</div>
+            <div class="tx-preview-value amount-value">${data.amount.toFixed(8)} HTN</div>
+          </div>
+          
+          <div class="tx-preview-divider"></div>
+          
+          <div class="tx-preview-section">
+            <div class="tx-preview-label-row">
+              <div class="tx-preview-label">Network Fee</div>
+              ${isCustomFee && !isEditingFee ? '<div class="custom-fee-badge">Custom</div>' : ''}
+            </div>
+            ${
+              !isEditingFee
+                ? `
+              <div class="fee-display">
+                <div class="tx-preview-value fee-value">${customFeeHTN.toFixed(8)} HTN</div>
+                ${
+                  data.inputs && data.outputs
+                    ? `<div class="tx-preview-note">${data.inputs} input${data.inputs > 1 ? 's' : ''} + ${data.outputs} output${data.outputs > 1 ? 's' : ''}</div>`
+                    : ''
+                }
+                <button id="editFeeBtn" class="btn-link-small">Edit fee</button>
+              </div>
+            `
+                : `
+              <div class="fee-edit-form">
+                <input 
+                  type="number" 
+                  id="customFeeInput" 
+                  class="fee-input" 
+                  step="0.00000001" 
+                  value="${customFeeHTN.toFixed(8)}"
+                  placeholder="${data.minFee.toFixed(8)}"
+                />
+                <div class="fee-edit-hint">Minimum: ${data.minFee.toFixed(8)} HTN</div>
+                <div class="fee-edit-actions">
+                  <button id="cancelFeeBtn" class="btn btn-secondary btn-small">Cancel</button>
+                  <button id="saveFeeBtn" class="btn btn-primary btn-small">Save</button>
+                </div>
+                <div class="error" id="feeError"></div>
+              </div>
+            `
+            }
+          </div>
+          
           ${
-            data.inputs && data.outputs
-              ? `<div class="tx-preview-note">${data.inputs} input${data.inputs > 1 ? 's' : ''} + ${data.outputs} output${data.outputs > 1 ? 's' : ''}</div>`
+            showWarning
+              ? `
+          <div class="tx-preview-warning-box">
+            ⚠️ Warning: Fee is ${feeMultiplier.toFixed(1)}x higher than minimum!
+          </div>
+          `
               : ''
           }
+          
+          <div class="tx-preview-section total-section">
+            <div class="tx-preview-label">Total</div>
+            <div class="tx-preview-value total-value">${total.toFixed(8)} HTN</div>
+          </div>
+          
+          <div class="tx-preview-warning">
+            ⚠️ Please verify all details before confirming
+          </div>
         </div>
-        
-        <div class="tx-preview-section total-section">
-          <div class="tx-preview-label">Total</div>
-          <div class="tx-preview-value total-value">${data.total.toFixed(8)} HTN</div>
+        <div class="modal-actions">
+          <button id="modalCancel" class="btn btn-secondary">Cancel</button>
+          <button id="modalConfirm" class="btn btn-primary">Confirm & Send</button>
         </div>
-        
-        <div class="tx-preview-warning">
-          ⚠️ Please verify all details before confirming
-        </div>
-      </div>
-      <div class="modal-actions">
-        <button id="modalCancel" class="btn btn-secondary">Cancel</button>
-        <button id="modalConfirm" class="btn btn-primary">Confirm & Send</button>
-      </div>
-    `;
+      `;
+    }
 
+    renderModal();
     overlay.appendChild(modal);
     document.body.appendChild(overlay);
 
@@ -1009,21 +1050,72 @@ function showTransactionPreview(data: TransactionPreviewData): Promise<boolean> 
     }, 10);
 
     // Handle buttons
-    const closeModal = (confirmed: boolean) => {
+    const closeModal = (result: TransactionPreviewResult) => {
       overlay.classList.remove('show');
       setTimeout(() => {
         overlay.remove();
-        resolve(confirmed);
+        resolve(result);
       }, 300);
     };
 
-    document.getElementById('modalCancel')!.addEventListener('click', () => closeModal(false));
-    document.getElementById('modalConfirm')!.addEventListener('click', () => closeModal(true));
+    // Event delegation for dynamic buttons
+    modal.addEventListener('click', (e: Event) => {
+      const target = e.target as HTMLElement;
+
+      if (target.id === 'editFeeBtn') {
+        isEditingFee = true;
+        renderModal();
+        // Focus input after render
+        setTimeout(() => {
+          const input = document.getElementById('customFeeInput') as HTMLInputElement;
+          if (input) input.focus();
+        }, 10);
+      } else if (target.id === 'cancelFeeBtn') {
+        isEditingFee = false;
+        customFeeHTN = parseFloat(customFeeSompi) / 100000000;
+        renderModal();
+      } else if (target.id === 'saveFeeBtn') {
+        const input = document.getElementById('customFeeInput') as HTMLInputElement;
+        const feeError = document.getElementById('feeError')!;
+        const newFeeHTN = parseFloat(input.value);
+
+        if (isNaN(newFeeHTN) || newFeeHTN <= 0) {
+          feeError.textContent = 'Invalid fee value';
+          return;
+        }
+
+        if (newFeeHTN < data.minFee) {
+          feeError.textContent = `Fee cannot be less than ${data.minFee.toFixed(8)} HTN`;
+          return;
+        }
+
+        // Check if total exceeds balance
+        const totalWithNewFee = data.amount + newFeeHTN;
+        const balanceHTN = parseFloat(balance) / 100000000;
+
+        if (totalWithNewFee > balanceHTN) {
+          feeError.textContent = 'Insufficient balance for this fee';
+          return;
+        }
+
+        customFeeHTN = newFeeHTN;
+        customFeeSompi = Math.floor(newFeeHTN * 100000000).toString();
+        isEditingFee = false;
+        renderModal();
+      } else if (target.id === 'modalCancel') {
+        closeModal({ confirmed: false });
+      } else if (target.id === 'modalConfirm') {
+        closeModal({
+          confirmed: true,
+          customFeeSompi: customFeeSompi !== data.minFeeSompi ? customFeeSompi : undefined,
+        });
+      }
+    });
 
     // Close on overlay click
     overlay.addEventListener('click', e => {
       if (e.target === overlay) {
-        closeModal(false);
+        closeModal({ confirmed: false });
       }
     });
   });

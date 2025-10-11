@@ -164,7 +164,7 @@ export class WalletManager {
   /**
    * Send transaction
    */
-  async sendTransaction(params: { to: string; amount: number | string; payload?: string }): Promise<string> {
+  async sendTransaction(params: { to: string; amount: number | string; fee?: string }): Promise<string> {
     if (!this.unlockedWallet) {
       throw new Error('Wallet is locked');
     }
@@ -181,7 +181,7 @@ export class WalletManager {
       console.log('💸 Sending transaction:', {
         to: params.to,
         amount: amountSompi,
-        payload: params.payload,
+        customFee: params.fee,
       });
 
       // Get UTXOs for current wallet
@@ -199,19 +199,19 @@ export class WalletManager {
       console.log('💰 Total available:', totalAvailable.toString(), 'sompi');
       console.log('📊 UTXOs count:', utxos.length);
 
-      // Calculate fee (assume we'll have change output)
+      // Use custom fee or calculate default
       const numInputs = utxos.length;
       const numOutputs = 2; // recipient + change
-      const estimatedFee = this.calculateFee(numInputs, numOutputs);
+      const txFee = params.fee || this.calculateFee(numInputs, numOutputs);
 
-      console.log('💵 Estimated fee:', estimatedFee, 'sompi for', numInputs, 'inputs and', numOutputs, 'outputs');
+      console.log('💵 Transaction fee:', txFee, 'sompi', params.fee ? '(custom)' : '(auto)');
 
       // Check if we have enough funds (amount + fee)
-      const totalRequired = BigInt(amountSompi) + BigInt(estimatedFee);
+      const totalRequired = BigInt(amountSompi) + BigInt(txFee);
 
       if (totalAvailable < totalRequired) {
         throw new Error(
-          `Insufficient funds. Available: ${totalAvailable} sompi, Required: ${totalRequired} sompi (${amountSompi} + ${estimatedFee} fee)`
+          `Insufficient funds. Available: ${totalAvailable} sompi, Required: ${totalRequired} sompi (${amountSompi} + ${txFee} fee)`
         );
       }
 
@@ -222,7 +222,7 @@ export class WalletManager {
       // Build transaction
       const txBuilder = new HoosatTxBuilder({ debug: false });
 
-      // Add inputs with private key (IMPORTANT!)
+      // Add inputs with private key
       for (const utxo of utxos) {
         txBuilder.addInput(utxo, this.unlockedWallet.privateKey);
       }
@@ -231,25 +231,14 @@ export class WalletManager {
       txBuilder.addOutput(params.to, amountSompi);
 
       // Set fee
-      txBuilder.setFee(estimatedFee);
+      txBuilder.setFee(txFee);
 
       // Add change output
       txBuilder.addChangeOutput(this.unlockedWallet.address);
 
-      // Add payload if provided
-      if (params.payload) {
-        console.log('📝 Payload:', params.payload);
-        // Payload might need special handling depending on SDK version
-      }
-
-      // Sign transaction (NO parameters - keys already in inputs!)
+      // Sign transaction
       console.log('✍️ Signing transaction...');
       const signedTx = txBuilder.sign();
-
-      // Add payload to signed transaction if provided
-      if (params.payload && signedTx) {
-        signedTx.payload = params.payload;
-      }
 
       // Submit transaction
       console.log('📤 Submitting transaction...');

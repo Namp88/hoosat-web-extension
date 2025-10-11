@@ -338,7 +338,7 @@ async function handleGetBalanceFromPopup(data: { address: string }): Promise<str
 /**
  * Send transaction from popup
  */
-async function handleSendTransactionFromPopup(data: { to: string; amount: number | string; payload?: string }): Promise<string> {
+async function handleSendTransactionFromPopup(data: { to: string; amount: number | string; fee?: string }): Promise<string> {
   if (!isUnlocked) {
     throw new Error('Wallet is locked');
   }
@@ -350,7 +350,7 @@ async function handleSendTransactionFromPopup(data: { to: string; amount: number
     const txId = await walletManager.sendTransaction({
       to: data.to,
       amount: amountInSompi,
-      payload: data.payload,
+      fee: data.fee, // custom fee in sompi if provided
     });
 
     console.log('✅ Transaction sent from popup:', txId);
@@ -365,7 +365,7 @@ async function handleSendTransactionFromPopup(data: { to: string; amount: number
         to: data.to,
         from: wallet.address,
         timestamp: Date.now(),
-        payload: data.payload,
+        fee: data.fee, // save actual fee used
       };
 
       await saveTransactionToHistory(transaction);
@@ -587,7 +587,7 @@ async function handleTransactionApproval(requestId: string, approved: boolean): 
           to: request.params.to,
           from: wallet.address,
           timestamp: Date.now(),
-          payload: request.params.payload,
+          fee: request.params.fee, // save fee if provided
         };
 
         await saveTransactionToHistory(transaction);
