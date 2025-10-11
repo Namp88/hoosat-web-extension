@@ -49,6 +49,13 @@ export interface TransactionHistory {
   payload?: string;
 }
 
+// Fee estimate
+export interface FeeEstimate {
+  fee: string; // sompi
+  inputs: number;
+  outputs: number;
+}
+
 // RPC Methods that DApps can call
 export enum RPCMethod {
   REQUEST_ACCOUNTS = 'hoosat_requestAccounts',

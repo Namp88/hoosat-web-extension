@@ -780,6 +780,13 @@ body {
     font-size: 14px;
 }
 
+.tx-preview-note {
+    font-size: 11px;
+    color: #718096;
+    margin-top: 4px;
+    font-style: italic;
+}
+
 .payload-value {
     font-family: 'Courier New', monospace;
     font-size: 12px;

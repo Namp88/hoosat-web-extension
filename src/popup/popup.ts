@@ -726,6 +726,8 @@ function showSettingsScreen() {
   document.getElementById('resetBtn')!.addEventListener('click', handleReset);
 }
 
+// Replace the handleSendTransaction function in popup.ts (starts around line 619)
+
 // Handle send transaction
 async function handleSendTransaction() {
   const recipient = (document.getElementById('recipient') as HTMLInputElement).value.trim();
@@ -752,28 +754,63 @@ async function handleSendTransaction() {
     return;
   }
 
-  // Check if amount exceeds balance
-  const balanceSompi = BigInt(balance);
-  const amountSompi = BigInt(Math.floor(amountNum * 100000000));
-  const feeSompi = BigInt(2500); // Approximate fee
-
-  if (amountSompi + feeSompi > balanceSompi) {
-    errorEl.textContent = 'Insufficient balance (including fee)';
-    return;
-  }
-
   try {
-    // Calculate fee estimate (approximate)
-    const feeEstimate = 0.000025; // ~2500 sompi
-    const total = amountNum + feeEstimate;
+    // Show loading state
+    const sendBtn = document.getElementById('sendBtn') as HTMLButtonElement;
+    const originalText = sendBtn.textContent;
+    sendBtn.disabled = true;
+    sendBtn.textContent = 'Estimating fee...';
 
-    // Show transaction preview
+    // Get real fee estimate from background
+    const feeEstimateResponse = await chrome.runtime.sendMessage({
+      type: 'ESTIMATE_FEE',
+      data: {
+        to: recipient,
+        amount: amountNum,
+      },
+    });
+
+    if (!feeEstimateResponse.success) {
+      throw new Error(feeEstimateResponse.error);
+    }
+
+    const feeEstimate = feeEstimateResponse.data;
+    const feeSompi = BigInt(feeEstimate.fee);
+    const feeHTN = parseFloat(feeEstimate.fee) / 100000000;
+
+    console.log('💵 Real fee estimate:', {
+      fee: feeEstimate.fee + ' sompi',
+      feeHTN: feeHTN.toFixed(8) + ' HTN',
+      inputs: feeEstimate.inputs,
+      outputs: feeEstimate.outputs,
+    });
+
+    // Re-enable button
+    sendBtn.disabled = false;
+    sendBtn.textContent = originalText;
+
+    // Check if amount exceeds balance
+    const balanceSompi = BigInt(balance);
+    const amountSompi = BigInt(Math.floor(amountNum * 100000000));
+    const totalRequired = amountSompi + feeSompi;
+
+    if (totalRequired > balanceSompi) {
+      errorEl.textContent = `Insufficient balance. Need ${(parseFloat(totalRequired.toString()) / 100000000).toFixed(8)} HTN (including ${feeHTN.toFixed(8)} HTN fee)`;
+      return;
+    }
+
+    // Calculate total
+    const total = amountNum + feeHTN;
+
+    // Show transaction preview with real fee
     const confirmed = await showTransactionPreview({
       to: recipient,
       amount: amountNum,
-      fee: feeEstimate,
+      fee: feeHTN,
       total: total,
       payload: payload || undefined,
+      inputs: feeEstimate.inputs,
+      outputs: feeEstimate.outputs,
     });
 
     if (!confirmed) {
@@ -781,8 +818,6 @@ async function handleSendTransaction() {
     }
 
     // Disable button during sending
-    const sendBtn = document.getElementById('sendBtn') as HTMLButtonElement;
-    const originalText = sendBtn.textContent;
     sendBtn.disabled = true;
     sendBtn.textContent = 'Sending...';
 
@@ -897,6 +932,8 @@ interface TransactionPreviewData {
   fee: number;
   total: number;
   payload?: string;
+  inputs?: number;
+  outputs?: number;
 }
 
 function showTransactionPreview(data: TransactionPreviewData): Promise<boolean> {
@@ -941,6 +978,11 @@ function showTransactionPreview(data: TransactionPreviewData): Promise<boolean> 
         <div class="tx-preview-section">
           <div class="tx-preview-label">Network Fee</div>
           <div class="tx-preview-value fee-value">${data.fee.toFixed(8)} HTN</div>
+          ${
+            data.inputs && data.outputs
+              ? `<div class="tx-preview-note">${data.inputs} input${data.inputs > 1 ? 's' : ''} + ${data.outputs} output${data.outputs > 1 ? 's' : ''}</div>`
+              : ''
+          }
         </div>
         
         <div class="tx-preview-section total-section">

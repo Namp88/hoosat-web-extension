@@ -135,6 +135,9 @@ async function handleMessage(message: ExtensionMessage, sender: chrome.runtime.M
     case 'SEND_TRANSACTION':
       return handleSendTransactionFromPopup(data);
 
+    case 'ESTIMATE_FEE':
+      return handleEstimateFee(data);
+
     case 'CHECK_WALLET':
       return handleCheckWallet();
 
@@ -248,6 +251,29 @@ async function handleUnlockWallet(data: { password: string }): Promise<any> {
   } catch (error: any) {
     console.error('❌ Failed to unlock wallet:', error);
     throw new Error(error.message || 'Invalid password');
+  }
+}
+
+/**
+ * Estimate fee for transaction from popup
+ */
+async function handleEstimateFee(data: { to: string; amount: number | string }): Promise<any> {
+  if (!isUnlocked) {
+    throw new Error('Wallet is locked');
+  }
+
+  try {
+    const feeEstimate = await walletManager.estimateFee({
+      to: data.to,
+      amount: data.amount,
+    });
+
+    console.log('💵 Fee estimated:', feeEstimate);
+
+    return feeEstimate;
+  } catch (error: any) {
+    console.error('❌ Failed to estimate fee:', error);
+    throw new Error(error.message || 'Failed to estimate fee');
   }
 }
 

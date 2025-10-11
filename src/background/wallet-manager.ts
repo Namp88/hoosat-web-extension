@@ -2,7 +2,7 @@ import { getCurrentWallet } from '../shared/storage';
 import { decryptPrivateKey } from '../shared/crypto';
 import { DEFAULT_NODE_URL, DEFAULT_NETWORK } from '../shared/constants';
 import type { Network } from '../shared/constants';
-import type { UnlockedWallet } from '../shared/types';
+import type { UnlockedWallet, FeeEstimate } from '../shared/types';
 import { HoosatTxBuilder, HoosatUtils, HoosatWebClient, HoosatCrypto } from 'hoosat-sdk-web';
 
 export class WalletManager {
@@ -115,6 +115,50 @@ export class WalletManager {
    */
   private calculateFee(inputs: number, outputs: number): string {
     return HoosatCrypto.calculateFee(inputs, outputs);
+  }
+
+  /**
+   * Estimate fee for transaction
+   */
+  async estimateFee(params: { to: string; amount: number | string }): Promise<FeeEstimate> {
+    if (!this.unlockedWallet) {
+      throw new Error('Wallet is locked');
+    }
+
+    try {
+      // Validate recipient address
+      if (!HoosatUtils.isValidAddress(params.to)) {
+        throw new Error('Invalid recipient address');
+      }
+
+      // Get UTXOs for current wallet
+      const utxos = await this.getUtxos(this.unlockedWallet.address);
+
+      if (!utxos || utxos.length === 0) {
+        throw new Error('No UTXOs available');
+      }
+
+      // Calculate fee based on actual UTXO count
+      const numInputs = utxos.length;
+      const numOutputs = 2; // recipient + change
+
+      const fee = this.calculateFee(numInputs, numOutputs);
+
+      console.log('💵 Fee estimate:', {
+        fee: fee + ' sompi',
+        inputs: numInputs,
+        outputs: numOutputs,
+      });
+
+      return {
+        fee,
+        inputs: numInputs,
+        outputs: numOutputs,
+      };
+    } catch (error: any) {
+      console.error('❌ Failed to estimate fee:', error);
+      throw new Error(`Fee estimation failed: ${error.message}`);
+    }
   }
 
   /**
