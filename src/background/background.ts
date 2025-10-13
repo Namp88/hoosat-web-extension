@@ -18,6 +18,8 @@ import {
   clearAllData,
   hasWallet,
   saveTransactionToHistory,
+  saveWallet,
+  loadWallet,
 } from '../shared/storage';
 import { decryptPrivateKey, encryptPrivateKey } from '../shared/crypto';
 import { WalletManager } from './wallet-manager';
@@ -150,6 +152,9 @@ async function handleMessage(message: ExtensionMessage, sender: chrome.runtime.M
     case 'EXPORT_PRIVATE_KEY':
       return handleExportPrivateKey(data);
 
+    case 'CHANGE_PASSWORD':
+      return handleChangePassword(data);
+
     default:
       throw new Error(`Unknown message type: ${type}`);
   }
@@ -191,6 +196,73 @@ async function handleGenerateWallet(data: { password: string }): Promise<any> {
   } catch (error: any) {
     console.error('❌ Failed to generate wallet:', error);
     throw new Error(error.message || 'Failed to generate wallet');
+  }
+}
+
+/**
+ * Change wallet password (re-encrypt private key)
+ */
+async function handleChangePassword(data: { currentPassword: string; newPassword: string }): Promise<any> {
+  const { currentPassword, newPassword } = data;
+
+  try {
+    // Get current wallet
+    const storedWallet = await loadWallet();
+
+    if (!storedWallet || storedWallet.wallets.length === 0) {
+      throw new Error('No wallet found');
+    }
+
+    // Get current wallet data
+    const currentWallet = storedWallet.wallets[storedWallet.currentWalletIndex];
+
+    // Verify current password by trying to decrypt
+    let privateKey: string;
+    try {
+      privateKey = decryptPrivateKey(currentWallet.encryptedPrivateKey, currentPassword);
+    } catch (error) {
+      throw new Error('Current password is incorrect');
+    }
+
+    // Validate new password
+    if (newPassword.length < 8) {
+      throw new Error('New password must be at least 8 characters');
+    }
+
+    if (!/[A-Z]/.test(newPassword)) {
+      throw new Error('New password must contain at least one uppercase letter');
+    }
+
+    if (!/[a-z]/.test(newPassword)) {
+      throw new Error('New password must contain at least one lowercase letter');
+    }
+
+    if (!/[0-9]/.test(newPassword)) {
+      throw new Error('New password must contain at least one number');
+    }
+
+    // Re-encrypt private key with new password
+    const newEncryptedPrivateKey = encryptPrivateKey(privateKey, newPassword);
+
+    // Update wallet data
+    currentWallet.encryptedPrivateKey = newEncryptedPrivateKey;
+
+    // Save updated wallet
+    await saveWallet(storedWallet);
+
+    // If wallet is currently unlocked, update it in memory
+    if (walletManager.isUnlocked()) {
+      // Unlock with new password to update in-memory state
+      await walletManager.unlock(newPassword);
+      resetSessionTimeout();
+    }
+
+    console.log('✅ Password changed successfully');
+
+    return { success: true };
+  } catch (error: any) {
+    console.error('❌ Failed to change password:', error);
+    throw new Error(error.message || 'Failed to change password');
   }
 }
 
