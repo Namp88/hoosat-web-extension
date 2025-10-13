@@ -19,7 +19,7 @@ import {
   hasWallet,
   saveTransactionToHistory,
 } from '../shared/storage';
-import { encryptPrivateKey } from '../shared/crypto';
+import { decryptPrivateKey, encryptPrivateKey } from '../shared/crypto';
 import { WalletManager } from './wallet-manager';
 import { HoosatUtils, HoosatCrypto } from 'hoosat-sdk-web';
 
@@ -147,6 +147,9 @@ async function handleMessage(message: ExtensionMessage, sender: chrome.runtime.M
     case 'CONTENT_SCRIPT_READY':
       return { success: true };
 
+    case 'EXPORT_PRIVATE_KEY':
+      return handleExportPrivateKey(data);
+
     default:
       throw new Error(`Unknown message type: ${type}`);
   }
@@ -188,6 +191,34 @@ async function handleGenerateWallet(data: { password: string }): Promise<any> {
   } catch (error: any) {
     console.error('❌ Failed to generate wallet:', error);
     throw new Error(error.message || 'Failed to generate wallet');
+  }
+}
+
+/**
+ * Export private key (requires password verification)
+ */
+async function handleExportPrivateKey(data: { password: string }): Promise<any> {
+  const { password } = data;
+
+  try {
+    const wallet = await getCurrentWallet();
+
+    if (!wallet) {
+      throw new Error('No wallet found');
+    }
+
+    // Decrypt private key to verify password
+    const privateKey = decryptPrivateKey(wallet.encryptedPrivateKey, password);
+
+    console.log('🔑 Private key exported (password verified)');
+
+    return {
+      privateKey,
+      address: wallet.address,
+    };
+  } catch (error: any) {
+    console.error('❌ Failed to export private key:', error);
+    throw new Error('Invalid password');
   }
 }
 

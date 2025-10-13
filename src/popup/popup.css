@@ -460,6 +460,17 @@ body {
     flex-shrink: 0; /* не сжимается */
 }
 
+.key-hidden {
+    filter: blur(8px);
+    user-select: none;
+    cursor: pointer;
+    transition: filter 0.3s ease;
+}
+
+.key-hidden:hover {
+    filter: blur(6px);
+}
+
 
 
 /* Actions */
