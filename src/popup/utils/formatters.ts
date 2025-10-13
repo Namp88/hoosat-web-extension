@@ -1,8 +1,4 @@
 /**
- * Formatting utilities for UI display
- */
-
-/**
  * Format address for display (shorten)
  */
 export function formatAddress(address: string): string {
