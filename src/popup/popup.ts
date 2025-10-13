@@ -1,8 +1,16 @@
-// Popup UI script - main wallet interface
-
-import { hasWallet, getCurrentWallet, loadWallet, loadTransactionHistory } from '../shared/storage';
+import { hasWallet, getCurrentWallet, loadTransactionHistory } from '../shared/storage';
 import { MessageType, TransactionHistory } from '../shared/types';
 import { APP_NAME, getExplorerTxUrl, getExplorerAddressUrl } from '../shared/constants';
+import {
+  validatePassword,
+  calculatePasswordStrength,
+  addPasswordStrengthIndicator,
+  formatAddress,
+  formatTime,
+  showSuccessMessage,
+  showConfirmDialog,
+} from './utils';
+import { HoosatUtils } from 'hoosat-sdk-web';
 
 console.log('🦊 Hoosat Wallet popup loaded');
 
@@ -286,7 +294,7 @@ async function showWallet() {
           <div class="balance">
             <label>Balance</label>
             <div class="balance-row">
-              <div class="balance-value" id="balance">${formatBalance(balance)} HTN</div>
+              <div class="balance-value" id="balance">${HoosatUtils.sompiToAmount(balance)} HTN</div>
               <button id="refreshBtn" class="btn-icon">🔄</button>
             </div>
           </div>
@@ -342,29 +350,12 @@ function renderTransactions(transactions: TransactionHistory[]): string {
         <div class="tx-time">${formatTime(tx.timestamp)}</div>
       </div>
       <div class="tx-amount ${tx.type === 'sent' ? 'negative' : 'positive'}">
-        ${tx.type === 'sent' ? '-' : '+'}${formatBalance(tx.amount)} HTN
+        ${tx.type === 'sent' ? '-' : '+'}${HoosatUtils.sompiToAmount(tx.amount)} HTN
       </div>
     </div>
   `
     )
     .join('');
-}
-
-// Format timestamp
-function formatTime(timestamp: number): string {
-  const date = new Date(timestamp);
-  const now = new Date();
-  const diffMs = now.getTime() - date.getTime();
-  const diffMins = Math.floor(diffMs / 60000);
-  const diffHours = Math.floor(diffMs / 3600000);
-  const diffDays = Math.floor(diffMs / 86400000);
-
-  if (diffMins < 1) return 'Just now';
-  if (diffMins < 60) return `${diffMins}m ago`;
-  if (diffHours < 24) return `${diffHours}h ago`;
-  if (diffDays < 7) return `${diffDays}d ago`;
-
-  return date.toLocaleDateString();
 }
 
 // Show pending request (connection or transaction)
@@ -656,7 +647,7 @@ async function updateBalance() {
       balance = response.data;
       const balanceEl = document.getElementById('balance');
       if (balanceEl) {
-        balanceEl.textContent = `${formatBalance(balance)} HTN`;
+        balanceEl.textContent = `${HoosatUtils.sompiToAmount(balance)} HTN`;
       }
     }
   } catch (error) {
@@ -704,7 +695,7 @@ function showSendScreen() {
           </div>
           
           <div class="balance-info">
-            Available: ${formatBalance(balance)} HTN
+            Available: ${HoosatUtils.sompiToAmount(balance)} HTN
           </div>
           
           <div class="error" id="error"></div>
@@ -873,95 +864,6 @@ function showChangePassword() {
       strengthDiv.textContent = '🟢 Strong password';
     }
   });
-}
-
-/**
- * Validate password requirements
- */
-function validatePassword(password: string): { valid: boolean; error?: string } {
-  if (!password) {
-    return { valid: false, error: 'Password is required' };
-  }
-
-  if (password.length < 8) {
-    return { valid: false, error: 'Password must be at least 8 characters' };
-  }
-
-  if (!/[A-Z]/.test(password)) {
-    return { valid: false, error: 'Password must contain at least one uppercase letter' };
-  }
-
-  if (!/[a-z]/.test(password)) {
-    return { valid: false, error: 'Password must contain at least one lowercase letter' };
-  }
-
-  if (!/[0-9]/.test(password)) {
-    return { valid: false, error: 'Password must contain at least one number' };
-  }
-
-  return { valid: true };
-}
-
-/**
- * Add live password strength indicator to input field
- */
-function addPasswordStrengthIndicator(inputId: string, strengthId: string) {
-  const passwordInput = document.getElementById(inputId) as HTMLInputElement;
-  const strengthDiv = document.getElementById(strengthId)!;
-
-  passwordInput.addEventListener('input', () => {
-    const password = passwordInput.value;
-    const strength = calculatePasswordStrength(password);
-
-    strengthDiv.className = 'password-strength';
-
-    if (password.length === 0) {
-      strengthDiv.textContent = '';
-      return;
-    }
-
-    if (strength.score < 3) {
-      strengthDiv.classList.add('weak');
-      strengthDiv.textContent = '🔴 Weak password';
-    } else if (strength.score < 4) {
-      strengthDiv.classList.add('medium');
-      strengthDiv.textContent = '🟡 Medium password';
-    } else {
-      strengthDiv.classList.add('strong');
-      strengthDiv.textContent = '🟢 Strong password';
-    }
-  });
-}
-
-/**
- * Calculate password strength
- */
-function calculatePasswordStrength(password: string): { score: number; feedback: string[] } {
-  let score = 0;
-  const feedback: string[] = [];
-
-  // Length
-  if (password.length >= 8) score++;
-  if (password.length >= 12) score++;
-  else if (password.length < 8) feedback.push('At least 8 characters');
-
-  // Has uppercase
-  if (/[A-Z]/.test(password)) score++;
-  else feedback.push('Add uppercase letters');
-
-  // Has lowercase
-  if (/[a-z]/.test(password)) score++;
-  else feedback.push('Add lowercase letters');
-
-  // Has numbers
-  if (/[0-9]/.test(password)) score++;
-  else feedback.push('Add numbers');
-
-  // Has special characters (bonus)
-  if (/[^A-Za-z0-9]/.test(password)) score++;
-  else feedback.push('Add special characters (recommended)');
-
-  return { score, feedback };
 }
 
 /**
@@ -1337,78 +1239,6 @@ function showPrivateKeyExported(privateKey: string, address: string) {
   renderScreen();
 }
 
-// Show success message
-function showSuccessMessage(message: string, duration: number = 3000) {
-  const successDiv = document.createElement('div');
-  successDiv.className = 'success-toast';
-  successDiv.textContent = message;
-  document.body.appendChild(successDiv);
-
-  setTimeout(() => {
-    successDiv.classList.add('show');
-  }, 10);
-
-  setTimeout(() => {
-    successDiv.classList.remove('show');
-    setTimeout(() => {
-      successDiv.remove();
-    }, 300);
-  }, duration);
-}
-
-// Show custom confirm dialog
-function showConfirmDialog(title: string, message: string): Promise<boolean> {
-  return new Promise(resolve => {
-    // Create modal overlay
-    const overlay = document.createElement('div');
-    overlay.className = 'modal-overlay';
-
-    // Create modal content
-    const modal = document.createElement('div');
-    modal.className = 'modal-content';
-
-    modal.innerHTML = `
-      <div class="modal-header">
-        <h2>${title}</h2>
-      </div>
-      <div class="modal-body">
-        <p>${message}</p>
-      </div>
-      <div class="modal-actions">
-        <button id="modalCancel" class="btn btn-secondary">Cancel</button>
-        <button id="modalConfirm" class="btn btn-danger">Confirm</button>
-      </div>
-    `;
-
-    overlay.appendChild(modal);
-    document.body.appendChild(overlay);
-
-    // Animate in
-    setTimeout(() => {
-      overlay.classList.add('show');
-    }, 10);
-
-    // Handle buttons
-    const closeModal = (confirmed: boolean) => {
-      overlay.classList.remove('show');
-      setTimeout(() => {
-        overlay.remove();
-        resolve(confirmed);
-      }, 300);
-    };
-
-    document.getElementById('modalCancel')!.addEventListener('click', () => closeModal(false));
-    document.getElementById('modalConfirm')!.addEventListener('click', () => closeModal(true));
-
-    // Close on overlay click
-    overlay.addEventListener('click', e => {
-      if (e.target === overlay) {
-        closeModal(false);
-      }
-    });
-  });
-}
-
 // Show transaction preview modal
 interface TransactionPreviewData {
   to: string;
@@ -1626,18 +1456,6 @@ async function handleReset() {
     await chrome.runtime.sendMessage({ type: 'RESET_WALLET' });
     showCreateWallet();
   }
-}
-
-// Utility: Format address
-function formatAddress(address: string): string {
-  if (address.length <= 20) return address;
-  return `${address.substring(0, 12)}...${address.substring(address.length - 8)}`;
-}
-
-// Utility: Format balance
-function formatBalance(sompi: string): string {
-  const balance = parseFloat(sompi) / 100000000;
-  return balance.toFixed(8);
 }
 
 // Initialize popup when DOM is ready
