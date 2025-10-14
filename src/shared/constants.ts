@@ -1,7 +1,7 @@
 // Application constants
 
 export const APP_NAME = 'Hoosat Wallet';
-export const APP_VERSION = '0.2.0';
+export const APP_VERSION = '0.2.1';
 
 // Node configuration
 export const DEFAULT_NODE_URL = 'http://54.38.176.95:42420'; // Replace with your node

@@ -7,6 +7,7 @@ module.exports = {
   entry: {
     background: './src/background/background.ts',
     'content-script': './src/content-script/content-script.ts',
+    'injected-provider': './src/content-script/injected-provider.ts', // ← ADD THIS
     popup: './src/popup/popup.ts',
   },
   output: {
@@ -47,6 +48,6 @@ module.exports = {
     }),
   ],
   optimization: {
-    minimize: false, // Для отладки, в production ставь true
+    minimize: false,
   },
 };
