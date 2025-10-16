@@ -62,11 +62,16 @@ class HoosatProvider {
     });
   }
 
-  // Request connection to wallet
-  async connect(): Promise<string[]> {
+  // Request connection to wallet (standard Web3 API)
+  async requestAccounts(): Promise<string[]> {
     const accounts = await this.request('hoosat_requestAccounts');
     this.isConnected = accounts && accounts.length > 0;
     return accounts;
+  }
+
+  // Alias for requestAccounts (alternative method name)
+  async connect(): Promise<string[]> {
+    return this.requestAccounts();
   }
 
   // Get connected accounts
