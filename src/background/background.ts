@@ -23,6 +23,8 @@ import {
 
 console.log('🦊 Hoosat Wallet background script started');
 
+// Note: secp256k1 initialization is handled automatically by HoosatSigner in SDK
+
 // Wallet manager instance
 const walletManager = new WalletManager();
 

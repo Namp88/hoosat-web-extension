@@ -3,17 +3,7 @@ import { decryptPrivateKey } from '../shared/crypto';
 import { DEFAULT_NODE_URL, DEFAULT_NETWORK, SOMPI_PER_HTN } from '../shared/constants';
 import type { Network } from '../shared/constants';
 import type { UnlockedWallet, FeeEstimate } from '../shared/types';
-import { HoosatTxBuilder, HoosatUtils, HoosatWebClient, HoosatCrypto } from 'hoosat-sdk-web';
-import { sign, etc } from '@noble/secp256k1';
-import { hmac } from '@noble/hashes/hmac';
-import { sha256 } from '@noble/hashes/sha256';
-
-// Configure HMAC-SHA256 for deterministic signing (RFC6979)
-etc.hmacSha256Sync = (key: Uint8Array, ...messages: Uint8Array[]) => {
-  const h = hmac.create(sha256, key);
-  messages.forEach(m => h.update(m));
-  return h.digest();
-};
+import { HoosatTxBuilder, HoosatUtils, HoosatWebClient, HoosatCrypto, HoosatSigner } from 'hoosat-sdk-web';
 
 export class WalletManager {
   private client: HoosatWebClient;
@@ -291,28 +281,17 @@ export class WalletManager {
     }
 
     try {
-      // Prefix message to prevent transaction signature reuse
-      const prefixedMessage = `Hoosat Signed Message:\n${message}`;
-
-      // Hash the prefixed message using BLAKE3
-      const messageBuffer = Buffer.from(prefixedMessage, 'utf8');
-      const messageHash = HoosatCrypto.blake3Hash(messageBuffer);
-
-      // Sign the hash using ECDSA
-      const signature = sign(messageHash, this.unlockedWallet.privateKey, {
-        lowS: true,  // Prevent signature malleability
-        extraEntropy: true,  // Add extra entropy for security
-      });
-
-      // Return compact signature in hex format
-      const signatureHex = signature.toCompactHex();
+      // Use SDK's HoosatSigner for message signing
+      // SDK handles: message prefixing, BLAKE3 hashing, ECDSA signing with security options
+      const privateKeyHex = this.unlockedWallet.privateKey.toString('hex');
+      const signature = HoosatSigner.signMessage(privateKeyHex, message);
 
       console.log('✍️ Message signed:', {
         messageLength: message.length,
-        signatureLength: signatureHex.length,
+        signatureLength: signature.length,
       });
 
-      return signatureHex;
+      return signature;
     } catch (error: any) {
       console.error('❌ Failed to sign message:', error);
       throw new Error(`Message signing failed: ${error.message}`);

@@ -18,7 +18,7 @@
   "dependencies": {
     "buffer": "^6.0.3",
     "crypto-js": "^4.2.0",
-    "hoosat-sdk-web": "^0.1.3"
+    "hoosat-sdk-web": "^0.1.4"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.268",
