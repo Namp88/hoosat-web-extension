@@ -104,7 +104,7 @@ function showUnlock() {
  * Show main wallet screen
  */
 async function showWallet() {
-  await showWalletScreen(app, showSend, showReceive, showSettings);
+  await showWalletScreen(app, showSend, showReceive, handleLock, showSettings);
 }
 
 /**
@@ -131,7 +131,7 @@ function showReceive() {
  * Show settings screen
  */
 function showSettings() {
-  showSettingsScreen(app, showWallet, showChangePassword, showExportKey, handleLock, handleReset);
+  showSettingsScreen(app, showWallet, showChangePassword, showExportKey, handleReset);
 }
 
 /**

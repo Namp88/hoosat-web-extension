@@ -14,6 +14,7 @@ export async function showWalletScreen(
   app: HTMLElement,
   onSend: () => void,
   onReceive: () => void,
+  onLock: () => void,
   onSettings: () => void
 ): Promise<void> {
   const wallet = await getCurrentWallet();
@@ -37,7 +38,10 @@ export async function showWalletScreen(
           <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
           <h1>${APP_NAME}</h1>
         </div>
-        <button id="settingsBtn" class="btn-icon">⚙️</button>
+        <div class="header-right">
+          <button id="lockBtn" class="btn-icon" title="Lock Wallet">🔒</button>
+          <button id="settingsBtn" class="btn-icon" title="Settings">⚙️</button>
+        </div>
       </div>
 
       <div class="content">
@@ -80,6 +84,7 @@ export async function showWalletScreen(
   document.getElementById('refreshBtn')!.addEventListener('click', updateBalance);
   document.getElementById('sendBtn')!.addEventListener('click', onSend);
   document.getElementById('receiveBtn')!.addEventListener('click', onReceive);
+  document.getElementById('lockBtn')!.addEventListener('click', onLock);
   document.getElementById('settingsBtn')!.addEventListener('click', onSettings);
 
   if (txHistory.length > 0) {

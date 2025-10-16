@@ -8,7 +8,6 @@ export function showSettingsScreen(
   onBack: () => void,
   onChangePassword: () => void,
   onExportKey: () => void,
-  onLock: () => void,
   onReset: () => void
 ): void {
   app.innerHTML = `
@@ -26,7 +25,6 @@ export function showSettingsScreen(
         <div class="settings">
           <button id="changePasswordBtn" class="btn btn-secondary">🔑 Change Password</button>
           <button id="exportKeyBtn" class="btn btn-secondary">📤 Export Private Key</button>
-          <button id="lockBtn" class="btn btn-secondary">🔒 Lock Wallet</button>
           <button id="resetBtn" class="btn btn-danger">🗑️ Reset Wallet</button>
         </div>
       </div>
@@ -36,6 +34,5 @@ export function showSettingsScreen(
   document.getElementById('backBtn')!.addEventListener('click', onBack);
   document.getElementById('changePasswordBtn')!.addEventListener('click', onChangePassword);
   document.getElementById('exportKeyBtn')!.addEventListener('click', onExportKey);
-  document.getElementById('lockBtn')!.addEventListener('click', onLock);
   document.getElementById('resetBtn')!.addEventListener('click', onReset);
 }
