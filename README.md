@@ -355,6 +355,17 @@ const isValid = HoosatSigner.verifyMessage(signature, message, publicKey);
 
 ## 🗺️ Roadmap
 
+### ✅ Completed (v0.3.0)
+
+- [x] **hoosat-sdk-web integration** - Refactored message signing to use official SDK
+- [x] **Message signing** (ECDSA + BLAKE3) - Full implementation with security best practices
+- [x] **Connected Sites management** - View and disconnect from connected DApps
+- [x] **Request timestamps** with age warnings - Security warnings for old requests
+- [x] **Real-time request detection** - Instant DApp request notifications
+- [x] **UI/UX improvements** - Compact layout, hover states, smooth animations
+- [x] **Error handling** - Robust handling of extension context invalidation
+- [x] **DApp connection flow** - Allow connection without wallet unlock requirement
+
 ### ✅ Completed (v0.2.x)
 
 - [x] Basic wallet functionality (create/import/export)
@@ -362,12 +373,6 @@ const isValid = HoosatSigner.verifyMessage(signature, message, publicKey);
 - [x] DApp integration API
 - [x] Connection management
 - [x] Transaction approval flow
-- [x] **Message signing** (ECDSA + BLAKE3)
-- [x] **Connected Sites management**
-- [x] **Request timestamps** with age warnings
-- [x] **Real-time request detection**
-- [x] **UI/UX improvements** (compact layout, hover states, animations)
-- [x] **Error handling** for extension context invalidation
 
 ### 🚧 In Progress
 
@@ -377,40 +382,10 @@ const isValid = HoosatSigner.verifyMessage(signature, message, publicKey);
 
 ### 📋 Planned
 
-- [ ] Hardware wallet support
-- [ ] Token support (beyond HTN)
 - [ ] ENS-like name resolution
 - [ ] Mobile browser support
 - [ ] Dark mode
 - [ ] Multi-language support
-
-## 🏗️ Architecture
-
-```
-web-extension/
-├── src/
-│   ├── background/          # Service worker
-│   │   ├── background.ts    # Message router
-│   │   ├── wallet-manager.ts # Wallet operations
-│   │   ├── session-manager.ts # Auto-lock logic
-│   │   └── handlers/        # RPC & message handlers
-│   ├── content-script/      # Page injection
-│   │   ├── content-script.ts # Bridge script
-│   │   └── injected-provider.ts # window.hoosat API
-│   ├── popup/               # Extension UI
-│   │   ├── popup.ts         # Main router
-│   │   ├── screens/         # UI screens
-│   │   ├── components/      # Reusable components
-│   │   └── utils/           # UI helpers
-│   ├── shared/              # Shared code
-│   │   ├── storage.ts       # Chrome storage wrapper
-│   │   ├── crypto.ts        # Encryption utilities
-│   │   ├── types.ts         # TypeScript definitions
-│   │   └── api/             # Background messaging API
-│   └── icons/               # Extension icons
-├── test-dapp.html           # Comprehensive test DApp
-└── dist/                    # Build output
-```
 
 ## 🧪 Testing
 
@@ -471,6 +446,6 @@ This wallet is provided "as is" without warranty of any kind. Always do your own
 
 Made with ❤️ for the Hoosat community
 
-**Version 0.2.2** | [Changelog](CHANGELOG.md) | [GitHub](https://github.com/Namp88/hoosat-web-extension)
+**Version 0.3.0** | [Changelog](CHANGELOG.md) | [GitHub](https://github.com/Namp88/hoosat-web-extension)
 
 </div>
