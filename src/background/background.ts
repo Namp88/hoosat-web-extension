@@ -17,6 +17,7 @@ import {
   handleRPCRequest,
   handleConnectionApproval,
   handleTransactionApproval,
+  getPendingRequest,
 } from './handlers';
 
 console.log('🦊 Hoosat Wallet background script started');
@@ -115,6 +116,13 @@ async function handleMessage(message: ExtensionMessage, sender: chrome.runtime.M
 
     case 'CHECK_UNLOCK_STATUS':
       return sessionManager.getUnlockStatus();
+
+    case 'GET_PENDING_REQUEST':
+      const request = getPendingRequest(data.requestId);
+      if (!request) {
+        throw new Error('Request not found');
+      }
+      return request;
 
     // Transaction handlers
     case 'GET_BALANCE':

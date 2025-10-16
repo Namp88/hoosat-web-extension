@@ -6,6 +6,13 @@ import { WalletManager } from '../wallet-manager';
 // Pending requests from DApps (waiting for user approval)
 const pendingRequests = new Map<string, DAppRequest>();
 
+/**
+ * Get pending request by ID (for popup)
+ */
+export function getPendingRequest(requestId: string): DAppRequest | undefined {
+  return pendingRequests.get(requestId);
+}
+
 // Approval waiting mechanism
 const approvalResolvers = new Map<
   string,

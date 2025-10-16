@@ -9,3 +9,5 @@ export { showReceiveScreen } from './receive';
 export { showSettingsScreen } from './settings';
 export { showChangePasswordScreen } from './change-password';
 export { showExportKeyScreen } from './export-key';
+export { showDAppConnectionScreen } from './dapp-connection';
+export { showDAppTransactionScreen } from './dapp-transaction';

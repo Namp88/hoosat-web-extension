@@ -14,6 +14,8 @@ import {
   showSettingsScreen,
   showChangePasswordScreen,
   showExportKeyScreen,
+  showDAppConnectionScreen,
+  showDAppTransactionScreen,
   getCurrentBalance,
   getCurrentAddress,
 } from './screens';
@@ -61,11 +63,119 @@ async function init() {
   const session = await chrome.storage.session.get('pendingRequestId');
 
   if (session.pendingRequestId) {
-    // TODO: Show pending request screen
-    console.log('Pending request:', session.pendingRequestId);
+    try {
+      // Get request data from background
+      const request = await api.getPendingRequest(session.pendingRequestId);
+
+      // Show appropriate approval screen
+      await handlePendingRequest(request);
+      return;
+    } catch (error) {
+      console.error('Failed to handle pending request:', error);
+      // Clear invalid request and continue
+      await chrome.storage.session.remove('pendingRequestId');
+    }
   }
 
   showUnlock();
+}
+
+// ============================================================================
+// DApp Request Handling
+// ============================================================================
+
+/**
+ * Handle pending DApp request
+ */
+async function handlePendingRequest(request: any): Promise<void> {
+  const { method } = request;
+
+  if (method === 'hoosat_requestAccounts') {
+    // Connection request
+    showDAppConnectionScreen(
+      app,
+      request,
+      () => handleConnectionApprove(request.id),
+      () => handleConnectionReject(request.id)
+    );
+  } else if (method === 'hoosat_sendTransaction') {
+    // Transaction request - need to ensure wallet is unlocked
+    if (!isUnlocked) {
+      // Show unlock first
+      showUnlock();
+      // TODO: After unlock, show transaction approval
+      return;
+    }
+
+    // Get balance and estimate fee
+    const balance = await api.getBalance(getCurrentAddress()!);
+    const feeEstimate = await api.estimateFee(request.params.to, request.params.amount);
+
+    showDAppTransactionScreen(
+      app,
+      request,
+      balance,
+      feeEstimate.fee,
+      () => handleTransactionApprove(request.id),
+      () => handleTransactionReject(request.id)
+    );
+  }
+}
+
+/**
+ * Handle connection approve
+ */
+async function handleConnectionApprove(requestId: string): Promise<void> {
+  await api.approveConnection(requestId);
+  await chrome.storage.session.remove('pendingRequestId');
+  showSuccessMessage('✅ Site connected successfully!', 2000);
+
+  // Go to wallet screen
+  setTimeout(() => {
+    showWallet();
+  }, 2000);
+}
+
+/**
+ * Handle connection reject
+ */
+async function handleConnectionReject(requestId: string): Promise<void> {
+  await api.rejectConnection(requestId);
+  await chrome.storage.session.remove('pendingRequestId');
+  showSuccessMessage('❌ Connection rejected', 2000);
+
+  // Go back to normal flow
+  setTimeout(() => {
+    init();
+  }, 2000);
+}
+
+/**
+ * Handle transaction approve
+ */
+async function handleTransactionApprove(requestId: string): Promise<void> {
+  await api.approveTransaction(requestId);
+  await chrome.storage.session.remove('pendingRequestId');
+  showSuccessMessage('✅ Transaction approved!', 2000);
+
+  // Go to wallet screen
+  setTimeout(() => {
+    showWallet();
+  }, 2000);
+}
+
+/**
+ * Handle transaction reject
+ */
+async function handleTransactionReject(requestId: string): Promise<void> {
+  await api.rejectTransaction(requestId);
+  await chrome.storage.session.remove('pendingRequestId');
+  showSuccessMessage('❌ Transaction rejected', 2000);
+
+  // Go to wallet screen
+  setTimeout(() => {
+    showWallet();
+  }, 2000);
 }
 
 // ============================================================================

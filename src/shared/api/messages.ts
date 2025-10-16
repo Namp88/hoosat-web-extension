@@ -165,3 +165,75 @@ export async function notifyWalletUnlocked(): Promise<void> {
     type: MessageType.WALLET_UNLOCKED,
   });
 }
+
+/**
+ * Get pending DApp request
+ */
+export async function getPendingRequest(requestId: string): Promise<any> {
+  const response = await chrome.runtime.sendMessage({
+    type: 'GET_PENDING_REQUEST',
+    data: { requestId },
+  });
+
+  if (!response.success) {
+    throw new Error(response.error);
+  }
+
+  return response.data;
+}
+
+/**
+ * Approve connection request
+ */
+export async function approveConnection(requestId: string): Promise<void> {
+  const response = await chrome.runtime.sendMessage({
+    type: MessageType.CONNECTION_APPROVED,
+    data: { requestId, approved: true },
+  });
+
+  if (!response.success) {
+    throw new Error(response.error);
+  }
+}
+
+/**
+ * Reject connection request
+ */
+export async function rejectConnection(requestId: string): Promise<void> {
+  const response = await chrome.runtime.sendMessage({
+    type: MessageType.CONNECTION_REJECTED,
+    data: { requestId, approved: false },
+  });
+
+  if (!response.success) {
+    throw new Error(response.error);
+  }
+}
+
+/**
+ * Approve transaction request
+ */
+export async function approveTransaction(requestId: string): Promise<void> {
+  const response = await chrome.runtime.sendMessage({
+    type: MessageType.TRANSACTION_APPROVED,
+    data: { requestId, approved: true },
+  });
+
+  if (!response.success) {
+    throw new Error(response.error);
+  }
+}
+
+/**
+ * Reject transaction request
+ */
+export async function rejectTransaction(requestId: string): Promise<void> {
+  const response = await chrome.runtime.sendMessage({
+    type: MessageType.TRANSACTION_REJECTED,
+    data: { requestId, approved: false },
+  });
+
+  if (!response.success) {
+    throw new Error(response.error);
+  }
+}
