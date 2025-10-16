@@ -39,8 +39,9 @@ export async function handleRPCRequest(
   console.log(`🌐 RPC request from ${origin}: ${method}`);
 
   // Check if wallet needs to be unlocked for this method
+  // Note: SEND_TRANSACTION is not in this list because we want to open popup
+  // and let user unlock there, then approve transaction
   const requiresUnlock = [
-    RPCMethod.SEND_TRANSACTION,
     RPCMethod.SIGN_MESSAGE,
   ].includes(method as RPCMethod);
 
@@ -202,7 +203,8 @@ export async function handleConnectionApproval(requestId: string, approved: bool
 export async function handleTransactionApproval(
   requestId: string,
   approved: boolean,
-  walletManager: WalletManager
+  walletManager: WalletManager,
+  customFeeSompi?: string
 ): Promise<{ success: boolean }> {
   const request = pendingRequests.get(requestId);
 
@@ -213,7 +215,13 @@ export async function handleTransactionApproval(
   if (approved) {
     // Sign and send transaction
     try {
-      const txId = await walletManager.sendTransaction(request.params);
+      // Use custom fee if provided, otherwise use fee from request params
+      const txParams = {
+        ...request.params,
+        fee: customFeeSompi || request.params.fee,
+      };
+
+      const txId = await walletManager.sendTransaction(txParams);
 
       // Save to history
       const wallet = await getCurrentWallet();
@@ -228,7 +236,7 @@ export async function handleTransactionApproval(
           to: request.params.to,
           from: wallet.address,
           timestamp: Date.now(),
-          fee: request.params.fee, // save fee if provided
+          fee: customFeeSompi || request.params.fee, // save actual fee used
         };
 
         await saveTransactionToHistory(transaction);

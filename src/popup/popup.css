@@ -714,6 +714,30 @@ body {
     display: block;
 }
 
+.error-message {
+    padding: 20px;
+    background: rgba(252, 129, 129, 0.1);
+    border: 2px solid #fc8181;
+    border-radius: 12px;
+    color: #e2e8f0;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.error-message p {
+    margin-bottom: 8px;
+}
+
+.error-message p:last-child {
+    margin-bottom: 0;
+}
+
+.error-message strong {
+    color: #fc8181;
+    font-weight: 600;
+}
+
 /* Request Screen */
 .request {
     text-align: center;

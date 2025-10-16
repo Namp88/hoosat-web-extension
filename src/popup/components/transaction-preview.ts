@@ -9,6 +9,7 @@ export interface TransactionPreviewData {
   balance: string; // in sompi
   inputs?: number;
   outputs?: number;
+  origin?: string; // For DApp requests - show which site is requesting
 }
 
 export interface TransactionPreviewResult {
@@ -42,11 +43,26 @@ export function showTransactionPreview(data: TransactionPreviewData): Promise<Tr
       const feeMultiplier = customFeeHTN / data.minFee;
       const showWarning = feeMultiplier > 10;
 
+      // Extract domain from origin if provided
+      const domain = data.origin ? new URL(data.origin).hostname : null;
+
       modal.innerHTML = `
         <div class="modal-header">
           <h2>Confirm Transaction</h2>
         </div>
         <div class="modal-body">
+          ${
+            data.origin
+              ? `
+          <div class="dapp-origin" style="margin-bottom: 16px;">
+            <div class="dapp-origin-label">Requested by:</div>
+            <div class="dapp-origin-value">${domain}</div>
+            <div class="dapp-origin-full">${data.origin}</div>
+          </div>
+          `
+              : ''
+          }
+
           <div class="tx-preview-section">
             <div class="tx-preview-label">Sending to</div>
             <div class="tx-preview-value address-preview">${formatAddress(data.to)}</div>

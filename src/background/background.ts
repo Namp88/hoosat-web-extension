@@ -62,7 +62,7 @@ async function handleMessage(message: ExtensionMessage, sender: chrome.runtime.M
       return handleRPCRequest(data, sender, walletManager, sessionManager);
 
     case MessageType.TRANSACTION_APPROVED:
-      return handleTransactionApproval(data.requestId, true, walletManager);
+      return handleTransactionApproval(data.requestId, true, walletManager, data.customFeeSompi);
 
     case MessageType.TRANSACTION_REJECTED:
       return handleTransactionApproval(data.requestId, false, walletManager);

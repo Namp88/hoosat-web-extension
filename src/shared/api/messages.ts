@@ -213,10 +213,10 @@ export async function rejectConnection(requestId: string): Promise<void> {
 /**
  * Approve transaction request
  */
-export async function approveTransaction(requestId: string): Promise<void> {
+export async function approveTransaction(requestId: string, customFeeSompi?: string): Promise<void> {
   const response = await chrome.runtime.sendMessage({
     type: MessageType.TRANSACTION_APPROVED,
-    data: { requestId, approved: true },
+    data: { requestId, approved: true, customFeeSompi },
   });
 
   if (!response.success) {

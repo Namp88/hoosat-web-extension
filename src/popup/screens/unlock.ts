@@ -1,12 +1,31 @@
 import { APP_NAME } from '../../shared/constants';
 
+export interface UnlockContext {
+  title?: string; // Custom title instead of "Unlock Wallet"
+  message?: string; // Additional message to show
+  origin?: string; // DApp origin if this is a DApp request
+}
+
 /**
  * Show unlock wallet screen
  */
 export function showUnlockScreen(
   app: HTMLElement,
-  onUnlock: (password: string) => Promise<void>
+  onUnlock: (password: string) => Promise<void>,
+  context?: UnlockContext
 ): void {
+  const title = context?.title || 'Unlock Wallet';
+
+  // Extract domain from origin if provided
+  let domain = null;
+  if (context?.origin) {
+    try {
+      domain = new URL(context.origin).hostname;
+    } catch (e) {
+      domain = context.origin;
+    }
+  }
+
   app.innerHTML = `
     <div class="screen">
       <div class="header">
@@ -18,7 +37,30 @@ export function showUnlockScreen(
 
       <div class="content">
         <div class="unlock-form">
-          <h2>Unlock Wallet</h2>
+          ${
+            context?.origin
+              ? `
+          <div class="dapp-origin" style="margin-bottom: 20px;">
+            <div class="dapp-origin-label">Request from:</div>
+            <div class="dapp-origin-value">${domain}</div>
+            <div class="dapp-origin-full">${context.origin}</div>
+          </div>
+          `
+              : ''
+          }
+
+          <h2>${title}</h2>
+
+          ${
+            context?.message
+              ? `
+          <div class="info-box warning" style="margin-bottom: 20px;">
+            <div class="info-icon">🔐</div>
+            <div class="info-text">${context.message}</div>
+          </div>
+          `
+              : ''
+          }
 
           <div class="form-group">
             <label for="password">Password</label>

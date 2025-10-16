@@ -47,14 +47,18 @@ window.addEventListener('message', async (event: MessageEvent) => {
   } catch (error: any) {
     console.error('❌ Request failed:', error);
 
+    // Handle both error objects and string errors
+    const errorMessage = typeof error === 'string' ? error : (error.message || 'Request failed');
+    const errorCode = error.code || 4900;
+
     // Send error back to page
     window.postMessage(
       {
         type: 'HOOSAT_RESPONSE',
         id,
         error: {
-          code: error.code || 4900,
-          message: error.message || 'Request failed',
+          code: errorCode,
+          message: errorMessage,
         },
       },
       '*'

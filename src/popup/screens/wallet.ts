@@ -176,3 +176,31 @@ export function getCurrentBalance(): string {
 export function getCurrentAddress(): string | null {
   return currentAddress;
 }
+
+/**
+ * Initialize wallet data (load address and balance) without showing UI
+ * Useful when we need wallet data but want to show a different screen
+ */
+export async function initWalletData(): Promise<void> {
+  const wallet = await getCurrentWallet();
+
+  if (!wallet) {
+    throw new Error('No wallet found');
+  }
+
+  currentAddress = wallet.address;
+
+  // Get balance
+  try {
+    const response = await chrome.runtime.sendMessage({
+      type: 'GET_BALANCE',
+      data: { address: currentAddress },
+    });
+
+    if (response.success) {
+      balance = response.data;
+    }
+  } catch (error) {
+    console.error('Failed to load balance:', error);
+  }
+}

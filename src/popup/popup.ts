@@ -15,11 +15,13 @@ import {
   showChangePasswordScreen,
   showExportKeyScreen,
   showDAppConnectionScreen,
-  showDAppTransactionScreen,
   getCurrentBalance,
   getCurrentAddress,
+  initWalletData,
+  type UnlockContext,
 } from './screens';
 import { showBackupPrivateKey, showConfirmDialog } from './components';
+import { showTransactionPreview } from './components/transaction-preview';
 
 console.log('🦊 Hoosat Wallet popup loaded');
 
@@ -46,20 +48,14 @@ async function init() {
     const status = await api.checkUnlockStatus();
 
     if (status.isUnlocked) {
-      // Wallet is unlocked in background, show wallet directly
-      console.log('✅ Wallet is unlocked, showing wallet screen');
+      console.log('✅ Wallet is unlocked');
       isUnlocked = true;
-      await showWallet();
-
-      // Show brief welcome message
-      showSuccessMessage('👋 Welcome back!', 1500);
-      return;
     }
   } catch (error) {
     console.log('Could not check unlock status:', error);
   }
 
-  // Check if there's a pending request
+  // Check if there's a pending request (priority over showing wallet)
   const session = await chrome.storage.session.get('pendingRequestId');
 
   if (session.pendingRequestId) {
@@ -67,7 +63,24 @@ async function init() {
       // Get request data from background
       const request = await api.getPendingRequest(session.pendingRequestId);
 
-      // Show appropriate approval screen
+      // For connection requests, we can show without unlock
+      if (request.method === 'hoosat_requestAccounts') {
+        await handlePendingRequest(request);
+        return;
+      }
+
+      // For transaction requests, need to ensure wallet is unlocked first
+      if (!isUnlocked) {
+        // Show unlock screen, then handle request after unlock
+        showUnlockForPendingRequest(request);
+        return;
+      }
+
+      // Wallet is unlocked, initialize wallet data before handling request
+      // This ensures getCurrentAddress() and getCurrentBalance() work
+      await initWalletData();
+
+      // Show approval screen
       await handlePendingRequest(request);
       return;
     } catch (error) {
@@ -77,6 +90,16 @@ async function init() {
     }
   }
 
+  // No pending requests - show normal flow
+  if (isUnlocked) {
+    // Show wallet directly
+    await showWallet();
+    // Show brief welcome message
+    showSuccessMessage('👋 Welcome back!', 1500);
+    return;
+  }
+
+  // Not unlocked, show unlock screen
   showUnlock();
 }
 
@@ -99,26 +122,83 @@ async function handlePendingRequest(request: any): Promise<void> {
       () => handleConnectionReject(request.id)
     );
   } else if (method === 'hoosat_sendTransaction') {
-    // Transaction request - need to ensure wallet is unlocked
+    // Transaction request - wallet must be unlocked
     if (!isUnlocked) {
-      // Show unlock first
+      console.error('handlePendingRequest called for transaction while wallet is locked');
+      // This shouldn't happen if init() flow is correct, but handle it gracefully
       showUnlock();
-      // TODO: After unlock, show transaction approval
       return;
     }
 
-    // Get balance and estimate fee
-    const balance = await api.getBalance(getCurrentAddress()!);
-    const feeEstimate = await api.estimateFee(request.params.to, request.params.amount);
+    try {
+      const currentAddress = getCurrentAddress();
 
-    showDAppTransactionScreen(
-      app,
-      request,
-      balance,
-      feeEstimate.fee,
-      () => handleTransactionApprove(request.id),
-      () => handleTransactionReject(request.id)
-    );
+      if (!currentAddress) {
+        throw new Error('No wallet address available');
+      }
+
+      // Get balance and estimate fee
+      const balance = await api.getBalance(currentAddress);
+      const feeEstimate = await api.estimateFee(request.params.to, request.params.amount);
+
+      // Parse amount to HTN
+      const amountHTN = typeof request.params.amount === 'number'
+        ? request.params.amount
+        : parseFloat(request.params.amount) / 100000000;
+      const minFeeHTN = parseFloat(feeEstimate.fee) / 100000000;
+
+      // Show wallet screen first (so there's something behind the modal)
+      await showWallet();
+
+      // Then show the modal
+      const result = await showTransactionPreview({
+        to: request.params.to,
+        amount: amountHTN,
+        minFee: minFeeHTN,
+        minFeeSompi: feeEstimate.fee,
+        balance: balance,
+        inputs: feeEstimate.inputs,
+        outputs: feeEstimate.outputs,
+        origin: request.origin, // Show which DApp is requesting
+      });
+
+      if (result.confirmed) {
+        // User approved
+        await handleTransactionApprove(request.id, result.customFeeSompi);
+      } else {
+        // User rejected
+        await handleTransactionReject(request.id);
+      }
+    } catch (error: any) {
+      console.error('❌ Failed to prepare transaction approval:', error);
+
+      // Show error to user
+      app.innerHTML = `
+        <div class="screen">
+          <div class="header">
+            <h1>❌ Transaction Error</h1>
+          </div>
+
+          <div class="dapp-request-container">
+            <div class="error-message">
+              <p><strong>Failed to process transaction request:</strong></p>
+              <p>${error.message || 'Unknown error'}</p>
+            </div>
+
+            <button id="backBtn" class="btn btn-secondary">Back to Wallet</button>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('backBtn')?.addEventListener('click', async () => {
+        // Clear the pending request
+        await chrome.storage.session.remove('pendingRequestId');
+        // Reject the transaction
+        await api.rejectTransaction(request.id);
+        // Go to wallet
+        await showWallet();
+      });
+    }
   }
 }
 
@@ -126,14 +206,31 @@ async function handlePendingRequest(request: any): Promise<void> {
  * Handle connection approve
  */
 async function handleConnectionApprove(requestId: string): Promise<void> {
-  await api.approveConnection(requestId);
-  await chrome.storage.session.remove('pendingRequestId');
-  showSuccessMessage('✅ Site connected successfully!', 2000);
+  try {
+    // Check if wallet is unlocked
+    if (!isUnlocked) {
+      // Need to unlock first - get request info to show context
+      const session = await chrome.storage.session.get('pendingRequestId');
+      const request = await api.getPendingRequest(session.pendingRequestId || requestId);
+      showUnlockForPendingRequest(request);
+      return;
+    }
 
-  // Go to wallet screen
-  setTimeout(() => {
-    showWallet();
-  }, 2000);
+    await api.approveConnection(requestId);
+    await chrome.storage.session.remove('pendingRequestId');
+    showSuccessMessage('✅ Site connected successfully!', 2000);
+
+    // Go to wallet screen
+    setTimeout(() => {
+      showWallet();
+    }, 2000);
+  } catch (error: any) {
+    console.error('Failed to approve connection:', error);
+    const errorEl = document.getElementById('error');
+    if (errorEl) {
+      errorEl.textContent = error.message || 'Failed to approve connection';
+    }
+  }
 }
 
 /**
@@ -153,8 +250,8 @@ async function handleConnectionReject(requestId: string): Promise<void> {
 /**
  * Handle transaction approve
  */
-async function handleTransactionApprove(requestId: string): Promise<void> {
-  await api.approveTransaction(requestId);
+async function handleTransactionApprove(requestId: string, customFeeSompi?: string): Promise<void> {
+  await api.approveTransaction(requestId, customFeeSompi);
   await chrome.storage.session.remove('pendingRequestId');
   showSuccessMessage('✅ Transaction approved!', 2000);
 
@@ -208,6 +305,43 @@ function showImport() {
  */
 function showUnlock() {
   showUnlockScreen(app, handleUnlock);
+}
+
+/**
+ * Show unlock screen for pending DApp request
+ */
+function showUnlockForPendingRequest(request: any) {
+  // Prepare context based on request type
+  let context: UnlockContext = {
+    origin: request.origin,
+  };
+
+  if (request.method === 'hoosat_requestAccounts') {
+    context.title = 'Approve Connection';
+    context.message = 'This site wants to connect to your wallet. Unlock to approve or reject.';
+  } else if (request.method === 'hoosat_sendTransaction') {
+    context.title = 'Approve Transaction';
+    context.message = 'This site wants to send a transaction. Unlock to review and approve.';
+  }
+
+  showUnlockScreen(
+    app,
+    async (password: string) => {
+      // First unlock the wallet (skip showing wallet screen)
+      await handleUnlock(password, true);
+
+      // Then handle the pending request
+      try {
+        await handlePendingRequest(request);
+      } catch (error) {
+        console.error('Failed to handle pending request after unlock:', error);
+        // Clear invalid request and go to wallet
+        await chrome.storage.session.remove('pendingRequestId');
+        await showWallet();
+      }
+    },
+    context
+  );
 }
 
 /**
@@ -298,7 +432,7 @@ async function handleImportWallet(privateKey: string, password: string, confirmP
 /**
  * Handle unlock
  */
-async function handleUnlock(password: string): Promise<void> {
+async function handleUnlock(password: string, skipShowWallet: boolean = false): Promise<void> {
   await api.unlockWallet(password);
 
   // Notify background
@@ -306,8 +440,14 @@ async function handleUnlock(password: string): Promise<void> {
 
   isUnlocked = true;
 
-  // Show wallet
-  await showWallet();
+  // Show wallet (unless caller wants to handle navigation themselves)
+  if (!skipShowWallet) {
+    await showWallet();
+  } else {
+    // Even if we skip showing wallet screen, we need to load the wallet data
+    // so getCurrentAddress() and getCurrentBalance() work
+    await initWalletData();
+  }
 }
 
 /**
