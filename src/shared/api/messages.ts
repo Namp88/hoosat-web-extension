@@ -237,3 +237,31 @@ export async function rejectTransaction(requestId: string): Promise<void> {
     throw new Error(response.error);
   }
 }
+
+/**
+ * Approve sign message request
+ */
+export async function approveSignMessage(requestId: string): Promise<void> {
+  const response = await chrome.runtime.sendMessage({
+    type: MessageType.MESSAGE_SIGN_APPROVED,
+    data: { requestId, approved: true },
+  });
+
+  if (!response.success) {
+    throw new Error(response.error);
+  }
+}
+
+/**
+ * Reject sign message request
+ */
+export async function rejectSignMessage(requestId: string): Promise<void> {
+  const response = await chrome.runtime.sendMessage({
+    type: MessageType.MESSAGE_SIGN_REJECTED,
+    data: { requestId, approved: false },
+  });
+
+  if (!response.success) {
+    throw new Error(response.error);
+  }
+}

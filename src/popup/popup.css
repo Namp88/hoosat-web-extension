@@ -699,6 +699,104 @@ body {
     gap: 12px;
 }
 
+/* Connected Sites */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.empty-icon {
+    font-size: 64px;
+    margin-bottom: 16px;
+}
+
+.empty-state h3 {
+    font-size: 18px;
+    color: #e2e8f0;
+    margin-bottom: 8px;
+}
+
+.empty-state p {
+    font-size: 14px;
+    color: #718096;
+    line-height: 1.6;
+}
+
+.sites-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.site-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    background: #152033;
+    border: 1px solid #1a2f45;
+    border-radius: 8px;
+    gap: 16px;
+}
+
+.site-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 0;
+}
+
+.site-icon {
+    font-size: 32px;
+    flex-shrink: 0;
+}
+
+.site-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.site-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin-bottom: 4px;
+}
+
+.site-url {
+    font-size: 12px;
+    font-family: 'Courier New', monospace;
+    color: #718096;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.site-date {
+    font-size: 11px;
+    color: #4a5568;
+    margin-top: 4px;
+}
+
+.btn-disconnect {
+    padding: 8px 16px;
+    background: transparent;
+    color: #fc8181;
+    border: 1px solid #fc8181;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.btn-disconnect:hover {
+    background: rgba(252, 129, 129, 0.1);
+    transform: translateY(-1px);
+}
+
 /* Error Messages */
 .error {
     padding: 10px 12px;
@@ -1139,6 +1237,48 @@ body {
     line-height: 1.4;
 }
 
+/* Request Timestamp */
+.request-timestamp {
+    text-align: center;
+    padding: 12px 16px;
+    background: rgba(66, 153, 225, 0.1);
+    border: 1px solid rgba(66, 153, 225, 0.2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.request-timestamp.old {
+    background: rgba(237, 137, 54, 0.1);
+    border-color: rgba(237, 137, 54, 0.3);
+}
+
+.timestamp-icon {
+    font-size: 16px;
+}
+
+.timestamp-text {
+    font-size: 13px;
+    color: #a0aec0;
+    font-weight: 500;
+}
+
+.request-timestamp.old .timestamp-text {
+    color: #ed8936;
+}
+
+.timestamp-warning {
+    font-size: 12px;
+    color: #ed8936;
+    font-weight: 600;
+    padding: 2px 8px;
+    background: rgba(237, 137, 54, 0.2);
+    border-radius: 4px;
+}
+
 .dapp-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1155,4 +1295,48 @@ body {
     font-size: 13px;
     color: #e2e8f0;
     line-height: 1.6;
+}
+
+/* Sign Message Specific */
+.message-content {
+    margin-top: 12px;
+    padding: 12px;
+    background: #152033;
+    border: 1px solid #1a2f45;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: #e2e8f0;
+    word-break: break-word;
+    line-height: 1.6;
+    max-height: 200px;
+    overflow-y: auto;
+    text-align: left;
+}
+
+.message-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.message-content::-webkit-scrollbar-track {
+    background: rgba(26, 47, 69, 0.3);
+    border-radius: 3px;
+}
+
+.message-content::-webkit-scrollbar-thumb {
+    background: rgba(0, 217, 163, 0.5);
+    border-radius: 3px;
+}
+
+.message-truncated {
+    margin-top: 8px;
+    font-size: 11px;
+    color: #718096;
+    font-style: italic;
+    text-align: center;
+}
+
+.info-box.info {
+    background: rgba(66, 153, 225, 0.1);
+    border-color: #4299e1;
 }

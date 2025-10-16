@@ -39,13 +39,14 @@ export async function handleRPCRequest(
   console.log(`🌐 RPC request from ${origin}: ${method}`);
 
   // Check if wallet needs to be unlocked for this method
-  // Note: SEND_TRANSACTION is not in this list because we want to open popup
-  // and let user unlock there, then approve transaction
-  const requiresUnlock = [
-    RPCMethod.SIGN_MESSAGE,
-  ].includes(method as RPCMethod);
+  // Note: SEND_TRANSACTION and SIGN_MESSAGE are not in this list because we want
+  // to open popup and let user unlock there, then approve the request
+  const requiresUnlock: RPCMethod[] = [
+    // Add methods here that should be rejected immediately if wallet is locked
+    // (currently empty - all sensitive operations go through popup approval)
+  ];
 
-  if (requiresUnlock && sessionManager && !sessionManager.getIsUnlocked()) {
+  if (requiresUnlock.includes(method as RPCMethod) && sessionManager && !sessionManager.getIsUnlocked()) {
     throw createRPCError(ErrorCode.UNAUTHORIZED, 'Wallet is locked. Please unlock your wallet first.');
   }
 
@@ -64,6 +65,9 @@ export async function handleRPCRequest(
 
     case RPCMethod.GET_NETWORK:
       return handleGetNetwork(walletManager);
+
+    case RPCMethod.SIGN_MESSAGE:
+      return handleSignMessageRPC(origin, params);
 
     default:
       throw createRPCError(ErrorCode.UNSUPPORTED_METHOD, `Method not supported: ${method}`);
@@ -173,6 +177,41 @@ async function handleGetNetwork(walletManager: WalletManager): Promise<string> {
 }
 
 /**
+ * Sign message via RPC
+ */
+async function handleSignMessageRPC(origin: string, params: any): Promise<string> {
+  // Check if connected
+  const isConnected = await isOriginConnected(origin);
+
+  if (!isConnected) {
+    throw createRPCError(ErrorCode.UNAUTHORIZED, 'Origin not connected');
+  }
+
+  // Validate params
+  if (!params.message || typeof params.message !== 'string') {
+    throw createRPCError(ErrorCode.UNSUPPORTED_METHOD, 'Invalid message parameter');
+  }
+
+  // Create pending request for user approval
+  const requestId = `sign_${Date.now()}`;
+  const request: DAppRequest = {
+    id: requestId,
+    origin,
+    method: RPCMethod.SIGN_MESSAGE,
+    params,
+    timestamp: Date.now(),
+  };
+
+  pendingRequests.set(requestId, request);
+
+  // Open popup to show sign message request
+  await openPopupWithRequest(requestId);
+
+  // Wait for user approval (timeout after 5 minutes)
+  return waitForApproval(requestId, 5 * 60 * 1000);
+}
+
+/**
  * Handle connection approval
  */
 export async function handleConnectionApproval(requestId: string, approved: boolean): Promise<{ success: boolean }> {
@@ -249,6 +288,36 @@ export async function handleTransactionApproval(
     }
   } else {
     rejectApproval(requestId, createRPCError(ErrorCode.USER_REJECTED, 'User rejected transaction'));
+  }
+
+  pendingRequests.delete(requestId);
+
+  return { success: true };
+}
+
+/**
+ * Handle sign message approval
+ */
+export async function handleSignMessageApproval(
+  requestId: string,
+  approved: boolean,
+  walletManager: WalletManager
+): Promise<{ success: boolean }> {
+  const request = pendingRequests.get(requestId);
+
+  if (!request) {
+    throw new Error('Request not found');
+  }
+
+  if (approved) {
+    try {
+      const signature = await walletManager.signMessage(request.params.message);
+      resolveApproval(requestId, signature);
+    } catch (error: any) {
+      rejectApproval(requestId, createRPCError(ErrorCode.DISCONNECTED, error.message));
+    }
+  } else {
+    rejectApproval(requestId, createRPCError(ErrorCode.USER_REJECTED, 'User rejected message signing'));
   }
 
   pendingRequests.delete(requestId);

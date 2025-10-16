@@ -12,4 +12,4 @@ export {
 
 export { handleGetBalance, handleEstimateFee, handleSendTransaction } from './transaction-handlers';
 
-export { handleRPCRequest, handleConnectionApproval, handleTransactionApproval, getPendingRequest } from './rpc-handlers';
+export { handleRPCRequest, handleConnectionApproval, handleTransactionApproval, handleSignMessageApproval, getPendingRequest } from './rpc-handlers';

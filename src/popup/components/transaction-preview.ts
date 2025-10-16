@@ -1,5 +1,6 @@
 import { formatAddress } from '../utils';
 import { SOMPI_PER_HTN } from '../../shared/constants';
+import { formatTimeAgo, isRequestOld } from '../utils/ui-helpers';
 
 export interface TransactionPreviewData {
   to: string;
@@ -10,6 +11,7 @@ export interface TransactionPreviewData {
   inputs?: number;
   outputs?: number;
   origin?: string; // For DApp requests - show which site is requesting
+  timestamp?: number; // For DApp requests - when was the request made
 }
 
 export interface TransactionPreviewResult {
@@ -46,6 +48,10 @@ export function showTransactionPreview(data: TransactionPreviewData): Promise<Tr
       // Extract domain from origin if provided
       const domain = data.origin ? new URL(data.origin).hostname : null;
 
+      // Format timestamp if provided
+      const timeAgo = data.timestamp ? formatTimeAgo(data.timestamp) : null;
+      const isOld = data.timestamp ? isRequestOld(data.timestamp) : false;
+
       modal.innerHTML = `
         <div class="modal-header">
           <h2>Confirm Transaction</h2>
@@ -58,6 +64,18 @@ export function showTransactionPreview(data: TransactionPreviewData): Promise<Tr
             <div class="dapp-origin-label">Requested by:</div>
             <div class="dapp-origin-value">${domain}</div>
             <div class="dapp-origin-full">${data.origin}</div>
+          </div>
+          `
+              : ''
+          }
+
+          ${
+            data.timestamp
+              ? `
+          <div class="request-timestamp ${isOld ? 'old' : ''}" style="margin-bottom: 16px;">
+            <span class="timestamp-icon">⏰</span>
+            <span class="timestamp-text">Requested ${timeAgo}</span>
+            ${isOld ? '<span class="timestamp-warning">⚠️ Old request</span>' : ''}
           </div>
           `
               : ''

@@ -133,3 +133,33 @@ export function focusElement(elementId: string): void {
     element.focus();
   }
 }
+
+/**
+ * Format timestamp to relative time (e.g., "2 minutes ago")
+ */
+export function formatTimeAgo(timestamp: number): string {
+  const now = Date.now();
+  const diff = now - timestamp;
+
+  const seconds = Math.floor(diff / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+
+  if (seconds < 60) {
+    return 'just now';
+  } else if (minutes < 60) {
+    return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+  } else {
+    return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+  }
+}
+
+/**
+ * Check if request is old (more than 2 minutes)
+ */
+export function isRequestOld(timestamp: number): boolean {
+  const now = Date.now();
+  const diff = now - timestamp;
+  const minutes = Math.floor(diff / (1000 * 60));
+  return minutes >= 2;
+}

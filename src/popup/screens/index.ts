@@ -10,3 +10,5 @@ export { showSettingsScreen } from './settings';
 export { showChangePasswordScreen } from './change-password';
 export { showExportKeyScreen } from './export-key';
 export { showDAppConnectionScreen } from './dapp-connection';
+export { showConnectedSitesScreen } from './connected-sites';
+export { showSignMessageScreen } from './sign-message';

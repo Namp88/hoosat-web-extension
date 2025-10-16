@@ -17,6 +17,7 @@ import {
   handleRPCRequest,
   handleConnectionApproval,
   handleTransactionApproval,
+  handleSignMessageApproval,
   getPendingRequest,
 } from './handlers';
 
@@ -72,6 +73,12 @@ async function handleMessage(message: ExtensionMessage, sender: chrome.runtime.M
 
     case MessageType.CONNECTION_REJECTED:
       return handleConnectionApproval(data.requestId, false);
+
+    case MessageType.MESSAGE_SIGN_APPROVED:
+      return handleSignMessageApproval(data.requestId, true, walletManager);
+
+    case MessageType.MESSAGE_SIGN_REJECTED:
+      return handleSignMessageApproval(data.requestId, false, walletManager);
 
     case MessageType.WALLET_UNLOCKED:
       sessionManager.unlock();

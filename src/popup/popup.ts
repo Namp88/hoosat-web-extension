@@ -15,6 +15,8 @@ import {
   showChangePasswordScreen,
   showExportKeyScreen,
   showDAppConnectionScreen,
+  showConnectedSitesScreen,
+  showSignMessageScreen,
   getCurrentBalance,
   getCurrentAddress,
   initWalletData,
@@ -160,6 +162,7 @@ async function handlePendingRequest(request: any): Promise<void> {
         inputs: feeEstimate.inputs,
         outputs: feeEstimate.outputs,
         origin: request.origin, // Show which DApp is requesting
+        timestamp: request.timestamp, // Show when request was made
       });
 
       if (result.confirmed) {
@@ -199,6 +202,22 @@ async function handlePendingRequest(request: any): Promise<void> {
         await showWallet();
       });
     }
+  } else if (method === 'hoosat_signMessage') {
+    // Sign message request - wallet must be unlocked
+    if (!isUnlocked) {
+      console.error('handlePendingRequest called for sign message while wallet is locked');
+      // This shouldn't happen if init() flow is correct, but handle it gracefully
+      showUnlock();
+      return;
+    }
+
+    // Show sign message screen
+    showSignMessageScreen(
+      app,
+      request,
+      () => handleSignMessageApprove(request.id),
+      () => handleSignMessageReject(request.id)
+    );
   }
 }
 
@@ -275,6 +294,34 @@ async function handleTransactionReject(requestId: string): Promise<void> {
   }, 2000);
 }
 
+/**
+ * Handle sign message approve
+ */
+async function handleSignMessageApprove(requestId: string): Promise<void> {
+  await api.approveSignMessage(requestId);
+  await chrome.storage.session.remove('pendingRequestId');
+  showSuccessMessage('✅ Message signed successfully!', 2000);
+
+  // Go to wallet screen
+  setTimeout(() => {
+    showWallet();
+  }, 2000);
+}
+
+/**
+ * Handle sign message reject
+ */
+async function handleSignMessageReject(requestId: string): Promise<void> {
+  await api.rejectSignMessage(requestId);
+  await chrome.storage.session.remove('pendingRequestId');
+  showSuccessMessage('❌ Message signing rejected', 2000);
+
+  // Go to wallet screen
+  setTimeout(() => {
+    showWallet();
+  }, 2000);
+}
+
 // ============================================================================
 // Screen Routers
 // ============================================================================
@@ -322,6 +369,9 @@ function showUnlockForPendingRequest(request: any) {
   } else if (request.method === 'hoosat_sendTransaction') {
     context.title = 'Approve Transaction';
     context.message = 'This site wants to send a transaction. Unlock to review and approve.';
+  } else if (request.method === 'hoosat_signMessage') {
+    context.title = 'Sign Message';
+    context.message = 'This site wants you to sign a message. Unlock to review and sign.';
   }
 
   showUnlockScreen(
@@ -375,7 +425,14 @@ function showReceive() {
  * Show settings screen
  */
 function showSettings() {
-  showSettingsScreen(app, showWallet, showChangePassword, showExportKey, handleReset);
+  showSettingsScreen(app, showWallet, showChangePassword, showExportKey, showConnectedSites, handleReset);
+}
+
+/**
+ * Show connected sites screen
+ */
+function showConnectedSites() {
+  showConnectedSitesScreen(app, showSettings);
 }
 
 /**
@@ -519,6 +576,49 @@ async function handleReset(): Promise<void> {
     showWelcome();
   }
 }
+
+// Listen for new pending requests while popup is open
+chrome.storage.session.onChanged.addListener((changes: { [key: string]: chrome.storage.StorageChange }) => {
+  if (changes.pendingRequestId) {
+    const newRequestId = changes.pendingRequestId.newValue;
+
+    // Only handle if a new request was added (not removed)
+    if (newRequestId) {
+      console.log('🔔 New pending request detected while popup is open:', newRequestId);
+
+      // Handle async operation
+      (async () => {
+        try {
+          // Get request data from background
+          const request = await api.getPendingRequest(newRequestId);
+
+          // Check unlock status
+          const status = await api.checkUnlockStatus();
+          isUnlocked = status.isUnlocked;
+
+          // Handle request based on method type
+          if (request.method === 'hoosat_requestAccounts') {
+            // Connection request can be shown without unlock
+            await handlePendingRequest(request);
+          } else {
+            // Transaction or sign message - need unlock first
+            if (!isUnlocked) {
+              showUnlockForPendingRequest(request);
+            } else {
+              // Initialize wallet data if needed
+              await initWalletData();
+              await handlePendingRequest(request);
+            }
+          }
+        } catch (error) {
+          console.error('Failed to handle new pending request:', error);
+          // Clear invalid request
+          await chrome.storage.session.remove('pendingRequestId');
+        }
+      })();
+    }
+  }
+});
 
 // Initialize popup when DOM is ready
 document.addEventListener('DOMContentLoaded', init);
