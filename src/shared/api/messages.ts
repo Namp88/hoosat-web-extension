@@ -5,10 +5,31 @@
 import { MessageType } from '../types';
 
 /**
+ * Safe wrapper for chrome.runtime.sendMessage with error handling
+ */
+async function sendMessage(message: any): Promise<any> {
+  try {
+    // Check if extension context is still valid
+    if (!chrome?.runtime?.id) {
+      throw new Error('Extension context invalidated. Please reload the extension.');
+    }
+
+    return await chrome.runtime.sendMessage(message);
+  } catch (error: any) {
+    // Handle extension context invalidated error
+    if (error.message?.includes('Extension context invalidated') || error.message?.includes('message port closed')) {
+      console.error('Extension was reloaded. Please refresh the page.');
+      throw new Error('Extension was reloaded. Please refresh the page.');
+    }
+    throw error;
+  }
+}
+
+/**
  * Generate new wallet
  */
 export async function generateWallet(password: string): Promise<{ address: string; privateKey: string }> {
-  const response = await chrome.runtime.sendMessage({
+  const response = await sendMessage({
     type: 'GENERATE_WALLET',
     data: { password },
   });
@@ -24,7 +45,7 @@ export async function generateWallet(password: string): Promise<{ address: strin
  * Import wallet
  */
 export async function importWallet(privateKey: string, password: string): Promise<{ address: string }> {
-  const response = await chrome.runtime.sendMessage({
+  const response = await sendMessage({
     type: 'IMPORT_WALLET',
     data: { privateKey, password },
   });
@@ -40,7 +61,7 @@ export async function importWallet(privateKey: string, password: string): Promis
  * Unlock wallet
  */
 export async function unlockWallet(password: string): Promise<{ address: string }> {
-  const response = await chrome.runtime.sendMessage({
+  const response = await sendMessage({
     type: 'UNLOCK_WALLET',
     data: { password },
   });
@@ -56,21 +77,21 @@ export async function unlockWallet(password: string): Promise<{ address: string 
  * Lock wallet
  */
 export async function lockWallet(): Promise<void> {
-  await chrome.runtime.sendMessage({ type: 'LOCK_WALLET' });
+  await sendMessage({ type: 'LOCK_WALLET' });
 }
 
 /**
  * Reset wallet
  */
 export async function resetWallet(): Promise<void> {
-  await chrome.runtime.sendMessage({ type: 'RESET_WALLET' });
+  await sendMessage({ type: 'RESET_WALLET' });
 }
 
 /**
  * Get balance
  */
 export async function getBalance(address: string): Promise<string> {
-  const response = await chrome.runtime.sendMessage({
+  const response = await sendMessage({
     type: 'GET_BALANCE',
     data: { address },
   });
@@ -86,7 +107,7 @@ export async function getBalance(address: string): Promise<string> {
  * Estimate transaction fee
  */
 export async function estimateFee(to: string, amount: number): Promise<any> {
-  const response = await chrome.runtime.sendMessage({
+  const response = await sendMessage({
     type: 'ESTIMATE_FEE',
     data: { to, amount },
   });
@@ -102,7 +123,7 @@ export async function estimateFee(to: string, amount: number): Promise<any> {
  * Send transaction
  */
 export async function sendTransaction(to: string, amount: number, fee?: string): Promise<string> {
-  const response = await chrome.runtime.sendMessage({
+  const response = await sendMessage({
     type: 'SEND_TRANSACTION',
     data: { to, amount, fee },
   });
@@ -118,7 +139,7 @@ export async function sendTransaction(to: string, amount: number, fee?: string):
  * Export private key
  */
 export async function exportPrivateKey(password: string): Promise<{ privateKey: string; address: string }> {
-  const response = await chrome.runtime.sendMessage({
+  const response = await sendMessage({
     type: 'EXPORT_PRIVATE_KEY',
     data: { password },
   });
@@ -134,7 +155,7 @@ export async function exportPrivateKey(password: string): Promise<{ privateKey: 
  * Change password
  */
 export async function changePassword(currentPassword: string, newPassword: string): Promise<void> {
-  const response = await chrome.runtime.sendMessage({
+  const response = await sendMessage({
     type: 'CHANGE_PASSWORD',
     data: { currentPassword, newPassword },
   });
@@ -148,7 +169,7 @@ export async function changePassword(currentPassword: string, newPassword: strin
  * Check unlock status
  */
 export async function checkUnlockStatus(): Promise<{ isUnlocked: boolean; inGracePeriod: boolean; address?: string }> {
-  const response = await chrome.runtime.sendMessage({ type: 'CHECK_UNLOCK_STATUS' });
+  const response = await sendMessage({ type: 'CHECK_UNLOCK_STATUS' });
 
   if (!response.success) {
     throw new Error(response.error);
@@ -161,7 +182,7 @@ export async function checkUnlockStatus(): Promise<{ isUnlocked: boolean; inGrac
  * Notify wallet unlocked
  */
 export async function notifyWalletUnlocked(): Promise<void> {
-  await chrome.runtime.sendMessage({
+  await sendMessage({
     type: MessageType.WALLET_UNLOCKED,
   });
 }
@@ -170,7 +191,7 @@ export async function notifyWalletUnlocked(): Promise<void> {
  * Get pending DApp request
  */
 export async function getPendingRequest(requestId: string): Promise<any> {
-  const response = await chrome.runtime.sendMessage({
+  const response = await sendMessage({
     type: 'GET_PENDING_REQUEST',
     data: { requestId },
   });
@@ -186,7 +207,7 @@ export async function getPendingRequest(requestId: string): Promise<any> {
  * Approve connection request
  */
 export async function approveConnection(requestId: string): Promise<void> {
-  const response = await chrome.runtime.sendMessage({
+  const response = await sendMessage({
     type: MessageType.CONNECTION_APPROVED,
     data: { requestId, approved: true },
   });
@@ -200,7 +221,7 @@ export async function approveConnection(requestId: string): Promise<void> {
  * Reject connection request
  */
 export async function rejectConnection(requestId: string): Promise<void> {
-  const response = await chrome.runtime.sendMessage({
+  const response = await sendMessage({
     type: MessageType.CONNECTION_REJECTED,
     data: { requestId, approved: false },
   });
@@ -214,7 +235,7 @@ export async function rejectConnection(requestId: string): Promise<void> {
  * Approve transaction request
  */
 export async function approveTransaction(requestId: string, customFeeSompi?: string): Promise<void> {
-  const response = await chrome.runtime.sendMessage({
+  const response = await sendMessage({
     type: MessageType.TRANSACTION_APPROVED,
     data: { requestId, approved: true, customFeeSompi },
   });
@@ -228,7 +249,7 @@ export async function approveTransaction(requestId: string, customFeeSompi?: str
  * Reject transaction request
  */
 export async function rejectTransaction(requestId: string): Promise<void> {
-  const response = await chrome.runtime.sendMessage({
+  const response = await sendMessage({
     type: MessageType.TRANSACTION_REJECTED,
     data: { requestId, approved: false },
   });
@@ -242,7 +263,7 @@ export async function rejectTransaction(requestId: string): Promise<void> {
  * Approve sign message request
  */
 export async function approveSignMessage(requestId: string): Promise<void> {
-  const response = await chrome.runtime.sendMessage({
+  const response = await sendMessage({
     type: MessageType.MESSAGE_SIGN_APPROVED,
     data: { requestId, approved: true },
   });
@@ -256,7 +277,7 @@ export async function approveSignMessage(requestId: string): Promise<void> {
  * Reject sign message request
  */
 export async function rejectSignMessage(requestId: string): Promise<void> {
-  const response = await chrome.runtime.sendMessage({
+  const response = await sendMessage({
     type: MessageType.MESSAGE_SIGN_REJECTED,
     data: { requestId, approved: false },
   });
