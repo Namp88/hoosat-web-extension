@@ -58,10 +58,8 @@ async function handleMessage(message: ExtensionMessage, sender: chrome.runtime.M
   switch (type) {
     // RPC requests from DApps
     case MessageType.RPC_REQUEST:
-      if (!sessionManager.getIsUnlocked()) {
-        throw new Error('Wallet is locked');
-      }
-      return handleRPCRequest(data, sender, walletManager);
+      // Note: handleRPCRequest will check if wallet needs to be unlocked for specific methods
+      return handleRPCRequest(data, sender, walletManager, sessionManager);
 
     case MessageType.TRANSACTION_APPROVED:
       return handleTransactionApproval(data.requestId, true, walletManager);

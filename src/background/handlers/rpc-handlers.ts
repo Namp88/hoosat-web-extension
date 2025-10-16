@@ -28,7 +28,8 @@ const approvalResolvers = new Map<
 export async function handleRPCRequest(
   request: any,
   sender: chrome.runtime.MessageSender,
-  walletManager: WalletManager
+  walletManager: WalletManager,
+  sessionManager?: any
 ): Promise<any> {
   const { method, params } = request;
 
@@ -36,6 +37,16 @@ export async function handleRPCRequest(
   const origin = new URL(sender.url!).origin;
 
   console.log(`🌐 RPC request from ${origin}: ${method}`);
+
+  // Check if wallet needs to be unlocked for this method
+  const requiresUnlock = [
+    RPCMethod.SEND_TRANSACTION,
+    RPCMethod.SIGN_MESSAGE,
+  ].includes(method as RPCMethod);
+
+  if (requiresUnlock && sessionManager && !sessionManager.getIsUnlocked()) {
+    throw createRPCError(ErrorCode.UNAUTHORIZED, 'Wallet is locked. Please unlock your wallet first.');
+  }
 
   switch (method) {
     case RPCMethod.REQUEST_ACCOUNTS:
