@@ -1,6 +1,6 @@
 import { getCurrentWallet } from '../shared/storage';
 import { decryptPrivateKey } from '../shared/crypto';
-import { DEFAULT_NODE_URL, DEFAULT_NETWORK } from '../shared/constants';
+import { DEFAULT_NODE_URL, DEFAULT_NETWORK, SOMPI_PER_HTN } from '../shared/constants';
 import type { Network } from '../shared/constants';
 import type { UnlockedWallet, FeeEstimate } from '../shared/types';
 import { HoosatTxBuilder, HoosatUtils, HoosatWebClient, HoosatCrypto } from 'hoosat-sdk-web';
@@ -176,7 +176,7 @@ export class WalletManager {
       }
 
       // Convert amount to sompi if needed
-      const amountSompi = typeof params.amount === 'string' ? params.amount : Math.floor(params.amount * 100000000).toString();
+      const amountSompi = typeof params.amount === 'string' ? params.amount : Math.floor(params.amount * SOMPI_PER_HTN).toString();
 
       console.log('💸 Sending transaction:', {
         to: params.to,

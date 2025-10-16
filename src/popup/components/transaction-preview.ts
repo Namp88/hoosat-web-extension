@@ -1,4 +1,5 @@
 import { formatAddress } from '../utils';
+import { SOMPI_PER_HTN } from '../../shared/constants';
 
 export interface TransactionPreviewData {
   to: string;
@@ -156,7 +157,7 @@ export function showTransactionPreview(data: TransactionPreviewData): Promise<Tr
         }, 10);
       } else if (target.id === 'cancelFeeBtn') {
         isEditingFee = false;
-        customFeeHTN = parseFloat(customFeeSompi) / 100000000;
+        customFeeHTN = parseFloat(customFeeSompi) / SOMPI_PER_HTN;
         renderModal();
       } else if (target.id === 'saveFeeBtn') {
         const input = document.getElementById('customFeeInput') as HTMLInputElement;
@@ -175,7 +176,7 @@ export function showTransactionPreview(data: TransactionPreviewData): Promise<Tr
 
         // Check if total exceeds balance
         const totalWithNewFee = data.amount + newFeeHTN;
-        const balanceHTN = Number(balance) / 100000000;
+        const balanceHTN = Number(balance) / SOMPI_PER_HTN;
 
         if (totalWithNewFee > balanceHTN) {
           feeError.textContent = 'Insufficient balance for this fee';
@@ -183,7 +184,7 @@ export function showTransactionPreview(data: TransactionPreviewData): Promise<Tr
         }
 
         customFeeHTN = newFeeHTN;
-        customFeeSompi = Math.floor(newFeeHTN * 100000000).toString();
+        customFeeSompi = Math.floor(newFeeHTN * SOMPI_PER_HTN).toString();
         isEditingFee = false;
         renderModal();
       } else if (target.id === 'modalCancel') {

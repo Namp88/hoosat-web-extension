@@ -1,4 +1,4 @@
-import { APP_NAME } from '../../shared/constants';
+import { APP_NAME, SOMPI_PER_HTN } from '../../shared/constants';
 import { showTransactionPreview } from '../components/transaction-preview';
 import { getCurrentBalance } from './wallet';
 import { HoosatUtils } from 'hoosat-sdk-web';
@@ -100,7 +100,7 @@ async function handleSendTransaction(balance: string, onSuccess: (txId: string) 
 
     const feeEstimate = feeEstimateResponse.data;
     const minFeeSompi = BigInt(feeEstimate.fee);
-    const minFeeHTN = parseFloat(feeEstimate.fee) / 100000000;
+    const minFeeHTN = parseFloat(feeEstimate.fee) / SOMPI_PER_HTN;
 
     console.log('💵 Minimum fee estimate:', {
       fee: feeEstimate.fee + ' sompi',
@@ -115,11 +115,11 @@ async function handleSendTransaction(balance: string, onSuccess: (txId: string) 
 
     // Check if amount exceeds balance
     const balanceSompi = BigInt(balance);
-    const amountSompi = BigInt(Math.floor(amountNum * 100000000));
+    const amountSompi = BigInt(Math.floor(amountNum * SOMPI_PER_HTN));
     const totalRequired = amountSompi + minFeeSompi;
 
     if (totalRequired > balanceSompi) {
-      errorEl.textContent = `Insufficient balance. Need ${(parseFloat(totalRequired.toString()) / 100000000).toFixed(8)} HTN (including ${minFeeHTN.toFixed(8)} HTN fee)`;
+      errorEl.textContent = `Insufficient balance. Need ${(parseFloat(totalRequired.toString()) / SOMPI_PER_HTN).toFixed(8)} HTN (including ${minFeeHTN.toFixed(8)} HTN fee)`;
       return;
     }
 

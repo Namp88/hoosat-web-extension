@@ -1,9 +1,6 @@
 import { MessageType } from '../shared/types';
+import { SESSION_TIMEOUT, GRACE_PERIOD } from '../shared/constants';
 import { WalletManager } from './wallet-manager';
-
-// Auto-lock after inactivity
-const SESSION_TIMEOUT_MS = 30 * 60 * 1000; // 30 minutes
-const GRACE_PERIOD_MS = 2 * 60 * 1000; // 2 minutes - no password needed if reopened within this time
 
 export class SessionManager {
   private isUnlocked = false;
@@ -59,7 +56,7 @@ export class SessionManager {
 
     this.sessionTimeout = setTimeout(() => {
       this.lock();
-    }, SESSION_TIMEOUT_MS) as any;
+    }, SESSION_TIMEOUT) as any;
   }
 
   /**
@@ -79,7 +76,7 @@ export class SessionManager {
 
     // Check grace period
     const timeSinceLastActivity = Date.now() - this.lastActivityTime;
-    const inGracePeriod = timeSinceLastActivity < GRACE_PERIOD_MS;
+    const inGracePeriod = timeSinceLastActivity < GRACE_PERIOD;
 
     // Update activity time on check if in grace period
     if (inGracePeriod) {

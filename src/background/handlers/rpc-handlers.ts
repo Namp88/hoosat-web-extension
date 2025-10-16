@@ -1,5 +1,6 @@
 import { RPCMethod, DAppRequest, ErrorCode, RPCError, TransactionHistory } from '../../shared/types';
 import { getCurrentWallet, isOriginConnected, addConnectedSite, saveTransactionToHistory } from '../../shared/storage';
+import { SOMPI_PER_HTN } from '../../shared/constants';
 import { WalletManager } from '../wallet-manager';
 
 // Pending requests from DApps (waiting for user approval)
@@ -200,7 +201,7 @@ export async function handleTransactionApproval(
       const wallet = await getCurrentWallet();
       if (wallet) {
         const amountInSompi =
-          typeof request.params.amount === 'number' ? Math.floor(request.params.amount * 100000000).toString() : request.params.amount;
+          typeof request.params.amount === 'number' ? Math.floor(request.params.amount * SOMPI_PER_HTN).toString() : request.params.amount;
 
         const transaction: TransactionHistory = {
           txId: txId,

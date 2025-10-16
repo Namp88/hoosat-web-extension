@@ -1,3 +1,5 @@
+import { SOMPI_PER_HTN } from '../../shared/constants';
+
 /**
  * Format address for display (shorten)
  */
@@ -39,7 +41,7 @@ export function validateAmount(amount: string, balance: string): { valid: boolea
     return { valid: false, error: 'Invalid amount' };
   }
 
-  const balanceHTN = parseFloat(balance) / 100000000;
+  const balanceHTN = parseFloat(balance) / SOMPI_PER_HTN;
   if (amountNum > balanceHTN) {
     return { valid: false, error: 'Insufficient balance' };
   }

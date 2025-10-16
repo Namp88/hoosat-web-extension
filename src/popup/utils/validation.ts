@@ -2,6 +2,8 @@
  * Password validation utilities
  */
 
+import { MIN_PASSWORD_LENGTH } from '../../shared/constants';
+
 export interface ValidationResult {
   valid: boolean;
   error?: string;
@@ -20,8 +22,8 @@ export function validatePassword(password: string): ValidationResult {
     return { valid: false, error: 'Password is required' };
   }
 
-  if (password.length < 8) {
-    return { valid: false, error: 'Password must be at least 8 characters' };
+  if (password.length < MIN_PASSWORD_LENGTH) {
+    return { valid: false, error: `Password must be at least ${MIN_PASSWORD_LENGTH} characters` };
   }
 
   if (!/[A-Z]/.test(password)) {
@@ -47,9 +49,9 @@ export function calculatePasswordStrength(password: string): PasswordStrength {
   const feedback: string[] = [];
 
   // Length
-  if (password.length >= 8) score++;
+  if (password.length >= MIN_PASSWORD_LENGTH) score++;
   if (password.length >= 12) score++;
-  else if (password.length < 8) feedback.push('At least 8 characters');
+  else if (password.length < MIN_PASSWORD_LENGTH) feedback.push(`At least ${MIN_PASSWORD_LENGTH} characters`);
 
   // Has uppercase
   if (/[A-Z]/.test(password)) score++;

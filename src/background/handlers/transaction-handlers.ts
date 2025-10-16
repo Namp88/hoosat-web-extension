@@ -1,5 +1,6 @@
 import { TransactionHistory } from '../../shared/types';
 import { getCurrentWallet, saveTransactionToHistory } from '../../shared/storage';
+import { SOMPI_PER_HTN } from '../../shared/constants';
 import { WalletManager } from '../wallet-manager';
 
 /**
@@ -48,7 +49,7 @@ export async function handleSendTransaction(
 ): Promise<string> {
   try {
     // Convert amount to sompi (smallest unit)
-    const amountInSompi = typeof data.amount === 'number' ? Math.floor(data.amount * 100000000).toString() : data.amount;
+    const amountInSompi = typeof data.amount === 'number' ? Math.floor(data.amount * SOMPI_PER_HTN).toString() : data.amount;
 
     const txId = await walletManager.sendTransaction({
       to: data.to,

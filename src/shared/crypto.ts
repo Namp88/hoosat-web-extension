@@ -1,6 +1,7 @@
 // Crypto utilities for secure key storage
 
 import CryptoJS from 'crypto-js';
+import { MIN_PASSWORD_LENGTH } from './constants';
 
 /**
  * Encrypt private key with password using AES-256
@@ -10,8 +11,8 @@ export function encryptPrivateKey(privateKey: string, password: string): string 
     throw new Error('Private key and password are required');
   }
 
-  if (password.length < 8) {
-    throw new Error('Password must be at least 8 characters');
+  if (password.length < MIN_PASSWORD_LENGTH) {
+    throw new Error(`Password must be at least ${MIN_PASSWORD_LENGTH} characters`);
   }
 
   // Use AES-256 encryption
@@ -49,8 +50,8 @@ export function validatePassword(password: string): { valid: boolean; error?: st
     return { valid: false, error: 'Password is required' };
   }
 
-  if (password.length < 8) {
-    return { valid: false, error: 'Password must be at least 8 characters' };
+  if (password.length < MIN_PASSWORD_LENGTH) {
+    return { valid: false, error: `Password must be at least ${MIN_PASSWORD_LENGTH} characters` };
   }
 
   if (!/[A-Z]/.test(password)) {

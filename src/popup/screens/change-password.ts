@@ -1,4 +1,4 @@
-import { APP_NAME } from '../../shared/constants';
+import { APP_NAME, MIN_PASSWORD_LENGTH } from '../../shared/constants';
 import { calculatePasswordStrength } from '../utils';
 
 /**
@@ -144,8 +144,8 @@ async function handleChangePassword(
     return;
   }
 
-  if (newPassword.length < 8) {
-    errorEl.textContent = 'Password must be at least 8 characters';
+  if (newPassword.length < MIN_PASSWORD_LENGTH) {
+    errorEl.textContent = `Password must be at least ${MIN_PASSWORD_LENGTH} characters`;
     return;
   }
 

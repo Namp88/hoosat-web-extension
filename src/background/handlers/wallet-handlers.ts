@@ -1,6 +1,7 @@
 import { WalletData } from '../../shared/types';
 import { addWallet, loadWallet, saveWallet, clearAllData, hasWallet, getCurrentWallet } from '../../shared/storage';
 import { encryptPrivateKey, decryptPrivateKey } from '../../shared/crypto';
+import { MIN_PASSWORD_LENGTH } from '../../shared/constants';
 import { WalletManager } from '../wallet-manager';
 import { HoosatCrypto } from 'hoosat-sdk-web';
 
@@ -205,8 +206,8 @@ export async function handleChangePassword(
     }
 
     // Validate new password
-    if (newPassword.length < 8) {
-      throw new Error('New password must be at least 8 characters');
+    if (newPassword.length < MIN_PASSWORD_LENGTH) {
+      throw new Error(`New password must be at least ${MIN_PASSWORD_LENGTH} characters`);
     }
 
     if (!/[A-Z]/.test(newPassword)) {
