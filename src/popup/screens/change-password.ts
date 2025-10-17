@@ -73,8 +73,10 @@ export function showChangePasswordScreen(
   document.getElementById('changePasswordBtn')!.addEventListener('click', () => handleChangePassword(onChangePassword));
 
   // Enter key handler
-  document.getElementById('confirmNewPassword')!.addEventListener('keypress', (e: KeyboardEvent) => {
+  document.getElementById('confirmNewPassword')!.addEventListener('keydown', (e: KeyboardEvent) => {
     if (e.key === 'Enter') {
+      e.preventDefault();
+      e.stopPropagation();
       handleChangePassword(onChangePassword);
     }
   });

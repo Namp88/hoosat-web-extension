@@ -47,8 +47,10 @@ export function showExportKeyScreen(
 
   // Enter key handler
   const passwordInput = document.getElementById('password') as HTMLInputElement;
-  passwordInput.addEventListener('keypress', (e: KeyboardEvent) => {
+  passwordInput.addEventListener('keydown', (e: KeyboardEvent) => {
     if (e.key === 'Enter') {
+      e.preventDefault();
+      e.stopPropagation();
       handleExportPrivateKey(onExport, onBack);
     }
   });

@@ -139,7 +139,20 @@ export async function loadConnectedSites(): Promise<ConnectedSite[]> {
       if (chrome.runtime.lastError) {
         reject(chrome.runtime.lastError);
       } else {
-        resolve(result[STORAGE_KEYS.CONNECTED_SITES] || []);
+        const sites = result[STORAGE_KEYS.CONNECTED_SITES] || [];
+
+        // Remove duplicates by origin (keep the first occurrence)
+        const uniqueSites = sites.filter((site: ConnectedSite, index: number, self: ConnectedSite[]) =>
+          self.findIndex(s => s.origin === site.origin) === index
+        );
+
+        // If duplicates were found, save the cleaned list
+        if (uniqueSites.length !== sites.length) {
+          console.log(`🧹 Cleaned up ${sites.length - uniqueSites.length} duplicate connected site(s)`);
+          saveConnectedSites(uniqueSites).catch(err => console.error('Failed to save cleaned sites:', err));
+        }
+
+        resolve(uniqueSites);
       }
     });
   });

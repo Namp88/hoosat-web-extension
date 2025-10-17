@@ -64,12 +64,12 @@ export function showUnlockScreen(
 
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" id="password" placeholder="Enter password" />
+            <input type="password" id="password" placeholder="Enter password" autocomplete="current-password" />
           </div>
 
           <div class="error" id="error"></div>
 
-          <button id="unlockBtn" class="btn btn-primary">Unlock</button>
+          <button type="button" id="unlockBtn" class="btn btn-primary">Unlock</button>
         </div>
       </div>
     </div>
@@ -93,17 +93,20 @@ export function showUnlockScreen(
     }
   };
 
-  // Click handler
+  // Button click handler
   document.getElementById('unlockBtn')!.addEventListener('click', handleUnlockAction);
 
-  // Enter key handler
+  // Auto-focus password field
   const passwordInput = document.getElementById('password') as HTMLInputElement;
-  passwordInput.addEventListener('keypress', (e: KeyboardEvent) => {
+
+  // Enter key handler
+  passwordInput.addEventListener('keydown', (e: KeyboardEvent) => {
     if (e.key === 'Enter') {
+      e.preventDefault();
+      e.stopPropagation();
       handleUnlockAction();
     }
   });
 
-  // Auto-focus password field
   passwordInput.focus();
 }

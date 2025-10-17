@@ -106,8 +106,10 @@ export function showImportWalletScreen(
   document.getElementById('importWalletBtn')!.addEventListener('click', handleImport);
 
   // Enter key handler
-  document.getElementById('confirmPassword')!.addEventListener('keypress', (e: KeyboardEvent) => {
+  document.getElementById('confirmPassword')!.addEventListener('keydown', (e: KeyboardEvent) => {
     if (e.key === 'Enter') {
+      e.preventDefault();
+      e.stopPropagation();
       handleImport();
     }
   });
