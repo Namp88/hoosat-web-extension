@@ -228,10 +228,35 @@ async function handleConnectionApprove(requestId: string): Promise<void> {
   try {
     // Check if wallet is unlocked
     if (!isUnlocked) {
-      // Need to unlock first - get request info to show context
+      // Need to unlock first - show unlock screen with custom callback
+      // that will approve the connection immediately after unlock
       const session = await chrome.storage.session.get('pendingRequestId');
       const request = await api.getPendingRequest(session.pendingRequestId || requestId);
-      showUnlockForPendingRequest(request);
+
+      const context: UnlockContext = {
+        origin: request.origin,
+        title: 'Approve Connection',
+        message: 'This site wants to connect to your wallet. Unlock to complete the connection.',
+      };
+
+      showUnlockScreen(
+        app,
+        async (password: string) => {
+          // Unlock the wallet
+          await handleUnlock(password, true);
+
+          // Immediately approve the connection (user already confirmed)
+          await api.approveConnection(requestId);
+          await chrome.storage.session.remove('pendingRequestId');
+          showSuccessMessage('✅ Site connected successfully!', 2000);
+
+          // Go to wallet screen
+          setTimeout(() => {
+            showWallet();
+          }, 2000);
+        },
+        context
+      );
       return;
     }
 
