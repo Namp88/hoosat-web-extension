@@ -1,5 +1,5 @@
 import { RPCMethod, DAppRequest, ErrorCode, RPCError, TransactionHistory } from '../../shared/types';
-import { getCurrentWallet, isOriginConnected, addConnectedSite, saveTransactionToHistory } from '../../shared/storage';
+import { getCurrentWallet, isOriginConnected, addConnectedSite, removeConnectedSite, saveTransactionToHistory } from '../../shared/storage';
 import { SOMPI_PER_HTN } from '../../shared/constants';
 import { WalletManager } from '../wallet-manager';
 
@@ -68,6 +68,9 @@ export async function handleRPCRequest(
 
     case RPCMethod.SIGN_MESSAGE:
       return handleSignMessageRPC(origin, params);
+
+    case RPCMethod.DISCONNECT:
+      return handleDisconnectRPC(origin);
 
     default:
       throw createRPCError(ErrorCode.UNSUPPORTED_METHOD, `Method not supported: ${method}`);
@@ -174,6 +177,25 @@ async function handleSendTransactionRPC(origin: string, params: any): Promise<st
  */
 async function handleGetNetwork(walletManager: WalletManager): Promise<string> {
   return walletManager.getNetwork();
+}
+
+/**
+ * Disconnect wallet from origin
+ */
+async function handleDisconnectRPC(origin: string): Promise<{ success: boolean }> {
+  // Check if connected
+  const isConnected = await isOriginConnected(origin);
+
+  if (!isConnected) {
+    console.log(`🔌 Origin ${origin} was not connected`);
+    return { success: true }; // Already disconnected
+  }
+
+  // Remove connected site
+  await removeConnectedSite(origin);
+  console.log(`🔌 Disconnected origin: ${origin}`);
+
+  return { success: true };
 }
 
 /**

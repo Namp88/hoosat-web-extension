@@ -64,6 +64,7 @@ export enum RPCMethod {
   SEND_TRANSACTION = 'hoosat_sendTransaction',
   SIGN_MESSAGE = 'hoosat_signMessage',
   GET_NETWORK = 'hoosat_getNetwork',
+  DISCONNECT = 'hoosat_disconnect',
 }
 
 // Messages between content script, background, and popup

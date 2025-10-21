@@ -46,6 +46,7 @@ Hoosat Wallet is a powerful browser extension that allows you to securely manage
 ### 🌐 DApp Integration
 - **Connection Management** - Approve/reject DApp connections
 - **Connected Sites** - View and manage connected DApps
+- **Disconnect Feature** - DApps can programmatically disconnect from wallet
 - **Transaction Signing** - Approve transactions from DApps
 - **Message Signing** - Sign messages for authentication and off-chain actions
 - **Real-time Requests** - Instant notification when DApps make requests
@@ -167,7 +168,28 @@ const accounts = await window.hoosat.connect();
 // Get connected accounts (no popup)
 const accounts = await window.hoosat.getAccounts();
 // Returns: ["hoosat:qp..."] or [] if not connected
+
+// Disconnect from wallet
+try {
+  await window.hoosat.disconnect();
+  console.log('Disconnected successfully');
+  // Site is removed from Connected Sites in the wallet
+} catch (error) {
+  console.error('Disconnect failed:', error);
+}
 ```
+
+**When to use disconnect:**
+- User logs out from your DApp
+- User switches to a different wallet
+- Session expires or becomes invalid
+- User explicitly requests to disconnect
+
+**Benefits:**
+- Keeps the wallet's Connected Sites list clean
+- Better user privacy and security
+- Clear connection state management
+- Professional UX (similar to MetaMask, WalletConnect)
 
 #### Balance
 
@@ -238,6 +260,7 @@ console.log('Network:', network); // "mainnet" or "testnet"
 | `requestAccounts()` | - | `Promise<string[]>` | Request connection (shows popup) |
 | `connect()` | - | `Promise<string[]>` | Alias for requestAccounts |
 | `getAccounts()` | - | `Promise<string[]>` | Get connected accounts (no popup) |
+| `disconnect()` | - | `Promise<void>` | Disconnect from wallet (removes from Connected Sites) |
 | `getBalance(address)` | `address: string` | `Promise<string>` | Get balance in sompi |
 | `sendTransaction(params)` | `{to, amount, fee?}` | `Promise<string>` | Send transaction, returns TX ID |
 | `signMessage(message)` | `message: string` | `Promise<string>` | Sign message, returns signature |
@@ -360,6 +383,7 @@ const isValid = HoosatSigner.verifyMessage(signature, message, publicKey);
 - [x] **hoosat-sdk-web integration** - Refactored message signing to use official SDK
 - [x] **Message signing** (ECDSA + BLAKE3) - Full implementation with security best practices
 - [x] **Connected Sites management** - View and disconnect from connected DApps
+- [x] **Programmatic disconnect** - DApps can disconnect themselves via API
 - [x] **Request timestamps** with age warnings - Security warnings for old requests
 - [x] **Real-time request detection** - Instant DApp request notifications
 - [x] **UI/UX improvements** - Compact layout, hover states, smooth animations
@@ -392,6 +416,7 @@ const isValid = HoosatSigner.verifyMessage(signature, message, publicKey);
 The project includes a comprehensive test DApp that demonstrates all features:
 
 - ✅ Connection flow
+- ✅ Disconnect functionality
 - ✅ Balance queries
 - ✅ Transaction sending
 - ✅ Message signing
@@ -446,6 +471,6 @@ This wallet is provided "as is" without warranty of any kind. Always do your own
 
 Made with ❤️ for the Hoosat community
 
-**Version 0.3.0** | [Changelog](CHANGELOG.md) | [GitHub](https://github.com/Namp88/hoosat-web-extension)
+**Version 0.3.1** | [Changelog](CHANGELOG.md) | [GitHub](https://github.com/Namp88/hoosat-web-extension)
 
 </div>

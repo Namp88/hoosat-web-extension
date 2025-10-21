@@ -99,6 +99,12 @@ class HoosatProvider {
     return this.request('hoosat_getNetwork');
   }
 
+  // Disconnect from wallet
+  async disconnect(): Promise<void> {
+    await this.request('hoosat_disconnect');
+    this.isConnected = false;
+  }
+
   // Event listeners (for future implementation)
   on(event: string, callback: Function): void {
     // TODO: Implement event system
