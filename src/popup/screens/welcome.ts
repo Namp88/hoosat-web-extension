@@ -1,4 +1,4 @@
-import { APP_NAME } from '../../shared/constants';
+import { t } from '../utils/i18n';
 
 /**
  * Show welcome screen with Create/Import wallet options
@@ -13,30 +13,30 @@ export function showWelcomeScreen(
       <div class="header">
         <div class="header-left">
           <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
-          <h1>${APP_NAME}</h1>
+          <h1>${t('appName')}</h1>
         </div>
       </div>
 
       <div class="content">
         <div class="welcome">
-          <h2>Welcome!</h2>
-          <p>Choose how to get started</p>
+          <h2>${t('welcome')}</h2>
+          <p>${t('welcomeDescription')}</p>
         </div>
 
         <div class="wallet-options">
           <button id="createNewBtn" class="btn btn-primary wallet-option-btn">
             <div class="option-icon">🔑</div>
             <div class="option-text">
-              <div class="option-title">Create New Wallet</div>
-              <div class="option-desc">Generate a new wallet</div>
+              <div class="option-title">${t('createNewWallet')}</div>
+              <div class="option-desc">${t('createNewWalletDesc')}</div>
             </div>
           </button>
 
           <button id="importBtn" class="btn btn-secondary wallet-option-btn">
             <div class="option-icon">📥</div>
             <div class="option-text">
-              <div class="option-title">Import Existing Wallet</div>
-              <div class="option-desc">Use your private key</div>
+              <div class="option-title">${t('importExistingWallet')}</div>
+              <div class="option-desc">${t('importExistingWalletDesc')}</div>
             </div>
           </button>
         </div>

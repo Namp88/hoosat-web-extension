@@ -1,7 +1,8 @@
-import { APP_NAME, SOMPI_PER_HTN } from '../../shared/constants';
+import { SOMPI_PER_HTN } from '../../shared/constants';
 import { showTransactionPreview } from '../components/transaction-preview';
 import { getCurrentBalance } from './wallet';
 import { HoosatUtils } from 'hoosat-sdk-web';
+import { t, tn } from '../utils/i18n';
 
 /**
  * Show send transaction screen
@@ -18,7 +19,7 @@ export function showSendScreen(
         <button id="backBtn" class="btn-icon">←</button>
         <div class="header-center">
           <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
-          <h1>Send HTN</h1>
+          <h1>${t('sendHTN')}</h1>
         </div>
         <div style="width: 32px;"></div>
       </div>
@@ -26,22 +27,22 @@ export function showSendScreen(
       <div class="content">
         <div class="form">
           <div class="form-group">
-            <label for="recipient">Recipient Address</label>
+            <label for="recipient">${t('recipientAddress')}</label>
             <input type="text" id="recipient" placeholder="hoosat:..." />
           </div>
 
           <div class="form-group">
-            <label for="amount">Amount (HTN)</label>
+            <label for="amount">${t('amount')}</label>
             <input type="number" id="amount" step="0.00000001" placeholder="0.00" />
           </div>
 
           <div class="balance-info">
-            Available: ${HoosatUtils.sompiToAmount(balance)} HTN
+            ${t('available')} ${HoosatUtils.sompiToAmount(balance)} HTN
           </div>
 
           <div class="error" id="error"></div>
 
-          <button id="sendBtn" class="btn btn-primary">Send Transaction</button>
+          <button id="sendBtn" class="btn btn-primary">${t('sendTransaction')}</button>
         </div>
       </div>
     </div>
@@ -63,18 +64,18 @@ async function handleSendTransaction(balance: string, onSuccess: (txId: string) 
 
   // Validation
   if (!recipient || !amount) {
-    errorEl.textContent = 'Recipient and amount are required';
+    errorEl.textContent = t('recipientAndAmountRequired');
     return;
   }
 
   if (!recipient.startsWith('hoosat:')) {
-    errorEl.textContent = 'Invalid address format. Must start with "hoosat:"';
+    errorEl.textContent = t('invalidAddressFormat');
     return;
   }
 
   const amountNum = parseFloat(amount);
   if (isNaN(amountNum) || amountNum <= 0) {
-    errorEl.textContent = 'Invalid amount';
+    errorEl.textContent = t('invalidAmount');
     return;
   }
 
@@ -83,7 +84,7 @@ async function handleSendTransaction(balance: string, onSuccess: (txId: string) 
     const sendBtn = document.getElementById('sendBtn') as HTMLButtonElement;
     const originalText = sendBtn.textContent;
     sendBtn.disabled = true;
-    sendBtn.textContent = 'Estimating fee...';
+    sendBtn.textContent = t('estimatingFee');
 
     // Get real fee estimate from background
     const feeEstimateResponse = await chrome.runtime.sendMessage({
@@ -119,7 +120,9 @@ async function handleSendTransaction(balance: string, onSuccess: (txId: string) 
     const totalRequired = amountSompi + minFeeSompi;
 
     if (totalRequired > balanceSompi) {
-      errorEl.textContent = `Insufficient balance. Need ${(parseFloat(totalRequired.toString()) / SOMPI_PER_HTN).toFixed(8)} HTN (including ${minFeeHTN.toFixed(8)} HTN fee)`;
+      const total = (parseFloat(totalRequired.toString()) / SOMPI_PER_HTN).toFixed(8);
+      const fee = minFeeHTN.toFixed(8);
+      errorEl.textContent = tn('insufficientBalance', total, fee);
       return;
     }
 
@@ -140,7 +143,7 @@ async function handleSendTransaction(balance: string, onSuccess: (txId: string) 
 
     // Disable button during sending
     sendBtn.disabled = true;
-    sendBtn.textContent = 'Sending...';
+    sendBtn.textContent = t('sending');
 
     // Use custom fee if provided, otherwise use minimum
     const finalFeeSompi = result.customFeeSompi || feeEstimate.fee;
@@ -164,12 +167,12 @@ async function handleSendTransaction(balance: string, onSuccess: (txId: string) 
     // Notify success
     await onSuccess(response.data);
   } catch (error: any) {
-    errorEl.textContent = error.message || 'Transaction failed';
+    errorEl.textContent = error.message || t('transactionFailed');
     // Re-enable button
     const sendBtn = document.getElementById('sendBtn') as HTMLButtonElement;
     if (sendBtn) {
       sendBtn.disabled = false;
-      sendBtn.textContent = 'Send Transaction';
+      sendBtn.textContent = t('sendTransaction');
     }
   }
 }

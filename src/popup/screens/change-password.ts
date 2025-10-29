@@ -1,5 +1,6 @@
-import { APP_NAME, MIN_PASSWORD_LENGTH } from '../../shared/constants';
+import { MIN_PASSWORD_LENGTH } from '../../shared/constants';
 import { calculatePasswordStrength } from '../utils';
+import { t, tn } from '../utils/i18n';
 
 /**
  * Show change password screen
@@ -15,7 +16,7 @@ export function showChangePasswordScreen(
         <button id="backBtn" class="btn-icon">←</button>
         <div class="header-center">
           <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
-          <h1>Change Password</h1>
+          <h1>${t('changePasswordTitle')}</h1>
         </div>
         <div style="width: 32px;"></div>
       </div>
@@ -24,37 +25,37 @@ export function showChangePasswordScreen(
         <div class="info-box warning">
           <div class="info-icon">⚠️</div>
           <div class="info-text">
-            <strong>Important:</strong> After changing your password, make sure to remember it. You cannot recover your wallet without the correct password!
+            <strong>${t('important')}</strong> ${t('changePasswordWarning')}
           </div>
         </div>
 
         <div class="form">
           <div class="form-group">
-            <label for="currentPassword">Current Password</label>
+            <label for="currentPassword">${t('currentPassword')}</label>
             <input
               type="password"
               id="currentPassword"
-              placeholder="Enter current password"
+              placeholder="${t('enterCurrentPassword')}"
               autocomplete="current-password"
             />
           </div>
 
           <div class="form-group">
-            <label for="newPassword">New Password</label>
+            <label for="newPassword">${t('newPassword')}</label>
             <input
               type="password"
               id="newPassword"
-              placeholder="Enter new password"
+              placeholder="${t('enterNewPassword')}"
               autocomplete="new-password"
             />
           </div>
 
           <div class="form-group">
-            <label for="confirmNewPassword">Confirm New Password</label>
+            <label for="confirmNewPassword">${t('confirmNewPassword')}</label>
             <input
               type="password"
               id="confirmNewPassword"
-              placeholder="Confirm new password"
+              placeholder="${t('confirmNewPasswordPlaceholder')}"
               autocomplete="new-password"
             />
           </div>
@@ -63,7 +64,7 @@ export function showChangePasswordScreen(
 
           <div class="error" id="error"></div>
 
-          <button id="changePasswordBtn" class="btn btn-primary">Change Password</button>
+          <button id="changePasswordBtn" class="btn btn-primary">${t('changePasswordButton')}</button>
         </div>
       </div>
     </div>
@@ -101,13 +102,13 @@ export function showChangePasswordScreen(
 
     if (strength.score < 2) {
       strengthDiv.classList.add('weak');
-      strengthDiv.textContent = '🔴 Weak password';
+      strengthDiv.textContent = '🔴 ' + t('weakPassword');
     } else if (strength.score < 4) {
       strengthDiv.classList.add('medium');
-      strengthDiv.textContent = '🟡 Medium password';
+      strengthDiv.textContent = '🟡 ' + t('mediumPassword');
     } else {
       strengthDiv.classList.add('strong');
-      strengthDiv.textContent = '🟢 Strong password';
+      strengthDiv.textContent = '🟢 ' + t('strongPassword');
     }
   });
 }
@@ -127,47 +128,47 @@ async function handleChangePassword(
 
   // Validation
   if (!currentPassword) {
-    errorEl.textContent = 'Current password is required';
+    errorEl.textContent = t('currentPasswordRequired');
     return;
   }
 
   if (!newPassword || !confirmNewPassword) {
-    errorEl.textContent = 'New password is required';
+    errorEl.textContent = t('newPasswordRequired');
     return;
   }
 
   if (newPassword !== confirmNewPassword) {
-    errorEl.textContent = 'New passwords do not match';
+    errorEl.textContent = t('newPasswordsDoNotMatch');
     return;
   }
 
   if (newPassword === currentPassword) {
-    errorEl.textContent = 'New password must be different from current password';
+    errorEl.textContent = t('newPasswordMustBeDifferent');
     return;
   }
 
   if (newPassword.length < MIN_PASSWORD_LENGTH) {
-    errorEl.textContent = `Password must be at least ${MIN_PASSWORD_LENGTH} characters`;
+    errorEl.textContent = tn('passwordMustBeAtLeast', MIN_PASSWORD_LENGTH.toString());
     return;
   }
 
   // Check password strength
   const strength = calculatePasswordStrength(newPassword);
   if (strength.score < 3) {
-    errorEl.textContent = 'Password is too weak. ' + strength.feedback.join(', ');
+    errorEl.textContent = t('passwordTooWeak') + ' ' + strength.feedback.join(', ');
     return;
   }
 
   try {
     const changeBtn = document.getElementById('changePasswordBtn') as HTMLButtonElement;
     changeBtn.disabled = true;
-    changeBtn.textContent = 'Changing Password...';
+    changeBtn.textContent = t('changingPassword');
 
     await onChangePassword(currentPassword, newPassword, confirmNewPassword);
   } catch (error: any) {
-    errorEl.textContent = error.message || 'Failed to change password';
+    errorEl.textContent = error.message || t('failedToChangePassword');
     const changeBtn = document.getElementById('changePasswordBtn') as HTMLButtonElement;
     changeBtn.disabled = false;
-    changeBtn.textContent = 'Change Password';
+    changeBtn.textContent = t('changePasswordButton');
   }
 }

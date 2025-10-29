@@ -1,0 +1,711 @@
+{
+  "appName": {
+    "message": "Hoosat Wallet",
+    "description": "Application name"
+  },
+  "appDescription": {
+    "message": "Browser-Erweiterung Wallet für die Hoosat Blockchain",
+    "description": "Application description"
+  },
+
+  "welcome": {
+    "message": "Willkommen!",
+    "description": "Welcome screen title"
+  },
+  "welcomeDescription": {
+    "message": "Wählen Sie aus, wie Sie beginnen möchten",
+    "description": "Welcome screen description"
+  },
+  "createNewWallet": {
+    "message": "Neues Wallet Erstellen",
+    "description": "Create new wallet button"
+  },
+  "createNewWalletDesc": {
+    "message": "Ein neues Wallet generieren",
+    "description": "Create new wallet description"
+  },
+  "importExistingWallet": {
+    "message": "Bestehendes Wallet Importieren",
+    "description": "Import wallet button"
+  },
+  "importExistingWalletDesc": {
+    "message": "Verwenden Sie Ihren privaten Schlüssel",
+    "description": "Import wallet description"
+  },
+
+  "unlockWallet": {
+    "message": "Wallet Entsperren",
+    "description": "Unlock wallet title"
+  },
+  "requestFrom": {
+    "message": "Anfrage von:",
+    "description": "Request from label"
+  },
+  "password": {
+    "message": "Passwort",
+    "description": "Password field label"
+  },
+  "enterPassword": {
+    "message": "Passwort eingeben",
+    "description": "Password field placeholder"
+  },
+  "unlock": {
+    "message": "Entsperren",
+    "description": "Unlock button"
+  },
+  "passwordRequired": {
+    "message": "Passwort ist erforderlich",
+    "description": "Password required error"
+  },
+  "invalidPassword": {
+    "message": "Ungültiges Passwort",
+    "description": "Invalid password error"
+  },
+
+  "createNewWalletTitle": {
+    "message": "Neues Wallet Erstellen",
+    "description": "Create new wallet screen title"
+  },
+  "important": {
+    "message": "Wichtig:",
+    "description": "Important label"
+  },
+  "savePrivateKeyWarning": {
+    "message": "Speichern Sie Ihren privaten Schlüssel sicher. Sie benötigen ihn, um Ihr Wallet wiederherzustellen. Teilen Sie ihn niemals mit anderen!",
+    "description": "Save private key warning"
+  },
+  "createPassword": {
+    "message": "Passwort erstellen",
+    "description": "Create password placeholder"
+  },
+  "confirmPassword": {
+    "message": "Passwort Bestätigen",
+    "description": "Confirm password label"
+  },
+  "confirmPasswordPlaceholder": {
+    "message": "Passwort bestätigen",
+    "description": "Confirm password placeholder"
+  },
+  "passwordRequirements": {
+    "message": "Das Passwort muss enthalten:",
+    "description": "Password requirements title"
+  },
+  "passwordReq8Chars": {
+    "message": "Mindestens 8 Zeichen",
+    "description": "Password requirement: 8 characters"
+  },
+  "passwordReqUppercase": {
+    "message": "Einen Großbuchstaben (A-Z)",
+    "description": "Password requirement: uppercase"
+  },
+  "passwordReqLowercase": {
+    "message": "Einen Kleinbuchstaben (a-z)",
+    "description": "Password requirement: lowercase"
+  },
+  "passwordReqNumber": {
+    "message": "Eine Zahl (0-9)",
+    "description": "Password requirement: number"
+  },
+  "generateWallet": {
+    "message": "Wallet Generieren",
+    "description": "Generate wallet button"
+  },
+  "passwordsDoNotMatch": {
+    "message": "Passwörter stimmen nicht überein",
+    "description": "Passwords do not match error"
+  },
+  "passwordTooWeak": {
+    "message": "Das Passwort ist zu schwach.",
+    "description": "Password too weak error"
+  },
+  "failedToGenerateWallet": {
+    "message": "Wallet-Generierung fehlgeschlagen",
+    "description": "Failed to generate wallet error"
+  },
+
+  "importWallet": {
+    "message": "Wallet Importieren",
+    "description": "Import wallet title"
+  },
+  "privateKeyHex": {
+    "message": "Privater Schlüssel (Hex)",
+    "description": "Private key field label"
+  },
+  "enterPrivateKey": {
+    "message": "Geben Sie Ihren privaten Schlüssel ein",
+    "description": "Private key field placeholder"
+  },
+  "importWalletButton": {
+    "message": "Wallet Importieren",
+    "description": "Import wallet button"
+  },
+  "privateKeyRequired": {
+    "message": "Privater Schlüssel ist erforderlich",
+    "description": "Private key required error"
+  },
+  "failedToImportWallet": {
+    "message": "Wallet-Import fehlgeschlagen",
+    "description": "Failed to import wallet error"
+  },
+
+  "backupPrivateKey": {
+    "message": "Privaten Schlüssel Sichern",
+    "description": "Backup private key title"
+  },
+  "saveThisPrivateKey": {
+    "message": "Speichern Sie diesen privaten Schlüssel!",
+    "description": "Save this private key warning title"
+  },
+  "writeItDownWarning": {
+    "message": "Schreiben Sie ihn auf und bewahren Sie ihn an einem sicheren Ort auf. Sie benötigen ihn, um Ihr Wallet wiederherzustellen.",
+    "description": "Write down private key warning"
+  },
+  "yourPrivateKey": {
+    "message": "Ihr Privater Schlüssel",
+    "description": "Your private key label"
+  },
+  "yourAddress": {
+    "message": "Ihre Adresse",
+    "description": "Your address label"
+  },
+  "copyToClipboard": {
+    "message": "In Zwischenablage Kopieren",
+    "description": "Copy to clipboard button"
+  },
+  "copied": {
+    "message": "Kopiert!",
+    "description": "Copied notification"
+  },
+  "confirmBackup": {
+    "message": "Ich habe meinen privaten Schlüssel sicher gespeichert",
+    "description": "Confirm backup checkbox"
+  },
+  "continue": {
+    "message": "Fortfahren",
+    "description": "Continue button"
+  },
+
+  "address": {
+    "message": "Adresse",
+    "description": "Address label"
+  },
+  "balance": {
+    "message": "Guthaben",
+    "description": "Balance label"
+  },
+  "send": {
+    "message": "Senden",
+    "description": "Send button"
+  },
+  "receive": {
+    "message": "Empfangen",
+    "description": "Receive button"
+  },
+  "recentTransactions": {
+    "message": "Letzte Transaktionen",
+    "description": "Recent transactions title"
+  },
+  "noTransactionsYet": {
+    "message": "Noch keine Transaktionen",
+    "description": "No transactions message"
+  },
+  "viewFullHistoryInExplorer": {
+    "message": "Vollständigen Verlauf im Explorer Anzeigen →",
+    "description": "View full history link"
+  },
+  "sent": {
+    "message": "Gesendet",
+    "description": "Sent transaction type"
+  },
+  "received": {
+    "message": "Empfangen",
+    "description": "Received transaction type"
+  },
+  "to": {
+    "message": "An:",
+    "description": "To label"
+  },
+  "from": {
+    "message": "Von:",
+    "description": "From label"
+  },
+
+  "sendHTN": {
+    "message": "HTN Senden",
+    "description": "Send HTN title"
+  },
+  "recipientAddress": {
+    "message": "Empfängeradresse",
+    "description": "Recipient address label"
+  },
+  "amount": {
+    "message": "Betrag (HTN)",
+    "description": "Amount field label"
+  },
+  "available": {
+    "message": "Verfügbar:",
+    "description": "Available balance label"
+  },
+  "sendTransaction": {
+    "message": "Transaktion Senden",
+    "description": "Send transaction button"
+  },
+  "recipientAndAmountRequired": {
+    "message": "Empfänger und Betrag sind erforderlich",
+    "description": "Recipient and amount required error"
+  },
+  "invalidAddressFormat": {
+    "message": "Ungültiges Adressformat. Muss mit \"hoosat:\" beginnen",
+    "description": "Invalid address format error"
+  },
+  "invalidAmount": {
+    "message": "Ungültiger Betrag",
+    "description": "Invalid amount error"
+  },
+  "estimatingFee": {
+    "message": "Gebühr wird geschätzt...",
+    "description": "Estimating fee status"
+  },
+  "insufficientBalance": {
+    "message": "Unzureichendes Guthaben. Benötigt werden $1 HTN (einschließlich $2 HTN Gebühr)",
+    "description": "Insufficient balance error",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1.00000000"
+      },
+      "2": {
+        "content": "$2",
+        "example": "0.00001000"
+      }
+    }
+  },
+  "sending": {
+    "message": "Wird gesendet...",
+    "description": "Sending status"
+  },
+  "transactionFailed": {
+    "message": "Transaktion fehlgeschlagen",
+    "description": "Transaction failed error"
+  },
+
+  "receiveHTN": {
+    "message": "HTN Empfangen",
+    "description": "Receive HTN title"
+  },
+  "copyAddress": {
+    "message": "Adresse Kopieren",
+    "description": "Copy address button"
+  },
+
+  "confirmTransaction": {
+    "message": "Transaktion Bestätigen",
+    "description": "Confirm transaction title"
+  },
+  "requestedBy": {
+    "message": "Angefordert von:",
+    "description": "Requested by label"
+  },
+  "requested": {
+    "message": "Angefordert",
+    "description": "Requested prefix"
+  },
+  "oldRequest": {
+    "message": "Alte Anfrage",
+    "description": "Old request warning"
+  },
+  "sendingTo": {
+    "message": "Senden an",
+    "description": "Sending to label"
+  },
+  "networkFee": {
+    "message": "Netzwerkgebühr",
+    "description": "Network fee label"
+  },
+  "custom": {
+    "message": "Benutzerdefiniert",
+    "description": "Custom fee badge"
+  },
+  "editFee": {
+    "message": "Gebühr bearbeiten",
+    "description": "Edit fee link"
+  },
+  "minimum": {
+    "message": "Minimum:",
+    "description": "Minimum fee label"
+  },
+  "cancel": {
+    "message": "Abbrechen",
+    "description": "Cancel button"
+  },
+  "save": {
+    "message": "Speichern",
+    "description": "Save button"
+  },
+  "invalidFeeValue": {
+    "message": "Ungültiger Gebührenwert",
+    "description": "Invalid fee value error"
+  },
+  "feeCannotBeLess": {
+    "message": "Gebühr kann nicht weniger als $1 HTN betragen",
+    "description": "Fee cannot be less error",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00001000"
+      }
+    }
+  },
+  "insufficientBalanceForFee": {
+    "message": "Unzureichendes Guthaben für diese Gebühr",
+    "description": "Insufficient balance for fee error"
+  },
+  "feeWarningHigher": {
+    "message": "Warnung: Gebühr ist $1-mal höher als das Minimum!",
+    "description": "Fee warning higher than minimum",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "10.0"
+      }
+    }
+  },
+  "total": {
+    "message": "Gesamt",
+    "description": "Total label"
+  },
+  "verifyDetails": {
+    "message": "Bitte überprüfen Sie alle Details vor der Bestätigung",
+    "description": "Verify details warning"
+  },
+  "confirmAndSend": {
+    "message": "Bestätigen & Senden",
+    "description": "Confirm and send button"
+  },
+
+  "settings": {
+    "message": "Einstellungen",
+    "description": "Settings title"
+  },
+  "connectedSites": {
+    "message": "Verbundene Websites",
+    "description": "Connected sites button"
+  },
+  "changePassword": {
+    "message": "Passwort Ändern",
+    "description": "Change password button"
+  },
+  "exportPrivateKey": {
+    "message": "Privaten Schlüssel Exportieren",
+    "description": "Export private key button"
+  },
+  "resetWallet": {
+    "message": "Wallet Zurücksetzen",
+    "description": "Reset wallet button"
+  },
+
+  "connectedSitesTitle": {
+    "message": "Verbundene Websites",
+    "description": "Connected sites screen title"
+  },
+  "noConnectedSites": {
+    "message": "Keine Verbundenen Websites",
+    "description": "No connected sites message"
+  },
+  "noConnectedSitesDesc": {
+    "message": "Wenn Sie Ihr Wallet mit einer Website verbinden, wird diese hier angezeigt.",
+    "description": "No connected sites description"
+  },
+  "connectedSitesInfo": {
+    "message": "Verbundene Websites können Ihre Wallet-Adresse einsehen und Transaktionen anfordern. Trennen Sie Websites, die Sie nicht mehr nutzen oder denen Sie nicht mehr vertrauen.",
+    "description": "Connected sites info"
+  },
+  "connected": {
+    "message": "Verbunden",
+    "description": "Connected prefix"
+  },
+  "disconnect": {
+    "message": "Trennen",
+    "description": "Disconnect button"
+  },
+  "disconnectSite": {
+    "message": "Website Trennen",
+    "description": "Disconnect site dialog title"
+  },
+  "disconnectSiteConfirm": {
+    "message": "Sind Sie sicher, dass Sie $1 trennen möchten? Die Website muss erneut eine Verbindung anfordern.",
+    "description": "Disconnect site confirmation",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "justNow": {
+    "message": "gerade eben",
+    "description": "Just now time"
+  },
+  "minuteAgo": {
+    "message": "vor $1 Minute",
+    "description": "Minute ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "minutesAgo": {
+    "message": "vor $1 Minuten",
+    "description": "Minutes ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "hourAgo": {
+    "message": "vor $1 Stunde",
+    "description": "Hour ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "hoursAgo": {
+    "message": "vor $1 Stunden",
+    "description": "Hours ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "dayAgo": {
+    "message": "vor $1 Tag",
+    "description": "Day ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "daysAgo": {
+    "message": "vor $1 Tagen",
+    "description": "Days ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+
+  "changePasswordTitle": {
+    "message": "Passwort Ändern",
+    "description": "Change password screen title"
+  },
+  "changePasswordWarning": {
+    "message": "Stellen Sie nach dem Ändern Ihres Passworts sicher, dass Sie es sich merken. Sie können Ihr Wallet ohne das richtige Passwort nicht wiederherstellen!",
+    "description": "Change password warning"
+  },
+  "currentPassword": {
+    "message": "Aktuelles Passwort",
+    "description": "Current password label"
+  },
+  "enterCurrentPassword": {
+    "message": "Aktuelles Passwort eingeben",
+    "description": "Current password placeholder"
+  },
+  "newPassword": {
+    "message": "Neues Passwort",
+    "description": "New password label"
+  },
+  "enterNewPassword": {
+    "message": "Neues Passwort eingeben",
+    "description": "New password placeholder"
+  },
+  "confirmNewPassword": {
+    "message": "Neues Passwort Bestätigen",
+    "description": "Confirm new password label"
+  },
+  "confirmNewPasswordPlaceholder": {
+    "message": "Neues Passwort bestätigen",
+    "description": "Confirm new password placeholder"
+  },
+  "changePasswordButton": {
+    "message": "Passwort Ändern",
+    "description": "Change password button"
+  },
+  "currentPasswordRequired": {
+    "message": "Aktuelles Passwort ist erforderlich",
+    "description": "Current password required error"
+  },
+  "newPasswordRequired": {
+    "message": "Neues Passwort ist erforderlich",
+    "description": "New password required error"
+  },
+  "newPasswordsDoNotMatch": {
+    "message": "Neue Passwörter stimmen nicht überein",
+    "description": "New passwords do not match error"
+  },
+  "newPasswordMustBeDifferent": {
+    "message": "Neues Passwort muss sich vom aktuellen Passwort unterscheiden",
+    "description": "New password must be different error"
+  },
+  "passwordMustBeAtLeast": {
+    "message": "Passwort muss mindestens $1 Zeichen lang sein",
+    "description": "Password must be at least N characters",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "changingPassword": {
+    "message": "Passwort wird geändert...",
+    "description": "Changing password status"
+  },
+  "failedToChangePassword": {
+    "message": "Passwortänderung fehlgeschlagen",
+    "description": "Failed to change password error"
+  },
+  "weakPassword": {
+    "message": "Schwaches Passwort",
+    "description": "Weak password indicator"
+  },
+  "mediumPassword": {
+    "message": "Mittleres Passwort",
+    "description": "Medium password indicator"
+  },
+  "strongPassword": {
+    "message": "Starkes Passwort",
+    "description": "Strong password indicator"
+  },
+
+  "exportPrivateKeyTitle": {
+    "message": "Privaten Schlüssel Exportieren",
+    "description": "Export private key screen title"
+  },
+  "securityWarning": {
+    "message": "Sicherheitswarnung!",
+    "description": "Security warning title"
+  },
+  "neverSharePrivateKey": {
+    "message": "Teilen Sie Ihren privaten Schlüssel niemals mit anderen. Jeder, der Zugang zu Ihrem privaten Schlüssel hat, kann Ihr Guthaben stehlen!",
+    "description": "Never share private key warning"
+  },
+  "enterPasswordToConfirm": {
+    "message": "Geben Sie Ihr Passwort zur Bestätigung ein",
+    "description": "Enter password to confirm label"
+  },
+  "showPrivateKey": {
+    "message": "Privaten Schlüssel Anzeigen",
+    "description": "Show private key button"
+  },
+  "verifying": {
+    "message": "Wird überprüft...",
+    "description": "Verifying status"
+  },
+  "keepThisKeySafe": {
+    "message": "Bewahren Sie diesen Schlüssel sicher auf!",
+    "description": "Keep this key safe title"
+  },
+  "keepKeySafeWarning": {
+    "message": "Jeder, der diesen Schlüssel besitzt, kann auf Ihr Guthaben zugreifen. Bewahren Sie ihn sicher auf und teilen Sie ihn niemals.",
+    "description": "Keep key safe warning"
+  },
+  "hideKey": {
+    "message": "Schlüssel Verbergen",
+    "description": "Hide key button"
+  },
+  "showKey": {
+    "message": "Schlüssel Anzeigen",
+    "description": "Show key button"
+  },
+  "copiedToClipboard": {
+    "message": "In Zwischenablage kopiert!",
+    "description": "Copied to clipboard notification"
+  },
+  "bestPractices": {
+    "message": "Bewährte Praktiken:",
+    "description": "Best practices title"
+  },
+  "bestPractice1": {
+    "message": "Schreiben Sie ihn auf Papier auf und bewahren Sie ihn an einem sicheren Ort auf",
+    "description": "Best practice 1"
+  },
+  "bestPractice2": {
+    "message": "Verwenden Sie einen Passwort-Manager (verschlüsselt)",
+    "description": "Best practice 2"
+  },
+  "bestPractice3": {
+    "message": "Speichern Sie ihn niemals in unverschlüsselten Textdateien",
+    "description": "Best practice 3"
+  },
+  "bestPractice4": {
+    "message": "Senden Sie ihn niemals per E-Mail oder Messaging-Apps",
+    "description": "Best practice 4"
+  },
+  "done": {
+    "message": "Fertig",
+    "description": "Done button"
+  },
+
+  "loading": {
+    "message": "Lädt...",
+    "description": "Loading text"
+  },
+
+  "language": {
+    "message": "Sprache",
+    "description": "Language label"
+  },
+  "languageSettings": {
+    "message": "Spracheinstellungen",
+    "description": "Language settings title"
+  },
+  "selectLanguage": {
+    "message": "Sprache Auswählen",
+    "description": "Select language label"
+  },
+  "languageChanged": {
+    "message": "Sprache erfolgreich geändert",
+    "description": "Language changed notification"
+  },
+  "languageAuto": {
+    "message": "Automatisch (Browser-Standard)",
+    "description": "Auto language option"
+  },
+  "languageEnglish": {
+    "message": "English",
+    "description": "English language name"
+  },
+  "languageRussian": {
+    "message": "Русский (Russisch)",
+    "description": "Russian language name"
+  },
+  "languageChinese": {
+    "message": "简体中文 (Chinesisch Vereinfacht)",
+    "description": "Chinese language name"
+  },
+  "languageSpanish": {
+    "message": "Español (Spanisch)",
+    "description": "Spanish language name"
+  },
+  "languageFinnish": {
+    "message": "Suomi (Finnisch)",
+    "description": "Finnish language name"
+  },
+  "failedToChangeLanguage": {
+    "message": "Sprachänderung fehlgeschlagen",
+    "description": "Error message when language change fails"
+  }
+}

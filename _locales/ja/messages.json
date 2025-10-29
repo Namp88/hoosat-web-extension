@@ -1,0 +1,711 @@
+{
+  "appName": {
+    "message": "Hoosat Wallet",
+    "description": "Application name"
+  },
+  "appDescription": {
+    "message": "Hoosatブロックチェーン用のブラウザ拡張ウォレット",
+    "description": "Application description"
+  },
+
+  "welcome": {
+    "message": "ようこそ!",
+    "description": "Welcome screen title"
+  },
+  "welcomeDescription": {
+    "message": "開始方法を選択してください",
+    "description": "Welcome screen description"
+  },
+  "createNewWallet": {
+    "message": "新しいウォレットを作成",
+    "description": "Create new wallet button"
+  },
+  "createNewWalletDesc": {
+    "message": "新しいウォレットを生成します",
+    "description": "Create new wallet description"
+  },
+  "importExistingWallet": {
+    "message": "既存のウォレットをインポート",
+    "description": "Import wallet button"
+  },
+  "importExistingWalletDesc": {
+    "message": "秘密鍵を使用します",
+    "description": "Import wallet description"
+  },
+
+  "unlockWallet": {
+    "message": "ウォレットのロック解除",
+    "description": "Unlock wallet title"
+  },
+  "requestFrom": {
+    "message": "リクエスト元:",
+    "description": "Request from label"
+  },
+  "password": {
+    "message": "パスワード",
+    "description": "Password field label"
+  },
+  "enterPassword": {
+    "message": "パスワードを入力",
+    "description": "Password field placeholder"
+  },
+  "unlock": {
+    "message": "ロック解除",
+    "description": "Unlock button"
+  },
+  "passwordRequired": {
+    "message": "パスワードが必要です",
+    "description": "Password required error"
+  },
+  "invalidPassword": {
+    "message": "パスワードが正しくありません",
+    "description": "Invalid password error"
+  },
+
+  "createNewWalletTitle": {
+    "message": "新しいウォレットを作成",
+    "description": "Create new wallet screen title"
+  },
+  "important": {
+    "message": "重要:",
+    "description": "Important label"
+  },
+  "savePrivateKeyWarning": {
+    "message": "秘密鍵を安全に保存してください。ウォレットを復元するために必要です。絶対に他人と共有しないでください!",
+    "description": "Save private key warning"
+  },
+  "createPassword": {
+    "message": "パスワードを作成",
+    "description": "Create password placeholder"
+  },
+  "confirmPassword": {
+    "message": "パスワードの確認",
+    "description": "Confirm password label"
+  },
+  "confirmPasswordPlaceholder": {
+    "message": "パスワードを再入力",
+    "description": "Confirm password placeholder"
+  },
+  "passwordRequirements": {
+    "message": "パスワードの要件:",
+    "description": "Password requirements title"
+  },
+  "passwordReq8Chars": {
+    "message": "8文字以上",
+    "description": "Password requirement: 8 characters"
+  },
+  "passwordReqUppercase": {
+    "message": "大文字1文字以上(A-Z)",
+    "description": "Password requirement: uppercase"
+  },
+  "passwordReqLowercase": {
+    "message": "小文字1文字以上(a-z)",
+    "description": "Password requirement: lowercase"
+  },
+  "passwordReqNumber": {
+    "message": "数字1文字以上(0-9)",
+    "description": "Password requirement: number"
+  },
+  "generateWallet": {
+    "message": "ウォレットを生成",
+    "description": "Generate wallet button"
+  },
+  "passwordsDoNotMatch": {
+    "message": "パスワードが一致しません",
+    "description": "Passwords do not match error"
+  },
+  "passwordTooWeak": {
+    "message": "パスワードが弱すぎます。",
+    "description": "Password too weak error"
+  },
+  "failedToGenerateWallet": {
+    "message": "ウォレットの生成に失敗しました",
+    "description": "Failed to generate wallet error"
+  },
+
+  "importWallet": {
+    "message": "ウォレットをインポート",
+    "description": "Import wallet title"
+  },
+  "privateKeyHex": {
+    "message": "秘密鍵 (hex)",
+    "description": "Private key field label"
+  },
+  "enterPrivateKey": {
+    "message": "秘密鍵を入力してください",
+    "description": "Private key field placeholder"
+  },
+  "importWalletButton": {
+    "message": "ウォレットをインポート",
+    "description": "Import wallet button"
+  },
+  "privateKeyRequired": {
+    "message": "秘密鍵が必要です",
+    "description": "Private key required error"
+  },
+  "failedToImportWallet": {
+    "message": "ウォレットのインポートに失敗しました",
+    "description": "Failed to import wallet error"
+  },
+
+  "backupPrivateKey": {
+    "message": "秘密鍵のバックアップ",
+    "description": "Backup private key title"
+  },
+  "saveThisPrivateKey": {
+    "message": "この秘密鍵を保存してください!",
+    "description": "Save this private key warning title"
+  },
+  "writeItDownWarning": {
+    "message": "書き留めて安全な場所に保管してください。ウォレットの復元に必要です。",
+    "description": "Write down private key warning"
+  },
+  "yourPrivateKey": {
+    "message": "あなたの秘密鍵",
+    "description": "Your private key label"
+  },
+  "yourAddress": {
+    "message": "あなたのアドレス",
+    "description": "Your address label"
+  },
+  "copyToClipboard": {
+    "message": "クリップボードにコピー",
+    "description": "Copy to clipboard button"
+  },
+  "copied": {
+    "message": "コピーしました!",
+    "description": "Copied notification"
+  },
+  "confirmBackup": {
+    "message": "秘密鍵を安全に保存しました",
+    "description": "Confirm backup checkbox"
+  },
+  "continue": {
+    "message": "続ける",
+    "description": "Continue button"
+  },
+
+  "address": {
+    "message": "アドレス",
+    "description": "Address label"
+  },
+  "balance": {
+    "message": "残高",
+    "description": "Balance label"
+  },
+  "send": {
+    "message": "送信",
+    "description": "Send button"
+  },
+  "receive": {
+    "message": "受信",
+    "description": "Receive button"
+  },
+  "recentTransactions": {
+    "message": "最近の取引",
+    "description": "Recent transactions title"
+  },
+  "noTransactionsYet": {
+    "message": "まだ取引がありません",
+    "description": "No transactions message"
+  },
+  "viewFullHistoryInExplorer": {
+    "message": "エクスプローラーで全履歴を表示 →",
+    "description": "View full history link"
+  },
+  "sent": {
+    "message": "送信済み",
+    "description": "Sent transaction type"
+  },
+  "received": {
+    "message": "受信済み",
+    "description": "Received transaction type"
+  },
+  "to": {
+    "message": "宛先:",
+    "description": "To label"
+  },
+  "from": {
+    "message": "送信元:",
+    "description": "From label"
+  },
+
+  "sendHTN": {
+    "message": "HTNを送信",
+    "description": "Send HTN title"
+  },
+  "recipientAddress": {
+    "message": "受取人のアドレス",
+    "description": "Recipient address label"
+  },
+  "amount": {
+    "message": "金額 (HTN)",
+    "description": "Amount field label"
+  },
+  "available": {
+    "message": "利用可能:",
+    "description": "Available balance label"
+  },
+  "sendTransaction": {
+    "message": "取引を送信",
+    "description": "Send transaction button"
+  },
+  "recipientAndAmountRequired": {
+    "message": "受取人と金額が必要です",
+    "description": "Recipient and amount required error"
+  },
+  "invalidAddressFormat": {
+    "message": "アドレス形式が無効です。\"hoosat:\"で始まる必要があります",
+    "description": "Invalid address format error"
+  },
+  "invalidAmount": {
+    "message": "金額が無効です",
+    "description": "Invalid amount error"
+  },
+  "estimatingFee": {
+    "message": "手数料を見積もり中...",
+    "description": "Estimating fee status"
+  },
+  "insufficientBalance": {
+    "message": "残高が不足しています。$1 HTN必要です(手数料$2 HTNを含む)",
+    "description": "Insufficient balance error",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1.00000000"
+      },
+      "2": {
+        "content": "$2",
+        "example": "0.00001000"
+      }
+    }
+  },
+  "sending": {
+    "message": "送信中...",
+    "description": "Sending status"
+  },
+  "transactionFailed": {
+    "message": "取引に失敗しました",
+    "description": "Transaction failed error"
+  },
+
+  "receiveHTN": {
+    "message": "HTNを受信",
+    "description": "Receive HTN title"
+  },
+  "copyAddress": {
+    "message": "アドレスをコピー",
+    "description": "Copy address button"
+  },
+
+  "confirmTransaction": {
+    "message": "取引の確認",
+    "description": "Confirm transaction title"
+  },
+  "requestedBy": {
+    "message": "リクエスト元:",
+    "description": "Requested by label"
+  },
+  "requested": {
+    "message": "リクエスト日時",
+    "description": "Requested prefix"
+  },
+  "oldRequest": {
+    "message": "古いリクエスト",
+    "description": "Old request warning"
+  },
+  "sendingTo": {
+    "message": "送信先",
+    "description": "Sending to label"
+  },
+  "networkFee": {
+    "message": "ネットワーク手数料",
+    "description": "Network fee label"
+  },
+  "custom": {
+    "message": "カスタム",
+    "description": "Custom fee badge"
+  },
+  "editFee": {
+    "message": "手数料を編集",
+    "description": "Edit fee link"
+  },
+  "minimum": {
+    "message": "最小:",
+    "description": "Minimum fee label"
+  },
+  "cancel": {
+    "message": "キャンセル",
+    "description": "Cancel button"
+  },
+  "save": {
+    "message": "保存",
+    "description": "Save button"
+  },
+  "invalidFeeValue": {
+    "message": "手数料の値が無効です",
+    "description": "Invalid fee value error"
+  },
+  "feeCannotBeLess": {
+    "message": "手数料は$1 HTN未満にはできません",
+    "description": "Fee cannot be less error",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00001000"
+      }
+    }
+  },
+  "insufficientBalanceForFee": {
+    "message": "この手数料に対して残高が不足しています",
+    "description": "Insufficient balance for fee error"
+  },
+  "feeWarningHigher": {
+    "message": "警告: 手数料が最小値の$1倍です!",
+    "description": "Fee warning higher than minimum",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "10.0"
+      }
+    }
+  },
+  "total": {
+    "message": "合計",
+    "description": "Total label"
+  },
+  "verifyDetails": {
+    "message": "確認する前にすべての詳細を検証してください",
+    "description": "Verify details warning"
+  },
+  "confirmAndSend": {
+    "message": "確認して送信",
+    "description": "Confirm and send button"
+  },
+
+  "settings": {
+    "message": "設定",
+    "description": "Settings title"
+  },
+  "connectedSites": {
+    "message": "接続されたサイト",
+    "description": "Connected sites button"
+  },
+  "changePassword": {
+    "message": "パスワードを変更",
+    "description": "Change password button"
+  },
+  "exportPrivateKey": {
+    "message": "秘密鍵をエクスポート",
+    "description": "Export private key button"
+  },
+  "resetWallet": {
+    "message": "ウォレットをリセット",
+    "description": "Reset wallet button"
+  },
+
+  "connectedSitesTitle": {
+    "message": "接続されたサイト",
+    "description": "Connected sites screen title"
+  },
+  "noConnectedSites": {
+    "message": "接続されたサイトはありません",
+    "description": "No connected sites message"
+  },
+  "noConnectedSitesDesc": {
+    "message": "サイトにウォレットを接続すると、ここに表示されます。",
+    "description": "No connected sites description"
+  },
+  "connectedSitesInfo": {
+    "message": "接続されたサイトはウォレットアドレスを表示し、取引をリクエストできます。使用しなくなったサイトや信頼できないサイトは切断してください。",
+    "description": "Connected sites info"
+  },
+  "connected": {
+    "message": "接続日時",
+    "description": "Connected prefix"
+  },
+  "disconnect": {
+    "message": "切断",
+    "description": "Disconnect button"
+  },
+  "disconnectSite": {
+    "message": "サイトを切断",
+    "description": "Disconnect site dialog title"
+  },
+  "disconnectSiteConfirm": {
+    "message": "$1を切断してもよろしいですか? サイトは再度接続をリクエストする必要があります。",
+    "description": "Disconnect site confirmation",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "justNow": {
+    "message": "たった今",
+    "description": "Just now time"
+  },
+  "minuteAgo": {
+    "message": "$1分前",
+    "description": "Minute ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "minutesAgo": {
+    "message": "$1分前",
+    "description": "Minutes ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "hourAgo": {
+    "message": "$1時間前",
+    "description": "Hour ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "hoursAgo": {
+    "message": "$1時間前",
+    "description": "Hours ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "dayAgo": {
+    "message": "$1日前",
+    "description": "Day ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "daysAgo": {
+    "message": "$1日前",
+    "description": "Days ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+
+  "changePasswordTitle": {
+    "message": "パスワードを変更",
+    "description": "Change password screen title"
+  },
+  "changePasswordWarning": {
+    "message": "パスワードを変更した後は、必ず覚えておいてください。正しいパスワードがないとウォレットを復元できません!",
+    "description": "Change password warning"
+  },
+  "currentPassword": {
+    "message": "現在のパスワード",
+    "description": "Current password label"
+  },
+  "enterCurrentPassword": {
+    "message": "現在のパスワードを入力",
+    "description": "Current password placeholder"
+  },
+  "newPassword": {
+    "message": "新しいパスワード",
+    "description": "New password label"
+  },
+  "enterNewPassword": {
+    "message": "新しいパスワードを入力",
+    "description": "New password placeholder"
+  },
+  "confirmNewPassword": {
+    "message": "新しいパスワードの確認",
+    "description": "Confirm new password label"
+  },
+  "confirmNewPasswordPlaceholder": {
+    "message": "新しいパスワードを再入力",
+    "description": "Confirm new password placeholder"
+  },
+  "changePasswordButton": {
+    "message": "パスワードを変更",
+    "description": "Change password button"
+  },
+  "currentPasswordRequired": {
+    "message": "現在のパスワードが必要です",
+    "description": "Current password required error"
+  },
+  "newPasswordRequired": {
+    "message": "新しいパスワードが必要です",
+    "description": "New password required error"
+  },
+  "newPasswordsDoNotMatch": {
+    "message": "新しいパスワードが一致しません",
+    "description": "New passwords do not match error"
+  },
+  "newPasswordMustBeDifferent": {
+    "message": "新しいパスワードは現在のパスワードと異なる必要があります",
+    "description": "New password must be different error"
+  },
+  "passwordMustBeAtLeast": {
+    "message": "パスワードは$1文字以上である必要があります",
+    "description": "Password must be at least N characters",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "changingPassword": {
+    "message": "パスワード変更中...",
+    "description": "Changing password status"
+  },
+  "failedToChangePassword": {
+    "message": "パスワードの変更に失敗しました",
+    "description": "Failed to change password error"
+  },
+  "weakPassword": {
+    "message": "弱いパスワード",
+    "description": "Weak password indicator"
+  },
+  "mediumPassword": {
+    "message": "中程度のパスワード",
+    "description": "Medium password indicator"
+  },
+  "strongPassword": {
+    "message": "強いパスワード",
+    "description": "Strong password indicator"
+  },
+
+  "exportPrivateKeyTitle": {
+    "message": "秘密鍵をエクスポート",
+    "description": "Export private key screen title"
+  },
+  "securityWarning": {
+    "message": "セキュリティ警告!",
+    "description": "Security warning title"
+  },
+  "neverSharePrivateKey": {
+    "message": "秘密鍵は絶対に他人と共有しないでください。秘密鍵にアクセスできる人は誰でもあなたの資金を盗むことができます!",
+    "description": "Never share private key warning"
+  },
+  "enterPasswordToConfirm": {
+    "message": "確認のためパスワードを入力",
+    "description": "Enter password to confirm label"
+  },
+  "showPrivateKey": {
+    "message": "秘密鍵を表示",
+    "description": "Show private key button"
+  },
+  "verifying": {
+    "message": "確認中...",
+    "description": "Verifying status"
+  },
+  "keepThisKeySafe": {
+    "message": "この鍵を安全に保管してください!",
+    "description": "Keep this key safe title"
+  },
+  "keepKeySafeWarning": {
+    "message": "この鍵を持っている人は誰でもあなたの資金にアクセスできます。安全に保管し、絶対に共有しないでください。",
+    "description": "Keep key safe warning"
+  },
+  "hideKey": {
+    "message": "鍵を非表示",
+    "description": "Hide key button"
+  },
+  "showKey": {
+    "message": "鍵を表示",
+    "description": "Show key button"
+  },
+  "copiedToClipboard": {
+    "message": "クリップボードにコピーしました!",
+    "description": "Copied to clipboard notification"
+  },
+  "bestPractices": {
+    "message": "ベストプラクティス:",
+    "description": "Best practices title"
+  },
+  "bestPractice1": {
+    "message": "紙に書き留めて安全な場所に保管する",
+    "description": "Best practice 1"
+  },
+  "bestPractice2": {
+    "message": "パスワードマネージャー(暗号化)を使用する",
+    "description": "Best practice 2"
+  },
+  "bestPractice3": {
+    "message": "プレーンテキストファイルに保存しない",
+    "description": "Best practice 3"
+  },
+  "bestPractice4": {
+    "message": "メールやメッセージングアプリで送信しない",
+    "description": "Best practice 4"
+  },
+  "done": {
+    "message": "完了",
+    "description": "Done button"
+  },
+
+  "loading": {
+    "message": "読み込み中...",
+    "description": "Loading text"
+  },
+
+  "language": {
+    "message": "言語",
+    "description": "Language label"
+  },
+  "languageSettings": {
+    "message": "言語設定",
+    "description": "Language settings title"
+  },
+  "selectLanguage": {
+    "message": "言語を選択",
+    "description": "Select language label"
+  },
+  "languageChanged": {
+    "message": "言語を変更しました",
+    "description": "Language changed notification"
+  },
+  "languageAuto": {
+    "message": "自動(ブラウザのデフォルト)",
+    "description": "Auto language option"
+  },
+  "languageEnglish": {
+    "message": "English",
+    "description": "English language name"
+  },
+  "languageRussian": {
+    "message": "Русский (ロシア語)",
+    "description": "Russian language name"
+  },
+  "languageChinese": {
+    "message": "简体中文 (簡体字中国語)",
+    "description": "Chinese language name"
+  },
+  "languageSpanish": {
+    "message": "Español (スペイン語)",
+    "description": "Spanish language name"
+  },
+  "languageFinnish": {
+    "message": "Suomi (フィンランド語)",
+    "description": "Finnish language name"
+  },
+  "failedToChangeLanguage": {
+    "message": "言語の変更に失敗しました",
+    "description": "Error message when language change fails"
+  }
+}

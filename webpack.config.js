@@ -41,6 +41,7 @@ module.exports = {
         { from: 'src/popup/popup.html', to: 'popup.html' },
         { from: 'src/popup/popup.css', to: 'popup.css' },
         { from: 'src/icons', to: 'icons' },
+        { from: '_locales', to: '_locales' },
       ],
     }),
     new webpack.ProvidePlugin({

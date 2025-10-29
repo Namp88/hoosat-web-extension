@@ -1,0 +1,711 @@
+{
+  "appName": {
+    "message": "Hoosat Cüzdanı",
+    "description": "Application name"
+  },
+  "appDescription": {
+    "message": "Hoosat blokzinciri için tarayıcı uzantısı cüzdanı",
+    "description": "Application description"
+  },
+
+  "welcome": {
+    "message": "Hoş Geldiniz!",
+    "description": "Welcome screen title"
+  },
+  "welcomeDescription": {
+    "message": "Başlamak için bir seçenek belirleyin",
+    "description": "Welcome screen description"
+  },
+  "createNewWallet": {
+    "message": "Yeni Cüzdan Oluştur",
+    "description": "Create new wallet button"
+  },
+  "createNewWalletDesc": {
+    "message": "Yeni bir cüzdan oluşturun",
+    "description": "Create new wallet description"
+  },
+  "importExistingWallet": {
+    "message": "Mevcut Cüzdanı İçe Aktar",
+    "description": "Import wallet button"
+  },
+  "importExistingWalletDesc": {
+    "message": "Özel anahtarınızı kullanın",
+    "description": "Import wallet description"
+  },
+
+  "unlockWallet": {
+    "message": "Cüzdanın Kilidini Aç",
+    "description": "Unlock wallet title"
+  },
+  "requestFrom": {
+    "message": "İstek kaynağı:",
+    "description": "Request from label"
+  },
+  "password": {
+    "message": "Şifre",
+    "description": "Password field label"
+  },
+  "enterPassword": {
+    "message": "Şifrenizi girin",
+    "description": "Password field placeholder"
+  },
+  "unlock": {
+    "message": "Kilidi Aç",
+    "description": "Unlock button"
+  },
+  "passwordRequired": {
+    "message": "Şifre gereklidir",
+    "description": "Password required error"
+  },
+  "invalidPassword": {
+    "message": "Geçersiz şifre",
+    "description": "Invalid password error"
+  },
+
+  "createNewWalletTitle": {
+    "message": "Yeni Cüzdan Oluştur",
+    "description": "Create new wallet screen title"
+  },
+  "important": {
+    "message": "Önemli:",
+    "description": "Important label"
+  },
+  "savePrivateKeyWarning": {
+    "message": "Özel anahtarınızı güvenli bir şekilde saklayın. Cüzdanınızı geri yüklemek için bu anahtara ihtiyacınız olacak. Asla kimseyle paylaşmayın!",
+    "description": "Save private key warning"
+  },
+  "createPassword": {
+    "message": "Şifre oluşturun",
+    "description": "Create password placeholder"
+  },
+  "confirmPassword": {
+    "message": "Şifreyi Onaylayın",
+    "description": "Confirm password label"
+  },
+  "confirmPasswordPlaceholder": {
+    "message": "Şifreyi onaylayın",
+    "description": "Confirm password placeholder"
+  },
+  "passwordRequirements": {
+    "message": "Şifre gereksinimleri:",
+    "description": "Password requirements title"
+  },
+  "passwordReq8Chars": {
+    "message": "En az 8 karakter",
+    "description": "Password requirement: 8 characters"
+  },
+  "passwordReqUppercase": {
+    "message": "Bir büyük harf (A-Z)",
+    "description": "Password requirement: uppercase"
+  },
+  "passwordReqLowercase": {
+    "message": "Bir küçük harf (a-z)",
+    "description": "Password requirement: lowercase"
+  },
+  "passwordReqNumber": {
+    "message": "Bir rakam (0-9)",
+    "description": "Password requirement: number"
+  },
+  "generateWallet": {
+    "message": "Cüzdan Oluştur",
+    "description": "Generate wallet button"
+  },
+  "passwordsDoNotMatch": {
+    "message": "Şifreler eşleşmiyor",
+    "description": "Passwords do not match error"
+  },
+  "passwordTooWeak": {
+    "message": "Şifre çok zayıf.",
+    "description": "Password too weak error"
+  },
+  "failedToGenerateWallet": {
+    "message": "Cüzdan oluşturulamadı",
+    "description": "Failed to generate wallet error"
+  },
+
+  "importWallet": {
+    "message": "Cüzdanı İçe Aktar",
+    "description": "Import wallet title"
+  },
+  "privateKeyHex": {
+    "message": "Özel Anahtar (hex)",
+    "description": "Private key field label"
+  },
+  "enterPrivateKey": {
+    "message": "Özel anahtarınızı girin",
+    "description": "Private key field placeholder"
+  },
+  "importWalletButton": {
+    "message": "Cüzdanı İçe Aktar",
+    "description": "Import wallet button"
+  },
+  "privateKeyRequired": {
+    "message": "Özel anahtar gereklidir",
+    "description": "Private key required error"
+  },
+  "failedToImportWallet": {
+    "message": "Cüzdan içe aktarılamadı",
+    "description": "Failed to import wallet error"
+  },
+
+  "backupPrivateKey": {
+    "message": "Özel Anahtarı Yedekle",
+    "description": "Backup private key title"
+  },
+  "saveThisPrivateKey": {
+    "message": "Bu özel anahtarı kaydedin!",
+    "description": "Save this private key warning title"
+  },
+  "writeItDownWarning": {
+    "message": "Güvenli bir yere yazıp saklayın. Cüzdanınızı geri yüklemek için bu anahtara ihtiyacınız olacak.",
+    "description": "Write down private key warning"
+  },
+  "yourPrivateKey": {
+    "message": "Özel Anahtarınız",
+    "description": "Your private key label"
+  },
+  "yourAddress": {
+    "message": "Adresiniz",
+    "description": "Your address label"
+  },
+  "copyToClipboard": {
+    "message": "Panoya Kopyala",
+    "description": "Copy to clipboard button"
+  },
+  "copied": {
+    "message": "Kopyalandı!",
+    "description": "Copied notification"
+  },
+  "confirmBackup": {
+    "message": "Özel anahtarımı güvenli bir şekilde kaydettim",
+    "description": "Confirm backup checkbox"
+  },
+  "continue": {
+    "message": "Devam Et",
+    "description": "Continue button"
+  },
+
+  "address": {
+    "message": "Adres",
+    "description": "Address label"
+  },
+  "balance": {
+    "message": "Bakiye",
+    "description": "Balance label"
+  },
+  "send": {
+    "message": "Gönder",
+    "description": "Send button"
+  },
+  "receive": {
+    "message": "Al",
+    "description": "Receive button"
+  },
+  "recentTransactions": {
+    "message": "Son İşlemler",
+    "description": "Recent transactions title"
+  },
+  "noTransactionsYet": {
+    "message": "Henüz işlem yok",
+    "description": "No transactions message"
+  },
+  "viewFullHistoryInExplorer": {
+    "message": "Explorer'da Tüm Geçmişi Görüntüle →",
+    "description": "View full history link"
+  },
+  "sent": {
+    "message": "Gönderildi",
+    "description": "Sent transaction type"
+  },
+  "received": {
+    "message": "Alındı",
+    "description": "Received transaction type"
+  },
+  "to": {
+    "message": "Alıcı:",
+    "description": "To label"
+  },
+  "from": {
+    "message": "Gönderen:",
+    "description": "From label"
+  },
+
+  "sendHTN": {
+    "message": "HTN Gönder",
+    "description": "Send HTN title"
+  },
+  "recipientAddress": {
+    "message": "Alıcı Adresi",
+    "description": "Recipient address label"
+  },
+  "amount": {
+    "message": "Miktar (HTN)",
+    "description": "Amount field label"
+  },
+  "available": {
+    "message": "Kullanılabilir:",
+    "description": "Available balance label"
+  },
+  "sendTransaction": {
+    "message": "İşlemi Gönder",
+    "description": "Send transaction button"
+  },
+  "recipientAndAmountRequired": {
+    "message": "Alıcı ve miktar gereklidir",
+    "description": "Recipient and amount required error"
+  },
+  "invalidAddressFormat": {
+    "message": "Geçersiz adres formatı. \"hoosat:\" ile başlamalıdır",
+    "description": "Invalid address format error"
+  },
+  "invalidAmount": {
+    "message": "Geçersiz miktar",
+    "description": "Invalid amount error"
+  },
+  "estimatingFee": {
+    "message": "Ücret hesaplanıyor...",
+    "description": "Estimating fee status"
+  },
+  "insufficientBalance": {
+    "message": "Yetersiz bakiye. $1 HTN gerekli ($2 HTN ücret dahil)",
+    "description": "Insufficient balance error",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1.00000000"
+      },
+      "2": {
+        "content": "$2",
+        "example": "0.00001000"
+      }
+    }
+  },
+  "sending": {
+    "message": "Gönderiliyor...",
+    "description": "Sending status"
+  },
+  "transactionFailed": {
+    "message": "İşlem başarısız oldu",
+    "description": "Transaction failed error"
+  },
+
+  "receiveHTN": {
+    "message": "HTN Al",
+    "description": "Receive HTN title"
+  },
+  "copyAddress": {
+    "message": "Adresi Kopyala",
+    "description": "Copy address button"
+  },
+
+  "confirmTransaction": {
+    "message": "İşlemi Onayla",
+    "description": "Confirm transaction title"
+  },
+  "requestedBy": {
+    "message": "İsteyen:",
+    "description": "Requested by label"
+  },
+  "requested": {
+    "message": "İstendi",
+    "description": "Requested prefix"
+  },
+  "oldRequest": {
+    "message": "Eski istek",
+    "description": "Old request warning"
+  },
+  "sendingTo": {
+    "message": "Gönderiliyor",
+    "description": "Sending to label"
+  },
+  "networkFee": {
+    "message": "Ağ Ücreti",
+    "description": "Network fee label"
+  },
+  "custom": {
+    "message": "Özel",
+    "description": "Custom fee badge"
+  },
+  "editFee": {
+    "message": "Ücreti düzenle",
+    "description": "Edit fee link"
+  },
+  "minimum": {
+    "message": "Minimum:",
+    "description": "Minimum fee label"
+  },
+  "cancel": {
+    "message": "İptal",
+    "description": "Cancel button"
+  },
+  "save": {
+    "message": "Kaydet",
+    "description": "Save button"
+  },
+  "invalidFeeValue": {
+    "message": "Geçersiz ücret değeri",
+    "description": "Invalid fee value error"
+  },
+  "feeCannotBeLess": {
+    "message": "Ücret $1 HTN'den az olamaz",
+    "description": "Fee cannot be less error",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00001000"
+      }
+    }
+  },
+  "insufficientBalanceForFee": {
+    "message": "Bu ücret için yetersiz bakiye",
+    "description": "Insufficient balance for fee error"
+  },
+  "feeWarningHigher": {
+    "message": "Uyarı: Ücret minimumdan $1 kat daha yüksek!",
+    "description": "Fee warning higher than minimum",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "10.0"
+      }
+    }
+  },
+  "total": {
+    "message": "Toplam",
+    "description": "Total label"
+  },
+  "verifyDetails": {
+    "message": "Lütfen onaylamadan önce tüm detayları kontrol edin",
+    "description": "Verify details warning"
+  },
+  "confirmAndSend": {
+    "message": "Onayla ve Gönder",
+    "description": "Confirm and send button"
+  },
+
+  "settings": {
+    "message": "Ayarlar",
+    "description": "Settings title"
+  },
+  "connectedSites": {
+    "message": "Bağlı Siteler",
+    "description": "Connected sites button"
+  },
+  "changePassword": {
+    "message": "Şifreyi Değiştir",
+    "description": "Change password button"
+  },
+  "exportPrivateKey": {
+    "message": "Özel Anahtarı Dışa Aktar",
+    "description": "Export private key button"
+  },
+  "resetWallet": {
+    "message": "Cüzdanı Sıfırla",
+    "description": "Reset wallet button"
+  },
+
+  "connectedSitesTitle": {
+    "message": "Bağlı Siteler",
+    "description": "Connected sites screen title"
+  },
+  "noConnectedSites": {
+    "message": "Bağlı Site Yok",
+    "description": "No connected sites message"
+  },
+  "noConnectedSitesDesc": {
+    "message": "Cüzdanınızı bir siteye bağladığınızda burada görünecektir.",
+    "description": "No connected sites description"
+  },
+  "connectedSitesInfo": {
+    "message": "Bağlı siteler cüzdan adresinizi görüntüleyebilir ve işlem talep edebilir. Artık kullanmadığınız veya güvenmediğiniz sitelerin bağlantısını kesin.",
+    "description": "Connected sites info"
+  },
+  "connected": {
+    "message": "Bağlandı",
+    "description": "Connected prefix"
+  },
+  "disconnect": {
+    "message": "Bağlantıyı Kes",
+    "description": "Disconnect button"
+  },
+  "disconnectSite": {
+    "message": "Sitenin Bağlantısını Kes",
+    "description": "Disconnect site dialog title"
+  },
+  "disconnectSiteConfirm": {
+    "message": "$1 bağlantısını kesmek istediğinizden emin misiniz? Site tekrar bağlantı izni isteyecektir.",
+    "description": "Disconnect site confirmation",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "justNow": {
+    "message": "şimdi",
+    "description": "Just now time"
+  },
+  "minuteAgo": {
+    "message": "$1 dakika önce",
+    "description": "Minute ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "minutesAgo": {
+    "message": "$1 dakika önce",
+    "description": "Minutes ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "hourAgo": {
+    "message": "$1 saat önce",
+    "description": "Hour ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "hoursAgo": {
+    "message": "$1 saat önce",
+    "description": "Hours ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "dayAgo": {
+    "message": "$1 gün önce",
+    "description": "Day ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "daysAgo": {
+    "message": "$1 gün önce",
+    "description": "Days ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+
+  "changePasswordTitle": {
+    "message": "Şifreyi Değiştir",
+    "description": "Change password screen title"
+  },
+  "changePasswordWarning": {
+    "message": "Şifrenizi değiştirdikten sonra hatırladığınızdan emin olun. Doğru şifre olmadan cüzdanınızı kurtaramazsınız!",
+    "description": "Change password warning"
+  },
+  "currentPassword": {
+    "message": "Mevcut Şifre",
+    "description": "Current password label"
+  },
+  "enterCurrentPassword": {
+    "message": "Mevcut şifrenizi girin",
+    "description": "Current password placeholder"
+  },
+  "newPassword": {
+    "message": "Yeni Şifre",
+    "description": "New password label"
+  },
+  "enterNewPassword": {
+    "message": "Yeni şifrenizi girin",
+    "description": "New password placeholder"
+  },
+  "confirmNewPassword": {
+    "message": "Yeni Şifreyi Onaylayın",
+    "description": "Confirm new password label"
+  },
+  "confirmNewPasswordPlaceholder": {
+    "message": "Yeni şifreyi onaylayın",
+    "description": "Confirm new password placeholder"
+  },
+  "changePasswordButton": {
+    "message": "Şifreyi Değiştir",
+    "description": "Change password button"
+  },
+  "currentPasswordRequired": {
+    "message": "Mevcut şifre gereklidir",
+    "description": "Current password required error"
+  },
+  "newPasswordRequired": {
+    "message": "Yeni şifre gereklidir",
+    "description": "New password required error"
+  },
+  "newPasswordsDoNotMatch": {
+    "message": "Yeni şifreler eşleşmiyor",
+    "description": "New passwords do not match error"
+  },
+  "newPasswordMustBeDifferent": {
+    "message": "Yeni şifre mevcut şifreden farklı olmalıdır",
+    "description": "New password must be different error"
+  },
+  "passwordMustBeAtLeast": {
+    "message": "Şifre en az $1 karakter olmalıdır",
+    "description": "Password must be at least N characters",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "changingPassword": {
+    "message": "Şifre Değiştiriliyor...",
+    "description": "Changing password status"
+  },
+  "failedToChangePassword": {
+    "message": "Şifre değiştirilemedi",
+    "description": "Failed to change password error"
+  },
+  "weakPassword": {
+    "message": "Zayıf şifre",
+    "description": "Weak password indicator"
+  },
+  "mediumPassword": {
+    "message": "Orta seviye şifre",
+    "description": "Medium password indicator"
+  },
+  "strongPassword": {
+    "message": "Güçlü şifre",
+    "description": "Strong password indicator"
+  },
+
+  "exportPrivateKeyTitle": {
+    "message": "Özel Anahtarı Dışa Aktar",
+    "description": "Export private key screen title"
+  },
+  "securityWarning": {
+    "message": "Güvenlik Uyarısı!",
+    "description": "Security warning title"
+  },
+  "neverSharePrivateKey": {
+    "message": "Özel anahtarınızı asla kimseyle paylaşmayın. Özel anahtarınıza erişimi olan herkes fonlarınızı çalabilir!",
+    "description": "Never share private key warning"
+  },
+  "enterPasswordToConfirm": {
+    "message": "Onaylamak için Şifrenizi Girin",
+    "description": "Enter password to confirm label"
+  },
+  "showPrivateKey": {
+    "message": "Özel Anahtarı Göster",
+    "description": "Show private key button"
+  },
+  "verifying": {
+    "message": "Doğrulanıyor...",
+    "description": "Verifying status"
+  },
+  "keepThisKeySafe": {
+    "message": "Bu anahtarı güvende tutun!",
+    "description": "Keep this key safe title"
+  },
+  "keepKeySafeWarning": {
+    "message": "Bu anahtara sahip olan herkes fonlarınıza erişebilir. Güvenli bir şekilde saklayın ve asla paylaşmayın.",
+    "description": "Keep key safe warning"
+  },
+  "hideKey": {
+    "message": "Anahtarı Gizle",
+    "description": "Hide key button"
+  },
+  "showKey": {
+    "message": "Anahtarı Göster",
+    "description": "Show key button"
+  },
+  "copiedToClipboard": {
+    "message": "Panoya Kopyalandı!",
+    "description": "Copied to clipboard notification"
+  },
+  "bestPractices": {
+    "message": "En İyi Uygulamalar:",
+    "description": "Best practices title"
+  },
+  "bestPractice1": {
+    "message": "Kağıda yazın ve güvenli bir yerde saklayın",
+    "description": "Best practice 1"
+  },
+  "bestPractice2": {
+    "message": "Bir şifre yöneticisi kullanın (şifreli)",
+    "description": "Best practice 2"
+  },
+  "bestPractice3": {
+    "message": "Asla düz metin dosyalarında saklamayın",
+    "description": "Best practice 3"
+  },
+  "bestPractice4": {
+    "message": "Asla e-posta veya mesajlaşma uygulamaları ile göndermeyin",
+    "description": "Best practice 4"
+  },
+  "done": {
+    "message": "Tamam",
+    "description": "Done button"
+  },
+
+  "loading": {
+    "message": "Yükleniyor...",
+    "description": "Loading text"
+  },
+
+  "language": {
+    "message": "Dil",
+    "description": "Language label"
+  },
+  "languageSettings": {
+    "message": "Dil Ayarları",
+    "description": "Language settings title"
+  },
+  "selectLanguage": {
+    "message": "Dil Seçin",
+    "description": "Select language label"
+  },
+  "languageChanged": {
+    "message": "Dil başarıyla değiştirildi",
+    "description": "Language changed notification"
+  },
+  "languageAuto": {
+    "message": "Otomatik (Tarayıcı Varsayılanı)",
+    "description": "Auto language option"
+  },
+  "languageEnglish": {
+    "message": "English (İngilizce)",
+    "description": "English language name"
+  },
+  "languageRussian": {
+    "message": "Русский (Rusça)",
+    "description": "Russian language name"
+  },
+  "languageChinese": {
+    "message": "简体中文 (Basitleştirilmiş Çince)",
+    "description": "Chinese language name"
+  },
+  "languageSpanish": {
+    "message": "Español (İspanyolca)",
+    "description": "Spanish language name"
+  },
+  "languageFinnish": {
+    "message": "Suomi (Fince)",
+    "description": "Finnish language name"
+  },
+  "failedToChangeLanguage": {
+    "message": "Dil değiştirilemedi",
+    "description": "Error message when language change fails"
+  }
+}

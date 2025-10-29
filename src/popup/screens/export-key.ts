@@ -1,4 +1,4 @@
-import { APP_NAME } from '../../shared/constants';
+import { t } from '../utils/i18n';
 
 /**
  * Show export private key screen with password verification
@@ -14,7 +14,7 @@ export function showExportKeyScreen(
         <button id="backBtn" class="btn-icon">←</button>
         <div class="header-center">
           <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
-          <h1>Export Private Key</h1>
+          <h1>${t('exportPrivateKeyTitle')}</h1>
         </div>
         <div style="width: 32px;"></div>
       </div>
@@ -23,20 +23,20 @@ export function showExportKeyScreen(
         <div class="info-box critical">
           <div class="info-icon">⚠️</div>
           <div class="info-text">
-            <strong>Security Warning!</strong><br>
-            Never share your private key with anyone. Anyone with access to your private key can steal your funds!
+            <strong>${t('securityWarning')}</strong><br>
+            ${t('neverSharePrivateKey')}
           </div>
         </div>
 
         <div class="form">
           <div class="form-group">
-            <label for="password">Enter Password to Confirm</label>
-            <input type="password" id="password" placeholder="Enter your password" autocomplete="off" />
+            <label for="password">${t('enterPasswordToConfirm')}</label>
+            <input type="password" id="password" placeholder="${t('enterPassword')}" autocomplete="off" />
           </div>
 
           <div class="error" id="error"></div>
 
-          <button id="exportBtn" class="btn btn-primary">Show Private Key</button>
+          <button id="exportBtn" class="btn btn-primary">${t('showPrivateKey')}</button>
         </div>
       </div>
     </div>
@@ -72,24 +72,24 @@ async function handleExportPrivateKey(
   errorEl.textContent = '';
 
   if (!password) {
-    errorEl.textContent = 'Password is required';
+    errorEl.textContent = t('passwordRequired');
     return;
   }
 
   try {
     const exportBtn = document.getElementById('exportBtn') as HTMLButtonElement;
     exportBtn.disabled = true;
-    exportBtn.textContent = 'Verifying...';
+    exportBtn.textContent = t('verifying');
 
     const result = await onExport(password);
 
     // Show the private key
     showPrivateKeyExported(result.privateKey, result.address, onBack);
   } catch (error: any) {
-    errorEl.textContent = error.message || 'Invalid password';
+    errorEl.textContent = error.message || t('invalidPassword');
     const exportBtn = document.getElementById('exportBtn') as HTMLButtonElement;
     exportBtn.disabled = false;
-    exportBtn.textContent = 'Show Private Key';
+    exportBtn.textContent = t('showPrivateKey');
   }
 }
 
@@ -108,7 +108,7 @@ function showPrivateKeyExported(privateKey: string, address: string, onBack: () 
           <button id="backBtn" class="btn-icon">←</button>
           <div class="header-center">
             <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
-            <h1>Your Private Key</h1>
+            <h1>${t('yourPrivateKey')}</h1>
           </div>
           <div style="width: 32px;"></div>
         </div>
@@ -117,30 +117,30 @@ function showPrivateKeyExported(privateKey: string, address: string, onBack: () 
           <div class="info-box critical">
             <div class="info-icon">🔐</div>
             <div class="info-text">
-              <strong>Keep this key safe!</strong><br>
-              Anyone with this key can access your funds. Store it securely and never share it.
+              <strong>${t('keepThisKeySafe')}</strong><br>
+              ${t('keepKeySafeWarning')}
             </div>
           </div>
 
           <div class="key-display">
-            <label>Your Address</label>
+            <label>${t('yourAddress')}</label>
             <div class="key-value small">${address}</div>
           </div>
 
           <div class="key-display">
-            <label>Private Key (Hex)</label>
+            <label>${t('privateKeyHex')}</label>
             <div class="key-value ${!isKeyVisible ? 'key-hidden' : ''}" id="keyValue">
               ${isKeyVisible ? privateKey : '••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••'}
             </div>
             <button id="toggleKeyBtn" class="btn btn-secondary">
-              ${isKeyVisible ? '🙈 Hide Key' : '👁️ Show Key'}
+              ${isKeyVisible ? '🙈 ' + t('hideKey') : '👁️ ' + t('showKey')}
             </button>
           </div>
 
           ${
             isKeyVisible
               ? `
-          <button id="copyKeyBtn" class="btn btn-primary">📋 Copy to Clipboard</button>
+          <button id="copyKeyBtn" class="btn btn-primary">📋 ${t('copyToClipboard')}</button>
           `
               : ''
           }
@@ -148,15 +148,15 @@ function showPrivateKeyExported(privateKey: string, address: string, onBack: () 
           <div class="info-box warning" style="margin-top: 20px;">
             <div class="info-icon">💡</div>
             <div class="info-text">
-              <strong>Best Practices:</strong><br>
-              • Write it down on paper and store in a safe place<br>
-              • Use a password manager (encrypted)<br>
-              • Never store in plain text files<br>
-              • Never send via email or messaging apps
+              <strong>${t('bestPractices')}</strong><br>
+              • ${t('bestPractice1')}<br>
+              • ${t('bestPractice2')}<br>
+              • ${t('bestPractice3')}<br>
+              • ${t('bestPractice4')}
             </div>
           </div>
 
-          <button id="doneBtn" class="btn btn-secondary" style="margin-top: 12px;">Done</button>
+          <button id="doneBtn" class="btn btn-secondary" style="margin-top: 12px;">${t('done')}</button>
         </div>
       </div>
     `;
@@ -174,7 +174,7 @@ function showPrivateKeyExported(privateKey: string, address: string, onBack: () 
         navigator.clipboard.writeText(privateKey).then(() => {
           const btn = document.getElementById('copyKeyBtn')!;
           const originalText = btn.textContent;
-          btn.textContent = '✓ Copied to Clipboard!';
+          btn.textContent = '✓ ' + t('copiedToClipboard');
           setTimeout(() => {
             btn.textContent = originalText;
           }, 2000);

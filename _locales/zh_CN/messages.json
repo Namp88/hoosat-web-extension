@@ -1,0 +1,727 @@
+{
+  "appName": {
+    "message": "Hoosat 钱包",
+    "description": "Application name"
+  },
+  "appDescription": {
+    "message": "Hoosat 区块链浏览器扩展钱包",
+    "description": "Application description"
+  },
+
+  "welcome": {
+    "message": "欢迎!",
+    "description": "Welcome screen title"
+  },
+  "welcomeDescription": {
+    "message": "选择开始方式",
+    "description": "Welcome screen description"
+  },
+  "createNewWallet": {
+    "message": "创建新钱包",
+    "description": "Create new wallet button"
+  },
+  "createNewWalletDesc": {
+    "message": "生成新钱包",
+    "description": "Create new wallet description"
+  },
+  "importExistingWallet": {
+    "message": "导入现有钱包",
+    "description": "Import wallet button"
+  },
+  "importExistingWalletDesc": {
+    "message": "使用私钥",
+    "description": "Import wallet description"
+  },
+
+  "unlockWallet": {
+    "message": "解锁钱包",
+    "description": "Unlock wallet title"
+  },
+  "requestFrom": {
+    "message": "请求来自:",
+    "description": "Request from label"
+  },
+  "password": {
+    "message": "密码",
+    "description": "Password field label"
+  },
+  "enterPassword": {
+    "message": "输入密码",
+    "description": "Password field placeholder"
+  },
+  "unlock": {
+    "message": "解锁",
+    "description": "Unlock button"
+  },
+  "passwordRequired": {
+    "message": "需要密码",
+    "description": "Password required error"
+  },
+  "invalidPassword": {
+    "message": "密码无效",
+    "description": "Invalid password error"
+  },
+
+  "createNewWalletTitle": {
+    "message": "创建新钱包",
+    "description": "Create new wallet screen title"
+  },
+  "important": {
+    "message": "重要:",
+    "description": "Important label"
+  },
+  "savePrivateKeyWarning": {
+    "message": "请安全保存您的私钥。恢复钱包时需要用到它。切勿与任何人分享!",
+    "description": "Save private key warning"
+  },
+  "createPassword": {
+    "message": "创建密码",
+    "description": "Create password placeholder"
+  },
+  "confirmPassword": {
+    "message": "确认密码",
+    "description": "Confirm password label"
+  },
+  "confirmPasswordPlaceholder": {
+    "message": "确认密码",
+    "description": "Confirm password placeholder"
+  },
+  "passwordRequirements": {
+    "message": "密码必须包含:",
+    "description": "Password requirements title"
+  },
+  "passwordReq8Chars": {
+    "message": "至少 8 个字符",
+    "description": "Password requirement: 8 characters"
+  },
+  "passwordReqUppercase": {
+    "message": "一个大写字母 (A-Z)",
+    "description": "Password requirement: uppercase"
+  },
+  "passwordReqLowercase": {
+    "message": "一个小写字母 (a-z)",
+    "description": "Password requirement: lowercase"
+  },
+  "passwordReqNumber": {
+    "message": "一个数字 (0-9)",
+    "description": "Password requirement: number"
+  },
+  "generateWallet": {
+    "message": "生成钱包",
+    "description": "Generate wallet button"
+  },
+  "passwordsDoNotMatch": {
+    "message": "密码不匹配",
+    "description": "Passwords do not match error"
+  },
+  "passwordTooWeak": {
+    "message": "密码太弱。",
+    "description": "Password too weak error"
+  },
+  "failedToGenerateWallet": {
+    "message": "生成钱包失败",
+    "description": "Failed to generate wallet error"
+  },
+
+  "importWallet": {
+    "message": "导入钱包",
+    "description": "Import wallet title"
+  },
+  "privateKeyHex": {
+    "message": "私钥 (十六进制)",
+    "description": "Private key field label"
+  },
+  "enterPrivateKey": {
+    "message": "输入您的私钥",
+    "description": "Private key field placeholder"
+  },
+  "importWalletButton": {
+    "message": "导入钱包",
+    "description": "Import wallet button"
+  },
+  "privateKeyRequired": {
+    "message": "需要私钥",
+    "description": "Private key required error"
+  },
+  "failedToImportWallet": {
+    "message": "导入钱包失败",
+    "description": "Failed to import wallet error"
+  },
+
+  "backupPrivateKey": {
+    "message": "备份私钥",
+    "description": "Backup private key title"
+  },
+  "saveThisPrivateKey": {
+    "message": "保存此私钥!",
+    "description": "Save this private key warning title"
+  },
+  "writeItDownWarning": {
+    "message": "请写下并存放在安全的地方。恢复钱包时需要用到它。",
+    "description": "Write down private key warning"
+  },
+  "yourPrivateKey": {
+    "message": "您的私钥",
+    "description": "Your private key label"
+  },
+  "yourAddress": {
+    "message": "您的地址",
+    "description": "Your address label"
+  },
+  "copyToClipboard": {
+    "message": "复制到剪贴板",
+    "description": "Copy to clipboard button"
+  },
+  "copied": {
+    "message": "已复制!",
+    "description": "Copied notification"
+  },
+  "confirmBackup": {
+    "message": "我已安全保存私钥",
+    "description": "Confirm backup checkbox"
+  },
+  "continue": {
+    "message": "继续",
+    "description": "Continue button"
+  },
+
+  "address": {
+    "message": "地址",
+    "description": "Address label"
+  },
+  "balance": {
+    "message": "余额",
+    "description": "Balance label"
+  },
+  "send": {
+    "message": "发送",
+    "description": "Send button"
+  },
+  "receive": {
+    "message": "接收",
+    "description": "Receive button"
+  },
+  "recentTransactions": {
+    "message": "最近交易",
+    "description": "Recent transactions title"
+  },
+  "noTransactionsYet": {
+    "message": "暂无交易",
+    "description": "No transactions message"
+  },
+  "viewFullHistoryInExplorer": {
+    "message": "在区块浏览器中查看完整历史 →",
+    "description": "View full history link"
+  },
+  "sent": {
+    "message": "已发送",
+    "description": "Sent transaction type"
+  },
+  "received": {
+    "message": "已接收",
+    "description": "Received transaction type"
+  },
+  "to": {
+    "message": "到:",
+    "description": "To label"
+  },
+  "from": {
+    "message": "来自:",
+    "description": "From label"
+  },
+
+  "sendHTN": {
+    "message": "发送 HTN",
+    "description": "Send HTN title"
+  },
+  "recipientAddress": {
+    "message": "接收地址",
+    "description": "Recipient address label"
+  },
+  "amount": {
+    "message": "金额 (HTN)",
+    "description": "Amount field label"
+  },
+  "available": {
+    "message": "可用:",
+    "description": "Available balance label"
+  },
+  "sendTransaction": {
+    "message": "发送交易",
+    "description": "Send transaction button"
+  },
+  "recipientAndAmountRequired": {
+    "message": "接收者和金额为必填项",
+    "description": "Recipient and amount required error"
+  },
+  "invalidAddressFormat": {
+    "message": "地址格式无效。必须以 \"hoosat:\" 开头",
+    "description": "Invalid address format error"
+  },
+  "invalidAmount": {
+    "message": "金额无效",
+    "description": "Invalid amount error"
+  },
+  "estimatingFee": {
+    "message": "估算手续费...",
+    "description": "Estimating fee status"
+  },
+  "insufficientBalance": {
+    "message": "余额不足。需要 $1 HTN (包括 $2 HTN 手续费)",
+    "description": "Insufficient balance error",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1.00000000"
+      },
+      "2": {
+        "content": "$2",
+        "example": "0.00001000"
+      }
+    }
+  },
+  "sending": {
+    "message": "发送中...",
+    "description": "Sending status"
+  },
+  "transactionFailed": {
+    "message": "交易失败",
+    "description": "Transaction failed error"
+  },
+
+  "receiveHTN": {
+    "message": "接收 HTN",
+    "description": "Receive HTN title"
+  },
+  "copyAddress": {
+    "message": "复制地址",
+    "description": "Copy address button"
+  },
+
+  "confirmTransaction": {
+    "message": "确认交易",
+    "description": "Confirm transaction title"
+  },
+  "requestedBy": {
+    "message": "请求者:",
+    "description": "Requested by label"
+  },
+  "requested": {
+    "message": "已请求",
+    "description": "Requested prefix"
+  },
+  "oldRequest": {
+    "message": "旧请求",
+    "description": "Old request warning"
+  },
+  "sendingTo": {
+    "message": "发送到",
+    "description": "Sending to label"
+  },
+  "networkFee": {
+    "message": "网络手续费",
+    "description": "Network fee label"
+  },
+  "custom": {
+    "message": "自定义",
+    "description": "Custom fee badge"
+  },
+  "editFee": {
+    "message": "编辑手续费",
+    "description": "Edit fee link"
+  },
+  "minimum": {
+    "message": "最低:",
+    "description": "Minimum fee label"
+  },
+  "cancel": {
+    "message": "取消",
+    "description": "Cancel button"
+  },
+  "save": {
+    "message": "保存",
+    "description": "Save button"
+  },
+  "invalidFeeValue": {
+    "message": "手续费值无效",
+    "description": "Invalid fee value error"
+  },
+  "feeCannotBeLess": {
+    "message": "手续费不能少于 $1 HTN",
+    "description": "Fee cannot be less error",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00001000"
+      }
+    }
+  },
+  "insufficientBalanceForFee": {
+    "message": "余额不足以支付此手续费",
+    "description": "Insufficient balance for fee error"
+  },
+  "feeWarningHigher": {
+    "message": "警告: 手续费是最低值的 $1 倍!",
+    "description": "Fee warning higher than minimum",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "10.0"
+      }
+    }
+  },
+  "total": {
+    "message": "总计",
+    "description": "Total label"
+  },
+  "verifyDetails": {
+    "message": "请在确认前验证所有详细信息",
+    "description": "Verify details warning"
+  },
+  "confirmAndSend": {
+    "message": "确认并发送",
+    "description": "Confirm and send button"
+  },
+
+  "settings": {
+    "message": "设置",
+    "description": "Settings title"
+  },
+  "connectedSites": {
+    "message": "已连接网站",
+    "description": "Connected sites button"
+  },
+  "changePassword": {
+    "message": "更改密码",
+    "description": "Change password button"
+  },
+  "exportPrivateKey": {
+    "message": "导出私钥",
+    "description": "Export private key button"
+  },
+  "resetWallet": {
+    "message": "重置钱包",
+    "description": "Reset wallet button"
+  },
+
+  "connectedSitesTitle": {
+    "message": "已连接网站",
+    "description": "Connected sites screen title"
+  },
+  "noConnectedSites": {
+    "message": "无已连接网站",
+    "description": "No connected sites message"
+  },
+  "noConnectedSitesDesc": {
+    "message": "当您将钱包连接到网站时，它将显示在此处。",
+    "description": "No connected sites description"
+  },
+  "connectedSitesInfo": {
+    "message": "已连接的网站可以查看您的钱包地址并请求交易。断开您不再使用或不信任的网站。",
+    "description": "Connected sites info"
+  },
+  "connected": {
+    "message": "已连接",
+    "description": "Connected prefix"
+  },
+  "disconnect": {
+    "message": "断开连接",
+    "description": "Disconnect button"
+  },
+  "disconnectSite": {
+    "message": "断开网站",
+    "description": "Disconnect site dialog title"
+  },
+  "disconnectSiteConfirm": {
+    "message": "确定要断开 $1 吗? 该网站需要再次请求连接。",
+    "description": "Disconnect site confirmation",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "justNow": {
+    "message": "刚刚",
+    "description": "Just now time"
+  },
+  "minuteAgo": {
+    "message": "$1 分钟前",
+    "description": "Minute ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "minutesAgo": {
+    "message": "$1 分钟前",
+    "description": "Minutes ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "hourAgo": {
+    "message": "$1 小时前",
+    "description": "Hour ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "hoursAgo": {
+    "message": "$1 小时前",
+    "description": "Hours ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "dayAgo": {
+    "message": "$1 天前",
+    "description": "Day ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "daysAgo": {
+    "message": "$1 天前",
+    "description": "Days ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+
+  "changePasswordTitle": {
+    "message": "更改密码",
+    "description": "Change password screen title"
+  },
+  "changePasswordWarning": {
+    "message": "更改密码后，请务必记住它。没有正确的密码，您无法恢复钱包!",
+    "description": "Change password warning"
+  },
+  "currentPassword": {
+    "message": "当前密码",
+    "description": "Current password label"
+  },
+  "enterCurrentPassword": {
+    "message": "输入当前密码",
+    "description": "Current password placeholder"
+  },
+  "newPassword": {
+    "message": "新密码",
+    "description": "New password label"
+  },
+  "enterNewPassword": {
+    "message": "输入新密码",
+    "description": "New password placeholder"
+  },
+  "confirmNewPassword": {
+    "message": "确认新密码",
+    "description": "Confirm new password label"
+  },
+  "confirmNewPasswordPlaceholder": {
+    "message": "确认新密码",
+    "description": "Confirm new password placeholder"
+  },
+  "changePasswordButton": {
+    "message": "更改密码",
+    "description": "Change password button"
+  },
+  "currentPasswordRequired": {
+    "message": "需要当前密码",
+    "description": "Current password required error"
+  },
+  "newPasswordRequired": {
+    "message": "需要新密码",
+    "description": "New password required error"
+  },
+  "newPasswordsDoNotMatch": {
+    "message": "新密码不匹配",
+    "description": "New passwords do not match error"
+  },
+  "newPasswordMustBeDifferent": {
+    "message": "新密码必须与当前密码不同",
+    "description": "New password must be different error"
+  },
+  "passwordMustBeAtLeast": {
+    "message": "密码必须至少 $1 个字符",
+    "description": "Password must be at least N characters",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "changingPassword": {
+    "message": "更改密码中...",
+    "description": "Changing password status"
+  },
+  "failedToChangePassword": {
+    "message": "更改密码失败",
+    "description": "Failed to change password error"
+  },
+  "weakPassword": {
+    "message": "弱密码",
+    "description": "Weak password indicator"
+  },
+  "mediumPassword": {
+    "message": "中等密码",
+    "description": "Medium password indicator"
+  },
+  "strongPassword": {
+    "message": "强密码",
+    "description": "Strong password indicator"
+  },
+
+  "exportPrivateKeyTitle": {
+    "message": "导出私钥",
+    "description": "Export private key screen title"
+  },
+  "securityWarning": {
+    "message": "安全警告!",
+    "description": "Security warning title"
+  },
+  "neverSharePrivateKey": {
+    "message": "切勿与任何人分享您的私钥。任何人获得您的私钥都可以盗取您的资金!",
+    "description": "Never share private key warning"
+  },
+  "enterPasswordToConfirm": {
+    "message": "输入密码以确认",
+    "description": "Enter password to confirm label"
+  },
+  "showPrivateKey": {
+    "message": "显示私钥",
+    "description": "Show private key button"
+  },
+  "verifying": {
+    "message": "验证中...",
+    "description": "Verifying status"
+  },
+  "keepThisKeySafe": {
+    "message": "请妥善保管此密钥!",
+    "description": "Keep this key safe title"
+  },
+  "keepKeySafeWarning": {
+    "message": "任何人拥有此密钥都可以访问您的资金。请安全存放，切勿分享。",
+    "description": "Keep key safe warning"
+  },
+  "hideKey": {
+    "message": "隐藏密钥",
+    "description": "Hide key button"
+  },
+  "showKey": {
+    "message": "显示密钥",
+    "description": "Show key button"
+  },
+  "copiedToClipboard": {
+    "message": "已复制到剪贴板!",
+    "description": "Copied to clipboard notification"
+  },
+  "bestPractices": {
+    "message": "最佳实践:",
+    "description": "Best practices title"
+  },
+  "bestPractice1": {
+    "message": "写在纸上并存放在安全的地方",
+    "description": "Best practice 1"
+  },
+  "bestPractice2": {
+    "message": "使用密码管理器 (加密的)",
+    "description": "Best practice 2"
+  },
+  "bestPractice3": {
+    "message": "切勿存储在纯文本文件中",
+    "description": "Best practice 3"
+  },
+  "bestPractice4": {
+    "message": "切勿通过电子邮件或消息应用发送",
+    "description": "Best practice 4"
+  },
+  "done": {
+    "message": "完成",
+    "description": "Done button"
+  },
+
+  "loading": {
+    "message": "加载中...",
+    "description": "Loading text"
+  },
+
+  "language": {
+    "message": "语言",
+    "description": "Language label"
+  },
+  "languageSettings": {
+    "message": "语言设置",
+    "description": "Language settings title"
+  },
+  "selectLanguage": {
+    "message": "选择语言",
+    "description": "Select language label"
+  },
+  "languageChanged": {
+    "message": "语言已成功更改",
+    "description": "Language changed notification"
+  },
+  "languageAuto": {
+    "message": "自动 (浏览器默认)",
+    "description": "Auto language option"
+  },
+  "languageEnglish": {
+    "message": "English (英语)",
+    "description": "English language name"
+  },
+  "languageRussian": {
+    "message": "Русский (俄语)",
+    "description": "Russian language name"
+  },
+  "languageChinese": {
+    "message": "简体中文",
+    "description": "Chinese language name"
+  },
+  "languageSpanish": {
+    "message": "Español (西班牙语)",
+    "description": "Spanish language name"
+  },
+  "languageFinnish": {
+    "message": "Suomi (芬兰语)",
+    "description": "Finnish language name"
+  },
+  "languageJapanese": {
+    "message": "日本語 (日语)",
+    "description": "Japanese language name"
+  },
+  "languageKorean": {
+    "message": "한국어 (韩语)",
+    "description": "Korean language name"
+  },
+  "languageTurkish": {
+    "message": "Türkçe (土耳其语)",
+    "description": "Turkish language name"
+  },
+  "languageGerman": {
+    "message": "Deutsch (德语)",
+    "description": "German language name"
+  },
+  "failedToChangeLanguage": {
+    "message": "更改语言失败",
+    "description": "Error message when language change fails"
+  }
+}

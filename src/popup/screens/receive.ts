@@ -1,4 +1,4 @@
-import { APP_NAME } from '../../shared/constants';
+import { t } from '../utils/i18n';
 
 /**
  * Show receive screen
@@ -15,16 +15,16 @@ export function showReceiveScreen(
         <button id="backBtn" class="btn-icon">←</button>
         <div class="header-center">
           <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
-          <h1>Receive HTN</h1>
+          <h1>${t('receiveHTN')}</h1>
         </div>
         <div style="width: 32px;"></div>
       </div>
 
       <div class="content">
         <div class="receive-info">
-          <h3>Your Address</h3>
+          <h3>${t('yourAddress')}</h3>
           <div class="address-display">${address}</div>
-          <button id="copyBtn" class="btn btn-primary">Copy Address</button>
+          <button id="copyBtn" class="btn btn-primary">${t('copyAddress')}</button>
         </div>
       </div>
     </div>

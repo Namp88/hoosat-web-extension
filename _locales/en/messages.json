@@ -1,0 +1,727 @@
+{
+  "appName": {
+    "message": "Hoosat Wallet",
+    "description": "Application name"
+  },
+  "appDescription": {
+    "message": "Browser extension wallet for Hoosat blockchain",
+    "description": "Application description"
+  },
+
+  "welcome": {
+    "message": "Welcome!",
+    "description": "Welcome screen title"
+  },
+  "welcomeDescription": {
+    "message": "Choose how to get started",
+    "description": "Welcome screen description"
+  },
+  "createNewWallet": {
+    "message": "Create New Wallet",
+    "description": "Create new wallet button"
+  },
+  "createNewWalletDesc": {
+    "message": "Generate a new wallet",
+    "description": "Create new wallet description"
+  },
+  "importExistingWallet": {
+    "message": "Import Existing Wallet",
+    "description": "Import wallet button"
+  },
+  "importExistingWalletDesc": {
+    "message": "Use your private key",
+    "description": "Import wallet description"
+  },
+
+  "unlockWallet": {
+    "message": "Unlock Wallet",
+    "description": "Unlock wallet title"
+  },
+  "requestFrom": {
+    "message": "Request from:",
+    "description": "Request from label"
+  },
+  "password": {
+    "message": "Password",
+    "description": "Password field label"
+  },
+  "enterPassword": {
+    "message": "Enter password",
+    "description": "Password field placeholder"
+  },
+  "unlock": {
+    "message": "Unlock",
+    "description": "Unlock button"
+  },
+  "passwordRequired": {
+    "message": "Password is required",
+    "description": "Password required error"
+  },
+  "invalidPassword": {
+    "message": "Invalid password",
+    "description": "Invalid password error"
+  },
+
+  "createNewWalletTitle": {
+    "message": "Create New Wallet",
+    "description": "Create new wallet screen title"
+  },
+  "important": {
+    "message": "Important:",
+    "description": "Important label"
+  },
+  "savePrivateKeyWarning": {
+    "message": "Save your private key securely. You'll need it to restore your wallet. Never share it with anyone!",
+    "description": "Save private key warning"
+  },
+  "createPassword": {
+    "message": "Create password",
+    "description": "Create password placeholder"
+  },
+  "confirmPassword": {
+    "message": "Confirm Password",
+    "description": "Confirm password label"
+  },
+  "confirmPasswordPlaceholder": {
+    "message": "Confirm password",
+    "description": "Confirm password placeholder"
+  },
+  "passwordRequirements": {
+    "message": "Password must contain:",
+    "description": "Password requirements title"
+  },
+  "passwordReq8Chars": {
+    "message": "At least 8 characters",
+    "description": "Password requirement: 8 characters"
+  },
+  "passwordReqUppercase": {
+    "message": "One uppercase letter (A-Z)",
+    "description": "Password requirement: uppercase"
+  },
+  "passwordReqLowercase": {
+    "message": "One lowercase letter (a-z)",
+    "description": "Password requirement: lowercase"
+  },
+  "passwordReqNumber": {
+    "message": "One number (0-9)",
+    "description": "Password requirement: number"
+  },
+  "generateWallet": {
+    "message": "Generate Wallet",
+    "description": "Generate wallet button"
+  },
+  "passwordsDoNotMatch": {
+    "message": "Passwords do not match",
+    "description": "Passwords do not match error"
+  },
+  "passwordTooWeak": {
+    "message": "Password is too weak.",
+    "description": "Password too weak error"
+  },
+  "failedToGenerateWallet": {
+    "message": "Failed to generate wallet",
+    "description": "Failed to generate wallet error"
+  },
+
+  "importWallet": {
+    "message": "Import Wallet",
+    "description": "Import wallet title"
+  },
+  "privateKeyHex": {
+    "message": "Private Key (hex)",
+    "description": "Private key field label"
+  },
+  "enterPrivateKey": {
+    "message": "Enter your private key",
+    "description": "Private key field placeholder"
+  },
+  "importWalletButton": {
+    "message": "Import Wallet",
+    "description": "Import wallet button"
+  },
+  "privateKeyRequired": {
+    "message": "Private key is required",
+    "description": "Private key required error"
+  },
+  "failedToImportWallet": {
+    "message": "Failed to import wallet",
+    "description": "Failed to import wallet error"
+  },
+
+  "backupPrivateKey": {
+    "message": "Backup Private Key",
+    "description": "Backup private key title"
+  },
+  "saveThisPrivateKey": {
+    "message": "Save this private key!",
+    "description": "Save this private key warning title"
+  },
+  "writeItDownWarning": {
+    "message": "Write it down and store it in a safe place. You'll need it to restore your wallet.",
+    "description": "Write down private key warning"
+  },
+  "yourPrivateKey": {
+    "message": "Your Private Key",
+    "description": "Your private key label"
+  },
+  "yourAddress": {
+    "message": "Your Address",
+    "description": "Your address label"
+  },
+  "copyToClipboard": {
+    "message": "Copy to Clipboard",
+    "description": "Copy to clipboard button"
+  },
+  "copied": {
+    "message": "Copied!",
+    "description": "Copied notification"
+  },
+  "confirmBackup": {
+    "message": "I have saved my private key securely",
+    "description": "Confirm backup checkbox"
+  },
+  "continue": {
+    "message": "Continue",
+    "description": "Continue button"
+  },
+
+  "address": {
+    "message": "Address",
+    "description": "Address label"
+  },
+  "balance": {
+    "message": "Balance",
+    "description": "Balance label"
+  },
+  "send": {
+    "message": "Send",
+    "description": "Send button"
+  },
+  "receive": {
+    "message": "Receive",
+    "description": "Receive button"
+  },
+  "recentTransactions": {
+    "message": "Recent Transactions",
+    "description": "Recent transactions title"
+  },
+  "noTransactionsYet": {
+    "message": "No transactions yet",
+    "description": "No transactions message"
+  },
+  "viewFullHistoryInExplorer": {
+    "message": "View Full History in Explorer →",
+    "description": "View full history link"
+  },
+  "sent": {
+    "message": "Sent",
+    "description": "Sent transaction type"
+  },
+  "received": {
+    "message": "Received",
+    "description": "Received transaction type"
+  },
+  "to": {
+    "message": "To:",
+    "description": "To label"
+  },
+  "from": {
+    "message": "From:",
+    "description": "From label"
+  },
+
+  "sendHTN": {
+    "message": "Send HTN",
+    "description": "Send HTN title"
+  },
+  "recipientAddress": {
+    "message": "Recipient Address",
+    "description": "Recipient address label"
+  },
+  "amount": {
+    "message": "Amount (HTN)",
+    "description": "Amount field label"
+  },
+  "available": {
+    "message": "Available:",
+    "description": "Available balance label"
+  },
+  "sendTransaction": {
+    "message": "Send Transaction",
+    "description": "Send transaction button"
+  },
+  "recipientAndAmountRequired": {
+    "message": "Recipient and amount are required",
+    "description": "Recipient and amount required error"
+  },
+  "invalidAddressFormat": {
+    "message": "Invalid address format. Must start with \"hoosat:\"",
+    "description": "Invalid address format error"
+  },
+  "invalidAmount": {
+    "message": "Invalid amount",
+    "description": "Invalid amount error"
+  },
+  "estimatingFee": {
+    "message": "Estimating fee...",
+    "description": "Estimating fee status"
+  },
+  "insufficientBalance": {
+    "message": "Insufficient balance. Need $1 HTN (including $2 HTN fee)",
+    "description": "Insufficient balance error",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1.00000000"
+      },
+      "2": {
+        "content": "$2",
+        "example": "0.00001000"
+      }
+    }
+  },
+  "sending": {
+    "message": "Sending...",
+    "description": "Sending status"
+  },
+  "transactionFailed": {
+    "message": "Transaction failed",
+    "description": "Transaction failed error"
+  },
+
+  "receiveHTN": {
+    "message": "Receive HTN",
+    "description": "Receive HTN title"
+  },
+  "copyAddress": {
+    "message": "Copy Address",
+    "description": "Copy address button"
+  },
+
+  "confirmTransaction": {
+    "message": "Confirm Transaction",
+    "description": "Confirm transaction title"
+  },
+  "requestedBy": {
+    "message": "Requested by:",
+    "description": "Requested by label"
+  },
+  "requested": {
+    "message": "Requested",
+    "description": "Requested prefix"
+  },
+  "oldRequest": {
+    "message": "Old request",
+    "description": "Old request warning"
+  },
+  "sendingTo": {
+    "message": "Sending to",
+    "description": "Sending to label"
+  },
+  "networkFee": {
+    "message": "Network Fee",
+    "description": "Network fee label"
+  },
+  "custom": {
+    "message": "Custom",
+    "description": "Custom fee badge"
+  },
+  "editFee": {
+    "message": "Edit fee",
+    "description": "Edit fee link"
+  },
+  "minimum": {
+    "message": "Minimum:",
+    "description": "Minimum fee label"
+  },
+  "cancel": {
+    "message": "Cancel",
+    "description": "Cancel button"
+  },
+  "save": {
+    "message": "Save",
+    "description": "Save button"
+  },
+  "invalidFeeValue": {
+    "message": "Invalid fee value",
+    "description": "Invalid fee value error"
+  },
+  "feeCannotBeLess": {
+    "message": "Fee cannot be less than $1 HTN",
+    "description": "Fee cannot be less error",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00001000"
+      }
+    }
+  },
+  "insufficientBalanceForFee": {
+    "message": "Insufficient balance for this fee",
+    "description": "Insufficient balance for fee error"
+  },
+  "feeWarningHigher": {
+    "message": "Warning: Fee is $1x higher than minimum!",
+    "description": "Fee warning higher than minimum",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "10.0"
+      }
+    }
+  },
+  "total": {
+    "message": "Total",
+    "description": "Total label"
+  },
+  "verifyDetails": {
+    "message": "Please verify all details before confirming",
+    "description": "Verify details warning"
+  },
+  "confirmAndSend": {
+    "message": "Confirm & Send",
+    "description": "Confirm and send button"
+  },
+
+  "settings": {
+    "message": "Settings",
+    "description": "Settings title"
+  },
+  "connectedSites": {
+    "message": "Connected Sites",
+    "description": "Connected sites button"
+  },
+  "changePassword": {
+    "message": "Change Password",
+    "description": "Change password button"
+  },
+  "exportPrivateKey": {
+    "message": "Export Private Key",
+    "description": "Export private key button"
+  },
+  "resetWallet": {
+    "message": "Reset Wallet",
+    "description": "Reset wallet button"
+  },
+
+  "connectedSitesTitle": {
+    "message": "Connected Sites",
+    "description": "Connected sites screen title"
+  },
+  "noConnectedSites": {
+    "message": "No Connected Sites",
+    "description": "No connected sites message"
+  },
+  "noConnectedSitesDesc": {
+    "message": "When you connect your wallet to a site, it will appear here.",
+    "description": "No connected sites description"
+  },
+  "connectedSitesInfo": {
+    "message": "Connected sites can view your wallet address and request transactions. Disconnect sites you no longer use or trust.",
+    "description": "Connected sites info"
+  },
+  "connected": {
+    "message": "Connected",
+    "description": "Connected prefix"
+  },
+  "disconnect": {
+    "message": "Disconnect",
+    "description": "Disconnect button"
+  },
+  "disconnectSite": {
+    "message": "Disconnect Site",
+    "description": "Disconnect site dialog title"
+  },
+  "disconnectSiteConfirm": {
+    "message": "Are you sure you want to disconnect $1? The site will need to request connection again.",
+    "description": "Disconnect site confirmation",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "justNow": {
+    "message": "just now",
+    "description": "Just now time"
+  },
+  "minuteAgo": {
+    "message": "$1 minute ago",
+    "description": "Minute ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "minutesAgo": {
+    "message": "$1 minutes ago",
+    "description": "Minutes ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "hourAgo": {
+    "message": "$1 hour ago",
+    "description": "Hour ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "hoursAgo": {
+    "message": "$1 hours ago",
+    "description": "Hours ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "dayAgo": {
+    "message": "$1 day ago",
+    "description": "Day ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "daysAgo": {
+    "message": "$1 days ago",
+    "description": "Days ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+
+  "changePasswordTitle": {
+    "message": "Change Password",
+    "description": "Change password screen title"
+  },
+  "changePasswordWarning": {
+    "message": "After changing your password, make sure to remember it. You cannot recover your wallet without the correct password!",
+    "description": "Change password warning"
+  },
+  "currentPassword": {
+    "message": "Current Password",
+    "description": "Current password label"
+  },
+  "enterCurrentPassword": {
+    "message": "Enter current password",
+    "description": "Current password placeholder"
+  },
+  "newPassword": {
+    "message": "New Password",
+    "description": "New password label"
+  },
+  "enterNewPassword": {
+    "message": "Enter new password",
+    "description": "New password placeholder"
+  },
+  "confirmNewPassword": {
+    "message": "Confirm New Password",
+    "description": "Confirm new password label"
+  },
+  "confirmNewPasswordPlaceholder": {
+    "message": "Confirm new password",
+    "description": "Confirm new password placeholder"
+  },
+  "changePasswordButton": {
+    "message": "Change Password",
+    "description": "Change password button"
+  },
+  "currentPasswordRequired": {
+    "message": "Current password is required",
+    "description": "Current password required error"
+  },
+  "newPasswordRequired": {
+    "message": "New password is required",
+    "description": "New password required error"
+  },
+  "newPasswordsDoNotMatch": {
+    "message": "New passwords do not match",
+    "description": "New passwords do not match error"
+  },
+  "newPasswordMustBeDifferent": {
+    "message": "New password must be different from current password",
+    "description": "New password must be different error"
+  },
+  "passwordMustBeAtLeast": {
+    "message": "Password must be at least $1 characters",
+    "description": "Password must be at least N characters",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "changingPassword": {
+    "message": "Changing Password...",
+    "description": "Changing password status"
+  },
+  "failedToChangePassword": {
+    "message": "Failed to change password",
+    "description": "Failed to change password error"
+  },
+  "weakPassword": {
+    "message": "Weak password",
+    "description": "Weak password indicator"
+  },
+  "mediumPassword": {
+    "message": "Medium password",
+    "description": "Medium password indicator"
+  },
+  "strongPassword": {
+    "message": "Strong password",
+    "description": "Strong password indicator"
+  },
+
+  "exportPrivateKeyTitle": {
+    "message": "Export Private Key",
+    "description": "Export private key screen title"
+  },
+  "securityWarning": {
+    "message": "Security Warning!",
+    "description": "Security warning title"
+  },
+  "neverSharePrivateKey": {
+    "message": "Never share your private key with anyone. Anyone with access to your private key can steal your funds!",
+    "description": "Never share private key warning"
+  },
+  "enterPasswordToConfirm": {
+    "message": "Enter Password to Confirm",
+    "description": "Enter password to confirm label"
+  },
+  "showPrivateKey": {
+    "message": "Show Private Key",
+    "description": "Show private key button"
+  },
+  "verifying": {
+    "message": "Verifying...",
+    "description": "Verifying status"
+  },
+  "keepThisKeySafe": {
+    "message": "Keep this key safe!",
+    "description": "Keep this key safe title"
+  },
+  "keepKeySafeWarning": {
+    "message": "Anyone with this key can access your funds. Store it securely and never share it.",
+    "description": "Keep key safe warning"
+  },
+  "hideKey": {
+    "message": "Hide Key",
+    "description": "Hide key button"
+  },
+  "showKey": {
+    "message": "Show Key",
+    "description": "Show key button"
+  },
+  "copiedToClipboard": {
+    "message": "Copied to Clipboard!",
+    "description": "Copied to clipboard notification"
+  },
+  "bestPractices": {
+    "message": "Best Practices:",
+    "description": "Best practices title"
+  },
+  "bestPractice1": {
+    "message": "Write it down on paper and store in a safe place",
+    "description": "Best practice 1"
+  },
+  "bestPractice2": {
+    "message": "Use a password manager (encrypted)",
+    "description": "Best practice 2"
+  },
+  "bestPractice3": {
+    "message": "Never store in plain text files",
+    "description": "Best practice 3"
+  },
+  "bestPractice4": {
+    "message": "Never send via email or messaging apps",
+    "description": "Best practice 4"
+  },
+  "done": {
+    "message": "Done",
+    "description": "Done button"
+  },
+
+  "loading": {
+    "message": "Loading...",
+    "description": "Loading text"
+  },
+
+  "language": {
+    "message": "Language",
+    "description": "Language label"
+  },
+  "languageSettings": {
+    "message": "Language Settings",
+    "description": "Language settings title"
+  },
+  "selectLanguage": {
+    "message": "Select Language",
+    "description": "Select language label"
+  },
+  "languageChanged": {
+    "message": "Language changed successfully",
+    "description": "Language changed notification"
+  },
+  "languageAuto": {
+    "message": "Auto (Browser Default)",
+    "description": "Auto language option"
+  },
+  "languageEnglish": {
+    "message": "English",
+    "description": "English language name"
+  },
+  "languageRussian": {
+    "message": "Русский (Russian)",
+    "description": "Russian language name"
+  },
+  "languageChinese": {
+    "message": "简体中文 (Chinese Simplified)",
+    "description": "Chinese language name"
+  },
+  "languageSpanish": {
+    "message": "Español (Spanish)",
+    "description": "Spanish language name"
+  },
+  "languageFinnish": {
+    "message": "Suomi (Finnish)",
+    "description": "Finnish language name"
+  },
+  "languageJapanese": {
+    "message": "日本語 (Japanese)",
+    "description": "Japanese language name"
+  },
+  "languageKorean": {
+    "message": "한국어 (Korean)",
+    "description": "Korean language name"
+  },
+  "languageTurkish": {
+    "message": "Türkçe (Turkish)",
+    "description": "Turkish language name"
+  },
+  "languageGerman": {
+    "message": "Deutsch (German)",
+    "description": "German language name"
+  },
+  "failedToChangeLanguage": {
+    "message": "Failed to change language",
+    "description": "Error message when language change fails"
+  }
+}

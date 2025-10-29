@@ -1,6 +1,6 @@
-import { APP_NAME } from '../../shared/constants';
 import { loadConnectedSites, removeConnectedSite } from '../../shared/storage';
 import { showConfirmDialog } from '../components';
+import { t, tn } from '../utils/i18n';
 
 /**
  * Show connected sites management screen
@@ -14,7 +14,7 @@ export async function showConnectedSitesScreen(app: HTMLElement, onBack: () => v
         <button id="backBtn" class="btn-icon">←</button>
         <div class="header-center">
           <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
-          <h1>Connected Sites</h1>
+          <h1>${t('connectedSitesTitle')}</h1>
         </div>
         <div style="width: 32px;"></div>
       </div>
@@ -25,16 +25,15 @@ export async function showConnectedSitesScreen(app: HTMLElement, onBack: () => v
             ? `
         <div class="empty-state">
           <div class="empty-icon">🔗</div>
-          <h3>No Connected Sites</h3>
-          <p>When you connect your wallet to a site, it will appear here.</p>
+          <h3>${t('noConnectedSites')}</h3>
+          <p>${t('noConnectedSitesDesc')}</p>
         </div>
         `
             : `
         <div class="info-box warning" style="margin-bottom: 20px;">
           <div class="info-icon">ℹ️</div>
           <div class="info-text">
-            Connected sites can view your wallet address and request transactions.
-            Disconnect sites you no longer use or trust.
+            ${t('connectedSitesInfo')}
           </div>
         </div>
 
@@ -48,11 +47,11 @@ export async function showConnectedSitesScreen(app: HTMLElement, onBack: () => v
                 <div class="site-details">
                   <div class="site-name">${new URL(site.origin).hostname}</div>
                   <div class="site-url">${site.origin}</div>
-                  <div class="site-date">Connected ${formatDate(site.connectedAt)}</div>
+                  <div class="site-date">${t('connected')} ${formatDate(site.connectedAt)}</div>
                 </div>
               </div>
               <button class="btn-disconnect" data-origin="${site.origin}">
-                Disconnect
+                ${t('disconnect')}
               </button>
             </div>
           `
@@ -84,8 +83,8 @@ async function handleDisconnect(origin: string, onBack: () => void): Promise<voi
   const domain = new URL(origin).hostname;
 
   const confirmed = await showConfirmDialog(
-    'Disconnect Site',
-    `Are you sure you want to disconnect ${domain}? The site will need to request connection again.`
+    t('disconnectSite'),
+    tn('disconnectSiteConfirm', domain)
   );
 
   if (confirmed) {
@@ -110,12 +109,12 @@ function formatDate(timestamp: number): string {
   const days = Math.floor(hours / 24);
 
   if (days > 0) {
-    return `${days} day${days > 1 ? 's' : ''} ago`;
+    return days === 1 ? tn('dayAgo', days.toString()) : tn('daysAgo', days.toString());
   } else if (hours > 0) {
-    return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+    return hours === 1 ? tn('hourAgo', hours.toString()) : tn('hoursAgo', hours.toString());
   } else if (minutes > 0) {
-    return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+    return minutes === 1 ? tn('minuteAgo', minutes.toString()) : tn('minutesAgo', minutes.toString());
   } else {
-    return 'just now';
+    return t('justNow');
   }
 }

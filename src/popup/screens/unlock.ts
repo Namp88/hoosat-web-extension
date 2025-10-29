@@ -1,4 +1,4 @@
-import { APP_NAME } from '../../shared/constants';
+import { t } from '../utils/i18n';
 
 export interface UnlockContext {
   title?: string; // Custom title instead of "Unlock Wallet"
@@ -14,7 +14,7 @@ export function showUnlockScreen(
   onUnlock: (password: string) => Promise<void>,
   context?: UnlockContext
 ): void {
-  const title = context?.title || 'Unlock Wallet';
+  const title = context?.title || t('unlockWallet');
 
   // Extract domain from origin if provided
   let domain = null;
@@ -31,7 +31,7 @@ export function showUnlockScreen(
       <div class="header">
         <div class="header-left">
           <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
-          <h1>${APP_NAME}</h1>
+          <h1>${t('appName')}</h1>
         </div>
       </div>
 
@@ -41,7 +41,7 @@ export function showUnlockScreen(
             context?.origin
               ? `
           <div class="dapp-origin" style="margin-bottom: 20px;">
-            <div class="dapp-origin-label">Request from:</div>
+            <div class="dapp-origin-label">${t('requestFrom')}</div>
             <div class="dapp-origin-value">${domain}</div>
             <div class="dapp-origin-full">${context.origin}</div>
           </div>
@@ -63,13 +63,13 @@ export function showUnlockScreen(
           }
 
           <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" placeholder="Enter password" autocomplete="current-password" />
+            <label for="password">${t('password')}</label>
+            <input type="password" id="password" placeholder="${t('enterPassword')}" autocomplete="current-password" />
           </div>
 
           <div class="error" id="error"></div>
 
-          <button type="button" id="unlockBtn" class="btn btn-primary">Unlock</button>
+          <button type="button" id="unlockBtn" class="btn btn-primary">${t('unlock')}</button>
         </div>
       </div>
     </div>
@@ -82,14 +82,14 @@ export function showUnlockScreen(
     errorEl.textContent = '';
 
     if (!password) {
-      errorEl.textContent = 'Password is required';
+      errorEl.textContent = t('passwordRequired');
       return;
     }
 
     try {
       await onUnlock(password);
     } catch (error: any) {
-      errorEl.textContent = error.message || 'Invalid password';
+      errorEl.textContent = error.message || t('invalidPassword');
     }
   };
 

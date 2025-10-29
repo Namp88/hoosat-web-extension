@@ -1,5 +1,5 @@
-import { APP_NAME } from '../../shared/constants';
 import { validatePassword, calculatePasswordStrength, addPasswordStrengthIndicator } from '../utils';
+import { t } from '../utils/i18n';
 
 /**
  * Show generate new wallet screen
@@ -15,7 +15,7 @@ export function showGenerateWalletScreen(
         <button id="backBtn" class="btn-icon">←</button>
         <div class="header-center">
           <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
-          <h1>Create New Wallet</h1>
+          <h1>${t('createNewWalletTitle')}</h1>
         </div>
         <div style="width: 32px;"></div>
       </div>
@@ -24,36 +24,36 @@ export function showGenerateWalletScreen(
         <div class="info-box warning">
           <div class="info-icon">⚠️</div>
           <div class="info-text">
-            <strong>Important:</strong> Save your private key securely. You'll need it to restore your wallet. Never share it with anyone!
+            <strong>${t('important')}</strong> ${t('savePrivateKeyWarning')}
           </div>
         </div>
 
         <div class="form">
           <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" placeholder="Create password" autocomplete="new-password" />
+            <label for="password">${t('password')}</label>
+            <input type="password" id="password" placeholder="${t('createPassword')}" autocomplete="new-password" />
           </div>
 
           <div class="password-strength" id="passwordStrength"></div>
 
           <div class="form-group">
-            <label for="confirmPassword">Confirm Password</label>
-            <input type="password" id="confirmPassword" placeholder="Confirm password" autocomplete="new-password" />
+            <label for="confirmPassword">${t('confirmPassword')}</label>
+            <input type="password" id="confirmPassword" placeholder="${t('confirmPasswordPlaceholder')}" autocomplete="new-password" />
           </div>
 
           <div class="password-requirements">
-            <div class="requirements-title">Password must contain:</div>
+            <div class="requirements-title">${t('passwordRequirements')}</div>
             <ul>
-              <li>At least 8 characters</li>
-              <li>One uppercase letter (A-Z)</li>
-              <li>One lowercase letter (a-z)</li>
-              <li>One number (0-9)</li>
+              <li>${t('passwordReq8Chars')}</li>
+              <li>${t('passwordReqUppercase')}</li>
+              <li>${t('passwordReqLowercase')}</li>
+              <li>${t('passwordReqNumber')}</li>
             </ul>
           </div>
 
           <div class="error" id="error"></div>
 
-          <button id="generateBtn" class="btn btn-primary">Generate Wallet</button>
+          <button id="generateBtn" class="btn btn-primary">${t('generateWallet')}</button>
         </div>
       </div>
     </div>
@@ -68,12 +68,12 @@ export function showGenerateWalletScreen(
 
     // Validation
     if (!password || !confirmPassword) {
-      errorEl.textContent = 'Password is required';
+      errorEl.textContent = t('passwordRequired');
       return;
     }
 
     if (password !== confirmPassword) {
-      errorEl.textContent = 'Passwords do not match';
+      errorEl.textContent = t('passwordsDoNotMatch');
       return;
     }
 
@@ -87,14 +87,14 @@ export function showGenerateWalletScreen(
     // Check strength (warn if too weak)
     const strength = calculatePasswordStrength(password);
     if (strength.score < 3) {
-      errorEl.textContent = 'Password is too weak. ' + strength.feedback.slice(0, 2).join(', ');
+      errorEl.textContent = t('passwordTooWeak') + ' ' + strength.feedback.slice(0, 2).join(', ');
       return;
     }
 
     try {
       await onGenerate(password, confirmPassword);
     } catch (error: any) {
-      errorEl.textContent = error.message || 'Failed to generate wallet';
+      errorEl.textContent = error.message || t('failedToGenerateWallet');
     }
   };
 

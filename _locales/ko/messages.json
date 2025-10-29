@@ -1,0 +1,711 @@
+{
+  "appName": {
+    "message": "Hoosat 지갑",
+    "description": "Application name"
+  },
+  "appDescription": {
+    "message": "Hoosat 블록체인을 위한 브라우저 확장 지갑",
+    "description": "Application description"
+  },
+
+  "welcome": {
+    "message": "환영합니다!",
+    "description": "Welcome screen title"
+  },
+  "welcomeDescription": {
+    "message": "시작 방법을 선택해주세요",
+    "description": "Welcome screen description"
+  },
+  "createNewWallet": {
+    "message": "새 지갑 만들기",
+    "description": "Create new wallet button"
+  },
+  "createNewWalletDesc": {
+    "message": "새로운 지갑 생성하기",
+    "description": "Create new wallet description"
+  },
+  "importExistingWallet": {
+    "message": "기존 지갑 가져오기",
+    "description": "Import wallet button"
+  },
+  "importExistingWalletDesc": {
+    "message": "개인키를 사용하여 가져오기",
+    "description": "Import wallet description"
+  },
+
+  "unlockWallet": {
+    "message": "지갑 잠금 해제",
+    "description": "Unlock wallet title"
+  },
+  "requestFrom": {
+    "message": "요청 출처:",
+    "description": "Request from label"
+  },
+  "password": {
+    "message": "비밀번호",
+    "description": "Password field label"
+  },
+  "enterPassword": {
+    "message": "비밀번호를 입력하세요",
+    "description": "Password field placeholder"
+  },
+  "unlock": {
+    "message": "잠금 해제",
+    "description": "Unlock button"
+  },
+  "passwordRequired": {
+    "message": "비밀번호가 필요합니다",
+    "description": "Password required error"
+  },
+  "invalidPassword": {
+    "message": "잘못된 비밀번호입니다",
+    "description": "Invalid password error"
+  },
+
+  "createNewWalletTitle": {
+    "message": "새 지갑 만들기",
+    "description": "Create new wallet screen title"
+  },
+  "important": {
+    "message": "중요:",
+    "description": "Important label"
+  },
+  "savePrivateKeyWarning": {
+    "message": "개인키를 안전하게 보관하세요. 지갑을 복구하려면 개인키가 필요합니다. 절대 다른 사람과 공유하지 마세요!",
+    "description": "Save private key warning"
+  },
+  "createPassword": {
+    "message": "비밀번호 생성",
+    "description": "Create password placeholder"
+  },
+  "confirmPassword": {
+    "message": "비밀번호 확인",
+    "description": "Confirm password label"
+  },
+  "confirmPasswordPlaceholder": {
+    "message": "비밀번호를 다시 입력하세요",
+    "description": "Confirm password placeholder"
+  },
+  "passwordRequirements": {
+    "message": "비밀번호 요구사항:",
+    "description": "Password requirements title"
+  },
+  "passwordReq8Chars": {
+    "message": "최소 8자 이상",
+    "description": "Password requirement: 8 characters"
+  },
+  "passwordReqUppercase": {
+    "message": "대문자 1개 이상 (A-Z)",
+    "description": "Password requirement: uppercase"
+  },
+  "passwordReqLowercase": {
+    "message": "소문자 1개 이상 (a-z)",
+    "description": "Password requirement: lowercase"
+  },
+  "passwordReqNumber": {
+    "message": "숫자 1개 이상 (0-9)",
+    "description": "Password requirement: number"
+  },
+  "generateWallet": {
+    "message": "지갑 생성하기",
+    "description": "Generate wallet button"
+  },
+  "passwordsDoNotMatch": {
+    "message": "비밀번호가 일치하지 않습니다",
+    "description": "Passwords do not match error"
+  },
+  "passwordTooWeak": {
+    "message": "비밀번호가 너무 약합니다.",
+    "description": "Password too weak error"
+  },
+  "failedToGenerateWallet": {
+    "message": "지갑 생성에 실패했습니다",
+    "description": "Failed to generate wallet error"
+  },
+
+  "importWallet": {
+    "message": "지갑 가져오기",
+    "description": "Import wallet title"
+  },
+  "privateKeyHex": {
+    "message": "개인키 (16진수)",
+    "description": "Private key field label"
+  },
+  "enterPrivateKey": {
+    "message": "개인키를 입력하세요",
+    "description": "Private key field placeholder"
+  },
+  "importWalletButton": {
+    "message": "지갑 가져오기",
+    "description": "Import wallet button"
+  },
+  "privateKeyRequired": {
+    "message": "개인키가 필요합니다",
+    "description": "Private key required error"
+  },
+  "failedToImportWallet": {
+    "message": "지갑 가져오기에 실패했습니다",
+    "description": "Failed to import wallet error"
+  },
+
+  "backupPrivateKey": {
+    "message": "개인키 백업",
+    "description": "Backup private key title"
+  },
+  "saveThisPrivateKey": {
+    "message": "이 개인키를 저장하세요!",
+    "description": "Save this private key warning title"
+  },
+  "writeItDownWarning": {
+    "message": "종이에 적어서 안전한 곳에 보관하세요. 지갑을 복구하려면 개인키가 필요합니다.",
+    "description": "Write down private key warning"
+  },
+  "yourPrivateKey": {
+    "message": "내 개인키",
+    "description": "Your private key label"
+  },
+  "yourAddress": {
+    "message": "내 주소",
+    "description": "Your address label"
+  },
+  "copyToClipboard": {
+    "message": "클립보드에 복사",
+    "description": "Copy to clipboard button"
+  },
+  "copied": {
+    "message": "복사되었습니다!",
+    "description": "Copied notification"
+  },
+  "confirmBackup": {
+    "message": "개인키를 안전하게 저장했습니다",
+    "description": "Confirm backup checkbox"
+  },
+  "continue": {
+    "message": "계속",
+    "description": "Continue button"
+  },
+
+  "address": {
+    "message": "주소",
+    "description": "Address label"
+  },
+  "balance": {
+    "message": "잔액",
+    "description": "Balance label"
+  },
+  "send": {
+    "message": "전송",
+    "description": "Send button"
+  },
+  "receive": {
+    "message": "받기",
+    "description": "Receive button"
+  },
+  "recentTransactions": {
+    "message": "최근 거래 내역",
+    "description": "Recent transactions title"
+  },
+  "noTransactionsYet": {
+    "message": "아직 거래 내역이 없습니다",
+    "description": "No transactions message"
+  },
+  "viewFullHistoryInExplorer": {
+    "message": "탐색기에서 전체 내역 보기 →",
+    "description": "View full history link"
+  },
+  "sent": {
+    "message": "전송됨",
+    "description": "Sent transaction type"
+  },
+  "received": {
+    "message": "받음",
+    "description": "Received transaction type"
+  },
+  "to": {
+    "message": "받는 사람:",
+    "description": "To label"
+  },
+  "from": {
+    "message": "보낸 사람:",
+    "description": "From label"
+  },
+
+  "sendHTN": {
+    "message": "HTN 전송",
+    "description": "Send HTN title"
+  },
+  "recipientAddress": {
+    "message": "받는 사람 주소",
+    "description": "Recipient address label"
+  },
+  "amount": {
+    "message": "금액 (HTN)",
+    "description": "Amount field label"
+  },
+  "available": {
+    "message": "사용 가능:",
+    "description": "Available balance label"
+  },
+  "sendTransaction": {
+    "message": "거래 전송",
+    "description": "Send transaction button"
+  },
+  "recipientAndAmountRequired": {
+    "message": "받는 사람과 금액이 필요합니다",
+    "description": "Recipient and amount required error"
+  },
+  "invalidAddressFormat": {
+    "message": "잘못된 주소 형식입니다. \"hoosat:\"으로 시작해야 합니다",
+    "description": "Invalid address format error"
+  },
+  "invalidAmount": {
+    "message": "잘못된 금액입니다",
+    "description": "Invalid amount error"
+  },
+  "estimatingFee": {
+    "message": "수수료 계산 중...",
+    "description": "Estimating fee status"
+  },
+  "insufficientBalance": {
+    "message": "잔액이 부족합니다. $1 HTN이 필요합니다 (수수료 $2 HTN 포함)",
+    "description": "Insufficient balance error",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1.00000000"
+      },
+      "2": {
+        "content": "$2",
+        "example": "0.00001000"
+      }
+    }
+  },
+  "sending": {
+    "message": "전송 중...",
+    "description": "Sending status"
+  },
+  "transactionFailed": {
+    "message": "거래가 실패했습니다",
+    "description": "Transaction failed error"
+  },
+
+  "receiveHTN": {
+    "message": "HTN 받기",
+    "description": "Receive HTN title"
+  },
+  "copyAddress": {
+    "message": "주소 복사",
+    "description": "Copy address button"
+  },
+
+  "confirmTransaction": {
+    "message": "거래 확인",
+    "description": "Confirm transaction title"
+  },
+  "requestedBy": {
+    "message": "요청자:",
+    "description": "Requested by label"
+  },
+  "requested": {
+    "message": "요청됨",
+    "description": "Requested prefix"
+  },
+  "oldRequest": {
+    "message": "오래된 요청",
+    "description": "Old request warning"
+  },
+  "sendingTo": {
+    "message": "받는 사람",
+    "description": "Sending to label"
+  },
+  "networkFee": {
+    "message": "네트워크 수수료",
+    "description": "Network fee label"
+  },
+  "custom": {
+    "message": "사용자 지정",
+    "description": "Custom fee badge"
+  },
+  "editFee": {
+    "message": "수수료 편집",
+    "description": "Edit fee link"
+  },
+  "minimum": {
+    "message": "최소:",
+    "description": "Minimum fee label"
+  },
+  "cancel": {
+    "message": "취소",
+    "description": "Cancel button"
+  },
+  "save": {
+    "message": "저장",
+    "description": "Save button"
+  },
+  "invalidFeeValue": {
+    "message": "잘못된 수수료 금액입니다",
+    "description": "Invalid fee value error"
+  },
+  "feeCannotBeLess": {
+    "message": "수수료는 $1 HTN보다 낮을 수 없습니다",
+    "description": "Fee cannot be less error",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00001000"
+      }
+    }
+  },
+  "insufficientBalanceForFee": {
+    "message": "이 수수료를 지불할 잔액이 부족합니다",
+    "description": "Insufficient balance for fee error"
+  },
+  "feeWarningHigher": {
+    "message": "경고: 수수료가 최소값보다 $1배 높습니다!",
+    "description": "Fee warning higher than minimum",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "10.0"
+      }
+    }
+  },
+  "total": {
+    "message": "합계",
+    "description": "Total label"
+  },
+  "verifyDetails": {
+    "message": "확인하기 전에 모든 세부 정보를 검토해주세요",
+    "description": "Verify details warning"
+  },
+  "confirmAndSend": {
+    "message": "확인 및 전송",
+    "description": "Confirm and send button"
+  },
+
+  "settings": {
+    "message": "설정",
+    "description": "Settings title"
+  },
+  "connectedSites": {
+    "message": "연결된 사이트",
+    "description": "Connected sites button"
+  },
+  "changePassword": {
+    "message": "비밀번호 변경",
+    "description": "Change password button"
+  },
+  "exportPrivateKey": {
+    "message": "개인키 내보내기",
+    "description": "Export private key button"
+  },
+  "resetWallet": {
+    "message": "지갑 초기화",
+    "description": "Reset wallet button"
+  },
+
+  "connectedSitesTitle": {
+    "message": "연결된 사이트",
+    "description": "Connected sites screen title"
+  },
+  "noConnectedSites": {
+    "message": "연결된 사이트가 없습니다",
+    "description": "No connected sites message"
+  },
+  "noConnectedSitesDesc": {
+    "message": "지갑을 사이트에 연결하면 여기에 표시됩니다.",
+    "description": "No connected sites description"
+  },
+  "connectedSitesInfo": {
+    "message": "연결된 사이트는 지갑 주소를 확인하고 거래를 요청할 수 있습니다. 더 이상 사용하지 않거나 신뢰하지 않는 사이트는 연결을 해제하세요.",
+    "description": "Connected sites info"
+  },
+  "connected": {
+    "message": "연결됨",
+    "description": "Connected prefix"
+  },
+  "disconnect": {
+    "message": "연결 해제",
+    "description": "Disconnect button"
+  },
+  "disconnectSite": {
+    "message": "사이트 연결 해제",
+    "description": "Disconnect site dialog title"
+  },
+  "disconnectSiteConfirm": {
+    "message": "$1의 연결을 해제하시겠습니까? 사이트에서 다시 연결을 요청해야 합니다.",
+    "description": "Disconnect site confirmation",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "justNow": {
+    "message": "방금 전",
+    "description": "Just now time"
+  },
+  "minuteAgo": {
+    "message": "$1분 전",
+    "description": "Minute ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "minutesAgo": {
+    "message": "$1분 전",
+    "description": "Minutes ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "hourAgo": {
+    "message": "$1시간 전",
+    "description": "Hour ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "hoursAgo": {
+    "message": "$1시간 전",
+    "description": "Hours ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "dayAgo": {
+    "message": "$1일 전",
+    "description": "Day ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "daysAgo": {
+    "message": "$1일 전",
+    "description": "Days ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+
+  "changePasswordTitle": {
+    "message": "비밀번호 변경",
+    "description": "Change password screen title"
+  },
+  "changePasswordWarning": {
+    "message": "비밀번호를 변경한 후에는 반드시 기억하세요. 올바른 비밀번호 없이는 지갑을 복구할 수 없습니다!",
+    "description": "Change password warning"
+  },
+  "currentPassword": {
+    "message": "현재 비밀번호",
+    "description": "Current password label"
+  },
+  "enterCurrentPassword": {
+    "message": "현재 비밀번호를 입력하세요",
+    "description": "Current password placeholder"
+  },
+  "newPassword": {
+    "message": "새 비밀번호",
+    "description": "New password label"
+  },
+  "enterNewPassword": {
+    "message": "새 비밀번호를 입력하세요",
+    "description": "New password placeholder"
+  },
+  "confirmNewPassword": {
+    "message": "새 비밀번호 확인",
+    "description": "Confirm new password label"
+  },
+  "confirmNewPasswordPlaceholder": {
+    "message": "새 비밀번호를 다시 입력하세요",
+    "description": "Confirm new password placeholder"
+  },
+  "changePasswordButton": {
+    "message": "비밀번호 변경",
+    "description": "Change password button"
+  },
+  "currentPasswordRequired": {
+    "message": "현재 비밀번호가 필요합니다",
+    "description": "Current password required error"
+  },
+  "newPasswordRequired": {
+    "message": "새 비밀번호가 필요합니다",
+    "description": "New password required error"
+  },
+  "newPasswordsDoNotMatch": {
+    "message": "새 비밀번호가 일치하지 않습니다",
+    "description": "New passwords do not match error"
+  },
+  "newPasswordMustBeDifferent": {
+    "message": "새 비밀번호는 현재 비밀번호와 달라야 합니다",
+    "description": "New password must be different error"
+  },
+  "passwordMustBeAtLeast": {
+    "message": "비밀번호는 최소 $1자 이상이어야 합니다",
+    "description": "Password must be at least N characters",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "changingPassword": {
+    "message": "비밀번호 변경 중...",
+    "description": "Changing password status"
+  },
+  "failedToChangePassword": {
+    "message": "비밀번호 변경에 실패했습니다",
+    "description": "Failed to change password error"
+  },
+  "weakPassword": {
+    "message": "약한 비밀번호",
+    "description": "Weak password indicator"
+  },
+  "mediumPassword": {
+    "message": "보통 비밀번호",
+    "description": "Medium password indicator"
+  },
+  "strongPassword": {
+    "message": "강한 비밀번호",
+    "description": "Strong password indicator"
+  },
+
+  "exportPrivateKeyTitle": {
+    "message": "개인키 내보내기",
+    "description": "Export private key screen title"
+  },
+  "securityWarning": {
+    "message": "보안 경고!",
+    "description": "Security warning title"
+  },
+  "neverSharePrivateKey": {
+    "message": "절대 개인키를 다른 사람과 공유하지 마세요. 개인키에 접근할 수 있는 사람은 누구나 자금을 훔칠 수 있습니다!",
+    "description": "Never share private key warning"
+  },
+  "enterPasswordToConfirm": {
+    "message": "확인을 위해 비밀번호를 입력하세요",
+    "description": "Enter password to confirm label"
+  },
+  "showPrivateKey": {
+    "message": "개인키 표시",
+    "description": "Show private key button"
+  },
+  "verifying": {
+    "message": "확인 중...",
+    "description": "Verifying status"
+  },
+  "keepThisKeySafe": {
+    "message": "이 키를 안전하게 보관하세요!",
+    "description": "Keep this key safe title"
+  },
+  "keepKeySafeWarning": {
+    "message": "이 키를 가진 사람은 누구나 자금에 접근할 수 있습니다. 안전하게 보관하고 절대 공유하지 마세요.",
+    "description": "Keep key safe warning"
+  },
+  "hideKey": {
+    "message": "키 숨기기",
+    "description": "Hide key button"
+  },
+  "showKey": {
+    "message": "키 표시",
+    "description": "Show key button"
+  },
+  "copiedToClipboard": {
+    "message": "클립보드에 복사되었습니다!",
+    "description": "Copied to clipboard notification"
+  },
+  "bestPractices": {
+    "message": "권장 사항:",
+    "description": "Best practices title"
+  },
+  "bestPractice1": {
+    "message": "종이에 적어서 안전한 장소에 보관하세요",
+    "description": "Best practice 1"
+  },
+  "bestPractice2": {
+    "message": "비밀번호 관리자를 사용하세요 (암호화됨)",
+    "description": "Best practice 2"
+  },
+  "bestPractice3": {
+    "message": "평문 텍스트 파일에 저장하지 마세요",
+    "description": "Best practice 3"
+  },
+  "bestPractice4": {
+    "message": "이메일이나 메신저로 전송하지 마세요",
+    "description": "Best practice 4"
+  },
+  "done": {
+    "message": "완료",
+    "description": "Done button"
+  },
+
+  "loading": {
+    "message": "로딩 중...",
+    "description": "Loading text"
+  },
+
+  "language": {
+    "message": "언어",
+    "description": "Language label"
+  },
+  "languageSettings": {
+    "message": "언어 설정",
+    "description": "Language settings title"
+  },
+  "selectLanguage": {
+    "message": "언어 선택",
+    "description": "Select language label"
+  },
+  "languageChanged": {
+    "message": "언어가 성공적으로 변경되었습니다",
+    "description": "Language changed notification"
+  },
+  "languageAuto": {
+    "message": "자동 (브라우저 기본값)",
+    "description": "Auto language option"
+  },
+  "languageEnglish": {
+    "message": "English",
+    "description": "English language name"
+  },
+  "languageRussian": {
+    "message": "Русский (Russian)",
+    "description": "Russian language name"
+  },
+  "languageChinese": {
+    "message": "简体中文 (Chinese Simplified)",
+    "description": "Chinese language name"
+  },
+  "languageSpanish": {
+    "message": "Español (Spanish)",
+    "description": "Spanish language name"
+  },
+  "languageFinnish": {
+    "message": "Suomi (Finnish)",
+    "description": "Finnish language name"
+  },
+  "failedToChangeLanguage": {
+    "message": "언어 변경에 실패했습니다",
+    "description": "Error message when language change fails"
+  }
+}

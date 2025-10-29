@@ -1,8 +1,9 @@
-import { APP_NAME, getExplorerTxUrl, getExplorerAddressUrl } from '../../shared/constants';
+import { getExplorerTxUrl, getExplorerAddressUrl } from '../../shared/constants';
 import { getCurrentWallet, loadTransactionHistory } from '../../shared/storage';
 import { TransactionHistory } from '../../shared/types';
 import { formatAddress, formatTime } from '../utils';
 import { HoosatUtils } from 'hoosat-sdk-web';
+import { t } from '../utils/i18n';
 
 let currentAddress: string | null = null;
 let balance: string = '0';
@@ -36,7 +37,7 @@ export async function showWalletScreen(
       <div class="header">
         <div class="header-left">
           <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
-          <h1>${APP_NAME}</h1>
+          <h1>${t('appName')}</h1>
         </div>
         <div class="header-right">
           <button id="lockBtn" class="btn-icon" title="Lock Wallet">🔒</button>
@@ -47,7 +48,7 @@ export async function showWalletScreen(
       <div class="content">
         <div class="wallet-info">
           <div class="address">
-            <label>Address</label>
+            <label>${t('address')}</label>
             <div class="address-row">
               <div class="address-value" id="address">${formatAddress(currentAddress)}</div>
               <button id="copyBtn" class="btn-icon">📋</button>
@@ -55,7 +56,7 @@ export async function showWalletScreen(
           </div>
 
           <div class="balance">
-            <label>Balance</label>
+            <label>${t('balance')}</label>
             <div class="balance-row">
               <div class="balance-value" id="balance">${HoosatUtils.sompiToAmount(balance)} HTN</div>
               <button id="refreshBtn" class="btn-icon">🔄</button>
@@ -64,16 +65,16 @@ export async function showWalletScreen(
         </div>
 
         <div class="actions">
-          <button id="sendBtn" class="btn btn-primary">Send</button>
-          <button id="receiveBtn" class="btn btn-secondary">Receive</button>
+          <button id="sendBtn" class="btn btn-primary">${t('send')}</button>
+          <button id="receiveBtn" class="btn btn-secondary">${t('receive')}</button>
         </div>
 
         <div class="transactions">
-          <h3>Recent Transactions</h3>
+          <h3>${t('recentTransactions')}</h3>
           <div class="tx-list" id="txList">
-            ${txHistory.length > 0 ? renderTransactions(txHistory.slice(0, 10)) : '<p class="empty">No transactions yet</p>'}
+            ${txHistory.length > 0 ? renderTransactions(txHistory.slice(0, 10)) : `<p class="empty">${t('noTransactionsYet')}</p>`}
           </div>
-          ${txHistory.length > 0 ? `<button id="viewHistoryBtn" class="btn-link">View Full History in Explorer →</button>` : ''}
+          ${txHistory.length > 0 ? `<button id="viewHistoryBtn" class="btn-link">${t('viewFullHistoryInExplorer')}</button>` : ''}
         </div>
       </div>
     </div>
@@ -111,8 +112,8 @@ function renderTransactions(transactions: TransactionHistory[]): string {
     <div class="tx-item" data-txid="${tx.txId}">
       <div class="tx-icon">${tx.type === 'sent' ? '📤' : '📥'}</div>
       <div class="tx-details">
-        <div class="tx-type">${tx.type === 'sent' ? 'Sent' : 'Received'}</div>
-        <div class="tx-address">${tx.type === 'sent' ? 'To: ' + formatAddress(tx.to!) : 'From: ' + formatAddress(tx.from || 'Unknown')}</div>
+        <div class="tx-type">${tx.type === 'sent' ? t('sent') : t('received')}</div>
+        <div class="tx-address">${tx.type === 'sent' ? t('to') + ' ' + formatAddress(tx.to!) : t('from') + ' ' + formatAddress(tx.from || 'Unknown')}</div>
         <div class="tx-time">${formatTime(tx.timestamp)}</div>
       </div>
       <div class="tx-amount ${tx.type === 'sent' ? 'negative' : 'positive'}">

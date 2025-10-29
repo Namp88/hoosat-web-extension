@@ -1,5 +1,5 @@
-import { APP_NAME } from '../../shared/constants';
 import { MessageType } from '../../shared/types';
+import { t } from '../utils/i18n';
 
 /**
  * Show backup private key screen after wallet generation
@@ -16,7 +16,7 @@ export function showBackupPrivateKey(
       <div class="header">
         <div class="header-left">
           <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
-          <h1>Backup Private Key</h1>
+          <h1>${t('backupPrivateKey')}</h1>
         </div>
       </div>
 
@@ -24,30 +24,30 @@ export function showBackupPrivateKey(
         <div class="info-box critical">
           <div class="info-icon">🔐</div>
           <div class="info-text">
-            <strong>Save this private key!</strong><br>
-            Write it down and store it in a safe place. You'll need it to restore your wallet.
+            <strong>${t('saveThisPrivateKey')}</strong><br>
+            ${t('writeItDownWarning')}
           </div>
         </div>
 
         <div class="key-display">
-          <label>Your Private Key</label>
+          <label>${t('yourPrivateKey')}</label>
           <div class="key-value" id="keyValue">${privateKey}</div>
-          <button id="copyKeyBtn" class="btn btn-secondary">📋 Copy to Clipboard</button>
+          <button id="copyKeyBtn" class="btn btn-secondary">📋 ${t('copyToClipboard')}</button>
         </div>
 
         <div class="key-display">
-          <label>Your Address</label>
+          <label>${t('yourAddress')}</label>
           <div class="key-value small" id="addressValue">${address}</div>
         </div>
 
         <div class="backup-confirm">
           <label class="checkbox-label">
             <input type="checkbox" id="confirmBackup" />
-            <span>I have saved my private key securely</span>
+            <span>${t('confirmBackup')}</span>
           </label>
         </div>
 
-        <button id="continueBtn" class="btn btn-primary" disabled>Continue</button>
+        <button id="continueBtn" class="btn btn-primary" disabled>${t('continue')}</button>
       </div>
     </div>
   `;
@@ -57,7 +57,7 @@ export function showBackupPrivateKey(
     navigator.clipboard.writeText(privateKey).then(() => {
       const btn = document.getElementById('copyKeyBtn')!;
       const originalText = btn.textContent;
-      btn.textContent = '✓ Copied!';
+      btn.textContent = '✓ ' + t('copied');
       setTimeout(() => {
         btn.textContent = originalText;
       }, 2000);

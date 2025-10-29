@@ -1,6 +1,7 @@
 import { formatAddress } from '../utils';
 import { SOMPI_PER_HTN } from '../../shared/constants';
 import { formatTimeAgo, isRequestOld } from '../utils/ui-helpers';
+import { t, tn } from '../utils/i18n';
 
 export interface TransactionPreviewData {
   to: string;
@@ -54,14 +55,14 @@ export function showTransactionPreview(data: TransactionPreviewData): Promise<Tr
 
       modal.innerHTML = `
         <div class="modal-header">
-          <h2>Confirm Transaction</h2>
+          <h2>${t('confirmTransaction')}</h2>
         </div>
         <div class="modal-body">
           ${
             data.origin
               ? `
           <div class="dapp-origin" style="margin-bottom: 16px;">
-            <div class="dapp-origin-label">Requested by:</div>
+            <div class="dapp-origin-label">${t('requestedBy')}</div>
             <div class="dapp-origin-value">${domain}</div>
             <div class="dapp-origin-full">${data.origin}</div>
           </div>
@@ -74,21 +75,21 @@ export function showTransactionPreview(data: TransactionPreviewData): Promise<Tr
               ? `
           <div class="request-timestamp ${isOld ? 'old' : ''}" style="margin-bottom: 16px;">
             <span class="timestamp-icon">⏰</span>
-            <span class="timestamp-text">Requested ${timeAgo}</span>
-            ${isOld ? '<span class="timestamp-warning">⚠️ Old request</span>' : ''}
+            <span class="timestamp-text">${t('requested')} ${timeAgo}</span>
+            ${isOld ? '<span class="timestamp-warning">⚠️ ' + t('oldRequest') + '</span>' : ''}
           </div>
           `
               : ''
           }
 
           <div class="tx-preview-section">
-            <div class="tx-preview-label">Sending to</div>
+            <div class="tx-preview-label">${t('sendingTo')}</div>
             <div class="tx-preview-value address-preview">${formatAddress(data.to)}</div>
             <div class="tx-preview-full">${data.to}</div>
           </div>
 
           <div class="tx-preview-section">
-            <div class="tx-preview-label">Amount</div>
+            <div class="tx-preview-label">${t('amount')}</div>
             <div class="tx-preview-value amount-value">${data.amount.toFixed(8)} HTN</div>
           </div>
 
@@ -96,8 +97,8 @@ export function showTransactionPreview(data: TransactionPreviewData): Promise<Tr
 
           <div class="tx-preview-section">
             <div class="tx-preview-label-row">
-              <div class="tx-preview-label">Network Fee</div>
-              ${isCustomFee && !isEditingFee ? '<div class="custom-fee-badge">Custom</div>' : ''}
+              <div class="tx-preview-label">${t('networkFee')}</div>
+              ${isCustomFee && !isEditingFee ? '<div class="custom-fee-badge">' + t('custom') + '</div>' : ''}
             </div>
             ${
               !isEditingFee
@@ -109,7 +110,7 @@ export function showTransactionPreview(data: TransactionPreviewData): Promise<Tr
                     ? `<div class="tx-preview-note">${data.inputs} input${data.inputs > 1 ? 's' : ''} + ${data.outputs} output${data.outputs > 1 ? 's' : ''}</div>`
                     : ''
                 }
-                <button id="editFeeBtn" class="btn-link-small">Edit fee</button>
+                <button id="editFeeBtn" class="btn-link-small">${t('editFee')}</button>
               </div>
             `
                 : `
@@ -122,10 +123,10 @@ export function showTransactionPreview(data: TransactionPreviewData): Promise<Tr
                   value="${customFeeHTN.toFixed(8)}"
                   placeholder="${data.minFee.toFixed(8)}"
                 />
-                <div class="fee-edit-hint">Minimum: ${data.minFee.toFixed(8)} HTN</div>
+                <div class="fee-edit-hint">${t('minimum')} ${data.minFee.toFixed(8)} HTN</div>
                 <div class="fee-edit-actions">
-                  <button id="cancelFeeBtn" class="btn btn-secondary btn-small">Cancel</button>
-                  <button id="saveFeeBtn" class="btn btn-primary btn-small">Save</button>
+                  <button id="cancelFeeBtn" class="btn btn-secondary btn-small">${t('cancel')}</button>
+                  <button id="saveFeeBtn" class="btn btn-primary btn-small">${t('save')}</button>
                 </div>
                 <div class="error" id="feeError"></div>
               </div>
@@ -137,24 +138,24 @@ export function showTransactionPreview(data: TransactionPreviewData): Promise<Tr
             showWarning
               ? `
           <div class="tx-preview-warning-box">
-            ⚠️ Warning: Fee is ${feeMultiplier.toFixed(1)}x higher than minimum!
+            ⚠️ ${tn('feeWarningHigher', feeMultiplier.toFixed(1))}
           </div>
           `
               : ''
           }
 
           <div class="tx-preview-section total-section">
-            <div class="tx-preview-label">Total</div>
+            <div class="tx-preview-label">${t('total')}</div>
             <div class="tx-preview-value total-value">${total.toFixed(8)} HTN</div>
           </div>
 
           <div class="tx-preview-warning">
-            ⚠️ Please verify all details before confirming
+            ⚠️ ${t('verifyDetails')}
           </div>
         </div>
         <div class="modal-actions">
-          <button id="modalCancel" class="btn btn-secondary">Cancel</button>
-          <button id="modalConfirm" class="btn btn-primary">Confirm & Send</button>
+          <button id="modalCancel" class="btn btn-secondary">${t('cancel')}</button>
+          <button id="modalConfirm" class="btn btn-primary">${t('confirmAndSend')}</button>
         </div>
       `;
     }
@@ -199,12 +200,12 @@ export function showTransactionPreview(data: TransactionPreviewData): Promise<Tr
         const newFeeHTN = parseFloat(input.value);
 
         if (isNaN(newFeeHTN) || newFeeHTN <= 0) {
-          feeError.textContent = 'Invalid fee value';
+          feeError.textContent = t('invalidFeeValue');
           return;
         }
 
         if (newFeeHTN < data.minFee) {
-          feeError.textContent = `Fee cannot be less than ${data.minFee.toFixed(8)} HTN`;
+          feeError.textContent = tn('feeCannotBeLess', data.minFee.toFixed(8));
           return;
         }
 
@@ -213,7 +214,7 @@ export function showTransactionPreview(data: TransactionPreviewData): Promise<Tr
         const balanceHTN = Number(balance) / SOMPI_PER_HTN;
 
         if (totalWithNewFee > balanceHTN) {
-          feeError.textContent = 'Insufficient balance for this fee';
+          feeError.textContent = t('insufficientBalanceForFee');
           return;
         }
 

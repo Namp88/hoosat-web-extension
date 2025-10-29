@@ -1,0 +1,727 @@
+{
+  "appName": {
+    "message": "Hoosat Lompakko",
+    "description": "Application name"
+  },
+  "appDescription": {
+    "message": "Selaimen laajennus Hoosat-lohkoketjulle",
+    "description": "Application description"
+  },
+
+  "welcome": {
+    "message": "Tervetuloa!",
+    "description": "Welcome screen title"
+  },
+  "welcomeDescription": {
+    "message": "Valitse aloitustapa",
+    "description": "Welcome screen description"
+  },
+  "createNewWallet": {
+    "message": "Luo Uusi Lompakko",
+    "description": "Create new wallet button"
+  },
+  "createNewWalletDesc": {
+    "message": "Luo uusi lompakko",
+    "description": "Create new wallet description"
+  },
+  "importExistingWallet": {
+    "message": "Tuo Olemassa Oleva Lompakko",
+    "description": "Import wallet button"
+  },
+  "importExistingWalletDesc": {
+    "message": "Käytä yksityistä avainta",
+    "description": "Import wallet description"
+  },
+
+  "unlockWallet": {
+    "message": "Avaa Lompakko",
+    "description": "Unlock wallet title"
+  },
+  "requestFrom": {
+    "message": "Pyyntö lähteestä:",
+    "description": "Request from label"
+  },
+  "password": {
+    "message": "Salasana",
+    "description": "Password field label"
+  },
+  "enterPassword": {
+    "message": "Syötä salasana",
+    "description": "Password field placeholder"
+  },
+  "unlock": {
+    "message": "Avaa",
+    "description": "Unlock button"
+  },
+  "passwordRequired": {
+    "message": "Salasana vaaditaan",
+    "description": "Password required error"
+  },
+  "invalidPassword": {
+    "message": "Virheellinen salasana",
+    "description": "Invalid password error"
+  },
+
+  "createNewWalletTitle": {
+    "message": "Luo Uusi Lompakko",
+    "description": "Create new wallet screen title"
+  },
+  "important": {
+    "message": "Tärkeää:",
+    "description": "Important label"
+  },
+  "savePrivateKeyWarning": {
+    "message": "Tallenna yksityinen avaimesi turvallisesti. Tarvitset sen lompakon palauttamiseen. Älä koskaan jaa sitä kenenkään kanssa!",
+    "description": "Save private key warning"
+  },
+  "createPassword": {
+    "message": "Luo salasana",
+    "description": "Create password placeholder"
+  },
+  "confirmPassword": {
+    "message": "Vahvista Salasana",
+    "description": "Confirm password label"
+  },
+  "confirmPasswordPlaceholder": {
+    "message": "Vahvista salasana",
+    "description": "Confirm password placeholder"
+  },
+  "passwordRequirements": {
+    "message": "Salasanan tulee sisältää:",
+    "description": "Password requirements title"
+  },
+  "passwordReq8Chars": {
+    "message": "Vähintään 8 merkkiä",
+    "description": "Password requirement: 8 characters"
+  },
+  "passwordReqUppercase": {
+    "message": "Yksi iso kirjain (A-Z)",
+    "description": "Password requirement: uppercase"
+  },
+  "passwordReqLowercase": {
+    "message": "Yksi pieni kirjain (a-z)",
+    "description": "Password requirement: lowercase"
+  },
+  "passwordReqNumber": {
+    "message": "Yksi numero (0-9)",
+    "description": "Password requirement: number"
+  },
+  "generateWallet": {
+    "message": "Luo Lompakko",
+    "description": "Generate wallet button"
+  },
+  "passwordsDoNotMatch": {
+    "message": "Salasanat eivät täsmää",
+    "description": "Passwords do not match error"
+  },
+  "passwordTooWeak": {
+    "message": "Salasana on liian heikko.",
+    "description": "Password too weak error"
+  },
+  "failedToGenerateWallet": {
+    "message": "Lompakon luominen epäonnistui",
+    "description": "Failed to generate wallet error"
+  },
+
+  "importWallet": {
+    "message": "Tuo Lompakko",
+    "description": "Import wallet title"
+  },
+  "privateKeyHex": {
+    "message": "Yksityinen Avain (hex)",
+    "description": "Private key field label"
+  },
+  "enterPrivateKey": {
+    "message": "Syötä yksityinen avaimesi",
+    "description": "Private key field placeholder"
+  },
+  "importWalletButton": {
+    "message": "Tuo Lompakko",
+    "description": "Import wallet button"
+  },
+  "privateKeyRequired": {
+    "message": "Yksityinen avain vaaditaan",
+    "description": "Private key required error"
+  },
+  "failedToImportWallet": {
+    "message": "Lompakon tuominen epäonnistui",
+    "description": "Failed to import wallet error"
+  },
+
+  "backupPrivateKey": {
+    "message": "Varmuuskopioi Yksityinen Avain",
+    "description": "Backup private key title"
+  },
+  "saveThisPrivateKey": {
+    "message": "Tallenna tämä yksityinen avain!",
+    "description": "Save this private key warning title"
+  },
+  "writeItDownWarning": {
+    "message": "Kirjoita se ylös ja säilytä turvallisessa paikassa. Tarvitset sen lompakon palauttamiseen.",
+    "description": "Write down private key warning"
+  },
+  "yourPrivateKey": {
+    "message": "Yksityinen Avaimesi",
+    "description": "Your private key label"
+  },
+  "yourAddress": {
+    "message": "Osoitteesi",
+    "description": "Your address label"
+  },
+  "copyToClipboard": {
+    "message": "Kopioi Leikepöydälle",
+    "description": "Copy to clipboard button"
+  },
+  "copied": {
+    "message": "Kopioitu!",
+    "description": "Copied notification"
+  },
+  "confirmBackup": {
+    "message": "Olen tallentanut yksityisen avaimeni turvallisesti",
+    "description": "Confirm backup checkbox"
+  },
+  "continue": {
+    "message": "Jatka",
+    "description": "Continue button"
+  },
+
+  "address": {
+    "message": "Osoite",
+    "description": "Address label"
+  },
+  "balance": {
+    "message": "Saldo",
+    "description": "Balance label"
+  },
+  "send": {
+    "message": "Lähetä",
+    "description": "Send button"
+  },
+  "receive": {
+    "message": "Vastaanota",
+    "description": "Receive button"
+  },
+  "recentTransactions": {
+    "message": "Viimeisimmät Tapahtumat",
+    "description": "Recent transactions title"
+  },
+  "noTransactionsYet": {
+    "message": "Ei tapahtumia vielä",
+    "description": "No transactions message"
+  },
+  "viewFullHistoryInExplorer": {
+    "message": "Näytä Koko Historia Selaimessa →",
+    "description": "View full history link"
+  },
+  "sent": {
+    "message": "Lähetetty",
+    "description": "Sent transaction type"
+  },
+  "received": {
+    "message": "Vastaanotettu",
+    "description": "Received transaction type"
+  },
+  "to": {
+    "message": "Vastaanottaja:",
+    "description": "To label"
+  },
+  "from": {
+    "message": "Lähettäjä:",
+    "description": "From label"
+  },
+
+  "sendHTN": {
+    "message": "Lähetä HTN",
+    "description": "Send HTN title"
+  },
+  "recipientAddress": {
+    "message": "Vastaanottajan Osoite",
+    "description": "Recipient address label"
+  },
+  "amount": {
+    "message": "Summa (HTN)",
+    "description": "Amount field label"
+  },
+  "available": {
+    "message": "Käytettävissä:",
+    "description": "Available balance label"
+  },
+  "sendTransaction": {
+    "message": "Lähetä Tapahtuma",
+    "description": "Send transaction button"
+  },
+  "recipientAndAmountRequired": {
+    "message": "Vastaanottaja ja summa vaaditaan",
+    "description": "Recipient and amount required error"
+  },
+  "invalidAddressFormat": {
+    "message": "Virheellinen osoitemuoto. Täytyy alkaa \"hoosat:\"",
+    "description": "Invalid address format error"
+  },
+  "invalidAmount": {
+    "message": "Virheellinen summa",
+    "description": "Invalid amount error"
+  },
+  "estimatingFee": {
+    "message": "Arvioidaan maksua...",
+    "description": "Estimating fee status"
+  },
+  "insufficientBalance": {
+    "message": "Saldo ei riitä. Tarvitaan $1 HTN (sisältäen $2 HTN maksun)",
+    "description": "Insufficient balance error",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1.00000000"
+      },
+      "2": {
+        "content": "$2",
+        "example": "0.00001000"
+      }
+    }
+  },
+  "sending": {
+    "message": "Lähetetään...",
+    "description": "Sending status"
+  },
+  "transactionFailed": {
+    "message": "Tapahtuma epäonnistui",
+    "description": "Transaction failed error"
+  },
+
+  "receiveHTN": {
+    "message": "Vastaanota HTN",
+    "description": "Receive HTN title"
+  },
+  "copyAddress": {
+    "message": "Kopioi Osoite",
+    "description": "Copy address button"
+  },
+
+  "confirmTransaction": {
+    "message": "Vahvista Tapahtuma",
+    "description": "Confirm transaction title"
+  },
+  "requestedBy": {
+    "message": "Pyytäjä:",
+    "description": "Requested by label"
+  },
+  "requested": {
+    "message": "Pyydetty",
+    "description": "Requested prefix"
+  },
+  "oldRequest": {
+    "message": "Vanha pyyntö",
+    "description": "Old request warning"
+  },
+  "sendingTo": {
+    "message": "Lähetetään",
+    "description": "Sending to label"
+  },
+  "networkFee": {
+    "message": "Verkkomaksu",
+    "description": "Network fee label"
+  },
+  "custom": {
+    "message": "Mukautettu",
+    "description": "Custom fee badge"
+  },
+  "editFee": {
+    "message": "Muokkaa maksua",
+    "description": "Edit fee link"
+  },
+  "minimum": {
+    "message": "Minimi:",
+    "description": "Minimum fee label"
+  },
+  "cancel": {
+    "message": "Peruuta",
+    "description": "Cancel button"
+  },
+  "save": {
+    "message": "Tallenna",
+    "description": "Save button"
+  },
+  "invalidFeeValue": {
+    "message": "Virheellinen maksun arvo",
+    "description": "Invalid fee value error"
+  },
+  "feeCannotBeLess": {
+    "message": "Maksu ei voi olla alle $1 HTN",
+    "description": "Fee cannot be less error",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00001000"
+      }
+    }
+  },
+  "insufficientBalanceForFee": {
+    "message": "Saldo ei riitä tälle maksulle",
+    "description": "Insufficient balance for fee error"
+  },
+  "feeWarningHigher": {
+    "message": "Varoitus: Maksu on $1 kertaa korkeampi kuin minimi!",
+    "description": "Fee warning higher than minimum",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "10.0"
+      }
+    }
+  },
+  "total": {
+    "message": "Yhteensä",
+    "description": "Total label"
+  },
+  "verifyDetails": {
+    "message": "Ole hyvä ja tarkista kaikki tiedot ennen vahvistamista",
+    "description": "Verify details warning"
+  },
+  "confirmAndSend": {
+    "message": "Vahvista ja Lähetä",
+    "description": "Confirm and send button"
+  },
+
+  "settings": {
+    "message": "Asetukset",
+    "description": "Settings title"
+  },
+  "connectedSites": {
+    "message": "Yhdistetyt Sivustot",
+    "description": "Connected sites button"
+  },
+  "changePassword": {
+    "message": "Vaihda Salasana",
+    "description": "Change password button"
+  },
+  "exportPrivateKey": {
+    "message": "Vie Yksityinen Avain",
+    "description": "Export private key button"
+  },
+  "resetWallet": {
+    "message": "Nollaa Lompakko",
+    "description": "Reset wallet button"
+  },
+
+  "connectedSitesTitle": {
+    "message": "Yhdistetyt Sivustot",
+    "description": "Connected sites screen title"
+  },
+  "noConnectedSites": {
+    "message": "Ei Yhdistettyjä Sivustoja",
+    "description": "No connected sites message"
+  },
+  "noConnectedSitesDesc": {
+    "message": "Kun yhdistät lompakkosi sivustoon, se näkyy täällä.",
+    "description": "No connected sites description"
+  },
+  "connectedSitesInfo": {
+    "message": "Yhdistetyt sivustot voivat nähdä lompakkosi osoitteen ja pyytää tapahtumia. Katkaise yhteys sivustoihin, joita et enää käytä tai luota.",
+    "description": "Connected sites info"
+  },
+  "connected": {
+    "message": "Yhdistetty",
+    "description": "Connected prefix"
+  },
+  "disconnect": {
+    "message": "Katkaise Yhteys",
+    "description": "Disconnect button"
+  },
+  "disconnectSite": {
+    "message": "Katkaise Sivuston Yhteys",
+    "description": "Disconnect site dialog title"
+  },
+  "disconnectSiteConfirm": {
+    "message": "Haluatko varmasti katkaista yhteyden sivustoon $1? Sivuston täytyy pyytää yhteyttä uudelleen.",
+    "description": "Disconnect site confirmation",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "justNow": {
+    "message": "juuri nyt",
+    "description": "Just now time"
+  },
+  "minuteAgo": {
+    "message": "$1 minuutti sitten",
+    "description": "Minute ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "minutesAgo": {
+    "message": "$1 minuuttia sitten",
+    "description": "Minutes ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "hourAgo": {
+    "message": "$1 tunti sitten",
+    "description": "Hour ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "hoursAgo": {
+    "message": "$1 tuntia sitten",
+    "description": "Hours ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "dayAgo": {
+    "message": "$1 päivä sitten",
+    "description": "Day ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "daysAgo": {
+    "message": "$1 päivää sitten",
+    "description": "Days ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+
+  "changePasswordTitle": {
+    "message": "Vaihda Salasana",
+    "description": "Change password screen title"
+  },
+  "changePasswordWarning": {
+    "message": "Vaihtaessasi salasanaa, varmista että muistat sen. Et voi palauttaa lompakkoasi ilman oikeaa salasanaa!",
+    "description": "Change password warning"
+  },
+  "currentPassword": {
+    "message": "Nykyinen Salasana",
+    "description": "Current password label"
+  },
+  "enterCurrentPassword": {
+    "message": "Syötä nykyinen salasana",
+    "description": "Current password placeholder"
+  },
+  "newPassword": {
+    "message": "Uusi Salasana",
+    "description": "New password label"
+  },
+  "enterNewPassword": {
+    "message": "Syötä uusi salasana",
+    "description": "New password placeholder"
+  },
+  "confirmNewPassword": {
+    "message": "Vahvista Uusi Salasana",
+    "description": "Confirm new password label"
+  },
+  "confirmNewPasswordPlaceholder": {
+    "message": "Vahvista uusi salasana",
+    "description": "Confirm new password placeholder"
+  },
+  "changePasswordButton": {
+    "message": "Vaihda Salasana",
+    "description": "Change password button"
+  },
+  "currentPasswordRequired": {
+    "message": "Nykyinen salasana vaaditaan",
+    "description": "Current password required error"
+  },
+  "newPasswordRequired": {
+    "message": "Uusi salasana vaaditaan",
+    "description": "New password required error"
+  },
+  "newPasswordsDoNotMatch": {
+    "message": "Uudet salasanat eivät täsmää",
+    "description": "New passwords do not match error"
+  },
+  "newPasswordMustBeDifferent": {
+    "message": "Uuden salasanan täytyy olla erilainen kuin nykyinen",
+    "description": "New password must be different error"
+  },
+  "passwordMustBeAtLeast": {
+    "message": "Salasanan täytyy olla vähintään $1 merkkiä",
+    "description": "Password must be at least N characters",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "changingPassword": {
+    "message": "Vaihdetaan Salasanaa...",
+    "description": "Changing password status"
+  },
+  "failedToChangePassword": {
+    "message": "Salasanan vaihto epäonnistui",
+    "description": "Failed to change password error"
+  },
+  "weakPassword": {
+    "message": "Heikko salasana",
+    "description": "Weak password indicator"
+  },
+  "mediumPassword": {
+    "message": "Keskivahva salasana",
+    "description": "Medium password indicator"
+  },
+  "strongPassword": {
+    "message": "Vahva salasana",
+    "description": "Strong password indicator"
+  },
+
+  "exportPrivateKeyTitle": {
+    "message": "Vie Yksityinen Avain",
+    "description": "Export private key screen title"
+  },
+  "securityWarning": {
+    "message": "Turvallisuusvaroitus!",
+    "description": "Security warning title"
+  },
+  "neverSharePrivateKey": {
+    "message": "Älä koskaan jaa yksityistä avainta kenellekään. Kuka tahansa, jolla on pääsy yksityiseen avaimeesi, voi varastaa varasi!",
+    "description": "Never share private key warning"
+  },
+  "enterPasswordToConfirm": {
+    "message": "Syötä Salasana Vahvistaaksesi",
+    "description": "Enter password to confirm label"
+  },
+  "showPrivateKey": {
+    "message": "Näytä Yksityinen Avain",
+    "description": "Show private key button"
+  },
+  "verifying": {
+    "message": "Vahvistetaan...",
+    "description": "Verifying status"
+  },
+  "keepThisKeySafe": {
+    "message": "Pidä tämä avain turvassa!",
+    "description": "Keep this key safe title"
+  },
+  "keepKeySafeWarning": {
+    "message": "Kuka tahansa, jolla on tämä avain, voi päästä käsiksi varoihisi. Säilytä se turvallisesti äläkä koskaan jaa sitä.",
+    "description": "Keep key safe warning"
+  },
+  "hideKey": {
+    "message": "Piilota Avain",
+    "description": "Hide key button"
+  },
+  "showKey": {
+    "message": "Näytä Avain",
+    "description": "Show key button"
+  },
+  "copiedToClipboard": {
+    "message": "Kopioitu Leikepöydälle!",
+    "description": "Copied to clipboard notification"
+  },
+  "bestPractices": {
+    "message": "Parhaat Käytännöt:",
+    "description": "Best practices title"
+  },
+  "bestPractice1": {
+    "message": "Kirjoita se paperille ja säilytä turvallisessa paikassa",
+    "description": "Best practice 1"
+  },
+  "bestPractice2": {
+    "message": "Käytä salasanojen hallintaohjelmaa (salattu)",
+    "description": "Best practice 2"
+  },
+  "bestPractice3": {
+    "message": "Älä koskaan säilytä pelkkänä tekstinä tiedostoissa",
+    "description": "Best practice 3"
+  },
+  "bestPractice4": {
+    "message": "Älä koskaan lähetä sähköpostilla tai viestisovelluksilla",
+    "description": "Best practice 4"
+  },
+  "done": {
+    "message": "Valmis",
+    "description": "Done button"
+  },
+
+  "loading": {
+    "message": "Ladataan...",
+    "description": "Loading text"
+  },
+
+  "language": {
+    "message": "Kieli",
+    "description": "Language label"
+  },
+  "languageSettings": {
+    "message": "Kieliasetukset",
+    "description": "Language settings title"
+  },
+  "selectLanguage": {
+    "message": "Valitse Kieli",
+    "description": "Select language label"
+  },
+  "languageChanged": {
+    "message": "Kieli vaihdettu onnistuneesti",
+    "description": "Language changed notification"
+  },
+  "languageAuto": {
+    "message": "Automaattinen (Selaimen Oletus)",
+    "description": "Auto language option"
+  },
+  "languageEnglish": {
+    "message": "English (Englanti)",
+    "description": "English language name"
+  },
+  "languageRussian": {
+    "message": "Русский (Venäjä)",
+    "description": "Russian language name"
+  },
+  "languageChinese": {
+    "message": "简体中文 (Kiina Yksinkertaistettu)",
+    "description": "Chinese language name"
+  },
+  "languageSpanish": {
+    "message": "Español (Espanja)",
+    "description": "Spanish language name"
+  },
+  "languageFinnish": {
+    "message": "Suomi",
+    "description": "Finnish language name"
+  },
+  "languageJapanese": {
+    "message": "日本語 (Japani)",
+    "description": "Japanese language name"
+  },
+  "languageKorean": {
+    "message": "한국어 (Korea)",
+    "description": "Korean language name"
+  },
+  "languageTurkish": {
+    "message": "Türkçe (Turkki)",
+    "description": "Turkish language name"
+  },
+  "languageGerman": {
+    "message": "Deutsch (Saksa)",
+    "description": "German language name"
+  },
+  "failedToChangeLanguage": {
+    "message": "Kielen vaihto epäonnistui",
+    "description": "Error message when language change fails"
+  }
+}

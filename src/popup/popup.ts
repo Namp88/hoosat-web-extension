@@ -2,7 +2,7 @@
 import { hasWallet } from '../shared/storage';
 import { MessageType } from '../shared/types';
 import * as api from '../shared/api/messages';
-import { showSuccessMessage } from './utils';
+import { showSuccessMessage, initLanguage } from './utils';
 import {
   showWelcomeScreen,
   showGenerateWalletScreen,
@@ -36,6 +36,9 @@ const app = document.getElementById('app')!;
 // Initialize popup
 async function init() {
   console.log('Initializing popup...');
+
+  // Initialize language settings
+  await initLanguage();
 
   // Check if wallet exists
   const walletExists = await hasWallet();
@@ -449,8 +452,8 @@ function showReceive() {
 /**
  * Show settings screen
  */
-function showSettings() {
-  showSettingsScreen(app, showWallet, showChangePassword, showExportKey, showConnectedSites, handleReset);
+async function showSettings() {
+  await showSettingsScreen(app, showWallet, showChangePassword, showExportKey, showConnectedSites, handleReset);
 }
 
 /**

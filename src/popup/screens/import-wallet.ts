@@ -1,5 +1,5 @@
-import { APP_NAME } from '../../shared/constants';
 import { validatePassword, calculatePasswordStrength, addPasswordStrengthIndicator } from '../utils';
+import { t } from '../utils/i18n';
 
 /**
  * Show import wallet screen
@@ -15,7 +15,7 @@ export function showImportWalletScreen(
         <button id="backBtn" class="btn-icon">←</button>
         <div class="header-center">
           <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
-          <h1>Import Wallet</h1>
+          <h1>${t('importWallet')}</h1>
         </div>
         <div style="width: 32px;"></div>
       </div>
@@ -23,35 +23,35 @@ export function showImportWalletScreen(
       <div class="content">
         <div class="form">
           <div class="form-group">
-            <label for="privateKey">Private Key (hex)</label>
-            <input type="text" id="privateKey" placeholder="Enter your private key" autocomplete="off" />
+            <label for="privateKey">${t('privateKeyHex')}</label>
+            <input type="text" id="privateKey" placeholder="${t('enterPrivateKey')}" autocomplete="off" />
           </div>
 
           <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" placeholder="Create password" autocomplete="new-password" />
+            <label for="password">${t('password')}</label>
+            <input type="password" id="password" placeholder="${t('createPassword')}" autocomplete="new-password" />
           </div>
 
           <div class="password-strength" id="passwordStrength"></div>
 
           <div class="form-group">
-            <label for="confirmPassword">Confirm Password</label>
-            <input type="password" id="confirmPassword" placeholder="Confirm password" autocomplete="new-password" />
+            <label for="confirmPassword">${t('confirmPassword')}</label>
+            <input type="password" id="confirmPassword" placeholder="${t('confirmPasswordPlaceholder')}" autocomplete="new-password" />
           </div>
 
           <div class="password-requirements">
-            <div class="requirements-title">Password must contain:</div>
+            <div class="requirements-title">${t('passwordRequirements')}</div>
             <ul>
-              <li>At least 8 characters</li>
-              <li>One uppercase letter (A-Z)</li>
-              <li>One lowercase letter (a-z)</li>
-              <li>One number (0-9)</li>
+              <li>${t('passwordReq8Chars')}</li>
+              <li>${t('passwordReqUppercase')}</li>
+              <li>${t('passwordReqLowercase')}</li>
+              <li>${t('passwordReqNumber')}</li>
             </ul>
           </div>
 
           <div class="error" id="error"></div>
 
-          <button id="importWalletBtn" class="btn btn-primary">Import Wallet</button>
+          <button id="importWalletBtn" class="btn btn-primary">${t('importWalletButton')}</button>
         </div>
       </div>
     </div>
@@ -67,17 +67,17 @@ export function showImportWalletScreen(
 
     // Validation
     if (!privateKey) {
-      errorEl.textContent = 'Private key is required';
+      errorEl.textContent = t('privateKeyRequired');
       return;
     }
 
     if (!password || !confirmPassword) {
-      errorEl.textContent = 'Password is required';
+      errorEl.textContent = t('passwordRequired');
       return;
     }
 
     if (password !== confirmPassword) {
-      errorEl.textContent = 'Passwords do not match';
+      errorEl.textContent = t('passwordsDoNotMatch');
       return;
     }
 
@@ -91,14 +91,14 @@ export function showImportWalletScreen(
     // Check strength (warn if too weak)
     const strength = calculatePasswordStrength(password);
     if (strength.score < 3) {
-      errorEl.textContent = 'Password is too weak. ' + strength.feedback.slice(0, 2).join(', ');
+      errorEl.textContent = t('passwordTooWeak') + ' ' + strength.feedback.slice(0, 2).join(', ');
       return;
     }
 
     try {
       await onImport(privateKey, password, confirmPassword);
     } catch (error: any) {
-      errorEl.textContent = error.message || 'Failed to import wallet';
+      errorEl.textContent = error.message || t('failedToImportWallet');
     }
   };
 

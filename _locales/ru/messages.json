@@ -1,0 +1,727 @@
+{
+  "appName": {
+    "message": "Hoosat Кошелёк",
+    "description": "Application name"
+  },
+  "appDescription": {
+    "message": "Расширение-кошелёк для браузера для блокчейна Hoosat",
+    "description": "Application description"
+  },
+
+  "welcome": {
+    "message": "Добро пожаловать!",
+    "description": "Welcome screen title"
+  },
+  "welcomeDescription": {
+    "message": "Выберите способ начала работы",
+    "description": "Welcome screen description"
+  },
+  "createNewWallet": {
+    "message": "Создать новый кошелёк",
+    "description": "Create new wallet button"
+  },
+  "createNewWalletDesc": {
+    "message": "Сгенерировать новый кошелёк",
+    "description": "Create new wallet description"
+  },
+  "importExistingWallet": {
+    "message": "Импортировать кошелёк",
+    "description": "Import wallet button"
+  },
+  "importExistingWalletDesc": {
+    "message": "Использовать приватный ключ",
+    "description": "Import wallet description"
+  },
+
+  "unlockWallet": {
+    "message": "Разблокировать кошелёк",
+    "description": "Unlock wallet title"
+  },
+  "requestFrom": {
+    "message": "Запрос от:",
+    "description": "Request from label"
+  },
+  "password": {
+    "message": "Пароль",
+    "description": "Password field label"
+  },
+  "enterPassword": {
+    "message": "Введите пароль",
+    "description": "Password field placeholder"
+  },
+  "unlock": {
+    "message": "Разблокировать",
+    "description": "Unlock button"
+  },
+  "passwordRequired": {
+    "message": "Требуется пароль",
+    "description": "Password required error"
+  },
+  "invalidPassword": {
+    "message": "Неверный пароль",
+    "description": "Invalid password error"
+  },
+
+  "createNewWalletTitle": {
+    "message": "Создать новый кошелёк",
+    "description": "Create new wallet screen title"
+  },
+  "important": {
+    "message": "Важно:",
+    "description": "Important label"
+  },
+  "savePrivateKeyWarning": {
+    "message": "Сохраните свой приватный ключ в безопасном месте. Он понадобится для восстановления кошелька. Никогда не делитесь им с кем-либо!",
+    "description": "Save private key warning"
+  },
+  "createPassword": {
+    "message": "Создайте пароль",
+    "description": "Create password placeholder"
+  },
+  "confirmPassword": {
+    "message": "Подтвердите пароль",
+    "description": "Confirm password label"
+  },
+  "confirmPasswordPlaceholder": {
+    "message": "Подтвердите пароль",
+    "description": "Confirm password placeholder"
+  },
+  "passwordRequirements": {
+    "message": "Пароль должен содержать:",
+    "description": "Password requirements title"
+  },
+  "passwordReq8Chars": {
+    "message": "Минимум 8 символов",
+    "description": "Password requirement: 8 characters"
+  },
+  "passwordReqUppercase": {
+    "message": "Одну заглавную букву (A-Z)",
+    "description": "Password requirement: uppercase"
+  },
+  "passwordReqLowercase": {
+    "message": "Одну строчную букву (a-z)",
+    "description": "Password requirement: lowercase"
+  },
+  "passwordReqNumber": {
+    "message": "Одну цифру (0-9)",
+    "description": "Password requirement: number"
+  },
+  "generateWallet": {
+    "message": "Создать кошелёк",
+    "description": "Generate wallet button"
+  },
+  "passwordsDoNotMatch": {
+    "message": "Пароли не совпадают",
+    "description": "Passwords do not match error"
+  },
+  "passwordTooWeak": {
+    "message": "Пароль слишком слабый.",
+    "description": "Password too weak error"
+  },
+  "failedToGenerateWallet": {
+    "message": "Не удалось создать кошелёк",
+    "description": "Failed to generate wallet error"
+  },
+
+  "importWallet": {
+    "message": "Импорт кошелька",
+    "description": "Import wallet title"
+  },
+  "privateKeyHex": {
+    "message": "Приватный ключ (hex)",
+    "description": "Private key field label"
+  },
+  "enterPrivateKey": {
+    "message": "Введите ваш приватный ключ",
+    "description": "Private key field placeholder"
+  },
+  "importWalletButton": {
+    "message": "Импортировать кошелёк",
+    "description": "Import wallet button"
+  },
+  "privateKeyRequired": {
+    "message": "Требуется приватный ключ",
+    "description": "Private key required error"
+  },
+  "failedToImportWallet": {
+    "message": "Не удалось импортировать кошелёк",
+    "description": "Failed to import wallet error"
+  },
+
+  "backupPrivateKey": {
+    "message": "Резервная копия приватного ключа",
+    "description": "Backup private key title"
+  },
+  "saveThisPrivateKey": {
+    "message": "Сохраните этот приватный ключ!",
+    "description": "Save this private key warning title"
+  },
+  "writeItDownWarning": {
+    "message": "Запишите его и храните в безопасном месте. Он понадобится для восстановления кошелька.",
+    "description": "Write down private key warning"
+  },
+  "yourPrivateKey": {
+    "message": "Ваш приватный ключ",
+    "description": "Your private key label"
+  },
+  "yourAddress": {
+    "message": "Ваш адрес",
+    "description": "Your address label"
+  },
+  "copyToClipboard": {
+    "message": "Скопировать в буфер обмена",
+    "description": "Copy to clipboard button"
+  },
+  "copied": {
+    "message": "Скопировано!",
+    "description": "Copied notification"
+  },
+  "confirmBackup": {
+    "message": "Я сохранил приватный ключ в безопасном месте",
+    "description": "Confirm backup checkbox"
+  },
+  "continue": {
+    "message": "Продолжить",
+    "description": "Continue button"
+  },
+
+  "address": {
+    "message": "Адрес",
+    "description": "Address label"
+  },
+  "balance": {
+    "message": "Баланс",
+    "description": "Balance label"
+  },
+  "send": {
+    "message": "Отправить",
+    "description": "Send button"
+  },
+  "receive": {
+    "message": "Получить",
+    "description": "Receive button"
+  },
+  "recentTransactions": {
+    "message": "Недавние транзакции",
+    "description": "Recent transactions title"
+  },
+  "noTransactionsYet": {
+    "message": "Транзакций пока нет",
+    "description": "No transactions message"
+  },
+  "viewFullHistoryInExplorer": {
+    "message": "Посмотреть полную историю в обозревателе →",
+    "description": "View full history link"
+  },
+  "sent": {
+    "message": "Отправлено",
+    "description": "Sent transaction type"
+  },
+  "received": {
+    "message": "Получено",
+    "description": "Received transaction type"
+  },
+  "to": {
+    "message": "Кому:",
+    "description": "To label"
+  },
+  "from": {
+    "message": "От:",
+    "description": "From label"
+  },
+
+  "sendHTN": {
+    "message": "Отправить HTN",
+    "description": "Send HTN title"
+  },
+  "recipientAddress": {
+    "message": "Адрес получателя",
+    "description": "Recipient address label"
+  },
+  "amount": {
+    "message": "Сумма (HTN)",
+    "description": "Amount field label"
+  },
+  "available": {
+    "message": "Доступно:",
+    "description": "Available balance label"
+  },
+  "sendTransaction": {
+    "message": "Отправить транзакцию",
+    "description": "Send transaction button"
+  },
+  "recipientAndAmountRequired": {
+    "message": "Получатель и сумма обязательны",
+    "description": "Recipient and amount required error"
+  },
+  "invalidAddressFormat": {
+    "message": "Неверный формат адреса. Должен начинаться с \"hoosat:\"",
+    "description": "Invalid address format error"
+  },
+  "invalidAmount": {
+    "message": "Неверная сумма",
+    "description": "Invalid amount error"
+  },
+  "estimatingFee": {
+    "message": "Расчёт комиссии...",
+    "description": "Estimating fee status"
+  },
+  "insufficientBalance": {
+    "message": "Недостаточно средств. Необходимо $1 HTN (включая комиссию $2 HTN)",
+    "description": "Insufficient balance error",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1.00000000"
+      },
+      "2": {
+        "content": "$2",
+        "example": "0.00001000"
+      }
+    }
+  },
+  "sending": {
+    "message": "Отправка...",
+    "description": "Sending status"
+  },
+  "transactionFailed": {
+    "message": "Транзакция не удалась",
+    "description": "Transaction failed error"
+  },
+
+  "receiveHTN": {
+    "message": "Получить HTN",
+    "description": "Receive HTN title"
+  },
+  "copyAddress": {
+    "message": "Скопировать адрес",
+    "description": "Copy address button"
+  },
+
+  "confirmTransaction": {
+    "message": "Подтвердите транзакцию",
+    "description": "Confirm transaction title"
+  },
+  "requestedBy": {
+    "message": "Запрошено:",
+    "description": "Requested by label"
+  },
+  "requested": {
+    "message": "Запрошено",
+    "description": "Requested prefix"
+  },
+  "oldRequest": {
+    "message": "Старый запрос",
+    "description": "Old request warning"
+  },
+  "sendingTo": {
+    "message": "Отправка на",
+    "description": "Sending to label"
+  },
+  "networkFee": {
+    "message": "Комиссия сети",
+    "description": "Network fee label"
+  },
+  "custom": {
+    "message": "Своя",
+    "description": "Custom fee badge"
+  },
+  "editFee": {
+    "message": "Изменить комиссию",
+    "description": "Edit fee link"
+  },
+  "minimum": {
+    "message": "Минимум:",
+    "description": "Minimum fee label"
+  },
+  "cancel": {
+    "message": "Отмена",
+    "description": "Cancel button"
+  },
+  "save": {
+    "message": "Сохранить",
+    "description": "Save button"
+  },
+  "invalidFeeValue": {
+    "message": "Неверное значение комиссии",
+    "description": "Invalid fee value error"
+  },
+  "feeCannotBeLess": {
+    "message": "Комиссия не может быть меньше $1 HTN",
+    "description": "Fee cannot be less error",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00001000"
+      }
+    }
+  },
+  "insufficientBalanceForFee": {
+    "message": "Недостаточно средств для этой комиссии",
+    "description": "Insufficient balance for fee error"
+  },
+  "feeWarningHigher": {
+    "message": "Внимание: Комиссия в $1 раз выше минимальной!",
+    "description": "Fee warning higher than minimum",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "10.0"
+      }
+    }
+  },
+  "total": {
+    "message": "Итого",
+    "description": "Total label"
+  },
+  "verifyDetails": {
+    "message": "Пожалуйста, проверьте все данные перед подтверждением",
+    "description": "Verify details warning"
+  },
+  "confirmAndSend": {
+    "message": "Подтвердить и отправить",
+    "description": "Confirm and send button"
+  },
+
+  "settings": {
+    "message": "Настройки",
+    "description": "Settings title"
+  },
+  "connectedSites": {
+    "message": "Подключённые сайты",
+    "description": "Connected sites button"
+  },
+  "changePassword": {
+    "message": "Изменить пароль",
+    "description": "Change password button"
+  },
+  "exportPrivateKey": {
+    "message": "Экспортировать приватный ключ",
+    "description": "Export private key button"
+  },
+  "resetWallet": {
+    "message": "Сбросить кошелёк",
+    "description": "Reset wallet button"
+  },
+
+  "connectedSitesTitle": {
+    "message": "Подключённые сайты",
+    "description": "Connected sites screen title"
+  },
+  "noConnectedSites": {
+    "message": "Нет подключённых сайтов",
+    "description": "No connected sites message"
+  },
+  "noConnectedSitesDesc": {
+    "message": "Когда вы подключите кошелёк к сайту, он появится здесь.",
+    "description": "No connected sites description"
+  },
+  "connectedSitesInfo": {
+    "message": "Подключённые сайты могут просматривать адрес вашего кошелька и запрашивать транзакции. Отключите сайты, которые вы больше не используете или не доверяете.",
+    "description": "Connected sites info"
+  },
+  "connected": {
+    "message": "Подключено",
+    "description": "Connected prefix"
+  },
+  "disconnect": {
+    "message": "Отключить",
+    "description": "Disconnect button"
+  },
+  "disconnectSite": {
+    "message": "Отключить сайт",
+    "description": "Disconnect site dialog title"
+  },
+  "disconnectSiteConfirm": {
+    "message": "Вы уверены, что хотите отключить $1? Сайту потребуется снова запросить подключение.",
+    "description": "Disconnect site confirmation",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "justNow": {
+    "message": "только что",
+    "description": "Just now time"
+  },
+  "minuteAgo": {
+    "message": "$1 минуту назад",
+    "description": "Minute ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "minutesAgo": {
+    "message": "$1 минут назад",
+    "description": "Minutes ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "hourAgo": {
+    "message": "$1 час назад",
+    "description": "Hour ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "hoursAgo": {
+    "message": "$1 часов назад",
+    "description": "Hours ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "dayAgo": {
+    "message": "$1 день назад",
+    "description": "Day ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "daysAgo": {
+    "message": "$1 дней назад",
+    "description": "Days ago time",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+
+  "changePasswordTitle": {
+    "message": "Изменить пароль",
+    "description": "Change password screen title"
+  },
+  "changePasswordWarning": {
+    "message": "После изменения пароля убедитесь, что запомнили его. Вы не сможете восстановить свой кошелёк без правильного пароля!",
+    "description": "Change password warning"
+  },
+  "currentPassword": {
+    "message": "Текущий пароль",
+    "description": "Current password label"
+  },
+  "enterCurrentPassword": {
+    "message": "Введите текущий пароль",
+    "description": "Current password placeholder"
+  },
+  "newPassword": {
+    "message": "Новый пароль",
+    "description": "New password label"
+  },
+  "enterNewPassword": {
+    "message": "Введите новый пароль",
+    "description": "New password placeholder"
+  },
+  "confirmNewPassword": {
+    "message": "Подтвердите новый пароль",
+    "description": "Confirm new password label"
+  },
+  "confirmNewPasswordPlaceholder": {
+    "message": "Подтвердите новый пароль",
+    "description": "Confirm new password placeholder"
+  },
+  "changePasswordButton": {
+    "message": "Изменить пароль",
+    "description": "Change password button"
+  },
+  "currentPasswordRequired": {
+    "message": "Требуется текущий пароль",
+    "description": "Current password required error"
+  },
+  "newPasswordRequired": {
+    "message": "Требуется новый пароль",
+    "description": "New password required error"
+  },
+  "newPasswordsDoNotMatch": {
+    "message": "Новые пароли не совпадают",
+    "description": "New passwords do not match error"
+  },
+  "newPasswordMustBeDifferent": {
+    "message": "Новый пароль должен отличаться от текущего",
+    "description": "New password must be different error"
+  },
+  "passwordMustBeAtLeast": {
+    "message": "Пароль должен содержать минимум $1 символов",
+    "description": "Password must be at least N characters",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "8"
+      }
+    }
+  },
+  "changingPassword": {
+    "message": "Изменение пароля...",
+    "description": "Changing password status"
+  },
+  "failedToChangePassword": {
+    "message": "Не удалось изменить пароль",
+    "description": "Failed to change password error"
+  },
+  "weakPassword": {
+    "message": "Слабый пароль",
+    "description": "Weak password indicator"
+  },
+  "mediumPassword": {
+    "message": "Средний пароль",
+    "description": "Medium password indicator"
+  },
+  "strongPassword": {
+    "message": "Надёжный пароль",
+    "description": "Strong password indicator"
+  },
+
+  "exportPrivateKeyTitle": {
+    "message": "Экспорт приватного ключа",
+    "description": "Export private key screen title"
+  },
+  "securityWarning": {
+    "message": "Предупреждение безопасности!",
+    "description": "Security warning title"
+  },
+  "neverSharePrivateKey": {
+    "message": "Никогда не делитесь своим приватным ключом. Любой, у кого есть доступ к вашему приватному ключу, может украсть ваши средства!",
+    "description": "Never share private key warning"
+  },
+  "enterPasswordToConfirm": {
+    "message": "Введите пароль для подтверждения",
+    "description": "Enter password to confirm label"
+  },
+  "showPrivateKey": {
+    "message": "Показать приватный ключ",
+    "description": "Show private key button"
+  },
+  "verifying": {
+    "message": "Проверка...",
+    "description": "Verifying status"
+  },
+  "keepThisKeySafe": {
+    "message": "Храните этот ключ в безопасности!",
+    "description": "Keep this key safe title"
+  },
+  "keepKeySafeWarning": {
+    "message": "Любой, у кого есть этот ключ, может получить доступ к вашим средствам. Храните его в безопасном месте и никогда не делитесь им.",
+    "description": "Keep key safe warning"
+  },
+  "hideKey": {
+    "message": "Скрыть ключ",
+    "description": "Hide key button"
+  },
+  "showKey": {
+    "message": "Показать ключ",
+    "description": "Show key button"
+  },
+  "copiedToClipboard": {
+    "message": "Скопировано в буфер обмена!",
+    "description": "Copied to clipboard notification"
+  },
+  "bestPractices": {
+    "message": "Лучшие практики:",
+    "description": "Best practices title"
+  },
+  "bestPractice1": {
+    "message": "Запишите на бумаге и храните в безопасном месте",
+    "description": "Best practice 1"
+  },
+  "bestPractice2": {
+    "message": "Используйте менеджер паролей (зашифрованный)",
+    "description": "Best practice 2"
+  },
+  "bestPractice3": {
+    "message": "Никогда не храните в незашифрованных файлах",
+    "description": "Best practice 3"
+  },
+  "bestPractice4": {
+    "message": "Никогда не отправляйте по электронной почте или в мессенджерах",
+    "description": "Best practice 4"
+  },
+  "done": {
+    "message": "Готово",
+    "description": "Done button"
+  },
+
+  "loading": {
+    "message": "Загрузка...",
+    "description": "Loading text"
+  },
+
+  "language": {
+    "message": "Язык",
+    "description": "Language label"
+  },
+  "languageSettings": {
+    "message": "Настройки языка",
+    "description": "Language settings title"
+  },
+  "selectLanguage": {
+    "message": "Выберите язык",
+    "description": "Select language label"
+  },
+  "languageChanged": {
+    "message": "Язык успешно изменён",
+    "description": "Language changed notification"
+  },
+  "languageAuto": {
+    "message": "Авто (язык браузера)",
+    "description": "Auto language option"
+  },
+  "languageEnglish": {
+    "message": "English (Английский)",
+    "description": "English language name"
+  },
+  "languageRussian": {
+    "message": "Русский",
+    "description": "Russian language name"
+  },
+  "languageChinese": {
+    "message": "简体中文 (Китайский упрощённый)",
+    "description": "Chinese language name"
+  },
+  "languageSpanish": {
+    "message": "Español (Испанский)",
+    "description": "Spanish language name"
+  },
+  "languageFinnish": {
+    "message": "Suomi (Финский)",
+    "description": "Finnish language name"
+  },
+  "languageJapanese": {
+    "message": "日本語 (Японский)",
+    "description": "Japanese language name"
+  },
+  "languageKorean": {
+    "message": "한국어 (Корейский)",
+    "description": "Korean language name"
+  },
+  "languageTurkish": {
+    "message": "Türkçe (Турецкий)",
+    "description": "Turkish language name"
+  },
+  "languageGerman": {
+    "message": "Deutsch (Немецкий)",
+    "description": "German language name"
+  },
+  "failedToChangeLanguage": {
+    "message": "Не удалось изменить язык",
+    "description": "Error message when language change fails"
+  }
+}
