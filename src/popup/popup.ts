@@ -440,13 +440,13 @@ function showSend() {
 /**
  * Show receive screen
  */
-function showReceive() {
+async function showReceive() {
   const address = getCurrentAddress();
   if (!address) {
     console.error('No address available');
     return;
   }
-  showReceiveScreen(app, address, showWallet, copyAddress);
+  await showReceiveScreen(app, address, showWallet, copyAddress);
 }
 
 /**

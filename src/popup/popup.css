@@ -732,6 +732,54 @@ body {
     margin-bottom: 16px;
 }
 
+/* QR Code Container */
+.qr-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+    padding: 20px;
+    background: linear-gradient(135deg, #0a1628 0%, #1a3f3a 100%);
+    border-radius: 16px;
+    border: 2px solid rgba(0, 217, 163, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 217, 163, 0.1);
+}
+
+.qr-code {
+    padding: 16px;
+    background: white;
+    border-radius: 12px;
+    display: inline-block;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.qr-code img {
+    display: block;
+    width: 256px;
+    height: 256px;
+    border-radius: 8px;
+}
+
+.qr-code-loading {
+    padding: 40px;
+    color: #a0aec0;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 256px;
+}
+
+.qr-code-error {
+    padding: 40px;
+    color: #fc8181;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 256px;
+}
+
 .address-display {
     padding: 14px;
     background: #152033;
