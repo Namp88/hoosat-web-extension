@@ -22,8 +22,9 @@ import {
   initWalletData,
   type UnlockContext,
 } from './screens';
-import { showBackupPrivateKey, showConfirmDialog } from './components';
+import { showBackupPrivateKey, showConfirmDialog, showAlertDialog } from './components';
 import { showTransactionPreview } from './components/transaction-preview';
+import { showConsolidationModal, showConsolidationProgress, showConsolidationSuccess } from './components/consolidation-modal';
 
 console.log('🦊 Hoosat Wallet popup loaded');
 
@@ -528,10 +529,112 @@ async function handleUnlock(password: string, skipShowWallet: boolean = false): 
   // Show wallet (unless caller wants to handle navigation themselves)
   if (!skipShowWallet) {
     await showWallet();
+    // Check if consolidation is needed after showing wallet
+    await checkAndShowConsolidationModal();
   } else {
     // Even if we skip showing wallet screen, we need to load the wallet data
     // so getCurrentAddress() and getCurrentBalance() work
     await initWalletData();
+  }
+}
+
+/**
+ * Check if UTXO consolidation is needed and show modal
+ */
+async function checkAndShowConsolidationModal(): Promise<void> {
+  try {
+    // Get consolidation settings
+    const settingsResponse = await chrome.runtime.sendMessage({
+      type: 'GET_CONSOLIDATION_SETTINGS',
+    });
+
+    if (!settingsResponse.success) {
+      return; // Silently fail - don't block user
+    }
+
+    const settings = settingsResponse.data;
+
+    // If user has already seen the modal, don't show it again
+    if (settings.hasSeenModal) {
+      return;
+    }
+
+    // Get consolidation info
+    const infoResponse = await chrome.runtime.sendMessage({
+      type: 'GET_CONSOLIDATION_INFO',
+    });
+
+    if (!infoResponse.success) {
+      return; // Silently fail
+    }
+
+    const info = infoResponse.data;
+
+    // Show modal if consolidation is recommended
+    if (info.shouldConsolidate && info.utxoCount >= settings.threshold) {
+      await showConsolidationModal(
+        app,
+        async () => {
+          await handleConsolidation();
+        },
+        async () => {
+          // User clicked "Later" - mark modal as seen
+          await chrome.runtime.sendMessage({
+            type: 'MARK_CONSOLIDATION_MODAL_SEEN',
+          });
+        }
+      );
+    }
+  } catch (error) {
+    console.error('Failed to check consolidation:', error);
+    // Don't block user on error
+  }
+}
+
+/**
+ * Handle UTXO consolidation process
+ */
+async function handleConsolidation(): Promise<void> {
+  try {
+    // Get info for progress display
+    const infoResponse = await chrome.runtime.sendMessage({
+      type: 'GET_CONSOLIDATION_INFO',
+    });
+
+    if (!infoResponse.success) {
+      throw new Error('Failed to get consolidation info');
+    }
+
+    const info = infoResponse.data;
+
+    // Show progress modal
+    const progressModal = showConsolidationProgress(app, info.utxoCount, info.consolidationFee);
+
+    // Execute consolidation
+    const response = await chrome.runtime.sendMessage({
+      type: 'CONSOLIDATE_UTXOS',
+    });
+
+    // Remove progress modal
+    progressModal.remove();
+
+    if (!response.success) {
+      throw new Error(response.error || 'Consolidation failed');
+    }
+
+    // Show success modal
+    showConsolidationSuccess(app, info.utxoCount, info.consolidationFee, async () => {
+      // Refresh wallet screen to show updated UTXO count
+      await showWallet();
+    });
+
+    // Mark modal as seen after successful consolidation
+    await chrome.runtime.sendMessage({
+      type: 'MARK_CONSOLIDATION_MODAL_SEEN',
+    });
+  } catch (error) {
+    console.error('Consolidation failed:', error);
+    await showAlertDialog('Error', 'Consolidation failed: ' + (error as Error).message, 'error');
   }
 }
 

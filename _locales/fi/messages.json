@@ -723,5 +723,149 @@
   "failedToChangeLanguage": {
     "message": "Kielen vaihto epäonnistui",
     "description": "Error message when language change fails"
+  },
+  "utxoConsolidation": {
+    "message": "UTXO-konsolidointi",
+    "description": "UTXO Consolidation"
+  },
+  "consolidationRecommended": {
+    "message": "UTXO-konsolidointi suositeltu",
+    "description": "UTXO Consolidation Recommended"
+  },
+  "yourWalletHasUtxos": {
+    "message": "Lompakossasi on $1 UTXO:ta",
+    "description": "Your wallet has X UTXOs",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "45"
+      }
+    }
+  },
+  "currentTransactionFee": {
+    "message": "Nykyinen transaktiopalkkio: $1 HTN",
+    "description": "Current transaction fee",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00045000"
+      }
+    }
+  },
+  "consolidationFee": {
+    "message": "Konsolidointipalkkio: $1 HTN",
+    "description": "Consolidation fee",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00030000"
+      }
+    }
+  },
+  "futureSavings": {
+    "message": "Tulevat säästöt: ~$1 HTN",
+    "description": "Future savings",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00015000"
+      }
+    }
+  },
+  "consolidationDescription": {
+    "message": "Konsolidointi yhdistää kaikki UTXO:t yhdeksi, mikä vähentää tulevia transaktiopalkkioita.",
+    "description": "Consolidating will combine all UTXOs into one, reducing future transaction fees."
+  },
+  "consolidateNow": {
+    "message": "Konsolidoi Nyt",
+    "description": "Consolidate Now"
+  },
+  "later": {
+    "message": "Myöhemmin",
+    "description": "Later"
+  },
+  "consolidating": {
+    "message": "Konsolidoidaan UTXO:ja...",
+    "description": "Consolidating UTXOs..."
+  },
+  "combiningUtxos": {
+    "message": "Yhdistetään $1 UTXO:ta yhdeksi",
+    "description": "Combining X UTXOs into 1",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "45"
+      }
+    }
+  },
+  "buildingTransaction": {
+    "message": "Rakennetaan transaktiota...",
+    "description": "Building transaction..."
+  },
+  "consolidationComplete": {
+    "message": "Konsolidointi valmis!",
+    "description": "Consolidation Complete!"
+  },
+  "utxosReduced": {
+    "message": "UTXO:t: $1 → 1",
+    "description": "UTXOs: X → 1",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "45"
+      }
+    }
+  },
+  "feePaid": {
+    "message": "Maksettu palkkio: $1 HTN",
+    "description": "Fee paid",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00030000"
+      }
+    }
+  },
+  "futureTransactionsCheaper": {
+    "message": "Tulevat transaktiot ovat halvempia!",
+    "description": "Future transactions will be cheaper!"
+  },
+  "utxoManagement": {
+    "message": "UTXO-hallinta",
+    "description": "UTXO Management"
+  },
+  "currentUtxos": {
+    "message": "Nykyiset UTXO:t: $1",
+    "description": "Current UTXOs",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "45"
+      }
+    }
+  },
+  "consolidateUtxos": {
+    "message": "Konsolidoi UTXO:t",
+    "description": "Consolidate UTXOs"
+  },
+  "autoConsolidateWhen": {
+    "message": "Automaattinen konsolidointi kun > 30 UTXO:ta",
+    "description": "Auto-consolidate when > 30 UTXOs"
+  },
+  "consolidationFailed": {
+    "message": "Konsolidointi epäonnistui",
+    "description": "Consolidation failed"
+  },
+  "checkingUtxos": {
+    "message": "Tarkistetaan UTXO:ja...",
+    "description": "Checking UTXOs..."
+  },
+  "success": {
+    "message": "Onnistui",
+    "description": "Success title"
+  },
+  "error": {
+    "message": "Virhe",
+    "description": "Error title"
   }
 }

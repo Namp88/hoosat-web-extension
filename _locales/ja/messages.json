@@ -707,5 +707,149 @@
   "failedToChangeLanguage": {
     "message": "言語の変更に失敗しました",
     "description": "Error message when language change fails"
+  },
+  "utxoConsolidation": {
+    "message": "UTXO統合",
+    "description": "UTXO Consolidation"
+  },
+  "consolidationRecommended": {
+    "message": "UTXO統合が推奨されます",
+    "description": "UTXO Consolidation Recommended"
+  },
+  "yourWalletHasUtxos": {
+    "message": "ウォレットに$1個のUTXOがあります",
+    "description": "Your wallet has X UTXOs",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "45"
+      }
+    }
+  },
+  "currentTransactionFee": {
+    "message": "現在の取引手数料: $1 HTN",
+    "description": "Current transaction fee",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00045000"
+      }
+    }
+  },
+  "consolidationFee": {
+    "message": "統合手数料: $1 HTN",
+    "description": "Consolidation fee",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00030000"
+      }
+    }
+  },
+  "futureSavings": {
+    "message": "将来の節約: ~$1 HTN",
+    "description": "Future savings",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00015000"
+      }
+    }
+  },
+  "consolidationDescription": {
+    "message": "統合により、すべてのUTXOを1つにまとめ、将来の取引手数料を削減します。",
+    "description": "Consolidating will combine all UTXOs into one, reducing future transaction fees."
+  },
+  "consolidateNow": {
+    "message": "今すぐ統合",
+    "description": "Consolidate Now"
+  },
+  "later": {
+    "message": "後で",
+    "description": "Later"
+  },
+  "consolidating": {
+    "message": "UTXOを統合中...",
+    "description": "Consolidating UTXOs..."
+  },
+  "combiningUtxos": {
+    "message": "$1個のUTXOを1つに統合中",
+    "description": "Combining X UTXOs into 1",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "45"
+      }
+    }
+  },
+  "buildingTransaction": {
+    "message": "取引を構築中...",
+    "description": "Building transaction..."
+  },
+  "consolidationComplete": {
+    "message": "統合完了！",
+    "description": "Consolidation Complete!"
+  },
+  "utxosReduced": {
+    "message": "UTXO: $1 → 1",
+    "description": "UTXOs: X → 1",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "45"
+      }
+    }
+  },
+  "feePaid": {
+    "message": "支払った手数料: $1 HTN",
+    "description": "Fee paid",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00030000"
+      }
+    }
+  },
+  "futureTransactionsCheaper": {
+    "message": "今後の取引がより安くなります！",
+    "description": "Future transactions will be cheaper!"
+  },
+  "utxoManagement": {
+    "message": "UTXO管理",
+    "description": "UTXO Management"
+  },
+  "currentUtxos": {
+    "message": "現在のUTXO: $1",
+    "description": "Current UTXOs",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "45"
+      }
+    }
+  },
+  "consolidateUtxos": {
+    "message": "UTXOを統合",
+    "description": "Consolidate UTXOs"
+  },
+  "autoConsolidateWhen": {
+    "message": "30個を超えるUTXOがある場合に自動統合",
+    "description": "Auto-consolidate when > 30 UTXOs"
+  },
+  "consolidationFailed": {
+    "message": "統合に失敗しました",
+    "description": "Consolidation failed"
+  },
+  "checkingUtxos": {
+    "message": "UTXOを確認中...",
+    "description": "Checking UTXOs..."
+  },
+  "success": {
+    "message": "成功",
+    "description": "Success title"
+  },
+  "error": {
+    "message": "エラー",
+    "description": "Error title"
   }
 }

@@ -723,5 +723,149 @@
   "failedToChangeLanguage": {
     "message": "Не удалось изменить язык",
     "description": "Error message when language change fails"
+  },
+  "utxoConsolidation": {
+    "message": "Консолидация UTXO",
+    "description": "UTXO Consolidation"
+  },
+  "consolidationRecommended": {
+    "message": "Рекомендуется консолидация UTXO",
+    "description": "UTXO Consolidation Recommended"
+  },
+  "yourWalletHasUtxos": {
+    "message": "В вашем кошельке $1 UTXO",
+    "description": "Your wallet has X UTXOs",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "45"
+      }
+    }
+  },
+  "currentTransactionFee": {
+    "message": "Текущая комиссия транзакции: $1 HTN",
+    "description": "Current transaction fee",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00045000"
+      }
+    }
+  },
+  "consolidationFee": {
+    "message": "Комиссия консолидации: $1 HTN",
+    "description": "Consolidation fee",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00030000"
+      }
+    }
+  },
+  "futureSavings": {
+    "message": "Будущая экономия: ~$1 HTN",
+    "description": "Future savings",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00015000"
+      }
+    }
+  },
+  "consolidationDescription": {
+    "message": "Консолидация объединит все UTXO в один, что снизит комиссии в будущих транзакциях.",
+    "description": "Consolidating will combine all UTXOs into one, reducing future transaction fees."
+  },
+  "consolidateNow": {
+    "message": "Консолидировать сейчас",
+    "description": "Consolidate Now"
+  },
+  "later": {
+    "message": "Позже",
+    "description": "Later"
+  },
+  "consolidating": {
+    "message": "Консолидация UTXO...",
+    "description": "Consolidating UTXOs..."
+  },
+  "combiningUtxos": {
+    "message": "Объединение $1 UTXO в 1",
+    "description": "Combining X UTXOs into 1",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "45"
+      }
+    }
+  },
+  "buildingTransaction": {
+    "message": "Создание транзакции...",
+    "description": "Building transaction..."
+  },
+  "consolidationComplete": {
+    "message": "Консолидация завершена!",
+    "description": "Consolidation Complete!"
+  },
+  "utxosReduced": {
+    "message": "UTXO: $1 → 1",
+    "description": "UTXOs: X → 1",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "45"
+      }
+    }
+  },
+  "feePaid": {
+    "message": "Оплаченная комиссия: $1 HTN",
+    "description": "Fee paid",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00030000"
+      }
+    }
+  },
+  "futureTransactionsCheaper": {
+    "message": "Будущие транзакции будут дешевле!",
+    "description": "Future transactions will be cheaper!"
+  },
+  "utxoManagement": {
+    "message": "Управление UTXO",
+    "description": "UTXO Management"
+  },
+  "currentUtxos": {
+    "message": "Текущее количество UTXO: $1",
+    "description": "Current UTXOs",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "45"
+      }
+    }
+  },
+  "consolidateUtxos": {
+    "message": "Консолидировать UTXO",
+    "description": "Consolidate UTXOs"
+  },
+  "autoConsolidateWhen": {
+    "message": "Автоконсолидация при > 30 UTXO",
+    "description": "Auto-consolidate when > 30 UTXOs"
+  },
+  "consolidationFailed": {
+    "message": "Консолидация не удалась",
+    "description": "Consolidation failed"
+  },
+  "checkingUtxos": {
+    "message": "Проверка UTXO...",
+    "description": "Checking UTXOs..."
+  },
+  "success": {
+    "message": "Успех",
+    "description": "Success title"
+  },
+  "error": {
+    "message": "Ошибка",
+    "description": "Error title"
   }
 }

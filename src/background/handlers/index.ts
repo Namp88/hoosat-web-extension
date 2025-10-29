@@ -13,3 +13,11 @@ export {
 export { handleGetBalance, handleEstimateFee, handleSendTransaction } from './transaction-handlers';
 
 export { handleRPCRequest, handleConnectionApproval, handleTransactionApproval, handleSignMessageApproval, getPendingRequest } from './rpc-handlers';
+
+export {
+  handleGetConsolidationInfo,
+  handleConsolidateUtxos,
+  handleGetConsolidationSettings,
+  handleUpdateConsolidationSettings,
+  handleMarkConsolidationModalSeen,
+} from './consolidation-handlers';

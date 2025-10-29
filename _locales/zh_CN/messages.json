@@ -723,5 +723,149 @@
   "failedToChangeLanguage": {
     "message": "更改语言失败",
     "description": "Error message when language change fails"
+  },
+  "utxoConsolidation": {
+    "message": "UTXO 整合",
+    "description": "UTXO Consolidation"
+  },
+  "consolidationRecommended": {
+    "message": "建议进行 UTXO 整合",
+    "description": "UTXO Consolidation Recommended"
+  },
+  "yourWalletHasUtxos": {
+    "message": "您的钱包有 $1 个 UTXO",
+    "description": "Your wallet has X UTXOs",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "45"
+      }
+    }
+  },
+  "currentTransactionFee": {
+    "message": "当前交易手续费: $1 HTN",
+    "description": "Current transaction fee",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00045000"
+      }
+    }
+  },
+  "consolidationFee": {
+    "message": "整合手续费: $1 HTN",
+    "description": "Consolidation fee",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00030000"
+      }
+    }
+  },
+  "futureSavings": {
+    "message": "未来节省: ~$1 HTN",
+    "description": "Future savings",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00015000"
+      }
+    }
+  },
+  "consolidationDescription": {
+    "message": "整合将把所有 UTXO 合并为一个，从而降低未来的交易手续费。",
+    "description": "Consolidating will combine all UTXOs into one, reducing future transaction fees."
+  },
+  "consolidateNow": {
+    "message": "立即整合",
+    "description": "Consolidate Now"
+  },
+  "later": {
+    "message": "稍后",
+    "description": "Later"
+  },
+  "consolidating": {
+    "message": "正在整合 UTXO...",
+    "description": "Consolidating UTXOs..."
+  },
+  "combiningUtxos": {
+    "message": "将 $1 个 UTXO 合并为 1 个",
+    "description": "Combining X UTXOs into 1",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "45"
+      }
+    }
+  },
+  "buildingTransaction": {
+    "message": "正在构建交易...",
+    "description": "Building transaction..."
+  },
+  "consolidationComplete": {
+    "message": "整合完成！",
+    "description": "Consolidation Complete!"
+  },
+  "utxosReduced": {
+    "message": "UTXO: $1 → 1",
+    "description": "UTXOs: X → 1",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "45"
+      }
+    }
+  },
+  "feePaid": {
+    "message": "已支付手续费: $1 HTN",
+    "description": "Fee paid",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00030000"
+      }
+    }
+  },
+  "futureTransactionsCheaper": {
+    "message": "未来交易手续费将更便宜！",
+    "description": "Future transactions will be cheaper!"
+  },
+  "utxoManagement": {
+    "message": "UTXO 管理",
+    "description": "UTXO Management"
+  },
+  "currentUtxos": {
+    "message": "当前 UTXO 数量: $1",
+    "description": "Current UTXOs",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "45"
+      }
+    }
+  },
+  "consolidateUtxos": {
+    "message": "整合 UTXO",
+    "description": "Consolidate UTXOs"
+  },
+  "autoConsolidateWhen": {
+    "message": "当超过 30 个 UTXO 时自动整合",
+    "description": "Auto-consolidate when > 30 UTXOs"
+  },
+  "consolidationFailed": {
+    "message": "整合失败",
+    "description": "Consolidation failed"
+  },
+  "checkingUtxos": {
+    "message": "正在检查 UTXO...",
+    "description": "Checking UTXOs..."
+  },
+  "success": {
+    "message": "成功",
+    "description": "Success title"
+  },
+  "error": {
+    "message": "错误",
+    "description": "Error title"
   }
 }

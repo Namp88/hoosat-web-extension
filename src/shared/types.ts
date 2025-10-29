@@ -56,6 +56,23 @@ export interface FeeEstimate {
   outputs: number;
 }
 
+// UTXO Consolidation
+export const DEFAULT_CONSOLIDATION_THRESHOLD = 30;
+
+export interface ConsolidationSettings {
+  hasSeenModal: boolean; // User has seen the consolidation modal
+  autoConsolidate: boolean; // Auto-consolidate when threshold is reached
+  threshold: number; // UTXO count threshold
+}
+
+export interface ConsolidationInfo {
+  utxoCount: number;
+  currentFee: string; // Fee for normal transaction (sompi)
+  consolidationFee: string; // Fee to consolidate all UTXOs (sompi)
+  estimatedSavings: string; // Estimated future savings (sompi)
+  shouldConsolidate: boolean; // Whether consolidation is recommended
+}
+
 // RPC Methods that DApps can call
 export enum RPCMethod {
   REQUEST_ACCOUNTS = 'hoosat_requestAccounts',

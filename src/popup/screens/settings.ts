@@ -1,5 +1,7 @@
 import { t, changeLanguage } from '../utils/i18n';
 import { getSelectedLanguage, saveLanguage, AVAILABLE_LANGUAGES, type SupportedLanguage } from '../../shared/language';
+import { showAlertDialog } from '../components/modal';
+import { DEFAULT_CONSOLIDATION_THRESHOLD } from '../../shared/types';
 
 /**
  * Show settings screen
@@ -40,6 +42,22 @@ export async function showSettingsScreen(
                 `
                 ).join('')}
               </select>
+            </div>
+          </div>
+
+          <div class="settings-divider"></div>
+
+          <div class="settings-section" id="utxoSection">
+            <h3>🔄 ${t('utxoManagement')}</h3>
+            <div class="utxo-info">
+              <p id="utxoCount">${t('checkingUtxos')}</p>
+              <button id="consolidateBtn" class="btn btn-secondary" disabled>${t('consolidateUtxos')}</button>
+            </div>
+            <div class="form-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="autoConsolidateCheckbox" />
+                Auto-consolidate when > ${DEFAULT_CONSOLIDATION_THRESHOLD} UTXOs
+              </label>
             </div>
           </div>
 
@@ -95,7 +113,97 @@ export async function showSettingsScreen(
       languageSelect.style.opacity = '1';
 
       // Show error message
-      alert(t('failedToChangeLanguage') || 'Failed to change language');
+      await showAlertDialog(t('error'), t('failedToChangeLanguage') || 'Failed to change language', 'error');
     }
   });
+
+  // Load UTXO info and consolidation settings
+  loadUtxoInfo();
+
+  async function loadUtxoInfo() {
+    try {
+      // Get consolidation info
+      const infoResponse = await chrome.runtime.sendMessage({
+        type: 'GET_CONSOLIDATION_INFO',
+      });
+
+      if (infoResponse.success) {
+        const info = infoResponse.data;
+        const utxoCountEl = document.getElementById('utxoCount');
+        const consolidateBtn = document.getElementById('consolidateBtn') as HTMLButtonElement;
+
+        if (utxoCountEl) {
+          utxoCountEl.textContent = t('currentUtxos', [info.utxoCount.toString()]);
+        }
+
+        if (consolidateBtn) {
+          consolidateBtn.disabled = info.utxoCount < 2;
+        }
+      }
+
+      // Get consolidation settings
+      const settingsResponse = await chrome.runtime.sendMessage({
+        type: 'GET_CONSOLIDATION_SETTINGS',
+      });
+
+      if (settingsResponse.success) {
+        const settings = settingsResponse.data;
+        const checkbox = document.getElementById('autoConsolidateCheckbox') as HTMLInputElement;
+        if (checkbox) {
+          checkbox.checked = settings.autoConsolidate;
+        }
+      }
+    } catch (error) {
+      console.error('Failed to load UTXO info:', error);
+    }
+  }
+
+  // Consolidate button handler
+  const consolidateBtn = document.getElementById('consolidateBtn');
+  if (consolidateBtn) {
+    consolidateBtn.addEventListener('click', async () => {
+      const originalText = consolidateBtn.textContent;
+      try {
+        consolidateBtn.textContent = t('consolidating');
+        (consolidateBtn as HTMLButtonElement).disabled = true;
+
+        const response = await chrome.runtime.sendMessage({
+          type: 'CONSOLIDATE_UTXOS',
+        });
+
+        if (response.success) {
+          await showAlertDialog(t('success'), t('consolidationComplete'), 'success');
+          // Reload UTXO info to show updated count
+          await loadUtxoInfo();
+        } else {
+          throw new Error(response.error);
+        }
+      } catch (error) {
+        console.error('Consolidation failed:', error);
+        await showAlertDialog(t('error'), t('consolidationFailed') + ': ' + (error as Error).message, 'error');
+        // Restore button state on error
+        consolidateBtn.textContent = originalText || t('consolidateUtxos');
+        (consolidateBtn as HTMLButtonElement).disabled = false;
+      }
+    });
+  }
+
+  // Auto-consolidate checkbox handler
+  const autoConsolidateCheckbox = document.getElementById('autoConsolidateCheckbox') as HTMLInputElement;
+  if (autoConsolidateCheckbox) {
+    autoConsolidateCheckbox.addEventListener('change', async () => {
+      try {
+        await chrome.runtime.sendMessage({
+          type: 'UPDATE_CONSOLIDATION_SETTINGS',
+          data: {
+            autoConsolidate: autoConsolidateCheckbox.checked,
+          },
+        });
+      } catch (error) {
+        console.error('Failed to update auto-consolidate setting:', error);
+        // Revert checkbox on error
+        autoConsolidateCheckbox.checked = !autoConsolidateCheckbox.checked;
+      }
+    });
+  }
 }

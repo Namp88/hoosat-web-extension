@@ -1,12 +1,13 @@
 // Chrome storage utilities
 
-import { WalletData, StoredWallet, ConnectedSite, TransactionHistory } from './types';
+import { WalletData, StoredWallet, ConnectedSite, TransactionHistory, ConsolidationSettings, DEFAULT_CONSOLIDATION_THRESHOLD } from './types';
 
 const STORAGE_KEYS = {
   WALLET: 'hoosat_wallet',
   CONNECTED_SITES: 'hoosat_connected_sites',
   SETTINGS: 'hoosat_settings',
   TX_HISTORY: 'hoosat_tx_history',
+  CONSOLIDATION: 'hoosat_consolidation',
 } as const;
 
 // Maximum number of transactions to store
@@ -242,6 +243,50 @@ export async function loadTransactionHistory(): Promise<TransactionHistory[]> {
       }
     });
   });
+}
+
+/**
+ * Get consolidation settings
+ */
+export async function getConsolidationSettings(): Promise<ConsolidationSettings> {
+  return new Promise((resolve, reject) => {
+    chrome.storage.local.get(STORAGE_KEYS.CONSOLIDATION, result => {
+      if (chrome.runtime.lastError) {
+        reject(chrome.runtime.lastError);
+      } else {
+        const defaultSettings: ConsolidationSettings = {
+          hasSeenModal: false,
+          autoConsolidate: false,
+          threshold: DEFAULT_CONSOLIDATION_THRESHOLD,
+        };
+        resolve(result[STORAGE_KEYS.CONSOLIDATION] || defaultSettings);
+      }
+    });
+  });
+}
+
+/**
+ * Save consolidation settings
+ */
+export async function saveConsolidationSettings(settings: ConsolidationSettings): Promise<void> {
+  return new Promise((resolve, reject) => {
+    chrome.storage.local.set({ [STORAGE_KEYS.CONSOLIDATION]: settings }, () => {
+      if (chrome.runtime.lastError) {
+        reject(chrome.runtime.lastError);
+      } else {
+        resolve();
+      }
+    });
+  });
+}
+
+/**
+ * Mark consolidation modal as seen
+ */
+export async function markConsolidationModalSeen(): Promise<void> {
+  const settings = await getConsolidationSettings();
+  settings.hasSeenModal = true;
+  await saveConsolidationSettings(settings);
 }
 
 /**

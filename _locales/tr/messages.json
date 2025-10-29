@@ -707,5 +707,149 @@
   "failedToChangeLanguage": {
     "message": "Dil değiştirilemedi",
     "description": "Error message when language change fails"
+  },
+  "utxoConsolidation": {
+    "message": "UTXO Birleştirme",
+    "description": "UTXO Consolidation"
+  },
+  "consolidationRecommended": {
+    "message": "UTXO Birleştirme Önerilir",
+    "description": "UTXO Consolidation Recommended"
+  },
+  "yourWalletHasUtxos": {
+    "message": "Cüzdanınızda $1 UTXO var",
+    "description": "Your wallet has X UTXOs",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "45"
+      }
+    }
+  },
+  "currentTransactionFee": {
+    "message": "Mevcut işlem ücreti: $1 HTN",
+    "description": "Current transaction fee",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00045000"
+      }
+    }
+  },
+  "consolidationFee": {
+    "message": "Birleştirme ücreti: $1 HTN",
+    "description": "Consolidation fee",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00030000"
+      }
+    }
+  },
+  "futureSavings": {
+    "message": "Gelecekteki tasarruf: ~$1 HTN",
+    "description": "Future savings",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00015000"
+      }
+    }
+  },
+  "consolidationDescription": {
+    "message": "Birleştirme, tüm UTXO'ları tek bir UTXO'da birleştirecek ve gelecekteki işlem ücretlerini azaltacaktır.",
+    "description": "Consolidating will combine all UTXOs into one, reducing future transaction fees."
+  },
+  "consolidateNow": {
+    "message": "Şimdi Birleştir",
+    "description": "Consolidate Now"
+  },
+  "later": {
+    "message": "Daha Sonra",
+    "description": "Later"
+  },
+  "consolidating": {
+    "message": "UTXO'lar birleştiriliyor...",
+    "description": "Consolidating UTXOs..."
+  },
+  "combiningUtxos": {
+    "message": "$1 UTXO, 1 UTXO'da birleştiriliyor",
+    "description": "Combining X UTXOs into 1",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "45"
+      }
+    }
+  },
+  "buildingTransaction": {
+    "message": "İşlem oluşturuluyor...",
+    "description": "Building transaction..."
+  },
+  "consolidationComplete": {
+    "message": "Birleştirme Tamamlandı!",
+    "description": "Consolidation Complete!"
+  },
+  "utxosReduced": {
+    "message": "UTXO: $1 → 1",
+    "description": "UTXOs: X → 1",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "45"
+      }
+    }
+  },
+  "feePaid": {
+    "message": "Ödenen ücret: $1 HTN",
+    "description": "Fee paid",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "0.00030000"
+      }
+    }
+  },
+  "futureTransactionsCheaper": {
+    "message": "Gelecekteki işlemler daha ucuz olacak!",
+    "description": "Future transactions will be cheaper!"
+  },
+  "utxoManagement": {
+    "message": "UTXO Yönetimi",
+    "description": "UTXO Management"
+  },
+  "currentUtxos": {
+    "message": "Mevcut UTXO: $1",
+    "description": "Current UTXOs",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "45"
+      }
+    }
+  },
+  "consolidateUtxos": {
+    "message": "UTXO'ları Birleştir",
+    "description": "Consolidate UTXOs"
+  },
+  "autoConsolidateWhen": {
+    "message": "30'dan fazla UTXO olduğunda otomatik birleştir",
+    "description": "Auto-consolidate when > 30 UTXOs"
+  },
+  "consolidationFailed": {
+    "message": "Birleştirme başarısız oldu",
+    "description": "Consolidation failed"
+  },
+  "checkingUtxos": {
+    "message": "UTXO'lar kontrol ediliyor...",
+    "description": "Checking UTXOs..."
+  },
+  "success": {
+    "message": "Başarılı",
+    "description": "Success title"
+  },
+  "error": {
+    "message": "Hata",
+    "description": "Error title"
   }
 }

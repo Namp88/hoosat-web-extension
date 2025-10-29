@@ -19,6 +19,11 @@ import {
   handleTransactionApproval,
   handleSignMessageApproval,
   getPendingRequest,
+  handleGetConsolidationInfo,
+  handleConsolidateUtxos,
+  handleGetConsolidationSettings,
+  handleUpdateConsolidationSettings,
+  handleMarkConsolidationModalSeen,
 } from './handlers';
 
 console.log('🦊 Hoosat Wallet background script started');
@@ -146,6 +151,28 @@ async function handleMessage(message: ExtensionMessage, sender: chrome.runtime.M
         throw new Error('Wallet is locked');
       }
       return handleSendTransaction(data, walletManager);
+
+    // Consolidation handlers
+    case 'GET_CONSOLIDATION_INFO':
+      if (!sessionManager.getIsUnlocked()) {
+        throw new Error('Wallet is locked');
+      }
+      return handleGetConsolidationInfo(walletManager);
+
+    case 'CONSOLIDATE_UTXOS':
+      if (!sessionManager.getIsUnlocked()) {
+        throw new Error('Wallet is locked');
+      }
+      return handleConsolidateUtxos(walletManager);
+
+    case 'GET_CONSOLIDATION_SETTINGS':
+      return handleGetConsolidationSettings();
+
+    case 'UPDATE_CONSOLIDATION_SETTINGS':
+      return handleUpdateConsolidationSettings(data);
+
+    case 'MARK_CONSOLIDATION_MODAL_SEEN':
+      return handleMarkConsolidationModalSeen();
 
     // Misc
     case 'CONTENT_SCRIPT_READY':

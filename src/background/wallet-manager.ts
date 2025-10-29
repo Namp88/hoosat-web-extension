@@ -3,6 +3,7 @@ import { decryptPrivateKey } from '../shared/crypto';
 import { DEFAULT_NODE_URL, DEFAULT_NETWORK, SOMPI_PER_HTN } from '../shared/constants';
 import type { Network } from '../shared/constants';
 import type { UnlockedWallet, FeeEstimate } from '../shared/types';
+import { DEFAULT_CONSOLIDATION_THRESHOLD } from '../shared/types';
 import { HoosatTxBuilder, HoosatUtils, HoosatWebClient, HoosatCrypto, HoosatSigner } from 'hoosat-sdk-web';
 
 export class WalletManager {
@@ -89,7 +90,8 @@ export class WalletManager {
 
       return result.balance;
     } catch (error: any) {
-      throw new Error(`Failed to get balance: ${error.message}`);
+      const errorMessage = error?.message || String(error) || 'Unknown error';
+      throw new Error(`Failed to get balance: ${errorMessage}`);
     }
   }
 
@@ -106,7 +108,8 @@ export class WalletManager {
 
       return result.utxos;
     } catch (error: any) {
-      throw new Error(`Failed to get UTXOs: ${error.message}`);
+      const errorMessage = error?.message || String(error) || 'Unknown error';
+      throw new Error(`Failed to get UTXOs: ${errorMessage}`);
     }
   }
 
@@ -115,6 +118,47 @@ export class WalletManager {
    */
   private calculateFee(inputs: number, outputs: number): string {
     return HoosatCrypto.calculateFee(inputs, outputs);
+  }
+
+  /**
+   * Calculate minimum fee using proxy API
+   */
+  async calculateMinFee(params: { address?: string; inputs?: number; outputs?: number; payloadSize?: number }): Promise<string> {
+    try {
+      const response = await fetch('https://proxy.hoosat.net/api/v1/transaction/calculate-min-fee', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          address: params.address,
+          inputs: params.inputs,
+          outputs: params.outputs,
+          payloadSize: params.payloadSize || 0,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+
+      const result = await response.json();
+
+      // API returns { success: true, data: { minFee: "123", ... } }
+      if (!result || !result.success || !result.data || typeof result.data.minFee === 'undefined') {
+        throw new Error('Invalid response from fee calculation API');
+      }
+
+      return result.data.minFee.toString();
+    } catch (error: any) {
+      console.error('❌ Failed to calculate min fee via API:', error);
+      // Fallback to local calculation if API fails
+      if (params.inputs && params.outputs) {
+        return this.calculateFee(params.inputs, params.outputs);
+      }
+      const errorMessage = error?.message || String(error) || 'Unknown error';
+      throw new Error(`Failed to calculate fee: ${errorMessage}`);
+    }
   }
 
   /**
@@ -157,7 +201,8 @@ export class WalletManager {
       };
     } catch (error: any) {
       console.error('❌ Failed to estimate fee:', error);
-      throw new Error(`Fee estimation failed: ${error.message}`);
+      const errorMessage = error?.message || String(error) || 'Unknown error';
+      throw new Error(`Fee estimation failed: ${errorMessage}`);
     }
   }
 
@@ -252,7 +297,8 @@ export class WalletManager {
       return result.transactionId;
     } catch (error: any) {
       console.error('❌ Failed to send transaction:', error);
-      throw new Error(`Transaction failed: ${error.message}`);
+      const errorMessage = error?.message || String(error) || 'Unknown error';
+      throw new Error(`Transaction failed: ${errorMessage}`);
     }
   }
 
@@ -294,7 +340,132 @@ export class WalletManager {
       return signature;
     } catch (error: any) {
       console.error('❌ Failed to sign message:', error);
-      throw new Error(`Message signing failed: ${error.message}`);
+      const errorMessage = error?.message || String(error) || 'Unknown error';
+      throw new Error(`Message signing failed: ${errorMessage}`);
+    }
+  }
+
+  /**
+   * Get consolidation information
+   */
+  async getConsolidationInfo(): Promise<{ utxoCount: number; currentFee: string; consolidationFee: string; estimatedSavings: string; shouldConsolidate: boolean }> {
+    if (!this.unlockedWallet) {
+      throw new Error('Wallet is locked');
+    }
+
+    try {
+      const utxos = await this.getUtxos(this.unlockedWallet.address);
+      const utxoCount = utxos.length;
+
+      // Calculate current fee (for normal 2-output transaction)
+      const currentFee = await this.calculateMinFee({
+        inputs: utxoCount,
+        outputs: 2,
+      });
+
+      // Calculate consolidation fee (all inputs → 1 output)
+      const consolidationFee = await this.calculateMinFee({
+        inputs: utxoCount,
+        outputs: 1,
+      });
+
+      // Estimate future savings (rough estimate: ~2000 sompi per UTXO saved)
+      const estimatedSavings = (BigInt(utxoCount) * 2000n).toString();
+
+      return {
+        utxoCount,
+        currentFee,
+        consolidationFee,
+        estimatedSavings,
+        shouldConsolidate: utxoCount >= DEFAULT_CONSOLIDATION_THRESHOLD,
+      };
+    } catch (error: any) {
+      console.error('❌ Failed to get consolidation info:', error);
+      const errorMessage = error?.message || String(error) || 'Unknown error';
+      throw new Error(`Failed to get consolidation info: ${errorMessage}`);
+    }
+  }
+
+  /**
+   * Consolidate all UTXOs into one
+   */
+  async consolidateUtxos(): Promise<string> {
+    if (!this.unlockedWallet) {
+      throw new Error('Wallet is locked');
+    }
+
+    try {
+      console.log('🔄 Starting UTXO consolidation...');
+
+      // Get all UTXOs
+      const utxos = await this.getUtxos(this.unlockedWallet.address);
+
+      if (utxos.length === 0) {
+        throw new Error('No UTXOs available');
+      }
+
+      if (utxos.length === 1) {
+        throw new Error('Only 1 UTXO - consolidation not needed');
+      }
+
+      console.log(`📊 Consolidating ${utxos.length} UTXOs`);
+
+      // Calculate total amount
+      const totalAmount = utxos.reduce((sum, utxo) => {
+        return sum + BigInt(utxo.utxoEntry.amount);
+      }, BigInt(0));
+
+      console.log(`💰 Total amount: ${totalAmount.toString()} sompi`);
+
+      // Calculate consolidation fee
+      const fee = await this.calculateMinFee({
+        inputs: utxos.length,
+        outputs: 1,
+      });
+
+      console.log(`💵 Consolidation fee: ${fee} sompi`);
+
+      const outputAmount = totalAmount - BigInt(fee);
+
+      if (outputAmount <= 0n) {
+        throw new Error('Fee exceeds total UTXO value');
+      }
+
+      // Build consolidation transaction
+      const txBuilder = new HoosatTxBuilder({ debug: false });
+
+      // Add all UTXOs as inputs
+      for (const utxo of utxos) {
+        txBuilder.addInput(utxo, this.unlockedWallet.privateKey);
+      }
+
+      // Single output back to our address
+      txBuilder.addOutput(this.unlockedWallet.address, outputAmount.toString());
+
+      // Set fee
+      txBuilder.setFee(fee);
+
+      // Sign transaction
+      console.log('✍️ Signing consolidation transaction...');
+      const signedTx = txBuilder.sign();
+
+      // Submit transaction
+      console.log('📤 Submitting consolidation transaction...');
+      const result = await this.client.submitTransaction(signedTx);
+
+      if (!result || !result.transactionId) {
+        throw new Error('Failed to submit consolidation transaction');
+      }
+
+      console.log('✅ Consolidation complete:', result.transactionId);
+      console.log(`   ${utxos.length} UTXOs → 1 UTXO`);
+      console.log(`   Fee paid: ${fee} sompi`);
+
+      return result.transactionId;
+    } catch (error: any) {
+      console.error('❌ Failed to consolidate UTXOs:', error);
+      const errorMessage = error?.message || String(error) || 'Unknown error';
+      throw new Error(`Consolidation failed: ${errorMessage}`);
     }
   }
 }
