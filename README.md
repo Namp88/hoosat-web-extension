@@ -42,6 +42,11 @@ Hoosat Wallet is a powerful browser extension that allows you to securely manage
 - **Fee Estimation** - Automatic and manual fee control
 - **Balance Display** - Real-time balance updates
 - **Custom Fees** - Adjust transaction fees (with warnings for high fees)
+- **UTXO Consolidation** - Smart UTXO management to reduce transaction fees
+  - Automatic detection when UTXOs reach threshold (30+)
+  - One-click consolidation with fee breakdown
+  - Optional auto-consolidation for hands-free management
+  - Real-time UTXO count and savings estimation
 
 ### 🌐 DApp Integration
 - **Connection Management** - Approve/reject DApp connections
@@ -59,6 +64,10 @@ Hoosat Wallet is a powerful browser extension that allows you to securely manage
 - **Loading States** - Clear indication of ongoing operations
 - **Error Handling** - User-friendly error messages
 - **Responsive Design** - Works seamlessly in popup window
+- **Multi-language Support** - Available in 9 languages:
+  - English, Russian, Chinese (Simplified), Spanish, Finnish
+  - Japanese, Korean, Turkish, German
+- **Language Switcher** - Change language in Settings without reload
 
 ## 🚀 Installation
 
@@ -378,6 +387,20 @@ const isValid = HoosatSigner.verifyMessage(signature, message, publicKey);
 
 ## 🗺️ Roadmap
 
+### ✅ Completed (v0.3.4)
+
+- [x] **UTXO Consolidation** - Smart UTXO management with automatic detection
+  - Automatic notification when UTXOs ≥ 30
+  - Fee breakdown and savings estimation
+  - Manual consolidation via Settings
+  - Optional auto-consolidation feature
+- [x] **Multi-language Support** - Full internationalization (i18n)
+  - 9 languages supported
+  - Language switcher in Settings
+  - Smooth language switching without reload
+- [x] **Enhanced Modals** - Styled alert/confirm dialogs matching wallet theme
+- [x] **Fee Calculation API** - Integration with proxy.hoosat.net for accurate fees
+
 ### ✅ Completed (v0.3.0)
 
 - [x] **hoosat-sdk-web integration** - Refactored message signing to use official SDK
@@ -409,7 +432,7 @@ const isValid = HoosatSigner.verifyMessage(signature, message, publicKey);
 - [ ] ENS-like name resolution
 - [ ] Mobile browser support
 - [ ] Dark mode
-- [ ] Multi-language support
+- [ ] HD Wallet import (.kpk file support)
 
 ## 🧪 Testing
 
@@ -471,6 +494,6 @@ This wallet is provided "as is" without warranty of any kind. Always do your own
 
 Made with ❤️ for the Hoosat community
 
-**Version 0.3.1** | [Changelog](CHANGELOG.md) | [GitHub](https://github.com/Namp88/hoosat-web-extension)
+**Version 0.3.4** | [Changelog](CHANGELOG.md) | [GitHub](https://github.com/Namp88/hoosat-web-extension)
 
 </div>
