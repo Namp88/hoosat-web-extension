@@ -73,7 +73,9 @@ Hoosat Wallet is a powerful browser extension that allows you to securely manage
 
 ### From Chrome Web Store
 
-*Coming soon - Extension is currently under review*
+[![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-Install-blue?logo=google-chrome)](https://chromewebstore.google.com/detail/djcpncochmpbipoiblkafkjfbfolnkom)
+
+[Install Hoosat Wallet](https://chromewebstore.google.com/detail/djcpncochmpbipoiblkafkjfbfolnkom) directly from the Chrome Web Store.
 
 ### Manual Installation (Developer Mode)
 
