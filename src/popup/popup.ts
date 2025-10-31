@@ -2,7 +2,7 @@
 import { hasWallet } from '../shared/storage';
 import { MessageType } from '../shared/types';
 import * as api from '../shared/api/messages';
-import { showSuccessMessage, initLanguage } from './utils';
+import { showSuccessMessage, initLanguage, t } from './utils';
 import {
   showWelcomeScreen,
   showGenerateWalletScreen,
@@ -101,7 +101,7 @@ async function init() {
     // Show wallet directly
     await showWallet();
     // Show brief welcome message
-    showSuccessMessage('👋 Welcome back!', 1500);
+    showSuccessMessage('👋 ' + t('welcomeBack'), 1500);
     return;
   }
 
@@ -183,16 +183,16 @@ async function handlePendingRequest(request: any): Promise<void> {
       app.innerHTML = `
         <div class="screen">
           <div class="header">
-            <h1>❌ Transaction Error</h1>
+            <h1>❌ ${t('transactionError')}</h1>
           </div>
 
           <div class="dapp-request-container">
             <div class="error-message">
-              <p><strong>Failed to process transaction request:</strong></p>
-              <p>${error.message || 'Unknown error'}</p>
+              <p><strong>${t('failedToProcessTransaction')}</strong></p>
+              <p>${error.message || t('unknownError')}</p>
             </div>
 
-            <button id="backBtn" class="btn btn-secondary">Back to Wallet</button>
+            <button id="backBtn" class="btn btn-secondary">${t('backToWallet')}</button>
           </div>
         </div>
       `;
@@ -252,7 +252,7 @@ async function handleConnectionApprove(requestId: string): Promise<void> {
           // Immediately approve the connection (user already confirmed)
           await api.approveConnection(requestId);
           await chrome.storage.session.remove('pendingRequestId');
-          showSuccessMessage('✅ Site connected successfully!', 2000);
+          showSuccessMessage('✅ ' + t('siteConnectedSuccessfully'), 2000);
 
           // Go to wallet screen
           setTimeout(() => {
@@ -276,7 +276,7 @@ async function handleConnectionApprove(requestId: string): Promise<void> {
     console.error('Failed to approve connection:', error);
     const errorEl = document.getElementById('error');
     if (errorEl) {
-      errorEl.textContent = error.message || 'Failed to approve connection';
+      errorEl.textContent = error.message || t('failedToApproveConnection');
     }
   }
 }
@@ -287,7 +287,7 @@ async function handleConnectionApprove(requestId: string): Promise<void> {
 async function handleConnectionReject(requestId: string): Promise<void> {
   await api.rejectConnection(requestId);
   await chrome.storage.session.remove('pendingRequestId');
-  showSuccessMessage('❌ Connection rejected', 2000);
+  showSuccessMessage('❌ ' + t('connectionRejected'), 2000);
 
   // Go back to normal flow
   setTimeout(() => {
@@ -301,7 +301,7 @@ async function handleConnectionReject(requestId: string): Promise<void> {
 async function handleTransactionApprove(requestId: string, customFeeSompi?: string): Promise<void> {
   await api.approveTransaction(requestId, customFeeSompi);
   await chrome.storage.session.remove('pendingRequestId');
-  showSuccessMessage('✅ Transaction approved!', 2000);
+  showSuccessMessage('✅ ' + t('transactionApproved'), 2000);
 
   // Go to wallet screen
   setTimeout(() => {
@@ -315,7 +315,7 @@ async function handleTransactionApprove(requestId: string, customFeeSompi?: stri
 async function handleTransactionReject(requestId: string): Promise<void> {
   await api.rejectTransaction(requestId);
   await chrome.storage.session.remove('pendingRequestId');
-  showSuccessMessage('❌ Transaction rejected', 2000);
+  showSuccessMessage('❌ ' + t('transactionRejected'), 2000);
 
   // Go to wallet screen
   setTimeout(() => {
@@ -329,7 +329,7 @@ async function handleTransactionReject(requestId: string): Promise<void> {
 async function handleSignMessageApprove(requestId: string): Promise<void> {
   await api.approveSignMessage(requestId);
   await chrome.storage.session.remove('pendingRequestId');
-  showSuccessMessage('✅ Message signed successfully!', 2000);
+  showSuccessMessage('✅ ' + t('messageSignedSuccessfully'), 2000);
 
   // Go to wallet screen
   setTimeout(() => {
@@ -343,7 +343,7 @@ async function handleSignMessageApprove(requestId: string): Promise<void> {
 async function handleSignMessageReject(requestId: string): Promise<void> {
   await api.rejectSignMessage(requestId);
   await chrome.storage.session.remove('pendingRequestId');
-  showSuccessMessage('❌ Message signing rejected', 2000);
+  showSuccessMessage('❌ ' + t('messageSigningRejected'), 2000);
 
   // Go to wallet screen
   setTimeout(() => {
@@ -492,7 +492,7 @@ async function handleGenerateWallet(password: string, confirmPassword: string): 
   showBackupPrivateKey(app, response.privateKey, response.address, password, async () => {
     isUnlocked = true;
     await showWallet();
-    showSuccessMessage('🎉 Wallet created successfully!', 2000);
+    showSuccessMessage('🎉 ' + t('walletCreatedSuccessfully'), 2000);
   });
 }
 
@@ -512,7 +512,7 @@ async function handleImportWallet(privateKey: string, password: string, confirmP
 
   // Show wallet directly
   await showWallet();
-  showSuccessMessage('🎉 Wallet imported successfully!', 2000);
+  showSuccessMessage('🎉 ' + t('walletImportedSuccessfully'), 2000);
 }
 
 /**
@@ -644,7 +644,7 @@ async function handleConsolidation(): Promise<void> {
 async function handleSendSuccess(txId: string): Promise<void> {
   await showWallet();
   // Show success message after returning to wallet
-  showSuccessMessage(`Transaction sent! TX ID: ${txId.substring(0, 16)}...`);
+  showSuccessMessage(`${t('transactionSentTxId')} ${txId.substring(0, 16)}...`);
 }
 
 /**
@@ -674,7 +674,7 @@ async function handleChangePassword(currentPassword: string, newPassword: string
 
   // Show success and return to settings
   await showSettings();
-  showSuccessMessage('🎉 Password changed successfully!', 3000);
+  showSuccessMessage('🎉 ' + t('passwordChangedSuccessfully'), 3000);
 }
 
 /**

@@ -1,6 +1,7 @@
 import { APP_NAME } from '../../shared/constants';
 import { DAppRequest } from '../../shared/types';
 import { formatTimeAgo, isRequestOld } from '../utils/ui-helpers';
+import { t } from '../utils/i18n';
 
 /**
  * Show DApp sign message request screen
@@ -28,7 +29,7 @@ export function showSignMessageScreen(
       <div class="header">
         <div class="header-center">
           <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
-          <h1>Sign Message</h1>
+          <h1>${t('signMessage')}</h1>
         </div>
       </div>
 
@@ -37,47 +38,47 @@ export function showSignMessageScreen(
           <div class="dapp-icon">✍️</div>
 
           <div class="dapp-origin">
-            <div class="dapp-origin-label">Site requesting signature:</div>
+            <div class="dapp-origin-label">${t('siteRequestingSignature')}</div>
             <div class="dapp-origin-value">${domain}</div>
             <div class="dapp-origin-full">${request.origin}</div>
           </div>
 
           <div class="request-timestamp ${isOld ? 'old' : ''}">
             <span class="timestamp-icon">⏰</span>
-            <span class="timestamp-text">Requested ${timeAgo}</span>
-            ${isOld ? '<span class="timestamp-warning">⚠️ Old request</span>' : ''}
+            <span class="timestamp-text">${t('requestedTime')} ${timeAgo}</span>
+            ${isOld ? `<span class="timestamp-warning">⚠️ ${t('oldRequestWarning')}</span>` : ''}
           </div>
 
           <div class="info-box info">
             <div class="info-icon">📝</div>
             <div class="info-text">
-              <strong>Message to sign:</strong>
+              <strong>${t('messageToSign')}</strong>
               <div class="message-content">${displayMessage}</div>
-              ${message.length > 500 ? '<div class="message-truncated">(Message truncated for display)</div>' : ''}
+              ${message.length > 500 ? `<div class="message-truncated">${t('messageTruncated')}</div>` : ''}
             </div>
           </div>
 
           <div class="info-box warning">
             <div class="info-icon">ℹ️</div>
             <div class="info-text">
-              Signing this message proves you own this wallet address.
-              This action is free and does not send a transaction.
+              ${t('signingProveOwnership')}
+              ${t('signingIsFree')}
             </div>
           </div>
 
           <div class="info-box critical">
             <div class="info-icon">⚠️</div>
             <div class="info-text">
-              <strong>Only sign messages you understand!</strong><br>
-              Malicious sites may trick you into signing harmful messages.
+              <strong>${t('onlySignUnderstood')}</strong><br>
+              ${t('maliciousSigningWarning')}
             </div>
           </div>
 
           <div class="error" id="error"></div>
 
           <div class="dapp-actions">
-            <button id="rejectBtn" class="btn btn-secondary">Reject</button>
-            <button id="approveBtn" class="btn btn-primary">Sign Message</button>
+            <button id="rejectBtn" class="btn btn-secondary">${t('reject')}</button>
+            <button id="approveBtn" class="btn btn-primary">${t('signMessage')}</button>
           </div>
         </div>
       </div>
@@ -100,14 +101,14 @@ async function handleApprove(onApprove: () => Promise<void>): Promise<void> {
   try {
     approveBtn.disabled = true;
     rejectBtn.disabled = true;
-    approveBtn.textContent = 'Signing...';
+    approveBtn.textContent = t('signing');
 
     await onApprove();
   } catch (error: any) {
-    errorEl.textContent = error.message || 'Failed to sign message';
+    errorEl.textContent = error.message || t('failedToSignMessage');
     approveBtn.disabled = false;
     rejectBtn.disabled = false;
-    approveBtn.textContent = 'Sign Message';
+    approveBtn.textContent = t('signMessage');
   }
 }
 
@@ -122,13 +123,13 @@ async function handleReject(onReject: () => Promise<void>): Promise<void> {
   try {
     approveBtn.disabled = true;
     rejectBtn.disabled = true;
-    rejectBtn.textContent = 'Rejecting...';
+    rejectBtn.textContent = t('rejecting');
 
     await onReject();
   } catch (error: any) {
-    errorEl.textContent = error.message || 'Failed to reject';
+    errorEl.textContent = error.message || t('failedToReject');
     approveBtn.disabled = false;
     rejectBtn.disabled = false;
-    rejectBtn.textContent = 'Reject';
+    rejectBtn.textContent = t('reject');
   }
 }

@@ -56,7 +56,7 @@ export async function showSettingsScreen(
             <div class="form-group">
               <label class="checkbox-label">
                 <input type="checkbox" id="autoConsolidateCheckbox" />
-                Auto-consolidate when > ${DEFAULT_CONSOLIDATION_THRESHOLD} UTXOs
+                ${t('autoConsolidateWhen', [DEFAULT_CONSOLIDATION_THRESHOLD.toString()])}
               </label>
             </div>
           </div>

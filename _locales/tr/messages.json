@@ -7,7 +7,6 @@
     "message": "Hoosat blokzinciri için tarayıcı uzantısı cüzdanı",
     "description": "Application description"
   },
-
   "welcome": {
     "message": "Hoş Geldiniz!",
     "description": "Welcome screen title"
@@ -32,7 +31,6 @@
     "message": "Özel anahtarınızı kullanın",
     "description": "Import wallet description"
   },
-
   "unlockWallet": {
     "message": "Cüzdanın Kilidini Aç",
     "description": "Unlock wallet title"
@@ -61,7 +59,6 @@
     "message": "Geçersiz şifre",
     "description": "Invalid password error"
   },
-
   "createNewWalletTitle": {
     "message": "Yeni Cüzdan Oluştur",
     "description": "Create new wallet screen title"
@@ -122,7 +119,6 @@
     "message": "Cüzdan oluşturulamadı",
     "description": "Failed to generate wallet error"
   },
-
   "importWallet": {
     "message": "Cüzdanı İçe Aktar",
     "description": "Import wallet title"
@@ -147,7 +143,6 @@
     "message": "Cüzdan içe aktarılamadı",
     "description": "Failed to import wallet error"
   },
-
   "backupPrivateKey": {
     "message": "Özel Anahtarı Yedekle",
     "description": "Backup private key title"
@@ -184,7 +179,6 @@
     "message": "Devam Et",
     "description": "Continue button"
   },
-
   "address": {
     "message": "Adres",
     "description": "Address label"
@@ -229,7 +223,6 @@
     "message": "Gönderen:",
     "description": "From label"
   },
-
   "sendHTN": {
     "message": "HTN Gönder",
     "description": "Send HTN title"
@@ -288,7 +281,6 @@
     "message": "İşlem başarısız oldu",
     "description": "Transaction failed error"
   },
-
   "receiveHTN": {
     "message": "HTN Al",
     "description": "Receive HTN title"
@@ -297,7 +289,6 @@
     "message": "Adresi Kopyala",
     "description": "Copy address button"
   },
-
   "confirmTransaction": {
     "message": "İşlemi Onayla",
     "description": "Confirm transaction title"
@@ -382,7 +373,6 @@
     "message": "Onayla ve Gönder",
     "description": "Confirm and send button"
   },
-
   "settings": {
     "message": "Ayarlar",
     "description": "Settings title"
@@ -403,7 +393,6 @@
     "message": "Cüzdanı Sıfırla",
     "description": "Reset wallet button"
   },
-
   "connectedSitesTitle": {
     "message": "Bağlı Siteler",
     "description": "Connected sites screen title"
@@ -506,7 +495,6 @@
       }
     }
   },
-
   "changePasswordTitle": {
     "message": "Şifreyi Değiştir",
     "description": "Change password screen title"
@@ -589,7 +577,6 @@
     "message": "Güçlü şifre",
     "description": "Strong password indicator"
   },
-
   "exportPrivateKeyTitle": {
     "message": "Özel Anahtarı Dışa Aktar",
     "description": "Export private key screen title"
@@ -658,12 +645,10 @@
     "message": "Tamam",
     "description": "Done button"
   },
-
   "loading": {
     "message": "Yükleniyor...",
     "description": "Loading text"
   },
-
   "language": {
     "message": "Dil",
     "description": "Language label"
@@ -851,5 +836,173 @@
   "error": {
     "message": "Hata",
     "description": "Error title"
+  },
+  "connectionRequest": {
+    "message": "Connection Request",
+    "description": "DApp connection request title"
+  },
+  "siteRequestingConnection": {
+    "message": "Site requesting connection:",
+    "description": "Label for site requesting connection"
+  },
+  "requestedTime": {
+    "message": "Requested",
+    "description": "Requested time prefix"
+  },
+  "oldRequestWarning": {
+    "message": "Old request",
+    "description": "Warning for old request"
+  },
+  "thisSiteWillBeAbleTo": {
+    "message": "This site will be able to:",
+    "description": "Permissions header"
+  },
+  "viewYourWalletAddress": {
+    "message": "View your wallet address",
+    "description": "Permission: view address"
+  },
+  "requestTransactionApprovals": {
+    "message": "Request transaction approvals",
+    "description": "Permission: request transactions"
+  },
+  "viewAccountBalance": {
+    "message": "View your account balance",
+    "description": "Permission: view balance"
+  },
+  "onlyConnectTrustedSites": {
+    "message": "Only connect to websites you trust!",
+    "description": "Trust warning"
+  },
+  "maliciousSitesWarning": {
+    "message": "Malicious websites may attempt to steal your funds.",
+    "description": "Security warning for connections"
+  },
+  "reject": {
+    "message": "Reject",
+    "description": "Reject button"
+  },
+  "connect": {
+    "message": "Connect",
+    "description": "Connect button"
+  },
+  "connecting": {
+    "message": "Connecting...",
+    "description": "Connecting status"
+  },
+  "rejecting": {
+    "message": "Rejecting...",
+    "description": "Rejecting status"
+  },
+  "failedToApproveConnection": {
+    "message": "Failed to approve connection",
+    "description": "Error: failed to approve connection"
+  },
+  "failedToRejectConnection": {
+    "message": "Failed to reject connection",
+    "description": "Error: failed to reject connection"
+  },
+  "signMessage": {
+    "message": "Sign Message",
+    "description": "Sign message title"
+  },
+  "siteRequestingSignature": {
+    "message": "Site requesting signature:",
+    "description": "Label for site requesting signature"
+  },
+  "messageToSign": {
+    "message": "Message to sign:",
+    "description": "Label for message to sign"
+  },
+  "messageTruncated": {
+    "message": "(Message truncated for display)",
+    "description": "Message truncated notice"
+  },
+  "signingProveOwnership": {
+    "message": "Signing this message proves you own this wallet address.",
+    "description": "Explanation of message signing"
+  },
+  "signingIsFree": {
+    "message": "This action is free and does not send a transaction.",
+    "description": "Info: signing is free"
+  },
+  "onlySignUnderstood": {
+    "message": "Only sign messages you understand!",
+    "description": "Warning about signing messages"
+  },
+  "maliciousSigningWarning": {
+    "message": "Malicious sites may trick you into signing harmful messages.",
+    "description": "Security warning for message signing"
+  },
+  "signing": {
+    "message": "Signing...",
+    "description": "Signing status"
+  },
+  "failedToSignMessage": {
+    "message": "Failed to sign message",
+    "description": "Error: failed to sign message"
+  },
+  "failedToReject": {
+    "message": "Failed to reject",
+    "description": "Error: failed to reject"
+  },
+  "welcomeBack": {
+    "message": "Welcome back!",
+    "description": "Welcome back message"
+  },
+  "siteConnectedSuccessfully": {
+    "message": "Site connected successfully!",
+    "description": "Success: site connected"
+  },
+  "connectionRejected": {
+    "message": "Connection rejected",
+    "description": "Success: connection rejected"
+  },
+  "transactionApproved": {
+    "message": "Transaction approved!",
+    "description": "Success: transaction approved"
+  },
+  "transactionRejected": {
+    "message": "Transaction rejected",
+    "description": "Success: transaction rejected"
+  },
+  "messageSignedSuccessfully": {
+    "message": "Message signed successfully!",
+    "description": "Success: message signed"
+  },
+  "messageSigningRejected": {
+    "message": "Message signing rejected",
+    "description": "Success: message signing rejected"
+  },
+  "walletCreatedSuccessfully": {
+    "message": "Wallet created successfully!",
+    "description": "Success: wallet created"
+  },
+  "walletImportedSuccessfully": {
+    "message": "Wallet imported successfully!",
+    "description": "Success: wallet imported"
+  },
+  "transactionSentTxId": {
+    "message": "Transaction sent! TX ID:",
+    "description": "Success: transaction sent"
+  },
+  "passwordChangedSuccessfully": {
+    "message": "Password changed successfully!",
+    "description": "Success: password changed"
+  },
+  "transactionError": {
+    "message": "Transaction Error",
+    "description": "Transaction error title"
+  },
+  "failedToProcessTransaction": {
+    "message": "Failed to process transaction request:",
+    "description": "Error: failed to process transaction"
+  },
+  "unknownError": {
+    "message": "Unknown error",
+    "description": "Unknown error message"
+  },
+  "backToWallet": {
+    "message": "Back to Wallet",
+    "description": "Back to wallet button"
   }
 }

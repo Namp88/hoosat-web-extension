@@ -7,7 +7,6 @@
     "message": "Hoosat 区块链浏览器扩展钱包",
     "description": "Application description"
   },
-
   "welcome": {
     "message": "欢迎!",
     "description": "Welcome screen title"
@@ -32,7 +31,6 @@
     "message": "使用私钥",
     "description": "Import wallet description"
   },
-
   "unlockWallet": {
     "message": "解锁钱包",
     "description": "Unlock wallet title"
@@ -61,7 +59,6 @@
     "message": "密码无效",
     "description": "Invalid password error"
   },
-
   "createNewWalletTitle": {
     "message": "创建新钱包",
     "description": "Create new wallet screen title"
@@ -122,7 +119,6 @@
     "message": "生成钱包失败",
     "description": "Failed to generate wallet error"
   },
-
   "importWallet": {
     "message": "导入钱包",
     "description": "Import wallet title"
@@ -147,7 +143,6 @@
     "message": "导入钱包失败",
     "description": "Failed to import wallet error"
   },
-
   "backupPrivateKey": {
     "message": "备份私钥",
     "description": "Backup private key title"
@@ -184,7 +179,6 @@
     "message": "继续",
     "description": "Continue button"
   },
-
   "address": {
     "message": "地址",
     "description": "Address label"
@@ -229,7 +223,6 @@
     "message": "来自:",
     "description": "From label"
   },
-
   "sendHTN": {
     "message": "发送 HTN",
     "description": "Send HTN title"
@@ -288,7 +281,6 @@
     "message": "交易失败",
     "description": "Transaction failed error"
   },
-
   "receiveHTN": {
     "message": "接收 HTN",
     "description": "Receive HTN title"
@@ -297,7 +289,6 @@
     "message": "复制地址",
     "description": "Copy address button"
   },
-
   "confirmTransaction": {
     "message": "确认交易",
     "description": "Confirm transaction title"
@@ -382,7 +373,6 @@
     "message": "确认并发送",
     "description": "Confirm and send button"
   },
-
   "settings": {
     "message": "设置",
     "description": "Settings title"
@@ -403,7 +393,6 @@
     "message": "重置钱包",
     "description": "Reset wallet button"
   },
-
   "connectedSitesTitle": {
     "message": "已连接网站",
     "description": "Connected sites screen title"
@@ -506,7 +495,6 @@
       }
     }
   },
-
   "changePasswordTitle": {
     "message": "更改密码",
     "description": "Change password screen title"
@@ -589,7 +577,6 @@
     "message": "强密码",
     "description": "Strong password indicator"
   },
-
   "exportPrivateKeyTitle": {
     "message": "导出私钥",
     "description": "Export private key screen title"
@@ -658,12 +645,10 @@
     "message": "完成",
     "description": "Done button"
   },
-
   "loading": {
     "message": "加载中...",
     "description": "Loading text"
   },
-
   "language": {
     "message": "语言",
     "description": "Language label"
@@ -867,5 +852,173 @@
   "error": {
     "message": "错误",
     "description": "Error title"
+  },
+  "connectionRequest": {
+    "message": "Connection Request",
+    "description": "DApp connection request title"
+  },
+  "siteRequestingConnection": {
+    "message": "Site requesting connection:",
+    "description": "Label for site requesting connection"
+  },
+  "requestedTime": {
+    "message": "Requested",
+    "description": "Requested time prefix"
+  },
+  "oldRequestWarning": {
+    "message": "Old request",
+    "description": "Warning for old request"
+  },
+  "thisSiteWillBeAbleTo": {
+    "message": "This site will be able to:",
+    "description": "Permissions header"
+  },
+  "viewYourWalletAddress": {
+    "message": "View your wallet address",
+    "description": "Permission: view address"
+  },
+  "requestTransactionApprovals": {
+    "message": "Request transaction approvals",
+    "description": "Permission: request transactions"
+  },
+  "viewAccountBalance": {
+    "message": "View your account balance",
+    "description": "Permission: view balance"
+  },
+  "onlyConnectTrustedSites": {
+    "message": "Only connect to websites you trust!",
+    "description": "Trust warning"
+  },
+  "maliciousSitesWarning": {
+    "message": "Malicious websites may attempt to steal your funds.",
+    "description": "Security warning for connections"
+  },
+  "reject": {
+    "message": "Reject",
+    "description": "Reject button"
+  },
+  "connect": {
+    "message": "Connect",
+    "description": "Connect button"
+  },
+  "connecting": {
+    "message": "Connecting...",
+    "description": "Connecting status"
+  },
+  "rejecting": {
+    "message": "Rejecting...",
+    "description": "Rejecting status"
+  },
+  "failedToApproveConnection": {
+    "message": "Failed to approve connection",
+    "description": "Error: failed to approve connection"
+  },
+  "failedToRejectConnection": {
+    "message": "Failed to reject connection",
+    "description": "Error: failed to reject connection"
+  },
+  "signMessage": {
+    "message": "Sign Message",
+    "description": "Sign message title"
+  },
+  "siteRequestingSignature": {
+    "message": "Site requesting signature:",
+    "description": "Label for site requesting signature"
+  },
+  "messageToSign": {
+    "message": "Message to sign:",
+    "description": "Label for message to sign"
+  },
+  "messageTruncated": {
+    "message": "(Message truncated for display)",
+    "description": "Message truncated notice"
+  },
+  "signingProveOwnership": {
+    "message": "Signing this message proves you own this wallet address.",
+    "description": "Explanation of message signing"
+  },
+  "signingIsFree": {
+    "message": "This action is free and does not send a transaction.",
+    "description": "Info: signing is free"
+  },
+  "onlySignUnderstood": {
+    "message": "Only sign messages you understand!",
+    "description": "Warning about signing messages"
+  },
+  "maliciousSigningWarning": {
+    "message": "Malicious sites may trick you into signing harmful messages.",
+    "description": "Security warning for message signing"
+  },
+  "signing": {
+    "message": "Signing...",
+    "description": "Signing status"
+  },
+  "failedToSignMessage": {
+    "message": "Failed to sign message",
+    "description": "Error: failed to sign message"
+  },
+  "failedToReject": {
+    "message": "Failed to reject",
+    "description": "Error: failed to reject"
+  },
+  "welcomeBack": {
+    "message": "Welcome back!",
+    "description": "Welcome back message"
+  },
+  "siteConnectedSuccessfully": {
+    "message": "Site connected successfully!",
+    "description": "Success: site connected"
+  },
+  "connectionRejected": {
+    "message": "Connection rejected",
+    "description": "Success: connection rejected"
+  },
+  "transactionApproved": {
+    "message": "Transaction approved!",
+    "description": "Success: transaction approved"
+  },
+  "transactionRejected": {
+    "message": "Transaction rejected",
+    "description": "Success: transaction rejected"
+  },
+  "messageSignedSuccessfully": {
+    "message": "Message signed successfully!",
+    "description": "Success: message signed"
+  },
+  "messageSigningRejected": {
+    "message": "Message signing rejected",
+    "description": "Success: message signing rejected"
+  },
+  "walletCreatedSuccessfully": {
+    "message": "Wallet created successfully!",
+    "description": "Success: wallet created"
+  },
+  "walletImportedSuccessfully": {
+    "message": "Wallet imported successfully!",
+    "description": "Success: wallet imported"
+  },
+  "transactionSentTxId": {
+    "message": "Transaction sent! TX ID:",
+    "description": "Success: transaction sent"
+  },
+  "passwordChangedSuccessfully": {
+    "message": "Password changed successfully!",
+    "description": "Success: password changed"
+  },
+  "transactionError": {
+    "message": "Transaction Error",
+    "description": "Transaction error title"
+  },
+  "failedToProcessTransaction": {
+    "message": "Failed to process transaction request:",
+    "description": "Error: failed to process transaction"
+  },
+  "unknownError": {
+    "message": "Unknown error",
+    "description": "Unknown error message"
+  },
+  "backToWallet": {
+    "message": "Back to Wallet",
+    "description": "Back to wallet button"
   }
 }

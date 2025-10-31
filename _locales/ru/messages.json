@@ -867,5 +867,186 @@
   "error": {
     "message": "Ошибка",
     "description": "Error title"
+  },
+
+  "connectionRequest": {
+    "message": "Запрос на подключение",
+    "description": "DApp connection request title"
+  },
+  "siteRequestingConnection": {
+    "message": "Сайт запрашивает подключение:",
+    "description": "Label for site requesting connection"
+  },
+  "requestedTime": {
+    "message": "Запрошено",
+    "description": "Requested time prefix"
+  },
+  "oldRequestWarning": {
+    "message": "Старый запрос",
+    "description": "Warning for old request"
+  },
+  "thisSiteWillBeAbleTo": {
+    "message": "Этот сайт сможет:",
+    "description": "Permissions header"
+  },
+  "viewYourWalletAddress": {
+    "message": "Просматривать адрес вашего кошелька",
+    "description": "Permission: view address"
+  },
+  "requestTransactionApprovals": {
+    "message": "Запрашивать подтверждение транзакций",
+    "description": "Permission: request transactions"
+  },
+  "viewAccountBalance": {
+    "message": "Просматривать баланс вашего счёта",
+    "description": "Permission: view balance"
+  },
+  "onlyConnectTrustedSites": {
+    "message": "Подключайте только доверенные сайты!",
+    "description": "Trust warning"
+  },
+  "maliciousSitesWarning": {
+    "message": "Вредоносные сайты могут попытаться украсть ваши средства.",
+    "description": "Security warning for connections"
+  },
+  "reject": {
+    "message": "Отклонить",
+    "description": "Reject button"
+  },
+  "connect": {
+    "message": "Подключить",
+    "description": "Connect button"
+  },
+  "connecting": {
+    "message": "Подключение...",
+    "description": "Connecting status"
+  },
+  "rejecting": {
+    "message": "Отклонение...",
+    "description": "Rejecting status"
+  },
+  "failedToApproveConnection": {
+    "message": "Не удалось подтвердить подключение",
+    "description": "Error: failed to approve connection"
+  },
+  "failedToRejectConnection": {
+    "message": "Не удалось отклонить подключение",
+    "description": "Error: failed to reject connection"
+  },
+
+  "signMessage": {
+    "message": "Подписать сообщение",
+    "description": "Sign message title"
+  },
+  "siteRequestingSignature": {
+    "message": "Сайт запрашивает подпись:",
+    "description": "Label for site requesting signature"
+  },
+  "messageToSign": {
+    "message": "Сообщение для подписи:",
+    "description": "Label for message to sign"
+  },
+  "messageTruncated": {
+    "message": "(Сообщение обрезано для отображения)",
+    "description": "Message truncated notice"
+  },
+  "signingProveOwnership": {
+    "message": "Подпись этого сообщения подтверждает, что вы владеете этим адресом кошелька.",
+    "description": "Explanation of message signing"
+  },
+  "signingIsFree": {
+    "message": "Это действие бесплатно и не отправляет транзакцию.",
+    "description": "Info: signing is free"
+  },
+  "onlySignUnderstood": {
+    "message": "Подписывайте только понятные вам сообщения!",
+    "description": "Warning about signing messages"
+  },
+  "maliciousSigningWarning": {
+    "message": "Вредоносные сайты могут обманом заставить вас подписать опасные сообщения.",
+    "description": "Security warning for message signing"
+  },
+  "signing": {
+    "message": "Подписание...",
+    "description": "Signing status"
+  },
+  "failedToSignMessage": {
+    "message": "Не удалось подписать сообщение",
+    "description": "Error: failed to sign message"
+  },
+  "failedToReject": {
+    "message": "Не удалось отклонить",
+    "description": "Error: failed to reject"
+  },
+
+  "welcomeBack": {
+    "message": "С возвращением!",
+    "description": "Welcome back message"
+  },
+  "siteConnectedSuccessfully": {
+    "message": "Сайт успешно подключён!",
+    "description": "Success: site connected"
+  },
+  "connectionRejected": {
+    "message": "Подключение отклонено",
+    "description": "Success: connection rejected"
+  },
+  "transactionApproved": {
+    "message": "Транзакция подтверждена!",
+    "description": "Success: transaction approved"
+  },
+  "transactionRejected": {
+    "message": "Транзакция отклонена",
+    "description": "Success: transaction rejected"
+  },
+  "messageSignedSuccessfully": {
+    "message": "Сообщение успешно подписано!",
+    "description": "Success: message signed"
+  },
+  "messageSigningRejected": {
+    "message": "Подпись сообщения отклонена",
+    "description": "Success: message signing rejected"
+  },
+  "walletCreatedSuccessfully": {
+    "message": "Кошелёк успешно создан!",
+    "description": "Success: wallet created"
+  },
+  "walletImportedSuccessfully": {
+    "message": "Кошелёк успешно импортирован!",
+    "description": "Success: wallet imported"
+  },
+  "transactionSentTxId": {
+    "message": "Транзакция отправлена! ID транзакции:",
+    "description": "Success: transaction sent"
+  },
+  "passwordChangedSuccessfully": {
+    "message": "Пароль успешно изменён!",
+    "description": "Success: password changed"
+  },
+  "transactionError": {
+    "message": "Ошибка транзакции",
+    "description": "Transaction error title"
+  },
+  "failedToProcessTransaction": {
+    "message": "Не удалось обработать запрос транзакции:",
+    "description": "Error: failed to process transaction"
+  },
+  "unknownError": {
+    "message": "Неизвестная ошибка",
+    "description": "Unknown error message"
+  },
+  "backToWallet": {
+    "message": "Вернуться к кошельку",
+    "description": "Back to wallet button"
+  },
+  "autoConsolidateWhen": {
+    "message": "Автоконсолидация при > $1 UTXO",
+    "description": "Auto-consolidate threshold setting",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "30"
+      }
+    }
   }
 }
