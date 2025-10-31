@@ -4,17 +4,18 @@ import { showAlertDialog } from '../components/modal';
 import { DEFAULT_CONSOLIDATION_THRESHOLD } from '../../shared/types';
 
 /**
- * Show settings screen
+ * Show settings screen (main menu)
  */
 export async function showSettingsScreen(
   app: HTMLElement,
   onBack: () => void,
+  onLanguageSettings: () => void,
+  onUtxoManagement: () => void,
   onChangePassword: () => void,
   onExportKey: () => void,
   onConnectedSites: () => void,
   onReset: () => void
 ): Promise<void> {
-  const currentLanguage = await getSelectedLanguage();
 
   app.innerHTML = `
     <div class="screen">
@@ -29,37 +30,8 @@ export async function showSettingsScreen(
 
       <div class="content">
         <div class="settings">
-          <div class="settings-section">
-            <h3>🌍 ${t('language')}</h3>
-            <div class="form-group">
-              <label for="languageSelect">${t('selectLanguage')}</label>
-              <select id="languageSelect" class="language-select">
-                ${AVAILABLE_LANGUAGES.map(
-                  lang => `
-                  <option value="${lang.code}" ${lang.code === currentLanguage ? 'selected' : ''}>
-                    ${lang.nativeName}
-                  </option>
-                `
-                ).join('')}
-              </select>
-            </div>
-          </div>
-
-          <div class="settings-divider"></div>
-
-          <div class="settings-section" id="utxoSection">
-            <h3>🔄 ${t('utxoManagement')}</h3>
-            <div class="utxo-info">
-              <p id="utxoCount">${t('checkingUtxos')}</p>
-              <button id="consolidateBtn" class="btn btn-secondary" disabled>${t('consolidateUtxos')}</button>
-            </div>
-            <div class="form-group">
-              <label class="checkbox-label">
-                <input type="checkbox" id="autoConsolidateCheckbox" />
-                ${t('autoConsolidateWhen', [DEFAULT_CONSOLIDATION_THRESHOLD.toString()])}
-              </label>
-            </div>
-          </div>
+          <button id="languageBtn" class="btn btn-secondary">🌍 ${t('languageSettings')}</button>
+          <button id="utxoBtn" class="btn btn-secondary">🔄 ${t('utxoManagement')}</button>
 
           <div class="settings-divider"></div>
 
@@ -77,10 +49,57 @@ export async function showSettingsScreen(
 
   // Event listeners
   document.getElementById('backBtn')!.addEventListener('click', onBack);
+  document.getElementById('languageBtn')!.addEventListener('click', onLanguageSettings);
+  document.getElementById('utxoBtn')!.addEventListener('click', onUtxoManagement);
   document.getElementById('connectedSitesBtn')!.addEventListener('click', onConnectedSites);
   document.getElementById('changePasswordBtn')!.addEventListener('click', onChangePassword);
   document.getElementById('exportKeyBtn')!.addEventListener('click', onExportKey);
   document.getElementById('resetBtn')!.addEventListener('click', onReset);
+}
+
+/**
+ * Show language settings screen
+ */
+export async function showLanguageSettingsScreen(
+  app: HTMLElement,
+  onBack: () => void
+): Promise<void> {
+  const currentLanguage = await getSelectedLanguage();
+
+  app.innerHTML = `
+    <div class="screen">
+      <div class="header">
+        <button id="backBtn" class="btn-icon">←</button>
+        <div class="header-center">
+          <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
+          <h1>${t('languageSettings')}</h1>
+        </div>
+        <div style="width: 32px;"></div>
+      </div>
+
+      <div class="content">
+        <div class="settings">
+          <div class="settings-section">
+            <div class="form-group">
+              <label for="languageSelect">${t('selectLanguage')}</label>
+              <select id="languageSelect" class="language-select">
+                ${AVAILABLE_LANGUAGES.map(
+                  lang => `
+                  <option value="${lang.code}" ${lang.code === currentLanguage ? 'selected' : ''}>
+                    ${lang.nativeName}
+                  </option>
+                `
+                ).join('')}
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Event listeners
+  document.getElementById('backBtn')!.addEventListener('click', onBack);
 
   // Language selector handler
   const languageSelect = document.getElementById('languageSelect') as HTMLSelectElement;
@@ -102,8 +121,8 @@ export async function showSettingsScreen(
       // Small delay for better UX (shows the change is happening)
       await new Promise(resolve => setTimeout(resolve, 150));
 
-      // Re-render settings screen with new language (stay on same page)
-      await showSettingsScreen(app, onBack, onChangePassword, onExportKey, onConnectedSites, onReset);
+      // Re-render language settings screen with new language
+      await showLanguageSettingsScreen(app, onBack);
     } catch (error) {
       console.error('Failed to change language:', error);
 
@@ -116,6 +135,47 @@ export async function showSettingsScreen(
       await showAlertDialog(t('error'), t('failedToChangeLanguage') || 'Failed to change language', 'error');
     }
   });
+}
+
+/**
+ * Show UTXO management screen
+ */
+export async function showUtxoManagementScreen(
+  app: HTMLElement,
+  onBack: () => void
+): Promise<void> {
+  app.innerHTML = `
+    <div class="screen">
+      <div class="header">
+        <button id="backBtn" class="btn-icon">←</button>
+        <div class="header-center">
+          <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
+          <h1>${t('utxoManagement')}</h1>
+        </div>
+        <div style="width: 32px;"></div>
+      </div>
+
+      <div class="content">
+        <div class="settings">
+          <div class="settings-section">
+            <div class="utxo-info">
+              <p id="utxoCount">${t('checkingUtxos')}</p>
+              <button id="consolidateBtn" class="btn btn-secondary" disabled>${t('consolidateUtxos')}</button>
+            </div>
+            <div class="form-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="autoConsolidateCheckbox" />
+                ${t('autoConsolidateWhen', [DEFAULT_CONSOLIDATION_THRESHOLD.toString()])}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Event listeners
+  document.getElementById('backBtn')!.addEventListener('click', onBack);
 
   // Load UTXO info and consolidation settings
   loadUtxoInfo();

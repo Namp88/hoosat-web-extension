@@ -12,6 +12,8 @@ import {
   showSendScreen,
   showReceiveScreen,
   showSettingsScreen,
+  showLanguageSettingsScreen,
+  showUtxoManagementScreen,
   showChangePasswordScreen,
   showExportKeyScreen,
   showDAppConnectionScreen,
@@ -454,7 +456,21 @@ async function showReceive() {
  * Show settings screen
  */
 async function showSettings() {
-  await showSettingsScreen(app, showWallet, showChangePassword, showExportKey, showConnectedSites, handleReset);
+  await showSettingsScreen(app, showWallet, showLanguageSettings, showUtxoManagement, showChangePassword, showExportKey, showConnectedSites, handleReset);
+}
+
+/**
+ * Show language settings screen
+ */
+async function showLanguageSettings() {
+  await showLanguageSettingsScreen(app, showSettings);
+}
+
+/**
+ * Show UTXO management screen
+ */
+async function showUtxoManagement() {
+  await showUtxoManagementScreen(app, showSettings);
 }
 
 /**
