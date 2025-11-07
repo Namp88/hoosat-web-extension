@@ -39,7 +39,9 @@ module.exports = {
       patterns: [
         { from: 'src/manifest.json', to: 'manifest.json' },
         { from: 'src/popup/popup.html', to: 'popup.html' },
+        { from: 'src/popup/design-tokens.css', to: 'design-tokens.css' },
         { from: 'src/popup/popup.css', to: 'popup.css' },
+        { from: 'src/popup/unlock-hero.css', to: 'unlock-hero.css' },
         { from: 'src/icons', to: 'icons' },
         { from: '_locales', to: '_locales' },
       ],

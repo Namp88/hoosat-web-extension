@@ -27,8 +27,9 @@ import {
 import { showBackupPrivateKey, showConfirmDialog, showAlertDialog } from './components';
 import { showTransactionPreview } from './components/transaction-preview';
 import { showConsolidationModal, showConsolidationProgress, showConsolidationSuccess } from './components/consolidation-modal';
+import { ICONS } from './utils/icons';
 
-console.log('🦊 Hoosat Wallet popup loaded');
+console.log('Hoosat Wallet popup loaded');
 
 // State
 let isUnlocked = false;
@@ -103,7 +104,7 @@ async function init() {
     // Show wallet directly
     await showWallet();
     // Show brief welcome message
-    showSuccessMessage('👋 ' + t('welcomeBack'), 1500);
+    showSuccessMessage('${ICONS.handWave} ' + t('welcomeBack'), 1500);
     return;
   }
 
@@ -508,7 +509,7 @@ async function handleGenerateWallet(password: string, confirmPassword: string): 
   showBackupPrivateKey(app, response.privateKey, response.address, password, async () => {
     isUnlocked = true;
     await showWallet();
-    showSuccessMessage('🎉 ' + t('walletCreatedSuccessfully'), 2000);
+    showSuccessMessage('${ICONS.party} ' + t('walletCreatedSuccessfully'), 2000);
   });
 }
 
@@ -528,7 +529,7 @@ async function handleImportWallet(privateKey: string, password: string, confirmP
 
   // Show wallet directly
   await showWallet();
-  showSuccessMessage('🎉 ' + t('walletImportedSuccessfully'), 2000);
+  showSuccessMessage('${ICONS.party} ' + t('walletImportedSuccessfully'), 2000);
 }
 
 /**
@@ -673,10 +674,10 @@ function copyAddress(): void {
   navigator.clipboard.writeText(address).then(() => {
     const btn = document.getElementById('copyBtn');
     if (btn) {
-      const originalText = btn.textContent;
-      btn.textContent = '✓ Copied!';
+      const originalText = btn.innerHTML;
+      btn.innerHTML = `${ICONS.check} Copied!`;
       setTimeout(() => {
-        btn.textContent = originalText;
+        btn.innerHTML = originalText;
       }, 1000);
     }
   });
@@ -690,7 +691,7 @@ async function handleChangePassword(currentPassword: string, newPassword: string
 
   // Show success and return to settings
   await showSettings();
-  showSuccessMessage('🎉 ' + t('passwordChangedSuccessfully'), 3000);
+  showSuccessMessage('${ICONS.party} ' + t('passwordChangedSuccessfully'), 3000);
 }
 
 /**
@@ -764,6 +765,40 @@ chrome.storage.session.onChanged.addListener((changes: { [key: string]: chrome.s
         }
       })();
     }
+  }
+});
+
+// Listen for wallet lock messages from background
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.type === MessageType.WALLET_LOCKED) {
+    console.log('🔒 Wallet locked by background - showing unlock screen');
+    isUnlocked = false;
+    showUnlock();
+  }
+  // Must return true for async response (even if we don't send one)
+  return false;
+});
+
+// Reset activity timer on any user interaction in popup
+let lastActivityUpdate = 0;
+const ACTIVITY_UPDATE_THROTTLE = 10000; // Update at most once per 10 seconds
+
+document.addEventListener('click', () => {
+  const now = Date.now();
+  if (now - lastActivityUpdate > ACTIVITY_UPDATE_THROTTLE) {
+    lastActivityUpdate = now;
+    // Notify background of user activity (will reset session timeout)
+    chrome.runtime.sendMessage({ type: 'USER_ACTIVITY' }).catch(() => {
+      // Ignore errors (popup might be closing)
+    });
+  }
+});
+
+document.addEventListener('input', () => {
+  const now = Date.now();
+  if (now - lastActivityUpdate > ACTIVITY_UPDATE_THROTTLE) {
+    lastActivityUpdate = now;
+    chrome.runtime.sendMessage({ type: 'USER_ACTIVITY' }).catch(() => {});
   }
 });
 

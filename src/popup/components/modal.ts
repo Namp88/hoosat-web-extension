@@ -67,7 +67,7 @@ export function showAlertDialog(title: string, message: string, type: 'success' 
     modal.className = `modal-content alert-modal alert-${type}`;
 
     // Choose icon based on type
-    let icon = 'ℹ️';
+    let icon = '${ICONS.info}';
     if (type === 'success') icon = '✅';
     if (type === 'error') icon = '❌';
 

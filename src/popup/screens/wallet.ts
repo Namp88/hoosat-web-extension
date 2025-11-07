@@ -4,6 +4,7 @@ import { TransactionHistory } from '../../shared/types';
 import { formatAddress, formatTime } from '../utils';
 import { HoosatUtils } from 'hoosat-sdk-web';
 import { t } from '../utils/i18n';
+import { ICONS } from '../utils/icons';
 
 let currentAddress: string | null = null;
 let balance: string = '0';
@@ -40,8 +41,8 @@ export async function showWalletScreen(
           <h1>${t('appName')}</h1>
         </div>
         <div class="header-right">
-          <button id="lockBtn" class="btn-icon" title="Lock Wallet">🔒</button>
-          <button id="settingsBtn" class="btn-icon" title="Settings">⚙️</button>
+          <button id="lockBtn" class="btn-icon" title="Lock Wallet">${ICONS.lock}</button>
+          <button id="settingsBtn" class="btn-icon" title="Settings">${ICONS.settings}</button>
         </div>
       </div>
 
@@ -51,7 +52,7 @@ export async function showWalletScreen(
             <label>${t('address')}</label>
             <div class="address-row">
               <div class="address-value" id="address">${formatAddress(currentAddress)}</div>
-              <button id="copyBtn" class="btn-icon">📋</button>
+              <button id="copyBtn" class="btn-icon">${ICONS.copy}</button>
             </div>
           </div>
 
@@ -59,7 +60,7 @@ export async function showWalletScreen(
             <label>${t('balance')}</label>
             <div class="balance-row">
               <div class="balance-value" id="balance">${HoosatUtils.sompiToAmount(balance)} HTN</div>
-              <button id="refreshBtn" class="btn-icon">🔄</button>
+              <button id="refreshBtn" class="btn-icon">${ICONS.refresh}</button>
             </div>
           </div>
         </div>
@@ -110,7 +111,7 @@ function renderTransactions(transactions: TransactionHistory[]): string {
     .map(
       tx => `
     <div class="tx-item" data-txid="${tx.txId}">
-      <div class="tx-icon">${tx.type === 'sent' ? '📤' : '📥'}</div>
+      <div class="tx-icon">${tx.type === 'sent' ? ICONS.send : ICONS.receive}</div>
       <div class="tx-details">
         <div class="tx-type">${tx.type === 'sent' ? t('sent') : t('received')}</div>
         <div class="tx-address">${tx.type === 'sent' ? t('to') + ' ' + formatAddress(tx.to!) : t('from') + ' ' + formatAddress(tx.from || 'Unknown')}</div>
@@ -157,9 +158,9 @@ function copyAddress(): void {
 
   navigator.clipboard.writeText(currentAddress).then(() => {
     const btn = document.getElementById('copyBtn')!;
-    btn.textContent = '✓';
+    btn.innerHTML = `${ICONS.check}`;
     setTimeout(() => {
-      btn.textContent = '📋';
+      btn.innerHTML = `${ICONS.copy}`;
     }, 1000);
   });
 }

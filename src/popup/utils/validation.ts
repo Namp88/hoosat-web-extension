@@ -3,6 +3,7 @@
  */
 
 import { MIN_PASSWORD_LENGTH } from '../../shared/constants';
+import { ICONS } from '../utils/icons';
 
 export interface ValidationResult {
   valid: boolean;
@@ -91,19 +92,19 @@ export function addPasswordStrengthIndicator(inputId: string, strengthId: string
     strengthDiv.className = 'password-strength';
 
     if (password.length === 0) {
-      strengthDiv.textContent = '';
+      strengthDiv.innerHTML = '';
       return;
     }
 
     if (strength.score < 3) {
       strengthDiv.classList.add('weak');
-      strengthDiv.textContent = '🔴 Weak password';
+      strengthDiv.innerHTML = `${ICONS.statusRed} Weak password`;
     } else if (strength.score < 4) {
       strengthDiv.classList.add('medium');
-      strengthDiv.textContent = '🟡 Medium password';
+      strengthDiv.innerHTML = `${ICONS.statusYellow} Medium password`;
     } else {
       strengthDiv.classList.add('strong');
-      strengthDiv.textContent = '🟢 Strong password';
+      strengthDiv.innerHTML = `${ICONS.statusGreen} Strong password`;
     }
   });
 }

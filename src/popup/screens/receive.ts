@@ -1,3 +1,4 @@
+import { ICONS } from '../utils/icons';
 import { t } from '../utils/i18n';
 import { HoosatQR } from 'hoosat-sdk-web';
 
@@ -13,7 +14,7 @@ export async function showReceiveScreen(
   app.innerHTML = `
     <div class="screen">
       <div class="header">
-        <button id="backBtn" class="btn-icon">←</button>
+        <button id="backBtn" class="btn-icon">${ICONS.back}</button>
         <div class="header-center">
           <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
           <h1>${t('receiveHTN')}</h1>

@@ -1,6 +1,6 @@
 import { DAppRequest } from '../../shared/types';
 import { formatTimeAgo, isRequestOld, t } from '../utils';
-
+import { ICONS } from '../utils/icons';
 /**
  * Show DApp connection request screen
  */
@@ -29,7 +29,7 @@ export function showDAppConnectionScreen(
 
       <div class="content">
         <div class="dapp-request-container">
-          <div class="dapp-icon">🌐</div>
+          <div class="dapp-icon">${ICONS.globe}</div>
 
           <div class="dapp-origin">
             <div class="dapp-origin-label">${t('siteRequestingConnection')}</div>
@@ -38,13 +38,13 @@ export function showDAppConnectionScreen(
           </div>
 
           <div class="request-timestamp ${isOld ? 'old' : ''}">
-            <span class="timestamp-icon">⏰</span>
+            <span class="timestamp-icon">${ICONS.clock}</span>
             <span class="timestamp-text">${t('requestedTime')} ${timeAgo}</span>
-            ${isOld ? `<span class="timestamp-warning">⚠️ ${t('oldRequestWarning')}</span>` : ''}
+            ${isOld ? `<span class="timestamp-warning">${ICONS.warning} ${t('oldRequestWarning')}</span>` : ''}
           </div>
 
           <div class="info-box warning">
-            <div class="info-icon">⚠️</div>
+            <div class="info-icon">${ICONS.warning}</div>
             <div class="info-text">
               <strong>${t('thisSiteWillBeAbleTo')}</strong>
               <ul>
@@ -56,7 +56,7 @@ export function showDAppConnectionScreen(
           </div>
 
           <div class="info-box critical">
-            <div class="info-icon">🔒</div>
+            <div class="info-icon">${ICONS.lock}</div>
             <div class="info-text">
               <strong>${t('onlyConnectTrustedSites')}</strong><br>
               ${t('maliciousSitesWarning')}

@@ -49,6 +49,14 @@
     "message": "Enter password",
     "description": "Password field placeholder"
   },
+  "enterPasswordToUnlock": {
+    "message": "Enter your password to unlock your wallet",
+    "description": "Unlock screen subtitle"
+  },
+  "walletLockedHint": {
+    "message": "Your wallet is locked for security",
+    "description": "Unlock screen hint message"
+  },
   "unlock": {
     "message": "Unlock",
     "description": "Unlock button"

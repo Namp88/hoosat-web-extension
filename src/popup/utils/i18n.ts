@@ -3,6 +3,7 @@
  */
 
 import { getSelectedLanguage, getEffectiveLanguage, type SupportedLanguage } from '../../shared/language';
+import { ICONS } from '../utils/icons';
 
 // Cache for loaded messages
 let messagesCache: Record<string, any> = {};

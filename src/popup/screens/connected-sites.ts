@@ -1,6 +1,7 @@
 import { loadConnectedSites, removeConnectedSite } from '../../shared/storage';
 import { showConfirmDialog } from '../components';
 import { t, tn } from '../utils/i18n';
+import { ICONS } from '../utils/icons';
 
 /**
  * Show connected sites management screen
@@ -11,7 +12,7 @@ export async function showConnectedSitesScreen(app: HTMLElement, onBack: () => v
   app.innerHTML = `
     <div class="screen">
       <div class="header">
-        <button id="backBtn" class="btn-icon">←</button>
+        <button id="backBtn" class="btn-icon">${ICONS.back}</button>
         <div class="header-center">
           <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
           <h1>${t('connectedSitesTitle')}</h1>
@@ -24,14 +25,14 @@ export async function showConnectedSitesScreen(app: HTMLElement, onBack: () => v
           sites.length === 0
             ? `
         <div class="empty-state">
-          <div class="empty-icon">🔗</div>
+          <div class="empty-icon">${ICONS.link}</div>
           <h3>${t('noConnectedSites')}</h3>
           <p>${t('noConnectedSitesDesc')}</p>
         </div>
         `
             : `
         <div class="info-box warning" style="margin-bottom: 20px;">
-          <div class="info-icon">ℹ️</div>
+          <div class="info-icon">${ICONS.info}</div>
           <div class="info-text">
             ${t('connectedSitesInfo')}
           </div>
@@ -43,7 +44,7 @@ export async function showConnectedSitesScreen(app: HTMLElement, onBack: () => v
               site => `
             <div class="site-item" data-origin="${site.origin}">
               <div class="site-info">
-                <div class="site-icon">🌐</div>
+                <div class="site-icon">${ICONS.globe}</div>
                 <div class="site-details">
                   <div class="site-name">${new URL(site.origin).hostname}</div>
                   <div class="site-url">${site.origin}</div>

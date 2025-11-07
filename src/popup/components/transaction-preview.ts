@@ -2,6 +2,7 @@ import { formatAddress } from '../utils';
 import { SOMPI_PER_HTN } from '../../shared/constants';
 import { formatTimeAgo, isRequestOld } from '../utils/ui-helpers';
 import { t, tn } from '../utils/i18n';
+import { ICONS } from '../utils/icons';
 
 export interface TransactionPreviewData {
   to: string;
@@ -74,9 +75,9 @@ export function showTransactionPreview(data: TransactionPreviewData): Promise<Tr
             data.timestamp
               ? `
           <div class="request-timestamp ${isOld ? 'old' : ''}" style="margin-bottom: 16px;">
-            <span class="timestamp-icon">⏰</span>
+            <span class="timestamp-icon">${ICONS.clock}</span>
             <span class="timestamp-text">${t('requested')} ${timeAgo}</span>
-            ${isOld ? '<span class="timestamp-warning">⚠️ ' + t('oldRequest') + '</span>' : ''}
+            ${isOld ? '<span class="timestamp-warning">${ICONS.warning} ' + t('oldRequest') + '</span>' : ''}
           </div>
           `
               : ''
@@ -138,7 +139,7 @@ export function showTransactionPreview(data: TransactionPreviewData): Promise<Tr
             showWarning
               ? `
           <div class="tx-preview-warning-box">
-            ⚠️ ${tn('feeWarningHigher', feeMultiplier.toFixed(1))}
+            ${ICONS.warning} ${tn('feeWarningHigher', feeMultiplier.toFixed(1))}
           </div>
           `
               : ''
@@ -150,7 +151,7 @@ export function showTransactionPreview(data: TransactionPreviewData): Promise<Tr
           </div>
 
           <div class="tx-preview-warning">
-            ⚠️ ${t('verifyDetails')}
+            ${ICONS.warning} ${t('verifyDetails')}
           </div>
         </div>
         <div class="modal-actions">

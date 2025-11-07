@@ -1,5 +1,6 @@
 import { MessageType } from '../../shared/types';
 import { t } from '../utils/i18n';
+import { ICONS } from '../utils/icons';
 
 /**
  * Show backup private key screen after wallet generation
@@ -22,7 +23,7 @@ export function showBackupPrivateKey(
 
       <div class="content">
         <div class="info-box critical">
-          <div class="info-icon">🔐</div>
+          <div class="info-icon">${ICONS.key}</div>
           <div class="info-text">
             <strong>${t('saveThisPrivateKey')}</strong><br>
             ${t('writeItDownWarning')}
@@ -32,7 +33,7 @@ export function showBackupPrivateKey(
         <div class="key-display">
           <label>${t('yourPrivateKey')}</label>
           <div class="key-value" id="keyValue">${privateKey}</div>
-          <button id="copyKeyBtn" class="btn btn-secondary">📋 ${t('copyToClipboard')}</button>
+          <button id="copyKeyBtn" class="btn btn-secondary icon-with-text">${ICONS.copy} ${t('copyToClipboard')}</button>
         </div>
 
         <div class="key-display">
@@ -56,10 +57,10 @@ export function showBackupPrivateKey(
   document.getElementById('copyKeyBtn')!.addEventListener('click', () => {
     navigator.clipboard.writeText(privateKey).then(() => {
       const btn = document.getElementById('copyKeyBtn')!;
-      const originalText = btn.textContent;
-      btn.textContent = '✓ ' + t('copied');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = `${ICONS.check} ${t('copied')}`;
       setTimeout(() => {
-        btn.textContent = originalText;
+        btn.innerHTML = originalText;
       }, 2000);
     });
   });

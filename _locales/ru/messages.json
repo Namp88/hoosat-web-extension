@@ -49,6 +49,14 @@
     "message": "Введите пароль",
     "description": "Password field placeholder"
   },
+  "enterPasswordToUnlock": {
+    "message": "Введите пароль для разблокировки кошелька",
+    "description": "Unlock screen subtitle"
+  },
+  "walletLockedHint": {
+    "message": "Ваш кошелёк заблокирован для безопасности",
+    "description": "Unlock screen hint message"
+  },
   "unlock": {
     "message": "Разблокировать",
     "description": "Unlock button"

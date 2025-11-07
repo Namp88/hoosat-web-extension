@@ -1,6 +1,7 @@
 import { t, changeLanguage } from '../utils/i18n';
 import { getSelectedLanguage, saveLanguage, AVAILABLE_LANGUAGES, type SupportedLanguage } from '../../shared/language';
 import { showAlertDialog } from '../components/modal';
+import { ICONS } from '../utils/icons';
 import { DEFAULT_CONSOLIDATION_THRESHOLD } from '../../shared/types';
 
 /**
@@ -20,7 +21,7 @@ export async function showSettingsScreen(
   app.innerHTML = `
     <div class="screen">
       <div class="header">
-        <button id="backBtn" class="btn-icon">←</button>
+        <button id="backBtn" class="btn-icon">${ICONS.back}</button>
         <div class="header-center">
           <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
           <h1>${t('settings')}</h1>
@@ -30,18 +31,18 @@ export async function showSettingsScreen(
 
       <div class="content">
         <div class="settings">
-          <button id="languageBtn" class="btn btn-secondary">🌍 ${t('languageSettings')}</button>
-          <button id="utxoBtn" class="btn btn-secondary">🔄 ${t('utxoManagement')}</button>
+          <button id="languageBtn" class="btn btn-secondary">${ICONS.language} ${t('languageSettings')}</button>
+          <button id="utxoBtn" class="btn btn-secondary">${ICONS.refresh} ${t('utxoManagement')}</button>
 
           <div class="settings-divider"></div>
 
-          <button id="connectedSitesBtn" class="btn btn-secondary">🔗 ${t('connectedSites')}</button>
-          <button id="changePasswordBtn" class="btn btn-secondary">🔑 ${t('changePassword')}</button>
-          <button id="exportKeyBtn" class="btn btn-secondary">📤 ${t('exportPrivateKey')}</button>
+          <button id="connectedSitesBtn" class="btn btn-secondary">${ICONS.link} ${t('connectedSites')}</button>
+          <button id="changePasswordBtn" class="btn btn-secondary">${ICONS.key} ${t('changePassword')}</button>
+          <button id="exportKeyBtn" class="btn btn-secondary">${ICONS.send} ${t('exportPrivateKey')}</button>
 
           <div class="settings-divider"></div>
 
-          <button id="resetBtn" class="btn btn-danger">🗑️ ${t('resetWallet')}</button>
+          <button id="resetBtn" class="btn btn-danger">${ICONS.trash} ${t('resetWallet')}</button>
         </div>
       </div>
     </div>
@@ -69,7 +70,7 @@ export async function showLanguageSettingsScreen(
   app.innerHTML = `
     <div class="screen">
       <div class="header">
-        <button id="backBtn" class="btn-icon">←</button>
+        <button id="backBtn" class="btn-icon">${ICONS.back}</button>
         <div class="header-center">
           <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
           <h1>${t('languageSettings')}</h1>
@@ -147,7 +148,7 @@ export async function showUtxoManagementScreen(
   app.innerHTML = `
     <div class="screen">
       <div class="header">
-        <button id="backBtn" class="btn-icon">←</button>
+        <button id="backBtn" class="btn-icon">${ICONS.back}</button>
         <div class="header-center">
           <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
           <h1>${t('utxoManagement')}</h1>

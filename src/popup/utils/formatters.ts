@@ -1,4 +1,5 @@
 import { SOMPI_PER_HTN } from '../../shared/constants';
+import { ICONS } from '../utils/icons';
 
 /**
  * Format address for display (shorten)

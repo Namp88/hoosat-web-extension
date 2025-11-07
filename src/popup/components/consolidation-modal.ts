@@ -1,6 +1,7 @@
 import { t } from '../utils/i18n';
 import { HoosatUtils } from 'hoosat-sdk-web';
 import { showAlertDialog } from './modal';
+import { ICONS } from '../utils/icons';
 
 /**
  * Show consolidation modal with UTXO info
@@ -29,7 +30,7 @@ export async function showConsolidationModal(
   modal.innerHTML = `
     <div class="modal-content consolidation-modal">
       <div class="modal-header">
-        <h2>⚠️ ${t('consolidationRecommended')}</h2>
+        <h2>${ICONS.warning} ${t('consolidationRecommended')}</h2>
       </div>
 
       <div class="modal-body">
@@ -154,7 +155,7 @@ export function showConsolidationSuccess(
         <div class="success-info">
           <p class="utxos-reduced">${t('utxosReduced', [utxoCount.toString()])}</p>
           <p>${t('feePaid', [HoosatUtils.sompiToAmount(fee)])}</p>
-          <p class="success-message">${t('futureTransactionsCheaper')} 🎉</p>
+          <p class="success-message">${t('futureTransactionsCheaper')} ${ICONS.party}</p>
         </div>
       </div>
 

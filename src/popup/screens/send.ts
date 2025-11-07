@@ -1,3 +1,4 @@
+import { ICONS } from '../utils/icons';
 import { SOMPI_PER_HTN } from '../../shared/constants';
 import { showTransactionPreview } from '../components/transaction-preview';
 import { getCurrentBalance } from './wallet';
@@ -16,7 +17,7 @@ export function showSendScreen(
   app.innerHTML = `
     <div class="screen">
       <div class="header">
-        <button id="backBtn" class="btn-icon">←</button>
+        <button id="backBtn" class="btn-icon">${ICONS.back}</button>
         <div class="header-center">
           <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
           <h1>${t('sendHTN')}</h1>

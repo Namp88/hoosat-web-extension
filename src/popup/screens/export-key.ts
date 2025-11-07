@@ -1,6 +1,8 @@
+import { ICONS } from '../utils/icons';
 import { t } from '../utils/i18n';
 
 /**
+import { ICONS } from '../utils/icons';
  * Show export private key screen with password verification
  */
 export function showExportKeyScreen(
@@ -11,7 +13,7 @@ export function showExportKeyScreen(
   app.innerHTML = `
     <div class="screen">
       <div class="header">
-        <button id="backBtn" class="btn-icon">←</button>
+        <button id="backBtn" class="btn-icon">${ICONS.back}</button>
         <div class="header-center">
           <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
           <h1>${t('exportPrivateKeyTitle')}</h1>
@@ -21,7 +23,7 @@ export function showExportKeyScreen(
 
       <div class="content">
         <div class="info-box critical">
-          <div class="info-icon">⚠️</div>
+          <div class="info-icon">${ICONS.warning}</div>
           <div class="info-text">
             <strong>${t('securityWarning')}</strong><br>
             ${t('neverSharePrivateKey')}
@@ -105,7 +107,7 @@ function showPrivateKeyExported(privateKey: string, address: string, onBack: () 
     app.innerHTML = `
       <div class="screen">
         <div class="header">
-          <button id="backBtn" class="btn-icon">←</button>
+          <button id="backBtn" class="btn-icon">${ICONS.back}</button>
           <div class="header-center">
             <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
             <h1>${t('yourPrivateKey')}</h1>
@@ -115,7 +117,7 @@ function showPrivateKeyExported(privateKey: string, address: string, onBack: () 
 
         <div class="content">
           <div class="info-box critical">
-            <div class="info-icon">🔐</div>
+            <div class="info-icon">${ICONS.key}</div>
             <div class="info-text">
               <strong>${t('keepThisKeySafe')}</strong><br>
               ${t('keepKeySafeWarning')}
@@ -133,20 +135,20 @@ function showPrivateKeyExported(privateKey: string, address: string, onBack: () 
               ${isKeyVisible ? privateKey : '••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••'}
             </div>
             <button id="toggleKeyBtn" class="btn btn-secondary">
-              ${isKeyVisible ? '🙈 ' + t('hideKey') : '👁️ ' + t('showKey')}
+              ${isKeyVisible ? '${ICONS.eyeHide} ' + t('hideKey') : '${ICONS.eye} ' + t('showKey')}
             </button>
           </div>
 
           ${
             isKeyVisible
               ? `
-          <button id="copyKeyBtn" class="btn btn-primary">📋 ${t('copyToClipboard')}</button>
+          <button id="copyKeyBtn" class="btn btn-primary">${ICONS.copy} ${t('copyToClipboard')}</button>
           `
               : ''
           }
 
           <div class="info-box warning" style="margin-top: 20px;">
-            <div class="info-icon">💡</div>
+            <div class="info-icon">${ICONS.lightbulb}</div>
             <div class="info-text">
               <strong>${t('bestPractices')}</strong><br>
               • ${t('bestPractice1')}<br>
@@ -173,10 +175,10 @@ function showPrivateKeyExported(privateKey: string, address: string, onBack: () 
       document.getElementById('copyKeyBtn')!.addEventListener('click', () => {
         navigator.clipboard.writeText(privateKey).then(() => {
           const btn = document.getElementById('copyKeyBtn')!;
-          const originalText = btn.textContent;
-          btn.textContent = '✓ ' + t('copiedToClipboard');
+          const originalText = btn.innerHTML;
+          btn.innerHTML = `${ICONS.check} ${t('copiedToClipboard')}`;
           setTimeout(() => {
-            btn.textContent = originalText;
+            btn.innerHTML = originalText;
           }, 2000);
         });
       });

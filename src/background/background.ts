@@ -58,8 +58,8 @@ chrome.runtime.onMessage.addListener((message: ExtensionMessage, sender, sendRes
 async function handleMessage(message: ExtensionMessage, sender: chrome.runtime.MessageSender): Promise<any> {
   const { type, data } = message;
 
-  // Update activity time on any message (except status checks)
-  if (sessionManager.getIsUnlocked() && type !== 'CHECK_UNLOCK_STATUS' && type !== 'CHECK_WALLET') {
+  // Update activity time on any message (except status checks and explicit activity updates)
+  if (sessionManager.getIsUnlocked() && type !== 'CHECK_UNLOCK_STATUS' && type !== 'CHECK_WALLET' && type !== 'USER_ACTIVITY') {
     sessionManager.updateActivity();
   }
 
@@ -122,6 +122,13 @@ async function handleMessage(message: ExtensionMessage, sender: chrome.runtime.M
 
     case 'EXPORT_PRIVATE_KEY':
       return handleExportPrivateKey(data);
+
+    case 'USER_ACTIVITY':
+      // Update activity time when user interacts with popup
+      if (sessionManager.getIsUnlocked()) {
+        sessionManager.updateActivity();
+      }
+      return { success: true };
 
     case 'CHECK_WALLET':
       return handleCheckWallet();

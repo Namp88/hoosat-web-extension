@@ -1,4 +1,5 @@
 import { t } from '../utils/i18n';
+import { ICONS } from '../utils/icons';
 
 /**
  * Show welcome screen with Create/Import wallet options
@@ -25,7 +26,7 @@ export function showWelcomeScreen(
 
         <div class="wallet-options">
           <button id="createNewBtn" class="btn btn-primary wallet-option-btn">
-            <div class="option-icon">🔑</div>
+            <div class="option-icon">${ICONS.key}</div>
             <div class="option-text">
               <div class="option-title">${t('createNewWallet')}</div>
               <div class="option-desc">${t('createNewWalletDesc')}</div>
@@ -33,7 +34,7 @@ export function showWelcomeScreen(
           </button>
 
           <button id="importBtn" class="btn btn-secondary wallet-option-btn">
-            <div class="option-icon">📥</div>
+            <div class="option-icon">${ICONS.receive}</div>
             <div class="option-text">
               <div class="option-title">${t('importExistingWallet')}</div>
               <div class="option-desc">${t('importExistingWalletDesc')}</div>

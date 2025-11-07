@@ -1,0 +1,182 @@
+/* Hoosat Design Tokens - Unified with Landing */
+/* Based on landing/src/index.css color scheme */
+
+:root {
+    /* Primary Colors from Landing */
+    --color-hoosat-teal: #14B8A6;
+    --color-hoosat-dark: #0F172A;
+    --color-hoosat-slate: #1E293B;
+
+    /* Extended Palette */
+    --color-cyan-400: #22d3ee;
+    --color-slate-200: #e2e8f0;
+    --color-slate-400: #94a3b8;
+    --color-slate-600: #475569;
+    --color-slate-700: #334155;
+    --color-slate-800: #1e293b;
+
+    /* Semantic Colors */
+    --color-success: #48bb78;
+    --color-warning: #ed8936;
+    --color-error: #fc8181;
+    --color-info: #4299e1;
+
+    /* Background Colors */
+    --bg-primary: #0F172A;
+    --bg-secondary: #1E293B;
+    --bg-tertiary: #152033;
+    --bg-input: #152033;
+    --bg-hover: #243d5c;
+
+    /* Border Colors */
+    --border-primary: #1a2f45;
+    --border-secondary: #243d5c;
+    --border-accent: var(--color-hoosat-teal);
+
+    /* Text Colors */
+    --text-primary: #e2e8f0;
+    --text-secondary: #a0aec0;
+    --text-tertiary: #718096;
+    --text-muted: #4a5568;
+
+    /* Gradients from Landing */
+    --gradient-primary: linear-gradient(135deg, #14B8A6 0%, #22d3ee 100%);
+    --gradient-primary-hover: linear-gradient(135deg, #0d9488 0%, #06b6d4 100%);
+    --gradient-background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+    --gradient-text: linear-gradient(to right, #14B8A6, #22d3ee);
+    --gradient-border: linear-gradient(135deg, #14B8A6, transparent);
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(20, 184, 166, 0.2);
+    --shadow-md: 0 4px 12px rgba(20, 184, 166, 0.3);
+    --shadow-lg: 0 6px 20px rgba(20, 184, 166, 0.4);
+    --shadow-xl: 0 20px 60px rgba(20, 184, 166, 0.3);
+
+    /* Border Radius */
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-full: 50%;
+
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 12px;
+    --spacing-lg: 16px;
+    --spacing-xl: 20px;
+    --spacing-2xl: 24px;
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+
+    /* Typography */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --font-family-mono: 'Courier New', monospace;
+
+    --font-size-xs: 11px;
+    --font-size-sm: 12px;
+    --font-size-base: 14px;
+    --font-size-lg: 16px;
+    --font-size-xl: 18px;
+    --font-size-2xl: 20px;
+    --font-size-3xl: 24px;
+
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* Z-index layers */
+    --z-dropdown: 1000;
+    --z-modal: 10000;
+    --z-toast: 9999;
+}
+
+/* Text gradient utility */
+.text-gradient {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Border gradient utility */
+.border-gradient {
+    border: 2px solid transparent;
+    background: linear-gradient(var(--bg-secondary), var(--bg-secondary)) padding-box,
+                var(--gradient-border) border-box;
+}
+
+/* Performance optimizations from Landing */
+.will-change-transform {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Font smoothing */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Font Awesome Icon Styles - Landing Style */
+i.fa-solid,
+i.fa-regular,
+i.fa-brands {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+
+/* Icon sizing utilities */
+.icon-xs { font-size: 12px; }
+.icon-sm { font-size: 14px; }
+.icon-md { font-size: 16px; }
+.icon-lg { font-size: 20px; }
+.icon-xl { font-size: 24px; }
+.icon-2xl { font-size: 32px; }
+
+/* Icon colors */
+.icon-primary { color: var(--color-hoosat-teal); }
+.icon-secondary { color: var(--text-secondary); }
+.icon-muted { color: var(--text-muted); }
+.icon-success { color: var(--color-success); }
+.icon-warning { color: var(--color-warning); }
+.icon-error { color: var(--color-error); }
+
+/* Icon button styles */
+.icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    color: var(--text-primary);
+}
+
+.icon-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-hoosat-teal);
+}
+
+.icon-btn:active {
+    transform: scale(0.95);
+}
+
+/* Icon with text spacing */
+.icon-with-text {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}

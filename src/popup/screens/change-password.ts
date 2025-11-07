@@ -1,6 +1,7 @@
 import { MIN_PASSWORD_LENGTH } from '../../shared/constants';
 import { calculatePasswordStrength } from '../utils';
 import { t, tn } from '../utils/i18n';
+import { ICONS } from '../utils/icons';
 
 /**
  * Show change password screen
@@ -13,7 +14,7 @@ export function showChangePasswordScreen(
   app.innerHTML = `
     <div class="screen">
       <div class="header">
-        <button id="backBtn" class="btn-icon">←</button>
+        <button id="backBtn" class="btn-icon">${ICONS.back}</button>
         <div class="header-center">
           <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
           <h1>${t('changePasswordTitle')}</h1>
@@ -23,7 +24,7 @@ export function showChangePasswordScreen(
 
       <div class="content">
         <div class="info-box warning">
-          <div class="info-icon">⚠️</div>
+          <div class="info-icon">${ICONS.warning}</div>
           <div class="info-text">
             <strong>${t('important')}</strong> ${t('changePasswordWarning')}
           </div>
@@ -96,19 +97,19 @@ export function showChangePasswordScreen(
     strengthDiv.className = 'password-strength';
 
     if (password.length === 0) {
-      strengthDiv.textContent = '';
+      strengthDiv.innerHTML = '';
       return;
     }
 
     if (strength.score < 2) {
       strengthDiv.classList.add('weak');
-      strengthDiv.textContent = '🔴 ' + t('weakPassword');
+      strengthDiv.innerHTML = `${ICONS.statusRed} ${t('weakPassword')}`;
     } else if (strength.score < 4) {
       strengthDiv.classList.add('medium');
-      strengthDiv.textContent = '🟡 ' + t('mediumPassword');
+      strengthDiv.innerHTML = `${ICONS.statusYellow} ${t('mediumPassword')}`;
     } else {
       strengthDiv.classList.add('strong');
-      strengthDiv.textContent = '🟢 ' + t('strongPassword');
+      strengthDiv.innerHTML = `${ICONS.statusGreen} ${t('strongPassword')}`;
     }
   });
 }

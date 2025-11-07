@@ -1,3 +1,4 @@
+import { ICONS } from '../utils/icons';
 import { APP_NAME } from '../../shared/constants';
 import { DAppRequest } from '../../shared/types';
 import { formatTimeAgo, isRequestOld } from '../utils/ui-helpers';
@@ -35,7 +36,7 @@ export function showSignMessageScreen(
 
       <div class="content">
         <div class="dapp-request-container">
-          <div class="dapp-icon">✍️</div>
+          <div class="dapp-icon">${ICONS.signature}</div>
 
           <div class="dapp-origin">
             <div class="dapp-origin-label">${t('siteRequestingSignature')}</div>
@@ -44,13 +45,13 @@ export function showSignMessageScreen(
           </div>
 
           <div class="request-timestamp ${isOld ? 'old' : ''}">
-            <span class="timestamp-icon">⏰</span>
+            <span class="timestamp-icon">${ICONS.clock}</span>
             <span class="timestamp-text">${t('requestedTime')} ${timeAgo}</span>
-            ${isOld ? `<span class="timestamp-warning">⚠️ ${t('oldRequestWarning')}</span>` : ''}
+            ${isOld ? `<span class="timestamp-warning">${ICONS.warning} ${t('oldRequestWarning')}</span>` : ''}
           </div>
 
           <div class="info-box info">
-            <div class="info-icon">📝</div>
+            <div class="info-icon">${ICONS.fileSignature}</div>
             <div class="info-text">
               <strong>${t('messageToSign')}</strong>
               <div class="message-content">${displayMessage}</div>
@@ -59,7 +60,7 @@ export function showSignMessageScreen(
           </div>
 
           <div class="info-box warning">
-            <div class="info-icon">ℹ️</div>
+            <div class="info-icon">${ICONS.info}</div>
             <div class="info-text">
               ${t('signingProveOwnership')}
               ${t('signingIsFree')}
@@ -67,7 +68,7 @@ export function showSignMessageScreen(
           </div>
 
           <div class="info-box critical">
-            <div class="info-icon">⚠️</div>
+            <div class="info-icon">${ICONS.warning}</div>
             <div class="info-text">
               <strong>${t('onlySignUnderstood')}</strong><br>
               ${t('maliciousSigningWarning')}

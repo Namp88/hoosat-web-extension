@@ -1,3 +1,4 @@
+import { ICONS } from '../utils/icons';
 import { validatePassword, calculatePasswordStrength, addPasswordStrengthIndicator } from '../utils';
 import { t } from '../utils/i18n';
 
@@ -12,7 +13,7 @@ export function showGenerateWalletScreen(
   app.innerHTML = `
     <div class="screen">
       <div class="header">
-        <button id="backBtn" class="btn-icon">←</button>
+        <button id="backBtn" class="btn-icon">${ICONS.back}</button>
         <div class="header-center">
           <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
           <h1>${t('createNewWalletTitle')}</h1>
@@ -22,7 +23,7 @@ export function showGenerateWalletScreen(
 
       <div class="content">
         <div class="info-box warning">
-          <div class="info-icon">⚠️</div>
+          <div class="info-icon">${ICONS.warning}</div>
           <div class="info-text">
             <strong>${t('important')}</strong> ${t('savePrivateKeyWarning')}
           </div>
