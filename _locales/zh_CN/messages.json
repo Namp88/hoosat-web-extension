@@ -47,6 +47,14 @@
     "message": "输入密码",
     "description": "Password field placeholder"
   },
+  "enterPasswordToUnlock": {
+    "message": "输入您的密码以解锁钱包",
+    "description": "Unlock screen subtitle"
+  },
+  "walletLockedHint": {
+    "message": "为了安全，您的钱包已锁定",
+    "description": "Unlock screen hint message"
+  },
   "unlock": {
     "message": "解锁",
     "description": "Unlock button"

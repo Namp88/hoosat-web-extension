@@ -47,6 +47,14 @@
     "message": "Şifrenizi girin",
     "description": "Password field placeholder"
   },
+  "enterPasswordToUnlock": {
+    "message": "Cüzdanınızın kilidini açmak için şifrenizi girin",
+    "description": "Unlock screen subtitle"
+  },
+  "walletLockedHint": {
+    "message": "Güvenlik için cüzdanınız kilitli",
+    "description": "Unlock screen hint message"
+  },
   "unlock": {
     "message": "Kilidi Aç",
     "description": "Unlock button"

@@ -47,6 +47,14 @@
     "message": "비밀번호를 입력하세요",
     "description": "Password field placeholder"
   },
+  "enterPasswordToUnlock": {
+    "message": "지갑 잠금을 해제하려면 비밀번호를 입력하세요",
+    "description": "Unlock screen subtitle"
+  },
+  "walletLockedHint": {
+    "message": "보안을 위해 지갑이 잠겨 있습니다",
+    "description": "Unlock screen hint message"
+  },
   "unlock": {
     "message": "잠금 해제",
     "description": "Unlock button"

@@ -116,17 +116,17 @@ export function showUnlockScreen(
     const password = (document.getElementById('password') as HTMLInputElement).value;
     const errorEl = document.getElementById('error')!;
 
-    errorEl.textContent = '';
+    errorEl.innerHTML = '';
 
     if (!password) {
-      errorEl.textContent = t('passwordRequired');
+      errorEl.innerHTML = `${ICONS.warning} ${t('passwordRequired')}`;
       return;
     }
 
     try {
       await onUnlock(password);
     } catch (error: any) {
-      errorEl.textContent = error.message || t('invalidPassword');
+      errorEl.innerHTML = `${ICONS.warning} ${error.message || t('invalidPassword')}`;
     }
   };
 

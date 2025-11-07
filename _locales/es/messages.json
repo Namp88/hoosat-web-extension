@@ -47,6 +47,14 @@
     "message": "Ingresa la contraseña",
     "description": "Password field placeholder"
   },
+  "enterPasswordToUnlock": {
+    "message": "Ingresa tu contraseña para desbloquear tu billetera",
+    "description": "Unlock screen subtitle"
+  },
+  "walletLockedHint": {
+    "message": "Tu billetera está bloqueada por seguridad",
+    "description": "Unlock screen hint message"
+  },
   "unlock": {
     "message": "Desbloquear",
     "description": "Unlock button"

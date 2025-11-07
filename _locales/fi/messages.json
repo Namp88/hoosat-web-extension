@@ -47,6 +47,14 @@
     "message": "Syötä salasana",
     "description": "Password field placeholder"
   },
+  "enterPasswordToUnlock": {
+    "message": "Syötä salasanasi avataksesi lompakkosi",
+    "description": "Unlock screen subtitle"
+  },
+  "walletLockedHint": {
+    "message": "Lompakkosi on lukittu turvallisuussyistä",
+    "description": "Unlock screen hint message"
+  },
   "unlock": {
     "message": "Avaa",
     "description": "Unlock button"

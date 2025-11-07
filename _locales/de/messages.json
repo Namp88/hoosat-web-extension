@@ -47,6 +47,14 @@
     "message": "Passwort eingeben",
     "description": "Password field placeholder"
   },
+  "enterPasswordToUnlock": {
+    "message": "Geben Sie Ihr Passwort ein, um Ihr Wallet zu entsperren",
+    "description": "Unlock screen subtitle"
+  },
+  "walletLockedHint": {
+    "message": "Ihr Wallet ist aus Sicherheitsgründen gesperrt",
+    "description": "Unlock screen hint message"
+  },
   "unlock": {
     "message": "Entsperren",
     "description": "Unlock button"

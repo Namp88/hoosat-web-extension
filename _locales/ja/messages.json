@@ -47,6 +47,14 @@
     "message": "パスワードを入力",
     "description": "Password field placeholder"
   },
+  "enterPasswordToUnlock": {
+    "message": "ウォレットのロックを解除するにはパスワードを入力してください",
+    "description": "Unlock screen subtitle"
+  },
+  "walletLockedHint": {
+    "message": "セキュリティのためウォレットはロックされています",
+    "description": "Unlock screen hint message"
+  },
   "unlock": {
     "message": "ロック解除",
     "description": "Unlock button"
