@@ -411,6 +411,22 @@
     "message": "Reset Wallet",
     "description": "Reset wallet button"
   },
+  "resetWalletTitle": {
+    "message": "Reset Wallet",
+    "description": "Reset wallet modal title"
+  },
+  "resetWalletConfirm": {
+    "message": "Are you sure? This will delete your wallet. Make sure you have backed up your private key!",
+    "description": "Reset wallet confirmation message"
+  },
+  "cancel": {
+    "message": "Cancel",
+    "description": "Cancel button"
+  },
+  "confirm": {
+    "message": "Confirm",
+    "description": "Confirm button"
+  },
 
   "connectedSitesTitle": {
     "message": "Connected Sites",
@@ -1061,5 +1077,33 @@
   "qrCodeGenerationFailed": {
     "message": "QR code generation failed",
     "description": "QR code generation failed error message"
+  },
+  "approveConnectionTitle": {
+    "message": "Approve Connection",
+    "description": "Unlock screen title for connection approval"
+  },
+  "approveConnectionMessage": {
+    "message": "This site wants to connect to your wallet. Unlock to approve or reject.",
+    "description": "Unlock screen message for connection approval"
+  },
+  "approveConnectionMessageComplete": {
+    "message": "This site wants to connect to your wallet. Unlock to complete the connection.",
+    "description": "Unlock screen message for completing connection"
+  },
+  "approveTransactionTitle": {
+    "message": "Approve Transaction",
+    "description": "Unlock screen title for transaction approval"
+  },
+  "approveTransactionMessage": {
+    "message": "This site wants to send a transaction. Unlock to review and approve.",
+    "description": "Unlock screen message for transaction approval"
+  },
+  "signMessageTitle": {
+    "message": "Sign Message",
+    "description": "Unlock screen title for message signing"
+  },
+  "signMessageMessage": {
+    "message": "This site wants you to sign a message. Unlock to review and sign.",
+    "description": "Unlock screen message for message signing"
   }
 }

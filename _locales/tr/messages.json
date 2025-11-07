@@ -401,6 +401,22 @@
     "message": "Cüzdanı Sıfırla",
     "description": "Reset wallet button"
   },
+  "resetWalletTitle": {
+    "message": "Cüzdanı Sıfırla",
+    "description": "Reset wallet modal title"
+  },
+  "resetWalletConfirm": {
+    "message": "Emin misiniz? Bu cüzdanınızı silecektir. Özel anahtarınızı yedeklediğinizden emin olun!",
+    "description": "Reset wallet confirmation message"
+  },
+  "cancel": {
+    "message": "İptal",
+    "description": "Cancel button"
+  },
+  "confirm": {
+    "message": "Onayla",
+    "description": "Confirm button"
+  },
   "connectedSitesTitle": {
     "message": "Bağlı Siteler",
     "description": "Connected sites screen title"
@@ -1016,5 +1032,33 @@
   "qrCodeGenerationFailed": {
     "message": "QR kod oluşturma başarısız",
     "description": "QR code generation failed error message"
+  },
+  "approveConnectionTitle": {
+    "message": "Bağlantıyı Onayla",
+    "description": "Unlock screen title for connection approval"
+  },
+  "approveConnectionMessage": {
+    "message": "Bu site cüzdanınıza bağlanmak istiyor. Onaylamak veya reddetmek için kilidi açın.",
+    "description": "Unlock screen message for connection approval"
+  },
+  "approveConnectionMessageComplete": {
+    "message": "Bu site cüzdanınıza bağlanmak istiyor. Bağlantıyı tamamlamak için kilidi açın.",
+    "description": "Unlock screen message for completing connection"
+  },
+  "approveTransactionTitle": {
+    "message": "İşlemi Onayla",
+    "description": "Unlock screen title for transaction approval"
+  },
+  "approveTransactionMessage": {
+    "message": "Bu site bir işlem göndermek istiyor. İncelemek ve onaylamak için kilidi açın.",
+    "description": "Unlock screen message for transaction approval"
+  },
+  "signMessageTitle": {
+    "message": "Mesajı İmzala",
+    "description": "Unlock screen title for message signing"
+  },
+  "signMessageMessage": {
+    "message": "Bu site bir mesajı imzalamanızı istiyor. İncelemek ve imzalamak için kilidi açın.",
+    "description": "Unlock screen message for message signing"
   }
 }

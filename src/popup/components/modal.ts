@@ -1,4 +1,5 @@
 import { ICONS } from '../utils/icons';
+import { t } from '../utils/i18n';
 
 /**
  * Show confirm dialog
@@ -15,14 +16,15 @@ export function showConfirmDialog(title: string, message: string): Promise<boole
 
     modal.innerHTML = `
       <div class="modal-header">
+        <div class="modal-icon">${ICONS.warning}</div>
         <h2>${title}</h2>
       </div>
       <div class="modal-body">
         <p>${message}</p>
       </div>
       <div class="modal-actions">
-        <button id="modalCancel" class="btn btn-secondary">Cancel</button>
-        <button id="modalConfirm" class="btn btn-danger">Confirm</button>
+        <button id="modalCancel" class="btn btn-secondary">${t('cancel')}</button>
+        <button id="modalConfirm" class="btn btn-danger">${t('confirm')}</button>
       </div>
     `;
 
@@ -75,7 +77,8 @@ export function showAlertDialog(title: string, message: string, type: 'success' 
 
     modal.innerHTML = `
       <div class="modal-header">
-        <h2>${icon} ${title}</h2>
+        <div class="modal-icon">${icon}</div>
+        <h2>${title}</h2>
       </div>
       <div class="modal-body">
         <p>${message}</p>

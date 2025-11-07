@@ -15,35 +15,53 @@ export function showSendScreen(
   onSuccess: (txId: string) => Promise<void>
 ): void {
   app.innerHTML = `
-    <div class="screen">
-      <div class="header">
-        <button id="backBtn" class="btn-icon">${ICONS.back}</button>
-        <div class="header-center">
-          <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
-          <h1>${t('sendHTN')}</h1>
-        </div>
-        <div style="width: 32px;"></div>
+    <div class="create-import-hero">
+      <!-- Static Background -->
+      <div class="create-import-background">
+        <div class="create-import-gradient-orb create-import-orb-1"></div>
+        <div class="create-import-gradient-orb create-import-orb-2"></div>
+        <div class="create-import-grid-pattern"></div>
       </div>
 
-      <div class="content">
-        <div class="form">
-          <div class="form-group">
-            <label for="recipient">${t('recipientAddress')}</label>
-            <input type="text" id="recipient" placeholder="hoosat:..." />
+      <!-- Container -->
+      <div class="create-import-container">
+        <!-- Header -->
+        <div class="create-import-header">
+          <button id="backBtn" class="create-import-back-btn">${ICONS.back}</button>
+          <div class="create-import-header-title">
+            <img src="icons/icon48.png" class="create-import-header-icon" alt="Hoosat" />
+            <h1>${t('sendHTN')}</h1>
+          </div>
+          <div style="width: 32px;"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="create-import-content">
+          <!-- Info Box with Balance -->
+          <div class="hero-info-box">
+            <div class="hero-info-box-icon">${ICONS.wallet}</div>
+            <div>
+              <strong>${t('available')}</strong><br>
+              ${HoosatUtils.sompiToAmount(balance)} HTN
+            </div>
           </div>
 
-          <div class="form-group">
-            <label for="amount">${t('amount')}</label>
-            <input type="number" id="amount" step="0.00000001" placeholder="0.00" />
+          <!-- Form Card -->
+          <div class="create-import-card">
+            <div class="create-import-form-group">
+              <label for="recipient">${t('recipientAddress')}</label>
+              <input type="text" id="recipient" placeholder="hoosat:..." autocomplete="off" />
+            </div>
+
+            <div class="create-import-form-group">
+              <label for="amount">${t('amount')}</label>
+              <input type="number" id="amount" step="0.00000001" placeholder="0.00" autocomplete="off" />
+            </div>
+
+            <div class="create-import-error" id="error"></div>
+
+            <button id="sendBtn" class="btn btn-primary create-import-submit-btn">${t('sendTransaction')}</button>
           </div>
-
-          <div class="balance-info">
-            ${t('available')} ${HoosatUtils.sompiToAmount(balance)} HTN
-          </div>
-
-          <div class="error" id="error"></div>
-
-          <button id="sendBtn" class="btn btn-primary">${t('sendTransaction')}</button>
         </div>
       </div>
     </div>
@@ -61,22 +79,22 @@ async function handleSendTransaction(balance: string, onSuccess: (txId: string) 
   const amount = (document.getElementById('amount') as HTMLInputElement).value;
   const errorEl = document.getElementById('error')!;
 
-  errorEl.textContent = '';
+  errorEl.innerHTML = '';
 
   // Validation
   if (!recipient || !amount) {
-    errorEl.textContent = t('recipientAndAmountRequired');
+    errorEl.innerHTML = `${ICONS.warning} ${t('recipientAndAmountRequired')}`;
     return;
   }
 
   if (!recipient.startsWith('hoosat:')) {
-    errorEl.textContent = t('invalidAddressFormat');
+    errorEl.innerHTML = `${ICONS.warning} ${t('invalidAddressFormat')}`;
     return;
   }
 
   const amountNum = parseFloat(amount);
   if (isNaN(amountNum) || amountNum <= 0) {
-    errorEl.textContent = t('invalidAmount');
+    errorEl.innerHTML = `${ICONS.warning} ${t('invalidAmount')}`;
     return;
   }
 
@@ -123,7 +141,7 @@ async function handleSendTransaction(balance: string, onSuccess: (txId: string) 
     if (totalRequired > balanceSompi) {
       const total = (parseFloat(totalRequired.toString()) / SOMPI_PER_HTN).toFixed(8);
       const fee = minFeeHTN.toFixed(8);
-      errorEl.textContent = tn('insufficientBalance', total, fee);
+      errorEl.innerHTML = `${ICONS.warning} ${tn('insufficientBalance', total, fee)}`;
       return;
     }
 
@@ -168,7 +186,7 @@ async function handleSendTransaction(balance: string, onSuccess: (txId: string) 
     // Notify success
     await onSuccess(response.data);
   } catch (error: any) {
-    errorEl.textContent = error.message || t('transactionFailed');
+    errorEl.innerHTML = `${ICONS.error} ${error.message || t('transactionFailed')}`;
     // Re-enable button
     const sendBtn = document.getElementById('sendBtn') as HTMLButtonElement;
     if (sendBtn) {

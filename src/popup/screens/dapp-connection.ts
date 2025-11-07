@@ -19,35 +19,54 @@ export function showDAppConnectionScreen(
   const isOld = isRequestOld(request.timestamp);
 
   app.innerHTML = `
-    <div class="screen">
-      <div class="header">
-        <div class="header-center">
-          <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
-          <h1>${t('connectionRequest')}</h1>
-        </div>
+    <div class="create-import-hero">
+      <!-- Static Background -->
+      <div class="create-import-background">
+        <div class="create-import-gradient-orb create-import-orb-1"></div>
+        <div class="create-import-gradient-orb create-import-orb-2"></div>
+        <div class="create-import-grid-pattern"></div>
       </div>
 
-      <div class="content">
-        <div class="dapp-request-container">
-          <div class="dapp-icon">${ICONS.globe}</div>
+      <!-- Container -->
+      <div class="create-import-container">
+        <!-- Header -->
+        <div class="create-import-header">
+          <div style="width: 32px;"></div>
+          <div class="create-import-header-title">
+            <img src="icons/icon48.png" class="create-import-header-icon" alt="Hoosat" />
+            <h1>${t('connectionRequest')}</h1>
+          </div>
+          <div style="width: 32px;"></div>
+        </div>
 
-          <div class="dapp-origin">
-            <div class="dapp-origin-label">${t('siteRequestingConnection')}</div>
-            <div class="dapp-origin-value">${domain}</div>
-            <div class="dapp-origin-full">${request.origin}</div>
+        <!-- Content -->
+        <div class="create-import-content">
+          <!-- Site Info Card -->
+          <div class="create-import-card" style="text-align: center; margin-bottom: var(--spacing-md);">
+            <div style="width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; background: rgba(20, 184, 166, 0.15); border: 2px solid rgba(20, 184, 166, 0.3); border-radius: 50%; margin: 0 auto var(--spacing-md); font-size: 36px; color: var(--color-hoosat-teal);">
+              ${ICONS.globe}
+            </div>
+            <div style="margin-bottom: var(--spacing-xs); font-size: var(--font-size-sm); color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px;">
+              ${t('siteRequestingConnection')}
+            </div>
+            <div style="font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: var(--text-primary); margin-bottom: var(--spacing-xs);">
+              ${domain}
+            </div>
+            <div style="font-size: var(--font-size-xs); color: var(--text-tertiary); word-break: break-all;">
+              ${request.origin}
+            </div>
+            <div style="display: flex; align-items: center; justify-content: center; gap: var(--spacing-xs); margin-top: var(--spacing-md); font-size: var(--font-size-xs); color: var(--text-tertiary);">
+              ${ICONS.clock} ${t('requestedTime')} ${timeAgo}
+              ${isOld ? `<span style="color: #eab308;">${ICONS.warning} ${t('oldRequestWarning')}</span>` : ''}
+            </div>
           </div>
 
-          <div class="request-timestamp ${isOld ? 'old' : ''}">
-            <span class="timestamp-icon">${ICONS.clock}</span>
-            <span class="timestamp-text">${t('requestedTime')} ${timeAgo}</span>
-            ${isOld ? `<span class="timestamp-warning">${ICONS.warning} ${t('oldRequestWarning')}</span>` : ''}
-          </div>
-
-          <div class="info-box warning">
-            <div class="info-icon">${ICONS.warning}</div>
-            <div class="info-text">
+          <!-- Permissions Info Box -->
+          <div class="hero-info-box warning" style="margin-bottom: var(--spacing-md);">
+            <div class="hero-info-box-icon">${ICONS.warning}</div>
+            <div>
               <strong>${t('thisSiteWillBeAbleTo')}</strong>
-              <ul>
+              <ul style="margin: var(--spacing-xs) 0 0 var(--spacing-md); padding: 0; list-style-position: inside;">
                 <li>${t('viewYourWalletAddress')}</li>
                 <li>${t('requestTransactionApprovals')}</li>
                 <li>${t('viewAccountBalance')}</li>
@@ -55,17 +74,19 @@ export function showDAppConnectionScreen(
             </div>
           </div>
 
-          <div class="info-box critical">
-            <div class="info-icon">${ICONS.lock}</div>
-            <div class="info-text">
+          <!-- Security Warning Info Box -->
+          <div class="hero-info-box error" style="margin-bottom: var(--spacing-md);">
+            <div class="hero-info-box-icon">${ICONS.lock}</div>
+            <div>
               <strong>${t('onlyConnectTrustedSites')}</strong><br>
               ${t('maliciousSitesWarning')}
             </div>
           </div>
 
-          <div class="error" id="error"></div>
+          <div class="create-import-error" id="error"></div>
 
-          <div class="dapp-actions">
+          <!-- Action Buttons -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-sm);">
             <button id="rejectBtn" class="btn btn-secondary">${t('reject')}</button>
             <button id="approveBtn" class="btn btn-primary">${t('connect')}</button>
           </div>
@@ -94,7 +115,7 @@ async function handleApprove(onApprove: () => Promise<void>): Promise<void> {
 
     await onApprove();
   } catch (error: any) {
-    errorEl.textContent = error.message || t('failedToApproveConnection');
+    errorEl.innerHTML = `${ICONS.error} ${error.message || t('failedToApproveConnection')}`;
     approveBtn.disabled = false;
     rejectBtn.disabled = false;
     approveBtn.textContent = t('connect');
@@ -116,7 +137,7 @@ async function handleReject(onReject: () => Promise<void>): Promise<void> {
 
     await onReject();
   } catch (error: any) {
-    errorEl.textContent = error.message || t('failedToRejectConnection');
+    errorEl.innerHTML = `${ICONS.error} ${error.message || t('failedToRejectConnection')}`;
     approveBtn.disabled = false;
     rejectBtn.disabled = false;
     rejectBtn.textContent = t('reject');

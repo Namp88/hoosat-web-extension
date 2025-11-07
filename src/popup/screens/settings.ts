@@ -19,30 +19,42 @@ export async function showSettingsScreen(
 ): Promise<void> {
 
   app.innerHTML = `
-    <div class="screen">
-      <div class="header">
-        <button id="backBtn" class="btn-icon">${ICONS.back}</button>
-        <div class="header-center">
-          <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
-          <h1>${t('settings')}</h1>
-        </div>
-        <div style="width: 32px;"></div>
+    <div class="settings-hero">
+      <!-- Static Background -->
+      <div class="settings-background">
+        <div class="settings-gradient-orb settings-orb-1"></div>
+        <div class="settings-gradient-orb settings-orb-2"></div>
+        <div class="settings-grid-pattern"></div>
       </div>
 
-      <div class="content">
-        <div class="settings">
-          <button id="languageBtn" class="btn btn-secondary">${ICONS.language} ${t('languageSettings')}</button>
-          <button id="utxoBtn" class="btn btn-secondary">${ICONS.refresh} ${t('utxoManagement')}</button>
+      <!-- Container -->
+      <div class="settings-container">
+        <!-- Header -->
+        <div class="settings-header">
+          <button id="backBtn" class="settings-back-btn">${ICONS.back}</button>
+          <div class="settings-header-title">
+            <img src="icons/icon48.png" class="settings-header-icon" alt="Hoosat" />
+            <h1>${t('settings')}</h1>
+          </div>
+          <div style="width: 32px;"></div>
+        </div>
 
-          <div class="settings-divider"></div>
+        <!-- Content -->
+        <div class="settings-content">
+          <div class="settings-card">
+            <button id="languageBtn" class="settings-menu-btn">${ICONS.language} ${t('languageSettings')}</button>
+            <button id="utxoBtn" class="settings-menu-btn">${ICONS.refresh} ${t('utxoManagement')}</button>
+          </div>
 
-          <button id="connectedSitesBtn" class="btn btn-secondary">${ICONS.link} ${t('connectedSites')}</button>
-          <button id="changePasswordBtn" class="btn btn-secondary">${ICONS.key} ${t('changePassword')}</button>
-          <button id="exportKeyBtn" class="btn btn-secondary">${ICONS.send} ${t('exportPrivateKey')}</button>
+          <div class="settings-card">
+            <button id="connectedSitesBtn" class="settings-menu-btn">${ICONS.link} ${t('connectedSites')}</button>
+            <button id="changePasswordBtn" class="settings-menu-btn">${ICONS.key} ${t('changePassword')}</button>
+            <button id="exportKeyBtn" class="settings-menu-btn">${ICONS.send} ${t('exportPrivateKey')}</button>
+          </div>
 
-          <div class="settings-divider"></div>
-
-          <button id="resetBtn" class="btn btn-danger">${ICONS.trash} ${t('resetWallet')}</button>
+          <div class="settings-card">
+            <button id="resetBtn" class="settings-menu-btn danger">${ICONS.trash} ${t('resetWallet')}</button>
+          </div>
         </div>
       </div>
     </div>
@@ -68,22 +80,32 @@ export async function showLanguageSettingsScreen(
   const currentLanguage = await getSelectedLanguage();
 
   app.innerHTML = `
-    <div class="screen">
-      <div class="header">
-        <button id="backBtn" class="btn-icon">${ICONS.back}</button>
-        <div class="header-center">
-          <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
-          <h1>${t('languageSettings')}</h1>
-        </div>
-        <div style="width: 32px;"></div>
+    <div class="settings-hero">
+      <!-- Static Background -->
+      <div class="settings-background">
+        <div class="settings-gradient-orb settings-orb-1"></div>
+        <div class="settings-gradient-orb settings-orb-2"></div>
+        <div class="settings-grid-pattern"></div>
       </div>
 
-      <div class="content">
-        <div class="settings">
-          <div class="settings-section">
-            <div class="form-group">
+      <!-- Container -->
+      <div class="settings-container">
+        <!-- Header -->
+        <div class="settings-header">
+          <button id="backBtn" class="settings-back-btn">${ICONS.back}</button>
+          <div class="settings-header-title">
+            <img src="icons/icon48.png" class="settings-header-icon" alt="Hoosat" />
+            <h1>${t('languageSettings')}</h1>
+          </div>
+          <div style="width: 32px;"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="settings-content">
+          <div class="settings-card">
+            <div class="settings-form-group">
               <label for="languageSelect">${t('selectLanguage')}</label>
-              <select id="languageSelect" class="language-select">
+              <select id="languageSelect" class="settings-select">
                 ${AVAILABLE_LANGUAGES.map(
                   lang => `
                   <option value="${lang.code}" ${lang.code === currentLanguage ? 'selected' : ''}>
@@ -146,29 +168,38 @@ export async function showUtxoManagementScreen(
   onBack: () => void
 ): Promise<void> {
   app.innerHTML = `
-    <div class="screen">
-      <div class="header">
-        <button id="backBtn" class="btn-icon">${ICONS.back}</button>
-        <div class="header-center">
-          <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
-          <h1>${t('utxoManagement')}</h1>
-        </div>
-        <div style="width: 32px;"></div>
+    <div class="settings-hero">
+      <!-- Static Background -->
+      <div class="settings-background">
+        <div class="settings-gradient-orb settings-orb-1"></div>
+        <div class="settings-gradient-orb settings-orb-2"></div>
+        <div class="settings-grid-pattern"></div>
       </div>
 
-      <div class="content">
-        <div class="settings">
-          <div class="settings-section">
-            <div class="utxo-info">
+      <!-- Container -->
+      <div class="settings-container">
+        <!-- Header -->
+        <div class="settings-header">
+          <button id="backBtn" class="settings-back-btn">${ICONS.back}</button>
+          <div class="settings-header-title">
+            <img src="icons/icon48.png" class="settings-header-icon" alt="Hoosat" />
+            <h1>${t('utxoManagement')}</h1>
+          </div>
+          <div style="width: 32px;"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="settings-content">
+          <div class="settings-card">
+            <div class="settings-utxo-info">
               <p id="utxoCount">${t('checkingUtxos')}</p>
-              <button id="consolidateBtn" class="btn btn-secondary" disabled>${t('consolidateUtxos')}</button>
+              <button id="consolidateBtn" class="btn btn-primary settings-action-btn" disabled>${t('consolidateUtxos')}</button>
             </div>
-            <div class="form-group">
-              <label class="checkbox-label">
-                <input type="checkbox" id="autoConsolidateCheckbox" />
-                ${t('autoConsolidateWhen', [DEFAULT_CONSOLIDATION_THRESHOLD.toString()])}
-              </label>
-            </div>
+
+            <label class="settings-checkbox-label">
+              <input type="checkbox" id="autoConsolidateCheckbox" />
+              ${t('autoConsolidateWhen', [DEFAULT_CONSOLIDATION_THRESHOLD.toString()])}
+            </label>
           </div>
         </div>
       </div>

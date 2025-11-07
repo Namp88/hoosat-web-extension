@@ -401,6 +401,22 @@
     "message": "Nollaa Lompakko",
     "description": "Reset wallet button"
   },
+  "resetWalletTitle": {
+    "message": "Nollaa lompakko",
+    "description": "Reset wallet modal title"
+  },
+  "resetWalletConfirm": {
+    "message": "Oletko varma? Tämä poistaa lompakkosi. Varmista, että olet varmuuskopioinut yksityisen avaimesi!",
+    "description": "Reset wallet confirmation message"
+  },
+  "cancel": {
+    "message": "Peruuta",
+    "description": "Cancel button"
+  },
+  "confirm": {
+    "message": "Vahvista",
+    "description": "Confirm button"
+  },
   "connectedSitesTitle": {
     "message": "Yhdistetyt Sivustot",
     "description": "Connected sites screen title"
@@ -1032,5 +1048,33 @@
   "qrCodeGenerationFailed": {
     "message": "QR-koodin luominen epäonnistui",
     "description": "QR code generation failed error message"
+  },
+  "approveConnectionTitle": {
+    "message": "Hyväksy yhteys",
+    "description": "Unlock screen title for connection approval"
+  },
+  "approveConnectionMessage": {
+    "message": "Tämä sivusto haluaa yhdistää lompakkoosi. Avaa lukitus hyväksyäksesi tai hylätäksesi.",
+    "description": "Unlock screen message for connection approval"
+  },
+  "approveConnectionMessageComplete": {
+    "message": "Tämä sivusto haluaa yhdistää lompakkoosi. Avaa lukitus yhteyden viimeistelemiseksi.",
+    "description": "Unlock screen message for completing connection"
+  },
+  "approveTransactionTitle": {
+    "message": "Hyväksy tapahtuma",
+    "description": "Unlock screen title for transaction approval"
+  },
+  "approveTransactionMessage": {
+    "message": "Tämä sivusto haluaa lähettää tapahtuman. Avaa lukitus tarkistaaksesi ja hyväksyäksesi.",
+    "description": "Unlock screen message for transaction approval"
+  },
+  "signMessageTitle": {
+    "message": "Allekirjoita viesti",
+    "description": "Unlock screen title for message signing"
+  },
+  "signMessageMessage": {
+    "message": "Tämä sivusto haluaa sinun allekirjoittavan viestin. Avaa lukitus tarkistaaksesi ja allekirjoittaaksesi.",
+    "description": "Unlock screen message for message signing"
   }
 }

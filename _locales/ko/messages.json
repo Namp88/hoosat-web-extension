@@ -401,6 +401,22 @@
     "message": "지갑 초기화",
     "description": "Reset wallet button"
   },
+  "resetWalletTitle": {
+    "message": "지갑 초기화",
+    "description": "Reset wallet modal title"
+  },
+  "resetWalletConfirm": {
+    "message": "확실합니까? 지갑이 삭제됩니다. 개인 키를 백업했는지 확인하세요!",
+    "description": "Reset wallet confirmation message"
+  },
+  "cancel": {
+    "message": "취소",
+    "description": "Cancel button"
+  },
+  "confirm": {
+    "message": "확인",
+    "description": "Confirm button"
+  },
   "connectedSitesTitle": {
     "message": "연결된 사이트",
     "description": "Connected sites screen title"
@@ -1016,5 +1032,33 @@
   "qrCodeGenerationFailed": {
     "message": "QR 코드 생성 실패",
     "description": "QR code generation failed error message"
+  },
+  "approveConnectionTitle": {
+    "message": "연결 승인",
+    "description": "Unlock screen title for connection approval"
+  },
+  "approveConnectionMessage": {
+    "message": "이 사이트가 지갑에 연결하려고 합니다. 잠금 해제하여 승인하거나 거부하세요.",
+    "description": "Unlock screen message for connection approval"
+  },
+  "approveConnectionMessageComplete": {
+    "message": "이 사이트가 지갑에 연결하려고 합니다. 잠금 해제하여 연결을 완료하세요.",
+    "description": "Unlock screen message for completing connection"
+  },
+  "approveTransactionTitle": {
+    "message": "거래 승인",
+    "description": "Unlock screen title for transaction approval"
+  },
+  "approveTransactionMessage": {
+    "message": "이 사이트가 거래를 전송하려고 합니다. 잠금 해제하여 검토하고 승인하세요.",
+    "description": "Unlock screen message for transaction approval"
+  },
+  "signMessageTitle": {
+    "message": "메시지 서명",
+    "description": "Unlock screen title for message signing"
+  },
+  "signMessageMessage": {
+    "message": "이 사이트가 메시지 서명을 요청합니다. 잠금 해제하여 검토하고 서명하세요.",
+    "description": "Unlock screen message for message signing"
   }
 }

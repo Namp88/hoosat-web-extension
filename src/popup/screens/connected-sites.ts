@@ -10,57 +10,69 @@ export async function showConnectedSitesScreen(app: HTMLElement, onBack: () => v
   const sites = await loadConnectedSites();
 
   app.innerHTML = `
-    <div class="screen">
-      <div class="header">
-        <button id="backBtn" class="btn-icon">${ICONS.back}</button>
-        <div class="header-center">
-          <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
-          <h1>${t('connectedSitesTitle')}</h1>
-        </div>
-        <div style="width: 32px;"></div>
+    <div class="settings-hero">
+      <!-- Static Background -->
+      <div class="settings-background">
+        <div class="settings-gradient-orb settings-orb-1"></div>
+        <div class="settings-gradient-orb settings-orb-2"></div>
+        <div class="settings-grid-pattern"></div>
       </div>
 
-      <div class="content">
-        ${
-          sites.length === 0
-            ? `
-        <div class="empty-state">
-          <div class="empty-icon">${ICONS.link}</div>
-          <h3>${t('noConnectedSites')}</h3>
-          <p>${t('noConnectedSitesDesc')}</p>
-        </div>
-        `
-            : `
-        <div class="info-box warning" style="margin-bottom: 20px;">
-          <div class="info-icon">${ICONS.info}</div>
-          <div class="info-text">
-            ${t('connectedSitesInfo')}
+      <!-- Container -->
+      <div class="settings-container">
+        <!-- Header -->
+        <div class="settings-header">
+          <button id="backBtn" class="settings-back-btn">${ICONS.back}</button>
+          <div class="settings-header-title">
+            <img src="icons/icon48.png" class="settings-header-icon" alt="Hoosat" />
+            <h1>${t('connectedSitesTitle')}</h1>
           </div>
+          <div style="width: 32px;"></div>
         </div>
 
-        <div class="sites-list">
-          ${sites
-            .map(
-              site => `
-            <div class="site-item" data-origin="${site.origin}">
-              <div class="site-info">
-                <div class="site-icon">${ICONS.globe}</div>
-                <div class="site-details">
-                  <div class="site-name">${new URL(site.origin).hostname}</div>
-                  <div class="site-url">${site.origin}</div>
-                  <div class="site-date">${t('connected')} ${formatDate(site.connectedAt)}</div>
-                </div>
-              </div>
-              <button class="btn-disconnect" data-origin="${site.origin}">
-                ${t('disconnect')}
-              </button>
-            </div>
+        <!-- Content -->
+        <div class="settings-content">
+          ${
+            sites.length === 0
+              ? `
+          <div class="settings-empty-state">
+            <div class="settings-empty-icon">${ICONS.link}</div>
+            <h3>${t('noConnectedSites')}</h3>
+            <p>${t('noConnectedSitesDesc')}</p>
+          </div>
           `
-            )
-            .join('')}
+              : `
+          <div class="hero-info-box warning" style="margin-bottom: var(--spacing-lg);">
+            <div class="hero-info-box-icon">${ICONS.info}</div>
+            <div>
+              ${t('connectedSitesInfo')}
+            </div>
+          </div>
+
+          <div class="settings-card">
+            ${sites
+              .map(
+                site => `
+              <div class="settings-site-item" data-origin="${site.origin}">
+                <div class="settings-site-info">
+                  <div class="settings-site-name">
+                    <div class="settings-site-icon">${ICONS.globe}</div>
+                    ${new URL(site.origin).hostname}
+                  </div>
+                  <div class="settings-site-url">${site.origin}</div>
+                  <div class="settings-site-date">${t('connected')} ${formatDate(site.connectedAt)}</div>
+                </div>
+                <button class="settings-disconnect-btn" data-origin="${site.origin}">
+                  ${ICONS.unlink} ${t('disconnect')}
+                </button>
+              </div>
+            `
+              )
+              .join('')}
+          </div>
+          `
+          }
         </div>
-        `
-        }
       </div>
     </div>
   `;
@@ -69,9 +81,9 @@ export async function showConnectedSitesScreen(app: HTMLElement, onBack: () => v
   document.getElementById('backBtn')!.addEventListener('click', onBack);
 
   // Disconnect buttons
-  document.querySelectorAll('.btn-disconnect').forEach(btn => {
+  document.querySelectorAll('.settings-disconnect-btn').forEach(btn => {
     btn.addEventListener('click', async (e) => {
-      const origin = (e.target as HTMLElement).dataset.origin!;
+      const origin = (e.target as HTMLElement).closest('.settings-disconnect-btn')!.getAttribute('data-origin')!;
       await handleDisconnect(origin, onBack);
     });
   });

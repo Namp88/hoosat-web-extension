@@ -401,6 +401,22 @@
     "message": "ウォレットをリセット",
     "description": "Reset wallet button"
   },
+  "resetWalletTitle": {
+    "message": "ウォレットをリセット",
+    "description": "Reset wallet modal title"
+  },
+  "resetWalletConfirm": {
+    "message": "本当によろしいですか？これによりウォレットが削除されます。秘密鍵をバックアップしていることを確認してください！",
+    "description": "Reset wallet confirmation message"
+  },
+  "cancel": {
+    "message": "キャンセル",
+    "description": "Cancel button"
+  },
+  "confirm": {
+    "message": "確認",
+    "description": "Confirm button"
+  },
   "connectedSitesTitle": {
     "message": "接続されたサイト",
     "description": "Connected sites screen title"
@@ -1016,5 +1032,33 @@
   "qrCodeGenerationFailed": {
     "message": "QRコードの生成に失敗しました",
     "description": "QR code generation failed error message"
+  },
+  "approveConnectionTitle": {
+    "message": "接続を承認",
+    "description": "Unlock screen title for connection approval"
+  },
+  "approveConnectionMessage": {
+    "message": "このサイトがウォレットに接続したがっています。ロックを解除して承認または拒否してください。",
+    "description": "Unlock screen message for connection approval"
+  },
+  "approveConnectionMessageComplete": {
+    "message": "このサイトがウォレットに接続したがっています。ロックを解除して接続を完了してください。",
+    "description": "Unlock screen message for completing connection"
+  },
+  "approveTransactionTitle": {
+    "message": "トランザクションを承認",
+    "description": "Unlock screen title for transaction approval"
+  },
+  "approveTransactionMessage": {
+    "message": "このサイトがトランザクションを送信したがっています。ロックを解除して確認および承認してください。",
+    "description": "Unlock screen message for transaction approval"
+  },
+  "signMessageTitle": {
+    "message": "メッセージに署名",
+    "description": "Unlock screen title for message signing"
+  },
+  "signMessageMessage": {
+    "message": "このサイトがメッセージへの署名を要求しています。ロックを解除して確認および署名してください。",
+    "description": "Unlock screen message for message signing"
   }
 }

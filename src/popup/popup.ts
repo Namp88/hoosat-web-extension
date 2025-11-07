@@ -242,8 +242,8 @@ async function handleConnectionApprove(requestId: string): Promise<void> {
 
       const context: UnlockContext = {
         origin: request.origin,
-        title: 'Approve Connection',
-        message: 'This site wants to connect to your wallet. Unlock to complete the connection.',
+        title: t('approveConnectionTitle'),
+        message: t('approveConnectionMessageComplete'),
       };
 
       showUnlockScreen(
@@ -396,14 +396,14 @@ function showUnlockForPendingRequest(request: any) {
   };
 
   if (request.method === 'hoosat_requestAccounts') {
-    context.title = 'Approve Connection';
-    context.message = 'This site wants to connect to your wallet. Unlock to approve or reject.';
+    context.title = t('approveConnectionTitle');
+    context.message = t('approveConnectionMessage');
   } else if (request.method === 'hoosat_sendTransaction') {
-    context.title = 'Approve Transaction';
-    context.message = 'This site wants to send a transaction. Unlock to review and approve.';
+    context.title = t('approveTransactionTitle');
+    context.message = t('approveTransactionMessage');
   } else if (request.method === 'hoosat_signMessage') {
-    context.title = 'Sign Message';
-    context.message = 'This site wants you to sign a message. Unlock to review and sign.';
+    context.title = t('signMessageTitle');
+    context.message = t('signMessageMessage');
   }
 
   showUnlockScreen(
@@ -715,8 +715,8 @@ async function handleLock(): Promise<void> {
  */
 async function handleReset(): Promise<void> {
   const confirmed = await showConfirmDialog(
-    'Reset Wallet',
-    'Are you sure? This will delete your wallet. Make sure you have backed up your private key!'
+    t('resetWalletTitle'),
+    t('resetWalletConfirm')
   );
 
   if (confirmed) {

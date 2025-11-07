@@ -401,6 +401,22 @@
     "message": "重置钱包",
     "description": "Reset wallet button"
   },
+  "resetWalletTitle": {
+    "message": "重置钱包",
+    "description": "Reset wallet modal title"
+  },
+  "resetWalletConfirm": {
+    "message": "您确定吗？这将删除您的钱包。请确保您已备份私钥！",
+    "description": "Reset wallet confirmation message"
+  },
+  "cancel": {
+    "message": "取消",
+    "description": "Cancel button"
+  },
+  "confirm": {
+    "message": "确认",
+    "description": "Confirm button"
+  },
   "connectedSitesTitle": {
     "message": "已连接网站",
     "description": "Connected sites screen title"
@@ -1032,5 +1048,33 @@
   "qrCodeGenerationFailed": {
     "message": "二维码生成失败",
     "description": "QR code generation failed error message"
+  },
+  "approveConnectionTitle": {
+    "message": "批准连接",
+    "description": "Unlock screen title for connection approval"
+  },
+  "approveConnectionMessage": {
+    "message": "此网站想要连接到您的钱包。解锁以批准或拒绝。",
+    "description": "Unlock screen message for connection approval"
+  },
+  "approveConnectionMessageComplete": {
+    "message": "此网站想要连接到您的钱包。解锁以完成连接。",
+    "description": "Unlock screen message for completing connection"
+  },
+  "approveTransactionTitle": {
+    "message": "批准交易",
+    "description": "Unlock screen title for transaction approval"
+  },
+  "approveTransactionMessage": {
+    "message": "此网站想要发送交易。解锁以查看和批准。",
+    "description": "Unlock screen message for transaction approval"
+  },
+  "signMessageTitle": {
+    "message": "签署消息",
+    "description": "Unlock screen title for message signing"
+  },
+  "signMessageMessage": {
+    "message": "此网站希望您签署消息。解锁以查看和签署。",
+    "description": "Unlock screen message for message signing"
   }
 }

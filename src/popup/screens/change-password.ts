@@ -12,60 +12,74 @@ export function showChangePasswordScreen(
   onChangePassword: (currentPassword: string, newPassword: string, confirmNewPassword: string) => Promise<void>
 ): void {
   app.innerHTML = `
-    <div class="screen">
-      <div class="header">
-        <button id="backBtn" class="btn-icon">${ICONS.back}</button>
-        <div class="header-center">
-          <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
-          <h1>${t('changePasswordTitle')}</h1>
-        </div>
-        <div style="width: 32px;"></div>
+    <div class="create-import-hero">
+      <!-- Static Background -->
+      <div class="create-import-background">
+        <div class="create-import-gradient-orb create-import-orb-1"></div>
+        <div class="create-import-gradient-orb create-import-orb-2"></div>
+        <div class="create-import-grid-pattern"></div>
       </div>
 
-      <div class="content">
-        <div class="info-box warning">
-          <div class="info-icon">${ICONS.warning}</div>
-          <div class="info-text">
-            <strong>${t('important')}</strong> ${t('changePasswordWarning')}
+      <!-- Container -->
+      <div class="create-import-container">
+        <!-- Header -->
+        <div class="create-import-header">
+          <button id="backBtn" class="create-import-back-btn">${ICONS.back}</button>
+          <div class="create-import-header-title">
+            <img src="icons/icon48.png" class="create-import-header-icon" alt="Hoosat" />
+            <h1>${t('changePasswordTitle')}</h1>
           </div>
+          <div style="width: 32px;"></div>
         </div>
 
-        <div class="form">
-          <div class="form-group">
-            <label for="currentPassword">${t('currentPassword')}</label>
-            <input
-              type="password"
-              id="currentPassword"
-              placeholder="${t('enterCurrentPassword')}"
-              autocomplete="current-password"
-            />
+        <!-- Content -->
+        <div class="create-import-content">
+          <!-- Warning Info Box -->
+          <div class="hero-info-box warning">
+            <div class="hero-info-box-icon">${ICONS.warning}</div>
+            <div>
+              <strong>${t('important')}</strong> ${t('changePasswordWarning')}
+            </div>
           </div>
 
-          <div class="form-group">
-            <label for="newPassword">${t('newPassword')}</label>
-            <input
-              type="password"
-              id="newPassword"
-              placeholder="${t('enterNewPassword')}"
-              autocomplete="new-password"
-            />
+          <!-- Form Card -->
+          <div class="create-import-card">
+            <div class="create-import-form-group">
+              <label for="currentPassword">${t('currentPassword')}</label>
+              <input
+                type="password"
+                id="currentPassword"
+                placeholder="${t('enterCurrentPassword')}"
+                autocomplete="current-password"
+              />
+            </div>
+
+            <div class="create-import-form-group">
+              <label for="newPassword">${t('newPassword')}</label>
+              <input
+                type="password"
+                id="newPassword"
+                placeholder="${t('enterNewPassword')}"
+                autocomplete="new-password"
+              />
+            </div>
+
+            <div class="create-import-form-group">
+              <label for="confirmNewPassword">${t('confirmNewPassword')}</label>
+              <input
+                type="password"
+                id="confirmNewPassword"
+                placeholder="${t('confirmNewPasswordPlaceholder')}"
+                autocomplete="new-password"
+              />
+            </div>
+
+            <div class="create-import-password-strength" id="passwordStrength"></div>
+
+            <div class="create-import-error" id="error"></div>
+
+            <button id="changePasswordBtn" class="btn btn-primary create-import-submit-btn">${t('changePasswordButton')}</button>
           </div>
-
-          <div class="form-group">
-            <label for="confirmNewPassword">${t('confirmNewPassword')}</label>
-            <input
-              type="password"
-              id="confirmNewPassword"
-              placeholder="${t('confirmNewPasswordPlaceholder')}"
-              autocomplete="new-password"
-            />
-          </div>
-
-          <div class="password-strength" id="passwordStrength"></div>
-
-          <div class="error" id="error"></div>
-
-          <button id="changePasswordBtn" class="btn btn-primary">${t('changePasswordButton')}</button>
         </div>
       </div>
     </div>
@@ -125,38 +139,38 @@ async function handleChangePassword(
   const confirmNewPassword = (document.getElementById('confirmNewPassword') as HTMLInputElement).value;
   const errorEl = document.getElementById('error')!;
 
-  errorEl.textContent = '';
+  errorEl.innerHTML = '';
 
   // Validation
   if (!currentPassword) {
-    errorEl.textContent = t('currentPasswordRequired');
+    errorEl.innerHTML = `${ICONS.warning} ${t('currentPasswordRequired')}`;
     return;
   }
 
   if (!newPassword || !confirmNewPassword) {
-    errorEl.textContent = t('newPasswordRequired');
+    errorEl.innerHTML = `${ICONS.warning} ${t('newPasswordRequired')}`;
     return;
   }
 
   if (newPassword !== confirmNewPassword) {
-    errorEl.textContent = t('newPasswordsDoNotMatch');
+    errorEl.innerHTML = `${ICONS.warning} ${t('newPasswordsDoNotMatch')}`;
     return;
   }
 
   if (newPassword === currentPassword) {
-    errorEl.textContent = t('newPasswordMustBeDifferent');
+    errorEl.innerHTML = `${ICONS.warning} ${t('newPasswordMustBeDifferent')}`;
     return;
   }
 
   if (newPassword.length < MIN_PASSWORD_LENGTH) {
-    errorEl.textContent = tn('passwordMustBeAtLeast', MIN_PASSWORD_LENGTH.toString());
+    errorEl.innerHTML = `${ICONS.warning} ${tn('passwordMustBeAtLeast', MIN_PASSWORD_LENGTH.toString())}`;
     return;
   }
 
   // Check password strength
   const strength = calculatePasswordStrength(newPassword);
   if (strength.score < 3) {
-    errorEl.textContent = t('passwordTooWeak') + ' ' + strength.feedback.join(', ');
+    errorEl.innerHTML = `${ICONS.warning} ${t('passwordTooWeak')} ${strength.feedback.join(', ')}`;
     return;
   }
 
@@ -167,7 +181,7 @@ async function handleChangePassword(
 
     await onChangePassword(currentPassword, newPassword, confirmNewPassword);
   } catch (error: any) {
-    errorEl.textContent = error.message || t('failedToChangePassword');
+    errorEl.innerHTML = `${ICONS.error} ${error.message || t('failedToChangePassword')}`;
     const changeBtn = document.getElementById('changePasswordBtn') as HTMLButtonElement;
     changeBtn.disabled = false;
     changeBtn.textContent = t('changePasswordButton');

@@ -10,34 +10,48 @@ export function showExportKeyScreen(
   onExport: (password: string) => Promise<{ privateKey: string; address: string }>
 ): void {
   app.innerHTML = `
-    <div class="screen">
-      <div class="header">
-        <button id="backBtn" class="btn-icon">${ICONS.back}</button>
-        <div class="header-center">
-          <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
-          <h1>${t('exportPrivateKeyTitle')}</h1>
-        </div>
-        <div style="width: 32px;"></div>
+    <div class="create-import-hero">
+      <!-- Static Background -->
+      <div class="create-import-background">
+        <div class="create-import-gradient-orb create-import-orb-1"></div>
+        <div class="create-import-gradient-orb create-import-orb-2"></div>
+        <div class="create-import-grid-pattern"></div>
       </div>
 
-      <div class="content">
-        <div class="info-box critical">
-          <div class="info-icon">${ICONS.warning}</div>
-          <div class="info-text">
-            <strong>${t('securityWarning')}</strong><br>
-            ${t('neverSharePrivateKey')}
+      <!-- Container -->
+      <div class="create-import-container">
+        <!-- Header -->
+        <div class="create-import-header">
+          <button id="backBtn" class="create-import-back-btn">${ICONS.back}</button>
+          <div class="create-import-header-title">
+            <img src="icons/icon48.png" class="create-import-header-icon" alt="Hoosat" />
+            <h1>${t('exportPrivateKeyTitle')}</h1>
           </div>
+          <div style="width: 32px;"></div>
         </div>
 
-        <div class="form">
-          <div class="form-group">
-            <label for="password">${t('enterPasswordToConfirm')}</label>
-            <input type="password" id="password" placeholder="${t('enterPassword')}" autocomplete="off" />
+        <!-- Content -->
+        <div class="create-import-content">
+          <!-- Critical Warning Info Box -->
+          <div class="hero-info-box error">
+            <div class="hero-info-box-icon">${ICONS.warning}</div>
+            <div>
+              <strong>${t('securityWarning')}</strong><br>
+              ${t('neverSharePrivateKey')}
+            </div>
           </div>
 
-          <div class="error" id="error"></div>
+          <!-- Form Card -->
+          <div class="create-import-card">
+            <div class="create-import-form-group">
+              <label for="password">${t('enterPasswordToConfirm')}</label>
+              <input type="password" id="password" placeholder="${t('enterPassword')}" autocomplete="off" />
+            </div>
 
-          <button id="exportBtn" class="btn btn-primary">${t('showPrivateKey')}</button>
+            <div class="create-import-error" id="error"></div>
+
+            <button id="exportBtn" class="btn btn-primary create-import-submit-btn">${t('showPrivateKey')}</button>
+          </div>
         </div>
       </div>
     </div>
@@ -70,10 +84,10 @@ async function handleExportPrivateKey(
   const password = (document.getElementById('password') as HTMLInputElement).value;
   const errorEl = document.getElementById('error')!;
 
-  errorEl.textContent = '';
+  errorEl.innerHTML = '';
 
   if (!password) {
-    errorEl.textContent = t('passwordRequired');
+    errorEl.innerHTML = `${ICONS.warning} ${t('passwordRequired')}`;
     return;
   }
 
@@ -87,7 +101,7 @@ async function handleExportPrivateKey(
     // Show the private key
     showPrivateKeyExported(result.privateKey, result.address, onBack);
   } catch (error: any) {
-    errorEl.textContent = error.message || t('invalidPassword');
+    errorEl.innerHTML = `${ICONS.error} ${error.message || t('invalidPassword')}`;
     const exportBtn = document.getElementById('exportBtn') as HTMLButtonElement;
     exportBtn.disabled = false;
     exportBtn.textContent = t('showPrivateKey');
@@ -104,60 +118,75 @@ function showPrivateKeyExported(privateKey: string, address: string, onBack: () 
 
   const renderScreen = () => {
     app.innerHTML = `
-      <div class="screen">
-        <div class="header">
-          <button id="backBtn" class="btn-icon">${ICONS.back}</button>
-          <div class="header-center">
-            <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
-            <h1>${t('yourPrivateKey')}</h1>
-          </div>
-          <div style="width: 32px;"></div>
+      <div class="create-import-hero">
+        <!-- Static Background -->
+        <div class="create-import-background">
+          <div class="create-import-gradient-orb create-import-orb-1"></div>
+          <div class="create-import-gradient-orb create-import-orb-2"></div>
+          <div class="create-import-grid-pattern"></div>
         </div>
 
-        <div class="content">
-          <div class="info-box critical">
-            <div class="info-icon">${ICONS.key}</div>
-            <div class="info-text">
-              <strong>${t('keepThisKeySafe')}</strong><br>
-              ${t('keepKeySafeWarning')}
+        <!-- Container -->
+        <div class="create-import-container">
+          <!-- Header -->
+          <div class="create-import-header">
+            <button id="backBtn" class="create-import-back-btn">${ICONS.back}</button>
+            <div class="create-import-header-title">
+              <img src="icons/icon48.png" class="create-import-header-icon" alt="Hoosat" />
+              <h1>${t('yourPrivateKey')}</h1>
             </div>
+            <div style="width: 32px;"></div>
           </div>
 
-          <div class="key-display">
-            <label>${t('yourAddress')}</label>
-            <div class="key-value small">${address}</div>
-          </div>
-
-          <div class="key-display">
-            <label>${t('privateKeyHex')}</label>
-            <div class="key-value ${!isKeyVisible ? 'key-hidden' : ''}" id="keyValue">
-              ${isKeyVisible ? privateKey : '••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••'}
+          <!-- Content -->
+          <div class="create-import-content">
+            <!-- Critical Warning -->
+            <div class="hero-info-box error">
+              <div class="hero-info-box-icon">${ICONS.key}</div>
+              <div>
+                <strong>${t('keepThisKeySafe')}</strong><br>
+                ${t('keepKeySafeWarning')}
+              </div>
             </div>
-            <button id="toggleKeyBtn" class="btn btn-secondary">
-              ${isKeyVisible ? `${ICONS.eyeHide} ${t('hideKey')}` : `${ICONS.eye} ${t('showKey')}`}
-            </button>
-          </div>
 
-          ${
-            isKeyVisible
-              ? `
-          <button id="copyKeyBtn" class="btn btn-primary">${ICONS.copy} ${t('copyToClipboard')}</button>
-          `
-              : ''
-          }
+            <!-- Key Display Card -->
+            <div class="create-import-card">
+              <div class="create-import-form-group">
+                <label>${t('yourAddress')}</label>
+                <div style="padding: var(--spacing-md); background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(20, 184, 166, 0.3); border-radius: var(--radius-md); color: var(--text-secondary); font-size: var(--font-size-sm); font-family: 'Courier New', monospace; word-break: break-all;">${address}</div>
+              </div>
 
-          <div class="info-box warning" style="margin-top: 20px;">
-            <div class="info-icon">${ICONS.lightbulb}</div>
-            <div class="info-text">
-              <strong>${t('bestPractices')}</strong><br>
-              • ${t('bestPractice1')}<br>
-              • ${t('bestPractice2')}<br>
-              • ${t('bestPractice3')}<br>
-              • ${t('bestPractice4')}
+              <div class="create-import-form-group">
+                <label>${t('privateKeyHex')}</label>
+                <div style="padding: var(--spacing-md); background: rgba(15, 23, 42, 0.8); border: 2px solid ${isKeyVisible ? 'var(--color-hoosat-teal)' : 'rgba(20, 184, 166, 0.3)'}; border-radius: var(--radius-md); color: var(--text-primary); font-size: var(--font-size-sm); font-family: 'Courier New', monospace; word-break: break-all; margin-bottom: var(--spacing-md);">
+                  ${isKeyVisible ? privateKey : '••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••'}
+                </div>
+                <button id="toggleKeyBtn" class="btn btn-secondary" style="width: 100%; margin-bottom: var(--spacing-md);">
+                  ${isKeyVisible ? `${ICONS.eyeHide} ${t('hideKey')}` : `${ICONS.eye} ${t('showKey')}`}
+                </button>
+              </div>
+
+              ${
+                isKeyVisible
+                  ? `<button id="copyKeyBtn" class="btn btn-primary create-import-submit-btn">${ICONS.copy} ${t('copyToClipboard')}</button>`
+                  : ''
+              }
             </div>
-          </div>
 
-          <button id="doneBtn" class="btn btn-secondary" style="margin-top: 12px;">${t('done')}</button>
+            <!-- Best Practices -->
+            <div class="hero-info-box warning">
+              <div class="hero-info-box-icon">${ICONS.lightbulb}</div>
+              <div>
+                <strong>${t('bestPractices')}</strong><br>
+                • ${t('bestPractice1')}<br>
+                • ${t('bestPractice2')}<br>
+                • ${t('bestPractice3')}<br>
+                • ${t('bestPractice4')}
+              </div>
+            </div>
+
+            <button id="doneBtn" class="btn btn-secondary" style="width: 100%;">${t('done')}</button>
+          </div>
         </div>
       </div>
     `;

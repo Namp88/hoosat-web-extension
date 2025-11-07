@@ -411,6 +411,22 @@
     "message": "Сбросить кошелёк",
     "description": "Reset wallet button"
   },
+  "resetWalletTitle": {
+    "message": "Сбросить кошелёк",
+    "description": "Reset wallet modal title"
+  },
+  "resetWalletConfirm": {
+    "message": "Вы уверены? Это удалит ваш кошелёк. Убедитесь, что вы сохранили свой приватный ключ!",
+    "description": "Reset wallet confirmation message"
+  },
+  "cancel": {
+    "message": "Отмена",
+    "description": "Cancel button"
+  },
+  "confirm": {
+    "message": "Подтвердить",
+    "description": "Confirm button"
+  },
 
   "connectedSitesTitle": {
     "message": "Подключённые сайты",
@@ -1060,5 +1076,33 @@
   "qrCodeGenerationFailed": {
     "message": "Не удалось сгенерировать QR-код",
     "description": "QR code generation failed error message"
+  },
+  "approveConnectionTitle": {
+    "message": "Подтвердить подключение",
+    "description": "Unlock screen title for connection approval"
+  },
+  "approveConnectionMessage": {
+    "message": "Этот сайт хочет подключиться к вашему кошельку. Разблокируйте, чтобы подтвердить или отклонить.",
+    "description": "Unlock screen message for connection approval"
+  },
+  "approveConnectionMessageComplete": {
+    "message": "Этот сайт хочет подключиться к вашему кошельку. Разблокируйте, чтобы завершить подключение.",
+    "description": "Unlock screen message for completing connection"
+  },
+  "approveTransactionTitle": {
+    "message": "Подтвердить транзакцию",
+    "description": "Unlock screen title for transaction approval"
+  },
+  "approveTransactionMessage": {
+    "message": "Этот сайт хочет отправить транзакцию. Разблокируйте для проверки и подтверждения.",
+    "description": "Unlock screen message for transaction approval"
+  },
+  "signMessageTitle": {
+    "message": "Подписать сообщение",
+    "description": "Unlock screen title for message signing"
+  },
+  "signMessageMessage": {
+    "message": "Этот сайт хочет, чтобы вы подписали сообщение. Разблокируйте для проверки и подписи.",
+    "description": "Unlock screen message for message signing"
   }
 }

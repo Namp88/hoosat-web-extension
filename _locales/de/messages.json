@@ -401,6 +401,22 @@
     "message": "Wallet Zurücksetzen",
     "description": "Reset wallet button"
   },
+  "resetWalletTitle": {
+    "message": "Wallet zurücksetzen",
+    "description": "Reset wallet modal title"
+  },
+  "resetWalletConfirm": {
+    "message": "Sind Sie sicher? Dies löscht Ihre Wallet. Stellen Sie sicher, dass Sie Ihren privaten Schlüssel gesichert haben!",
+    "description": "Reset wallet confirmation message"
+  },
+  "cancel": {
+    "message": "Abbrechen",
+    "description": "Cancel button"
+  },
+  "confirm": {
+    "message": "Bestätigen",
+    "description": "Confirm button"
+  },
   "connectedSitesTitle": {
     "message": "Verbundene Websites",
     "description": "Connected sites screen title"
@@ -1016,5 +1032,33 @@
   "qrCodeGenerationFailed": {
     "message": "QR-Code-Generierung fehlgeschlagen",
     "description": "QR code generation failed error message"
+  },
+  "approveConnectionTitle": {
+    "message": "Verbindung genehmigen",
+    "description": "Unlock screen title for connection approval"
+  },
+  "approveConnectionMessage": {
+    "message": "Diese Website möchte sich mit Ihrer Wallet verbinden. Entsperren Sie, um zu genehmigen oder abzulehnen.",
+    "description": "Unlock screen message for connection approval"
+  },
+  "approveConnectionMessageComplete": {
+    "message": "Diese Website möchte sich mit Ihrer Wallet verbinden. Entsperren Sie, um die Verbindung abzuschließen.",
+    "description": "Unlock screen message for completing connection"
+  },
+  "approveTransactionTitle": {
+    "message": "Transaktion genehmigen",
+    "description": "Unlock screen title for transaction approval"
+  },
+  "approveTransactionMessage": {
+    "message": "Diese Website möchte eine Transaktion senden. Entsperren Sie zur Überprüfung und Genehmigung.",
+    "description": "Unlock screen message for transaction approval"
+  },
+  "signMessageTitle": {
+    "message": "Nachricht signieren",
+    "description": "Unlock screen title for message signing"
+  },
+  "signMessageMessage": {
+    "message": "Diese Website möchte, dass Sie eine Nachricht signieren. Entsperren Sie zur Überprüfung und Signierung.",
+    "description": "Unlock screen message for message signing"
   }
 }

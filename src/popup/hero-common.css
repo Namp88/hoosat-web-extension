@@ -191,6 +191,19 @@
 .hero-info-box-icon {
   flex-shrink: 0;
   font-size: var(--font-size-lg);
+  color: var(--color-hoosat-teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.hero-info-box.warning .hero-info-box-icon {
+  color: #ed8936;
+}
+
+.hero-info-box.error .hero-info-box-icon {
+  color: #fc8181;
 }
 
 /* Buttons */

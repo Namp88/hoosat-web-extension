@@ -47,6 +47,7 @@ module.exports = {
         { from: 'src/popup/welcome-hero.css', to: 'welcome-hero.css' },
         { from: 'src/popup/create-import-hero.css', to: 'create-import-hero.css' },
         { from: 'src/popup/receive-hero.css', to: 'receive-hero.css' },
+        { from: 'src/popup/settings-hero.css', to: 'settings-hero.css' },
         { from: 'src/icons', to: 'icons' },
         { from: '_locales', to: '_locales' },
       ],
