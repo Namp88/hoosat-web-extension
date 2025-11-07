@@ -2,7 +2,6 @@ import { ICONS } from '../utils/icons';
 import { t } from '../utils/i18n';
 
 /**
-import { ICONS } from '../utils/icons';
  * Show export private key screen with password verification
  */
 export function showExportKeyScreen(
@@ -135,7 +134,7 @@ function showPrivateKeyExported(privateKey: string, address: string, onBack: () 
               ${isKeyVisible ? privateKey : '••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••'}
             </div>
             <button id="toggleKeyBtn" class="btn btn-secondary">
-              ${isKeyVisible ? '${ICONS.eyeHide} ' + t('hideKey') : '${ICONS.eye} ' + t('showKey')}
+              ${isKeyVisible ? `${ICONS.eyeHide} ${t('hideKey')}` : `${ICONS.eye} ${t('showKey')}`}
             </button>
           </div>
 

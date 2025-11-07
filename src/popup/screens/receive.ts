@@ -12,24 +12,41 @@ export async function showReceiveScreen(
   onCopy: () => void
 ): Promise<void> {
   app.innerHTML = `
-    <div class="screen">
-      <div class="header">
-        <button id="backBtn" class="btn-icon">${ICONS.back}</button>
-        <div class="header-center">
-          <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
-          <h1>${t('receiveHTN')}</h1>
-        </div>
-        <div style="width: 32px;"></div>
+    <div class="receive-hero">
+      <!-- Static Background -->
+      <div class="receive-background">
+        <div class="receive-gradient-orb receive-orb-1"></div>
+        <div class="receive-gradient-orb receive-orb-2"></div>
+        <div class="receive-grid-pattern"></div>
       </div>
 
-      <div class="content">
-        <div class="receive-info">
-          <div class="qr-container">
-            <div id="qrCode" class="qr-code-loading">${t('loading')}</div>
+      <!-- Container -->
+      <div class="receive-container">
+        <!-- Header -->
+        <div class="receive-header">
+          <button id="backBtn" class="receive-back-btn">${ICONS.back}</button>
+          <div class="receive-header-title">
+            <img src="icons/icon48.png" class="receive-header-icon" alt="Hoosat" />
+            <h1>${t('receiveHTN')}</h1>
           </div>
-          <h3>${t('yourAddress')}</h3>
-          <div class="address-display">${address}</div>
-          <button id="copyBtn" class="btn btn-primary">${t('copyAddress')}</button>
+          <div style="width: 32px;"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="receive-content">
+          <!-- QR Card -->
+          <div class="receive-qr-card">
+            <div class="receive-qr-container">
+              <div id="qrCode" class="receive-qr-code-loading">${t('loading')}</div>
+            </div>
+
+            <div class="receive-address-label">${t('yourAddress')}</div>
+            <div class="receive-address-value">${address}</div>
+
+            <button id="copyBtn" class="btn btn-primary receive-copy-btn">
+              ${ICONS.copy} ${t('copyAddress')}
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -48,15 +65,15 @@ export async function showReceiveScreen(
 
     const qrContainer = document.getElementById('qrCode');
     if (qrContainer) {
-      qrContainer.className = 'qr-code';
+      qrContainer.className = 'receive-qr-code';
       qrContainer.innerHTML = `<img src="${qrDataUrl}" alt="QR Code" />`;
     }
   } catch (error) {
     console.error('Failed to generate QR code:', error);
     const qrContainer = document.getElementById('qrCode');
     if (qrContainer) {
-      qrContainer.className = 'qr-code-error';
-      qrContainer.textContent = 'QR code generation failed';
+      qrContainer.className = 'receive-qr-code-error';
+      qrContainer.innerHTML = `${ICONS.error} ${t('qrCodeGenerationFailed')}`;
     }
   }
 }

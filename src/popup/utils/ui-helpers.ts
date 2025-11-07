@@ -8,7 +8,7 @@
 export function showSuccessMessage(message: string, duration: number = 3000): void {
   const successDiv = document.createElement('div');
   successDiv.className = 'success-toast';
-  successDiv.textContent = message;
+  successDiv.innerHTML = message;
   document.body.appendChild(successDiv);
 
   setTimeout(() => {

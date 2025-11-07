@@ -10,35 +10,49 @@ export function showWelcomeScreen(
   onImport: () => void
 ): void {
   app.innerHTML = `
-    <div class="screen">
-      <div class="header">
-        <div class="header-left">
-          <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
-          <h1>${t('appName')}</h1>
-        </div>
+    <div class="welcome-hero">
+      <!-- Animated Background -->
+      <div class="welcome-background">
+        <div class="welcome-gradient-orb welcome-orb-1"></div>
+        <div class="welcome-gradient-orb welcome-orb-2"></div>
+        <div class="welcome-grid-pattern"></div>
+        <div class="welcome-particle welcome-particle-1"></div>
+        <div class="welcome-particle welcome-particle-2"></div>
+        <div class="welcome-particle welcome-particle-3"></div>
+        <div class="welcome-particle welcome-particle-4"></div>
+        <div class="welcome-particle welcome-particle-5"></div>
+        <div class="welcome-particle welcome-particle-6"></div>
       </div>
 
-      <div class="content">
-        <div class="welcome">
-          <h2>${t('welcome')}</h2>
-          <p>${t('welcomeDescription')}</p>
+      <!-- Main Content -->
+      <div class="welcome-container">
+        <!-- Brand Section -->
+        <div class="welcome-brand">
+          <img src="icons/icon48.png" class="welcome-logo" alt="Hoosat" />
+          <h1 class="welcome-title">
+            <span class="text-gradient">${t('appName')}</span>
+          </h1>
+          <p class="welcome-subtitle">${t('welcomeDescription')}</p>
         </div>
 
-        <div class="wallet-options">
-          <button id="createNewBtn" class="btn btn-primary wallet-option-btn">
-            <div class="option-icon">${ICONS.key}</div>
-            <div class="option-text">
-              <div class="option-title">${t('createNewWallet')}</div>
-              <div class="option-desc">${t('createNewWalletDesc')}</div>
+        <!-- Wallet Options -->
+        <div class="welcome-options">
+          <button id="createNewBtn" class="welcome-option-btn">
+            <div class="welcome-option-icon">${ICONS.wand}</div>
+            <div class="welcome-option-content">
+              <div class="welcome-option-title">${t('createNewWallet')}</div>
+              <div class="welcome-option-desc">${t('createNewWalletDesc')}</div>
             </div>
+            <div class="welcome-option-arrow">${ICONS.chevronRight}</div>
           </button>
 
-          <button id="importBtn" class="btn btn-secondary wallet-option-btn">
-            <div class="option-icon">${ICONS.receive}</div>
-            <div class="option-text">
-              <div class="option-title">${t('importExistingWallet')}</div>
-              <div class="option-desc">${t('importExistingWalletDesc')}</div>
+          <button id="importBtn" class="welcome-option-btn">
+            <div class="welcome-option-icon">${ICONS.download}</div>
+            <div class="welcome-option-content">
+              <div class="welcome-option-title">${t('importExistingWallet')}</div>
+              <div class="welcome-option-desc">${t('importExistingWalletDesc')}</div>
             </div>
+            <div class="welcome-option-arrow">${ICONS.chevronRight}</div>
           </button>
         </div>
       </div>

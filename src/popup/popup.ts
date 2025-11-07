@@ -3,6 +3,7 @@ import { hasWallet } from '../shared/storage';
 import { MessageType } from '../shared/types';
 import * as api from '../shared/api/messages';
 import { showSuccessMessage, initLanguage, t } from './utils';
+import { ICONS } from './utils/icons';
 import {
   showWelcomeScreen,
   showGenerateWalletScreen,
@@ -27,7 +28,6 @@ import {
 import { showBackupPrivateKey, showConfirmDialog, showAlertDialog } from './components';
 import { showTransactionPreview } from './components/transaction-preview';
 import { showConsolidationModal, showConsolidationProgress, showConsolidationSuccess } from './components/consolidation-modal';
-import { ICONS } from './utils/icons';
 
 console.log('Hoosat Wallet popup loaded');
 
@@ -104,7 +104,7 @@ async function init() {
     // Show wallet directly
     await showWallet();
     // Show brief welcome message
-    showSuccessMessage('${ICONS.handWave} ' + t('welcomeBack'), 1500);
+    showSuccessMessage(`${ICONS.handWave} ${t('welcomeBack')}`, 1500);
     return;
   }
 
@@ -255,7 +255,7 @@ async function handleConnectionApprove(requestId: string): Promise<void> {
           // Immediately approve the connection (user already confirmed)
           await api.approveConnection(requestId);
           await chrome.storage.session.remove('pendingRequestId');
-          showSuccessMessage('✅ ' + t('siteConnectedSuccessfully'), 2000);
+          showSuccessMessage(`${ICONS.checkCircle} ${t('siteConnectedSuccessfully')}`, 2000);
 
           // Go to wallet screen
           setTimeout(() => {
@@ -269,7 +269,7 @@ async function handleConnectionApprove(requestId: string): Promise<void> {
 
     await api.approveConnection(requestId);
     await chrome.storage.session.remove('pendingRequestId');
-    showSuccessMessage('✅ Site connected successfully!', 2000);
+    showSuccessMessage(`${ICONS.checkCircle} Site connected successfully!`, 2000);
 
     // Go to wallet screen
     setTimeout(() => {
@@ -290,7 +290,7 @@ async function handleConnectionApprove(requestId: string): Promise<void> {
 async function handleConnectionReject(requestId: string): Promise<void> {
   await api.rejectConnection(requestId);
   await chrome.storage.session.remove('pendingRequestId');
-  showSuccessMessage('❌ ' + t('connectionRejected'), 2000);
+  showSuccessMessage(`${ICONS.error} ${t('connectionRejected')}`, 2000);
 
   // Go back to normal flow
   setTimeout(() => {
@@ -304,7 +304,7 @@ async function handleConnectionReject(requestId: string): Promise<void> {
 async function handleTransactionApprove(requestId: string, customFeeSompi?: string): Promise<void> {
   await api.approveTransaction(requestId, customFeeSompi);
   await chrome.storage.session.remove('pendingRequestId');
-  showSuccessMessage('✅ ' + t('transactionApproved'), 2000);
+  showSuccessMessage(`${ICONS.checkCircle} ${t('transactionApproved')}`, 2000);
 
   // Go to wallet screen
   setTimeout(() => {
@@ -318,7 +318,7 @@ async function handleTransactionApprove(requestId: string, customFeeSompi?: stri
 async function handleTransactionReject(requestId: string): Promise<void> {
   await api.rejectTransaction(requestId);
   await chrome.storage.session.remove('pendingRequestId');
-  showSuccessMessage('❌ ' + t('transactionRejected'), 2000);
+  showSuccessMessage(`${ICONS.error} ${t('transactionRejected')}`, 2000);
 
   // Go to wallet screen
   setTimeout(() => {
@@ -332,7 +332,7 @@ async function handleTransactionReject(requestId: string): Promise<void> {
 async function handleSignMessageApprove(requestId: string): Promise<void> {
   await api.approveSignMessage(requestId);
   await chrome.storage.session.remove('pendingRequestId');
-  showSuccessMessage('✅ ' + t('messageSignedSuccessfully'), 2000);
+  showSuccessMessage(`${ICONS.checkCircle} ${t('messageSignedSuccessfully')}`, 2000);
 
   // Go to wallet screen
   setTimeout(() => {
@@ -346,7 +346,7 @@ async function handleSignMessageApprove(requestId: string): Promise<void> {
 async function handleSignMessageReject(requestId: string): Promise<void> {
   await api.rejectSignMessage(requestId);
   await chrome.storage.session.remove('pendingRequestId');
-  showSuccessMessage('❌ ' + t('messageSigningRejected'), 2000);
+  showSuccessMessage(`${ICONS.error} ${t('messageSigningRejected')}`, 2000);
 
   // Go to wallet screen
   setTimeout(() => {
@@ -509,7 +509,7 @@ async function handleGenerateWallet(password: string, confirmPassword: string): 
   showBackupPrivateKey(app, response.privateKey, response.address, password, async () => {
     isUnlocked = true;
     await showWallet();
-    showSuccessMessage('${ICONS.party} ' + t('walletCreatedSuccessfully'), 2000);
+    showSuccessMessage(`${ICONS.party} ${t('walletCreatedSuccessfully')}`, 2000);
   });
 }
 
@@ -529,7 +529,7 @@ async function handleImportWallet(privateKey: string, password: string, confirmP
 
   // Show wallet directly
   await showWallet();
-  showSuccessMessage('${ICONS.party} ' + t('walletImportedSuccessfully'), 2000);
+  showSuccessMessage(`${ICONS.party} ${t('walletImportedSuccessfully')}`, 2000);
 }
 
 /**
@@ -675,7 +675,7 @@ function copyAddress(): void {
     const btn = document.getElementById('copyBtn');
     if (btn) {
       const originalText = btn.innerHTML;
-      btn.innerHTML = `${ICONS.check} Copied!`;
+      btn.innerHTML = `${ICONS.check} ${t('copied')}`;
       setTimeout(() => {
         btn.innerHTML = originalText;
       }, 1000);
@@ -691,7 +691,7 @@ async function handleChangePassword(currentPassword: string, newPassword: string
 
   // Show success and return to settings
   await showSettings();
-  showSuccessMessage('${ICONS.party} ' + t('passwordChangedSuccessfully'), 3000);
+  showSuccessMessage(`${ICONS.party} ${t('passwordChangedSuccessfully')}`, 3000);
 }
 
 /**

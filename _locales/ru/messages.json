@@ -1056,5 +1056,9 @@
         "example": "30"
       }
     }
+  },
+  "qrCodeGenerationFailed": {
+    "message": "Не удалось сгенерировать QR-код",
+    "description": "QR code generation failed error message"
   }
 }

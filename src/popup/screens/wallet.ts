@@ -34,48 +34,78 @@ export async function showWalletScreen(
   const txHistory = await loadTransactionHistory();
 
   app.innerHTML = `
-    <div class="screen">
-      <div class="header">
-        <div class="header-left">
-          <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
-          <h1>${t('appName')}</h1>
-        </div>
-        <div class="header-right">
-          <button id="lockBtn" class="btn-icon" title="Lock Wallet">${ICONS.lock}</button>
-          <button id="settingsBtn" class="btn-icon" title="Settings">${ICONS.settings}</button>
-        </div>
+    <div class="wallet-hero">
+      <!-- Static Background Elements -->
+      <div class="wallet-background">
+        <!-- Static Gradient Orbs -->
+        <div class="wallet-gradient-orb wallet-orb-1"></div>
+        <div class="wallet-gradient-orb wallet-orb-2"></div>
+
+        <!-- Grid Pattern -->
+        <div class="wallet-grid-pattern"></div>
       </div>
 
-      <div class="content">
-        <div class="wallet-info">
-          <div class="address">
-            <label>${t('address')}</label>
-            <div class="address-row">
-              <div class="address-value" id="address">${formatAddress(currentAddress)}</div>
-              <button id="copyBtn" class="btn-icon">${ICONS.copy}</button>
-            </div>
+      <!-- Main Content -->
+      <div class="wallet-container">
+        <!-- Header -->
+        <div class="wallet-header">
+          <div class="wallet-brand">
+            <img src="icons/icon48.png" class="wallet-logo" alt="Hoosat" />
+            <h1 class="wallet-title">${t('appName')}</h1>
           </div>
+          <div class="wallet-header-actions">
+            <button id="lockBtn" class="btn-icon" title="${t('unlockWallet')}">${ICONS.lock}</button>
+            <button id="settingsBtn" class="btn-icon" title="${t('settings')}">${ICONS.settings}</button>
+          </div>
+        </div>
 
-          <div class="balance">
-            <label>${t('balance')}</label>
-            <div class="balance-row">
-              <div class="balance-value" id="balance">${HoosatUtils.sompiToAmount(balance)} HTN</div>
+        <!-- Wallet Info Card -->
+        <div class="wallet-info-card">
+          <!-- Balance Section -->
+          <div class="wallet-info-section">
+            <div class="wallet-card-label">
+              ${ICONS.wallet} ${t('balance')}
+            </div>
+            <div class="wallet-card-content">
+              <div class="wallet-balance-value" id="balance">${HoosatUtils.sompiToAmount(balance)} HTN</div>
               <button id="refreshBtn" class="btn-icon">${ICONS.refresh}</button>
             </div>
           </div>
-        </div>
 
-        <div class="actions">
-          <button id="sendBtn" class="btn btn-primary">${t('send')}</button>
-          <button id="receiveBtn" class="btn btn-secondary">${t('receive')}</button>
-        </div>
+          <!-- Divider -->
+          <div class="wallet-info-divider"></div>
 
-        <div class="transactions">
-          <h3>${t('recentTransactions')}</h3>
-          <div class="tx-list" id="txList">
-            ${txHistory.length > 0 ? renderTransactions(txHistory.slice(0, 10)) : `<p class="empty">${t('noTransactionsYet')}</p>`}
+          <!-- Address Section -->
+          <div class="wallet-info-section">
+            <div class="wallet-card-label">
+              ${ICONS.addressBook} ${t('address')}
+            </div>
+            <div class="wallet-card-content">
+              <div class="wallet-card-value" id="address">${formatAddress(currentAddress)}</div>
+              <button id="copyBtn" class="btn-icon">${ICONS.copy}</button>
+            </div>
           </div>
-          ${txHistory.length > 0 ? `<button id="viewHistoryBtn" class="btn-link">${t('viewFullHistoryInExplorer')}</button>` : ''}
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="wallet-actions">
+          <button id="sendBtn" class="btn btn-primary">
+            <span class="icon-with-text">${ICONS.send} ${t('send')}</span>
+          </button>
+          <button id="receiveBtn" class="btn btn-secondary">
+            <span class="icon-with-text">${ICONS.receive} ${t('receive')}</span>
+          </button>
+        </div>
+
+        <!-- Transactions -->
+        <div class="wallet-transactions">
+          <div class="wallet-transactions-header">
+            ${ICONS.clock} ${t('recentTransactions')}
+          </div>
+          <div class="wallet-tx-list" id="txList">
+            ${txHistory.length > 0 ? renderTransactions(txHistory.slice(0, 10)) : `<div class="wallet-tx-empty">${t('noTransactionsYet')}</div>`}
+          </div>
+          ${txHistory.length > 0 ? `<a id="viewHistoryBtn" class="wallet-view-explorer" href="#">${t('viewFullHistoryInExplorer')} ${ICONS.externalLink}</a>` : ''}
         </div>
       </div>
     </div>
@@ -90,12 +120,13 @@ export async function showWalletScreen(
   document.getElementById('settingsBtn')!.addEventListener('click', onSettings);
 
   if (txHistory.length > 0) {
-    document.getElementById('viewHistoryBtn')!.addEventListener('click', () => {
+    document.getElementById('viewHistoryBtn')!.addEventListener('click', (e) => {
+      e.preventDefault();
       window.open(getExplorerAddressUrl('mainnet', currentAddress!), '_blank');
     });
 
     // Add click listeners to each transaction
-    document.querySelectorAll('.tx-item').forEach((item, index) => {
+    document.querySelectorAll('.wallet-tx-item').forEach((item, index) => {
       item.addEventListener('click', () => {
         window.open(getExplorerTxUrl('mainnet', txHistory[index].txId), '_blank');
       });
@@ -110,14 +141,14 @@ function renderTransactions(transactions: TransactionHistory[]): string {
   return transactions
     .map(
       tx => `
-    <div class="tx-item" data-txid="${tx.txId}">
-      <div class="tx-icon">${tx.type === 'sent' ? ICONS.send : ICONS.receive}</div>
-      <div class="tx-details">
-        <div class="tx-type">${tx.type === 'sent' ? t('sent') : t('received')}</div>
-        <div class="tx-address">${tx.type === 'sent' ? t('to') + ' ' + formatAddress(tx.to!) : t('from') + ' ' + formatAddress(tx.from || 'Unknown')}</div>
-        <div class="tx-time">${formatTime(tx.timestamp)}</div>
+    <div class="wallet-tx-item" data-txid="${tx.txId}">
+      <div class="wallet-tx-icon ${tx.type}">${tx.type === 'sent' ? ICONS.send : ICONS.receive}</div>
+      <div class="wallet-tx-details">
+        <div class="wallet-tx-type">${tx.type === 'sent' ? t('sent') : t('received')}</div>
+        <div class="wallet-tx-address">${tx.type === 'sent' ? t('to') + ' ' + formatAddress(tx.to!) : t('from') + ' ' + formatAddress(tx.from || 'Unknown')}</div>
+        <div class="wallet-tx-time">${formatTime(tx.timestamp)}</div>
       </div>
-      <div class="tx-amount ${tx.type === 'sent' ? 'negative' : 'positive'}">
+      <div class="wallet-tx-amount ${tx.type === 'sent' ? 'negative' : 'positive'}">
         ${tx.type === 'sent' ? '-' : '+'}${HoosatUtils.sompiToAmount(tx.amount)} HTN
       </div>
     </div>

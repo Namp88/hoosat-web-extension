@@ -1012,5 +1012,9 @@
   "backToWallet": {
     "message": "Back to Wallet",
     "description": "Back to wallet button"
+  },
+  "qrCodeGenerationFailed": {
+    "message": "QRコードの生成に失敗しました",
+    "description": "QR code generation failed error message"
   }
 }

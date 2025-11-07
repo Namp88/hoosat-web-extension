@@ -1,3 +1,5 @@
+import { ICONS } from '../utils/icons';
+
 /**
  * Show confirm dialog
  */
@@ -67,9 +69,9 @@ export function showAlertDialog(title: string, message: string, type: 'success' 
     modal.className = `modal-content alert-modal alert-${type}`;
 
     // Choose icon based on type
-    let icon = '${ICONS.info}';
-    if (type === 'success') icon = '✅';
-    if (type === 'error') icon = '❌';
+    let icon: string = ICONS.info;
+    if (type === 'success') icon = ICONS.checkCircle;
+    if (type === 'error') icon = ICONS.error;
 
     modal.innerHTML = `
       <div class="modal-header">

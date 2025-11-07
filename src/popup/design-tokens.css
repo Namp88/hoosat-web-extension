@@ -180,3 +180,40 @@ i.fa-brands {
     align-items: center;
     gap: var(--spacing-sm);
 }
+
+/* Custom Scrollbar - Premium Style */
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(20, 184, 166, 0.3) rgba(30, 41, 59, 0.5);
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(30, 41, 59, 0.5);
+    border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(20, 184, 166, 0.3);
+    border-radius: var(--radius-sm);
+    transition: background var(--transition-fast);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(20, 184, 166, 0.5);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: rgba(20, 184, 166, 0.7);
+}
+
+/* Scrollbar corner (when both scrollbars are visible) */
+::-webkit-scrollbar-corner {
+    background: rgba(30, 41, 59, 0.5);
+}

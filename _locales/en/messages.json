@@ -1057,5 +1057,9 @@
         "example": "30"
       }
     }
+  },
+  "qrCodeGenerationFailed": {
+    "message": "QR code generation failed",
+    "description": "QR code generation failed error message"
   }
 }

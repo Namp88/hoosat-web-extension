@@ -9,6 +9,7 @@ export const ICONS = {
   close: '<i class="fa-solid fa-xmark"></i>',
   menu: '<i class="fa-solid fa-bars"></i>',
   chevronDown: '<i class="fa-solid fa-chevron-down"></i>',
+  chevronRight: '<i class="fa-solid fa-chevron-right"></i>',
 
   // Actions
   copy: '<i class="fa-regular fa-copy"></i>',
@@ -37,6 +38,7 @@ export const ICONS = {
   link: '<i class="fa-solid fa-link"></i>',
   chain: '<i class="fa-solid fa-link"></i>',
   unlink: '<i class="fa-solid fa-link-slash"></i>',
+  externalLink: '<i class="fa-solid fa-arrow-up-right-from-square"></i>',
 
   // Status & Feedback
   check: '<i class="fa-solid fa-check"></i>',
@@ -70,6 +72,7 @@ export const ICONS = {
   fileSignature: '<i class="fa-solid fa-file-signature"></i>',
   bell: '<i class="fa-solid fa-bell"></i>',
   moneyBill: '<i class="fa-solid fa-money-bill"></i>',
+  addressBook: '<i class="fa-solid fa-address-book"></i>',
 
   // Status indicators (colored)
   statusGreen: '<i class="fa-solid fa-circle" style="color: var(--color-success);"></i>',

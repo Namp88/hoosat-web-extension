@@ -1028,5 +1028,9 @@
   "backToWallet": {
     "message": "Back to Wallet",
     "description": "Back to wallet button"
+  },
+  "qrCodeGenerationFailed": {
+    "message": "QR-koodin luominen epäonnistui",
+    "description": "QR code generation failed error message"
   }
 }

@@ -1,0 +1,282 @@
+/* Create & Import Wallet Hero Screens - Static Background */
+
+.create-import-hero {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: var(--bg-primary);
+}
+
+/* Static Background Elements */
+.create-import-background {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Static Gradient Orbs (No Animation) */
+.create-import-gradient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.12;
+}
+
+.create-import-orb-1 {
+  top: 10%;
+  left: 20%;
+  width: 300px;
+  height: 300px;
+  background: var(--color-hoosat-teal);
+}
+
+.create-import-orb-2 {
+  bottom: 10%;
+  right: 20%;
+  width: 250px;
+  height: 250px;
+  background: var(--color-cyan-400);
+}
+
+/* Grid Pattern */
+.create-import-grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(20, 184, 166, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 184, 166, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.5;
+}
+
+/* Main Container */
+.create-import-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg) var(--spacing-lg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.create-import-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md) var(--spacing-lg);
+  margin: 0 calc(-1 * var(--spacing-lg)) var(--spacing-xl);
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(20, 184, 166, 0.15);
+}
+
+.create-import-header-title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex: 1;
+  justify-content: center;
+}
+
+.create-import-header-icon {
+  width: 32px;
+  height: 32px;
+  filter: drop-shadow(0 2px 6px rgba(20, 184, 166, 0.3));
+}
+
+.create-import-header h1 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.create-import-back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: 1px solid rgba(20, 184, 166, 0.3);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-size: var(--font-size-lg);
+  padding: 0;
+}
+
+.create-import-back-btn:hover {
+  background: rgba(20, 184, 166, 0.1);
+  border-color: var(--color-hoosat-teal);
+  color: var(--color-hoosat-teal);
+}
+
+/* Content Area */
+.create-import-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+/* Form Card */
+.create-import-card {
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(20, 184, 166, 0.2);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-lg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Form Groups */
+.create-import-form-group {
+  margin-bottom: var(--spacing-lg);
+}
+
+.create-import-form-group label {
+  display: block;
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.create-import-form-group input {
+  width: 100%;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: rgba(15, 23, 42, 0.8);
+  border: 2px solid rgba(20, 184, 166, 0.3);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+  transition: all var(--transition-fast);
+}
+
+.create-import-form-group input:focus {
+  outline: none;
+  border-color: var(--color-hoosat-teal);
+  box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.2);
+  background: rgba(15, 23, 42, 1);
+}
+
+.create-import-form-group input::placeholder {
+  color: var(--text-muted);
+}
+
+/* Password Strength Indicator */
+.create-import-password-strength {
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Password Requirements */
+.create-import-password-requirements {
+  padding: var(--spacing-md);
+  background: rgba(20, 184, 166, 0.05);
+  border: 1px solid rgba(20, 184, 166, 0.2);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.create-import-requirements-title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.create-import-password-requirements ul {
+  margin: 0;
+  padding-left: var(--spacing-lg);
+  list-style: none;
+}
+
+.create-import-password-requirements li {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xs);
+  position: relative;
+  padding-left: var(--spacing-md);
+}
+
+.create-import-password-requirements li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--color-hoosat-teal);
+}
+
+/* Error Message */
+.create-import-error {
+  margin: 0;
+  padding: 0;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius-md);
+  color: #fca5a5;
+  font-size: var(--font-size-sm);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  min-height: 0;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all var(--transition-base);
+  margin-bottom: var(--spacing-lg);
+}
+
+.create-import-error:not(:empty) {
+  padding: var(--spacing-md) var(--spacing-lg);
+  opacity: 1;
+  max-height: 100px;
+  animation: errorShake 0.4s ease-in-out;
+}
+
+@keyframes errorShake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  75% {
+    transform: translateX(10px);
+  }
+}
+
+/* Submit Button */
+.create-import-submit-btn {
+  width: 100%;
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: all var(--transition-fast);
+}
+
+.create-import-submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.25);
+}
