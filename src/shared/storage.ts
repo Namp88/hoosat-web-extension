@@ -1,6 +1,6 @@
 // Chrome storage utilities
 
-import { WalletData, StoredWallet, ConnectedSite, TransactionHistory, ConsolidationSettings, DEFAULT_CONSOLIDATION_THRESHOLD } from './types';
+import { WalletData, StoredWallet, ConnectedSite, TransactionHistory, ConsolidationSettings, DEFAULT_CONSOLIDATION_THRESHOLD, AutoLockSettings, DEFAULT_AUTO_LOCK_TIMEOUT } from './types';
 
 const STORAGE_KEYS = {
   WALLET: 'hoosat_wallet',
@@ -8,6 +8,7 @@ const STORAGE_KEYS = {
   SETTINGS: 'hoosat_settings',
   TX_HISTORY: 'hoosat_tx_history',
   CONSOLIDATION: 'hoosat_consolidation',
+  AUTO_LOCK: 'hoosat_auto_lock',
 } as const;
 
 // Maximum number of transactions to store
@@ -287,6 +288,39 @@ export async function markConsolidationModalSeen(): Promise<void> {
   const settings = await getConsolidationSettings();
   settings.hasSeenModal = true;
   await saveConsolidationSettings(settings);
+}
+
+/**
+ * Get auto-lock settings
+ */
+export async function getAutoLockSettings(): Promise<AutoLockSettings> {
+  return new Promise((resolve, reject) => {
+    chrome.storage.local.get(STORAGE_KEYS.AUTO_LOCK, result => {
+      if (chrome.runtime.lastError) {
+        reject(chrome.runtime.lastError);
+      } else {
+        const defaultSettings: AutoLockSettings = {
+          timeoutMinutes: DEFAULT_AUTO_LOCK_TIMEOUT,
+        };
+        resolve(result[STORAGE_KEYS.AUTO_LOCK] || defaultSettings);
+      }
+    });
+  });
+}
+
+/**
+ * Save auto-lock settings
+ */
+export async function saveAutoLockSettings(settings: AutoLockSettings): Promise<void> {
+  return new Promise((resolve, reject) => {
+    chrome.storage.local.set({ [STORAGE_KEYS.AUTO_LOCK]: settings }, () => {
+      if (chrome.runtime.lastError) {
+        reject(chrome.runtime.lastError);
+      } else {
+        resolve();
+      }
+    });
+  });
 }
 
 /**

@@ -884,6 +884,26 @@
     "message": "Проверка UTXO...",
     "description": "Checking UTXOs..."
   },
+  "autoLockSettings": {
+    "message": "Настройки автоблокировки",
+    "description": "Auto-lock settings"
+  },
+  "autoLockTimeout": {
+    "message": "Автоблокировка при неактивности",
+    "description": "Auto-lock timeout label"
+  },
+  "minutes": {
+    "message": "минут",
+    "description": "Minutes unit"
+  },
+  "autoLockHint": {
+    "message": "Кошелёк автоматически заблокируется после выбранного периода неактивности для защиты ваших средств.",
+    "description": "Auto-lock setting hint"
+  },
+  "failedToUpdateSettings": {
+    "message": "Не удалось обновить настройки",
+    "description": "Error when updating settings"
+  },
   "success": {
     "message": "Успех",
     "description": "Success title"

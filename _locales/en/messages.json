@@ -885,6 +885,26 @@
     "message": "Checking UTXOs...",
     "description": "Checking UTXO count status"
   },
+  "autoLockSettings": {
+    "message": "Auto-Lock Settings",
+    "description": "Auto-lock settings section title"
+  },
+  "autoLockTimeout": {
+    "message": "Auto-lock after inactivity",
+    "description": "Auto-lock timeout label"
+  },
+  "minutes": {
+    "message": "minutes",
+    "description": "Minutes unit"
+  },
+  "autoLockHint": {
+    "message": "Wallet will automatically lock after the selected period of inactivity to protect your funds.",
+    "description": "Auto-lock setting hint"
+  },
+  "failedToUpdateSettings": {
+    "message": "Failed to update settings",
+    "description": "Error when updating settings"
+  },
   "success": {
     "message": "Success",
     "description": "Success title"

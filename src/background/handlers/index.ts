@@ -21,3 +21,5 @@ export {
   handleUpdateConsolidationSettings,
   handleMarkConsolidationModalSeen,
 } from './consolidation-handlers';
+
+export { handleGetAutoLockSettings, handleUpdateAutoLockSettings } from './auto-lock-handlers';

@@ -2,7 +2,7 @@ import { t, changeLanguage } from '../utils/i18n';
 import { getSelectedLanguage, saveLanguage, AVAILABLE_LANGUAGES, type SupportedLanguage } from '../../shared/language';
 import { showAlertDialog } from '../components/modal';
 import { ICONS } from '../utils/icons';
-import { DEFAULT_CONSOLIDATION_THRESHOLD } from '../../shared/types';
+import { DEFAULT_CONSOLIDATION_THRESHOLD, AUTO_LOCK_TIMEOUTS, DEFAULT_AUTO_LOCK_TIMEOUT } from '../../shared/types';
 import { setButtonLoading } from '../utils/button-state';
 
 /**
@@ -13,6 +13,7 @@ export async function showSettingsScreen(
   onBack: () => void,
   onLanguageSettings: () => void,
   onUtxoManagement: () => void,
+  onAutoLockSettings: () => void,
   onChangePassword: () => void,
   onExportKey: () => void,
   onConnectedSites: () => void,
@@ -44,6 +45,7 @@ export async function showSettingsScreen(
         <div class="settings-content">
           <div class="settings-card">
             <button id="languageBtn" class="settings-menu-btn">${ICONS.language} ${t('languageSettings')}</button>
+            <button id="autoLockBtn" class="settings-menu-btn">${ICONS.clock} ${t('autoLockSettings')}</button>
             <button id="utxoBtn" class="settings-menu-btn">${ICONS.refresh} ${t('utxoManagement')}</button>
           </div>
 
@@ -64,6 +66,7 @@ export async function showSettingsScreen(
   // Event listeners
   document.getElementById('backBtn')!.addEventListener('click', onBack);
   document.getElementById('languageBtn')!.addEventListener('click', onLanguageSettings);
+  document.getElementById('autoLockBtn')!.addEventListener('click', onAutoLockSettings);
   document.getElementById('utxoBtn')!.addEventListener('click', onUtxoManagement);
   document.getElementById('connectedSitesBtn')!.addEventListener('click', onConnectedSites);
   document.getElementById('changePasswordBtn')!.addEventListener('click', onChangePassword);
@@ -296,4 +299,105 @@ export async function showUtxoManagementScreen(
       }
     });
   }
+}
+
+/**
+ * Show auto-lock settings screen
+ */
+export async function showAutoLockSettingsScreen(
+  app: HTMLElement,
+  onBack: () => void
+): Promise<void> {
+  // Load current auto-lock settings
+  const response = await chrome.runtime.sendMessage({
+    type: 'GET_AUTO_LOCK_SETTINGS',
+  });
+
+  const currentTimeout = response.success ? response.data.timeoutMinutes : DEFAULT_AUTO_LOCK_TIMEOUT;
+
+  app.innerHTML = `
+    <div class="settings-hero">
+      <!-- Static Background -->
+      <div class="settings-background">
+        <div class="settings-gradient-orb settings-orb-1"></div>
+        <div class="settings-gradient-orb settings-orb-2"></div>
+        <div class="settings-grid-pattern"></div>
+      </div>
+
+      <!-- Container -->
+      <div class="settings-container">
+        <!-- Header -->
+        <div class="settings-header">
+          <button id="backBtn" class="settings-back-btn">${ICONS.back}</button>
+          <div class="settings-header-title">
+            <img src="icons/icon48.png" class="settings-header-icon" alt="Hoosat" />
+            <h1>${t('autoLockSettings')}</h1>
+          </div>
+          <div class="hero-header-spacer"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="settings-content">
+          <div class="settings-card">
+            <div class="settings-form-group">
+              <label for="autoLockSelect">${t('autoLockTimeout')}</label>
+              <select id="autoLockSelect" class="settings-select">
+                ${AUTO_LOCK_TIMEOUTS.map(
+                  minutes => `
+                  <option value="${minutes}" ${minutes === currentTimeout ? 'selected' : ''}>
+                    ${minutes} ${t('minutes')}
+                  </option>
+                `
+                ).join('')}
+              </select>
+              <div class="settings-form-hint">${t('autoLockHint')}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Event listeners
+  document.getElementById('backBtn')!.addEventListener('click', onBack);
+
+  // Auto-lock timeout selector handler
+  const autoLockSelect = document.getElementById('autoLockSelect') as HTMLSelectElement;
+  autoLockSelect.addEventListener('change', async () => {
+    const newTimeout = parseInt(autoLockSelect.value);
+    const originalValue = autoLockSelect.value;
+
+    try {
+      // Show loading state
+      autoLockSelect.disabled = true;
+      autoLockSelect.style.opacity = '0.6';
+
+      // Save auto-lock settings
+      await chrome.runtime.sendMessage({
+        type: 'UPDATE_AUTO_LOCK_SETTINGS',
+        data: {
+          timeoutMinutes: newTimeout,
+        },
+      });
+
+      // Small delay for better UX
+      await new Promise(resolve => setTimeout(resolve, 150));
+
+      // Re-enable select
+      autoLockSelect.disabled = false;
+      autoLockSelect.style.opacity = '1';
+
+      console.log('✅ Auto-lock timeout updated to', newTimeout, 'minutes');
+    } catch (error) {
+      console.error('Failed to change auto-lock timeout:', error);
+
+      // Restore previous value on error
+      autoLockSelect.value = originalValue;
+      autoLockSelect.disabled = false;
+      autoLockSelect.style.opacity = '1';
+
+      // Show error message
+      await showAlertDialog(t('error'), t('failedToUpdateSettings') || 'Failed to update settings', 'error');
+    }
+  });
 }

@@ -255,6 +255,14 @@
   padding: var(--spacing-sm);
 }
 
+/* Form Hint */
+.settings-form-hint {
+  margin-top: var(--spacing-md);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
 /* Checkbox */
 .settings-checkbox-label {
   display: flex;

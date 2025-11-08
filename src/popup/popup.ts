@@ -15,6 +15,7 @@ import {
   showSettingsScreen,
   showLanguageSettingsScreen,
   showUtxoManagementScreen,
+  showAutoLockSettingsScreen,
   showChangePasswordScreen,
   showExportKeyScreen,
   showDAppConnectionScreen,
@@ -457,7 +458,7 @@ async function showReceive() {
  * Show settings screen
  */
 async function showSettings() {
-  await showSettingsScreen(app, showWallet, showLanguageSettings, showUtxoManagement, showChangePassword, showExportKey, showConnectedSites, handleReset);
+  await showSettingsScreen(app, showWallet, showLanguageSettings, showUtxoManagement, showAutoLockSettings, showChangePassword, showExportKey, showConnectedSites, handleReset);
 }
 
 /**
@@ -472,6 +473,13 @@ async function showLanguageSettings() {
  */
 async function showUtxoManagement() {
   await showUtxoManagementScreen(app, showSettings);
+}
+
+/**
+ * Show auto-lock settings screen
+ */
+async function showAutoLockSettings() {
+  await showAutoLockSettingsScreen(app, showSettings);
 }
 
 /**

@@ -1,5 +1,6 @@
 import { MessageType } from '../shared/types';
-import { SESSION_TIMEOUT, GRACE_PERIOD } from '../shared/constants';
+import { GRACE_PERIOD } from '../shared/constants';
+import { getAutoLockSettings } from '../shared/storage';
 import { WalletManager } from './wallet-manager';
 
 export class SessionManager {
@@ -7,9 +8,23 @@ export class SessionManager {
   private sessionTimeout: number | null = null;
   private lastActivityTime = 0;
   private walletManager: WalletManager;
+  private timeoutMinutes = 30; // Default timeout in minutes
 
   constructor(walletManager: WalletManager) {
     this.walletManager = walletManager;
+    this.loadSettings();
+  }
+
+  /**
+   * Load auto-lock settings
+   */
+  private async loadSettings(): Promise<void> {
+    try {
+      const settings = await getAutoLockSettings();
+      this.timeoutMinutes = settings.timeoutMinutes;
+    } catch (error) {
+      console.error('Failed to load auto-lock settings:', error);
+    }
   }
 
   /**
@@ -54,9 +69,22 @@ export class SessionManager {
       clearTimeout(this.sessionTimeout);
     }
 
+    const timeoutMs = this.timeoutMinutes * 60 * 1000;
     this.sessionTimeout = setTimeout(() => {
       this.lock();
-    }, SESSION_TIMEOUT) as any;
+    }, timeoutMs) as any;
+  }
+
+  /**
+   * Update timeout setting (called when user changes setting)
+   */
+  async updateTimeoutSetting(minutes: number): Promise<void> {
+    this.timeoutMinutes = minutes;
+
+    // If wallet is unlocked, reset timeout with new duration
+    if (this.isUnlocked) {
+      this.resetTimeout();
+    }
   }
 
   /**

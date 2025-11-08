@@ -24,6 +24,8 @@ import {
   handleGetConsolidationSettings,
   handleUpdateConsolidationSettings,
   handleMarkConsolidationModalSeen,
+  handleGetAutoLockSettings,
+  handleUpdateAutoLockSettings,
 } from './handlers';
 
 console.log('🦊 Hoosat Wallet background script started');
@@ -180,6 +182,13 @@ async function handleMessage(message: ExtensionMessage, sender: chrome.runtime.M
 
     case 'MARK_CONSOLIDATION_MODAL_SEEN':
       return handleMarkConsolidationModalSeen();
+
+    // Auto-lock settings
+    case 'GET_AUTO_LOCK_SETTINGS':
+      return handleGetAutoLockSettings();
+
+    case 'UPDATE_AUTO_LOCK_SETTINGS':
+      return handleUpdateAutoLockSettings(data, sessionManager);
 
     // Misc
     case 'CONTENT_SCRIPT_READY':

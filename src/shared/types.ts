@@ -65,6 +65,14 @@ export interface ConsolidationSettings {
   threshold: number; // UTXO count threshold
 }
 
+// Auto-Lock Settings
+export const AUTO_LOCK_TIMEOUTS = [5, 10, 15, 30, 60] as const; // Available timeout options in minutes
+export const DEFAULT_AUTO_LOCK_TIMEOUT = 30; // Default: 30 minutes
+
+export interface AutoLockSettings {
+  timeoutMinutes: number; // Auto-lock timeout in minutes
+}
+
 export interface ConsolidationInfo {
   utxoCount: number;
   currentFee: string; // Fee for normal transaction (sompi)
