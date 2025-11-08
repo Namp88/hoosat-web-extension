@@ -1,6 +1,10 @@
 import { ICONS } from '../utils/icons';
-import { validatePassword, calculatePasswordStrength, addPasswordStrengthIndicator } from '../utils';
+import { addPasswordStrengthIndicator, validateAndCheckPasswordStrength } from '../utils';
 import { t } from '../utils/i18n';
+import { displayError, clearError, validatePasswordMatch } from '../utils/error-handler';
+import { addEnterKeyHandler } from '../utils/keyboard';
+import { executeWithButtonLoading } from '../utils/button-state';
+import { createWarningBox } from '../components/info-box';
 
 /**
  * Show generate new wallet screen
@@ -28,18 +32,16 @@ export function showGenerateWalletScreen(
             <img src="icons/icon48.png" class="create-import-header-icon" alt="Hoosat" />
             <h1>${t('createNewWalletTitle')}</h1>
           </div>
-          <div style="width: 32px;"></div>
+          <div class="hero-header-spacer"></div>
         </div>
 
         <!-- Content -->
         <div class="create-import-content">
-          <!-- Warning Info Box -->
-          <div class="hero-info-box warning">
-            <div class="hero-info-box-icon">${ICONS.warning}</div>
-            <div>
-              <strong>${t('important')}</strong> ${t('savePrivateKeyWarning')}
-            </div>
-          </div>
+          ${createWarningBox({
+            icon: ICONS.warning,
+            title: t('important'),
+            message: t('savePrivateKeyWarning')
+          })}
 
           <!-- Form Card -->
           <div class="create-import-card">
@@ -77,53 +79,44 @@ export function showGenerateWalletScreen(
   const handleGenerate = async () => {
     const password = (document.getElementById('password') as HTMLInputElement).value;
     const confirmPassword = (document.getElementById('confirmPassword') as HTMLInputElement).value;
-    const errorEl = document.getElementById('error')!;
 
-    errorEl.innerHTML = '';
+    clearError('error');
 
     // Validation
     if (!password || !confirmPassword) {
-      errorEl.innerHTML = `${ICONS.warning} ${t('passwordRequired')}`;
+      displayError('error', t('passwordRequired'));
       return;
     }
 
-    if (password !== confirmPassword) {
-      errorEl.innerHTML = `${ICONS.warning} ${t('passwordsDoNotMatch')}`;
+    if (!validatePasswordMatch(password, confirmPassword, 'error')) {
+      displayError('error', t('passwordsDoNotMatch'));
       return;
     }
 
-    // Use unified validation
-    const validation = validatePassword(password);
+    // Use unified validation with strength check
+    const validation = validateAndCheckPasswordStrength(password);
     if (!validation.valid) {
-      errorEl.innerHTML = `${ICONS.warning} ${validation.error!}`;
+      displayError('error', validation.error!);
       return;
     }
 
-    // Check strength (warn if too weak)
-    const strength = calculatePasswordStrength(password);
-    if (strength.score < 3) {
-      errorEl.innerHTML = `${ICONS.warning} ${t('passwordTooWeak')} ${strength.feedback.slice(0, 2).join(', ')}`;
-      return;
-    }
-
-    try {
-      await onGenerate(password, confirmPassword);
-    } catch (error: any) {
-      errorEl.innerHTML = `${ICONS.error} ${error.message || t('failedToGenerateWallet')}`;
-    }
+    await executeWithButtonLoading(
+      {
+        buttonId: 'generateBtn',
+        loadingText: `${ICONS.spinner} ${t('generating')}`,
+        originalText: t('generateWallet'),
+        errorElementId: 'error',
+        errorMessage: t('failedToGenerateWallet')
+      },
+      () => onGenerate(password, confirmPassword)
+    );
   };
 
   document.getElementById('backBtn')!.addEventListener('click', onBack);
   document.getElementById('generateBtn')!.addEventListener('click', handleGenerate);
 
   // Enter key handler
-  document.getElementById('confirmPassword')!.addEventListener('keydown', (e: KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      e.stopPropagation();
-      handleGenerate();
-    }
-  });
+  addEnterKeyHandler('confirmPassword', handleGenerate);
 
   // Add password strength indicator
   addPasswordStrengthIndicator('password', 'passwordStrength');

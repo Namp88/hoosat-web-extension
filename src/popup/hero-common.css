@@ -390,3 +390,190 @@
   color: var(--color-hoosat-teal);
   transform: translateX(4px);
 }
+
+/* ========================================
+   Common Utility Classes
+   ======================================== */
+
+/* Header Spacer */
+.hero-header-spacer {
+  width: 32px;
+  height: 32px;
+}
+
+/* Icon Circle */
+.hero-icon-circle {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-teal-alpha-15);
+  border: 2px solid var(--color-teal-alpha-30);
+  border-radius: 50%;
+  margin: 0 auto var(--spacing-md);
+  font-size: 36px;
+  color: var(--color-hoosat-teal);
+}
+
+.hero-icon-circle-lg {
+  width: 80px;
+  height: 80px;
+  font-size: 40px;
+}
+
+.hero-icon-circle-sm {
+  width: 48px;
+  height: 48px;
+  font-size: 24px;
+}
+
+/* Button Group Layouts */
+.hero-btn-group-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-sm);
+}
+
+.hero-btn-group-3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-sm);
+}
+
+/* Text Styles */
+.hero-meta-label {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: var(--spacing-xs);
+}
+
+.hero-domain-text {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.hero-url-text {
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+  word-break: break-all;
+}
+
+/* Code Blocks */
+.hero-code-block {
+  padding: var(--spacing-md);
+  background: var(--bg-dark-alpha-80);
+  border: 1px solid var(--color-teal-alpha-30);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-family-mono);
+  word-break: break-all;
+}
+
+.hero-code-block-lg {
+  padding: var(--spacing-lg);
+  font-size: var(--font-size-base);
+}
+
+/* Timestamp Display */
+.hero-timestamp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+}
+
+.hero-timestamp.old {
+  color: var(--color-warning);
+}
+
+/* Card Layouts */
+.hero-card-center {
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+}
+
+/* ========================================
+   Common Animations
+   ======================================== */
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-30px, -40px) scale(1.1);
+  }
+  66% {
+    transform: translate(40px, 30px) scale(0.9);
+  }
+}
+
+@keyframes particle-float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateY(-100px) translateX(30px);
+    opacity: 0.5;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    filter: drop-shadow(0 4px 12px rgba(20, 184, 166, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 6px 20px rgba(20, 184, 166, 0.5));
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes errorShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes lock-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

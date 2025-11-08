@@ -1,5 +1,8 @@
 import { t } from '../utils/i18n';
 import { ICONS } from '../utils/icons';
+import { displayError, clearError } from '../utils/error-handler';
+import { addEnterKeyHandler } from '../utils/keyboard';
+import { executeWithButtonLoading } from '../utils/button-state';
 
 export interface UnlockContext {
   title?: string; // Custom title instead of "Unlock Wallet"
@@ -114,36 +117,33 @@ export function showUnlockScreen(
 
   const handleUnlockAction = async () => {
     const password = (document.getElementById('password') as HTMLInputElement).value;
-    const errorEl = document.getElementById('error')!;
 
-    errorEl.innerHTML = '';
+    clearError('error');
 
     if (!password) {
-      errorEl.innerHTML = `${ICONS.warning} ${t('passwordRequired')}`;
+      displayError('error', t('passwordRequired'));
       return;
     }
 
-    try {
-      await onUnlock(password);
-    } catch (error: any) {
-      errorEl.innerHTML = `${ICONS.warning} ${error.message || t('invalidPassword')}`;
-    }
+    await executeWithButtonLoading(
+      {
+        buttonId: 'unlockBtn',
+        loadingText: `${ICONS.spinner} ${t('unlocking')}`,
+        originalText: `${ICONS.unlock} ${t('unlock')}`,
+        errorElementId: 'error',
+        errorMessage: t('invalidPassword')
+      },
+      () => onUnlock(password)
+    );
   };
 
   // Button click handler
   document.getElementById('unlockBtn')!.addEventListener('click', handleUnlockAction);
 
+  // Enter key handler
+  addEnterKeyHandler('password', handleUnlockAction);
+
   // Auto-focus password field
   const passwordInput = document.getElementById('password') as HTMLInputElement;
-
-  // Enter key handler
-  passwordInput.addEventListener('keydown', (e: KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      e.stopPropagation();
-      handleUnlockAction();
-    }
-  });
-
   passwordInput.focus();
 }

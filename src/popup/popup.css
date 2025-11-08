@@ -38,12 +38,6 @@ body {
     animation: spin 1s linear infinite;
 }
 
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
 /* Screen Layout */
 .screen {
     display: flex;
@@ -1241,12 +1235,6 @@ body {
     color: #e2e8f0;
 }
 
-.address-preview {
-    font-family: 'Courier New', monospace;
-    font-size: 14px;
-    color: #00d9a3;
-}
-
 .tx-preview-full {
     font-size: 10px;
     font-family: 'Courier New', monospace;
@@ -1277,18 +1265,56 @@ body {
     position: relative;
 }
 
+.fee-display-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.fee-display-left {
+    flex: 1;
+}
+
+.btn-icon-edit {
+    background: rgba(0, 217, 163, 0.1);
+    border: 1px solid rgba(0, 217, 163, 0.3);
+    border-radius: 6px;
+    color: #00d9a3;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    padding: 0;
+}
+
+.btn-icon-edit:hover {
+    background: rgba(0, 217, 163, 0.2);
+    border-color: #00d9a3;
+    transform: scale(1.05);
+}
+
+.btn-icon-edit:active {
+    transform: scale(0.95);
+}
+
 .custom-fee-badge {
     display: inline-block;
     background: rgba(0, 217, 163, 0.2);
     color: #00d9a3;
-    padding: 2px 8px;
+    padding: 2px 6px;
     border-radius: 4px;
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    margin-left: 0; /* Remove left margin */
+    margin-left: 6px;
     font-style: normal;
+    vertical-align: middle;
 }
 
 .btn-link-small {
@@ -1371,7 +1397,7 @@ body {
 .tx-preview-divider {
     height: 1px;
     background: linear-gradient(90deg, transparent, #1a2f45, transparent);
-    margin: 20px 0;
+    margin: 12px 0;
 }
 
 .total-section {
@@ -1627,12 +1653,6 @@ body {
     border-top-color: #00d9a3;
     border-radius: 50%;
     animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
 }
 
 /* Consolidation Success Modal */

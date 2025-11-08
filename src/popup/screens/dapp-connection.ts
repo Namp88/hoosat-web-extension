@@ -1,6 +1,9 @@
 import { DAppRequest } from '../../shared/types';
 import { formatTimeAgo, isRequestOld, t } from '../utils';
 import { ICONS } from '../utils/icons';
+import { displayError } from '../utils/error-handler';
+import { setButtonsEnabled } from '../utils/button-state';
+import { createWarningBox, createErrorBox } from '../components/info-box';
 /**
  * Show DApp connection request screen
  */
@@ -31,62 +34,56 @@ export function showDAppConnectionScreen(
       <div class="create-import-container">
         <!-- Header -->
         <div class="create-import-header">
-          <div style="width: 32px;"></div>
+          <div class="hero-header-spacer"></div>
           <div class="create-import-header-title">
             <img src="icons/icon48.png" class="create-import-header-icon" alt="Hoosat" />
             <h1>${t('connectionRequest')}</h1>
           </div>
-          <div style="width: 32px;"></div>
+          <div class="hero-header-spacer"></div>
         </div>
 
         <!-- Content -->
         <div class="create-import-content">
           <!-- Site Info Card -->
-          <div class="create-import-card" style="text-align: center; margin-bottom: var(--spacing-md);">
-            <div style="width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; background: rgba(20, 184, 166, 0.15); border: 2px solid rgba(20, 184, 166, 0.3); border-radius: 50%; margin: 0 auto var(--spacing-md); font-size: 36px; color: var(--color-hoosat-teal);">
+          <div class="create-import-card hero-card-center">
+            <div class="hero-icon-circle">
               ${ICONS.globe}
             </div>
-            <div style="margin-bottom: var(--spacing-xs); font-size: var(--font-size-sm); color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px;">
+            <div class="hero-meta-label">
               ${t('siteRequestingConnection')}
             </div>
-            <div style="font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: var(--text-primary); margin-bottom: var(--spacing-xs);">
+            <div class="hero-domain-text">
               ${domain}
             </div>
-            <div style="font-size: var(--font-size-xs); color: var(--text-tertiary); word-break: break-all;">
+            <div class="hero-url-text">
               ${request.origin}
             </div>
-            <div style="display: flex; align-items: center; justify-content: center; gap: var(--spacing-xs); margin-top: var(--spacing-md); font-size: var(--font-size-xs); color: var(--text-tertiary);">
+            <div class="hero-timestamp" style="margin-top: var(--spacing-md);">
               ${ICONS.clock} ${t('requestedTime')} ${timeAgo}
-              ${isOld ? `<span style="color: #eab308;">${ICONS.warning} ${t('oldRequestWarning')}</span>` : ''}
+              ${isOld ? `<span style="color: var(--color-warning);">${ICONS.warning} ${t('oldRequestWarning')}</span>` : ''}
             </div>
           </div>
 
-          <!-- Permissions Info Box -->
-          <div class="hero-info-box warning">
-            <div class="hero-info-box-icon">${ICONS.warning}</div>
-            <div>
-              <strong>${t('thisSiteWillBeAbleTo')}</strong>
-              <ul style="margin: var(--spacing-xs) 0 0 var(--spacing-md); padding: 0; list-style-position: inside;">
-                <li>${t('viewYourWalletAddress')}</li>
-                <li>${t('requestTransactionApprovals')}</li>
-                <li>${t('viewAccountBalance')}</li>
-              </ul>
-            </div>
-          </div>
+          ${createWarningBox({
+            icon: ICONS.warning,
+            title: t('thisSiteWillBeAbleTo'),
+            listItems: [
+              t('viewYourWalletAddress'),
+              t('requestTransactionApprovals'),
+              t('viewAccountBalance')
+            ]
+          })}
 
-          <!-- Security Warning Info Box -->
-          <div class="hero-info-box error">
-            <div class="hero-info-box-icon">${ICONS.lock}</div>
-            <div>
-              <strong>${t('onlyConnectTrustedSites')}</strong><br>
-              ${t('maliciousSitesWarning')}
-            </div>
-          </div>
+          ${createErrorBox({
+            icon: ICONS.lock,
+            title: t('onlyConnectTrustedSites'),
+            message: t('maliciousSitesWarning')
+          })}
 
           <div class="create-import-error" id="error" style="margin: 0;"></div>
 
           <!-- Action Buttons -->
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-sm);">
+          <div class="hero-btn-group-2col">
             <button id="rejectBtn" class="btn btn-secondary">${t('reject')}</button>
             <button id="approveBtn" class="btn btn-primary">${t('connect')}</button>
           </div>
@@ -104,21 +101,17 @@ export function showDAppConnectionScreen(
  * Handle approve connection
  */
 async function handleApprove(onApprove: () => Promise<void>): Promise<void> {
-  const errorEl = document.getElementById('error')!;
   const approveBtn = document.getElementById('approveBtn') as HTMLButtonElement;
-  const rejectBtn = document.getElementById('rejectBtn') as HTMLButtonElement;
 
   try {
-    approveBtn.disabled = true;
-    rejectBtn.disabled = true;
-    approveBtn.textContent = t('connecting');
+    setButtonsEnabled(['approveBtn', 'rejectBtn'], false);
+    approveBtn.innerHTML = t('connecting');
 
     await onApprove();
   } catch (error: any) {
-    errorEl.innerHTML = `${ICONS.error} ${error.message || t('failedToApproveConnection')}`;
-    approveBtn.disabled = false;
-    rejectBtn.disabled = false;
-    approveBtn.textContent = t('connect');
+    displayError('error', error.message || t('failedToApproveConnection'));
+    setButtonsEnabled(['approveBtn', 'rejectBtn'], true);
+    approveBtn.innerHTML = t('connect');
   }
 }
 
@@ -126,20 +119,16 @@ async function handleApprove(onApprove: () => Promise<void>): Promise<void> {
  * Handle reject connection
  */
 async function handleReject(onReject: () => Promise<void>): Promise<void> {
-  const errorEl = document.getElementById('error')!;
-  const approveBtn = document.getElementById('approveBtn') as HTMLButtonElement;
   const rejectBtn = document.getElementById('rejectBtn') as HTMLButtonElement;
 
   try {
-    approveBtn.disabled = true;
-    rejectBtn.disabled = true;
-    rejectBtn.textContent = t('rejecting');
+    setButtonsEnabled(['approveBtn', 'rejectBtn'], false);
+    rejectBtn.innerHTML = t('rejecting');
 
     await onReject();
   } catch (error: any) {
-    errorEl.innerHTML = `${ICONS.error} ${error.message || t('failedToRejectConnection')}`;
-    approveBtn.disabled = false;
-    rejectBtn.disabled = false;
-    rejectBtn.textContent = t('reject');
+    displayError('error', error.message || t('failedToRejectConnection'));
+    setButtonsEnabled(['approveBtn', 'rejectBtn'], true);
+    rejectBtn.innerHTML = t('reject');
   }
 }

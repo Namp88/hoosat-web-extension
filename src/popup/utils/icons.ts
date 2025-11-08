@@ -17,6 +17,8 @@ export const ICONS = {
   download: '<i class="fa-solid fa-download"></i>',
   upload: '<i class="fa-solid fa-upload"></i>',
   refresh: '<i class="fa-solid fa-rotate"></i>',
+  spinner: '<i class="fa-solid fa-circle-notch fa-spin"></i>',
+  edit: '<i class="fa-solid fa-pen"></i>',
 
   // Security & Auth
   lock: '<i class="fa-solid fa-lock"></i>',

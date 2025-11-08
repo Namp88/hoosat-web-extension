@@ -75,6 +75,31 @@ export function calculatePasswordStrength(password: string): PasswordStrength {
 }
 
 /**
+ * Validate password and check strength
+ * Combined function for common password validation flow
+ */
+export function validateAndCheckPasswordStrength(
+  password: string,
+  minScore: number = 3
+): ValidationResult {
+  const validation = validatePassword(password);
+  if (!validation.valid) {
+    return validation;
+  }
+
+  const strength = calculatePasswordStrength(password);
+  if (strength.score < minScore) {
+    const feedback = strength.feedback.slice(0, 2).join(', ');
+    return {
+      valid: false,
+      error: `${t('passwordTooWeak')} ${feedback}`
+    };
+  }
+
+  return { valid: true };
+}
+
+/**
  * Add live password strength indicator to input field
  */
 export function addPasswordStrengthIndicator(inputId: string, strengthId: string): void {

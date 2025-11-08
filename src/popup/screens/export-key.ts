@@ -1,5 +1,9 @@
 import { ICONS } from '../utils/icons';
 import { t } from '../utils/i18n';
+import { displayError, clearError } from '../utils/error-handler';
+import { addEnterKeyHandler } from '../utils/keyboard';
+import { executeWithButtonLoading } from '../utils/button-state';
+import { createErrorBox, createWarningBox } from '../components/info-box';
 
 /**
  * Show export private key screen with password verification
@@ -27,19 +31,16 @@ export function showExportKeyScreen(
             <img src="icons/icon48.png" class="create-import-header-icon" alt="Hoosat" />
             <h1>${t('exportPrivateKeyTitle')}</h1>
           </div>
-          <div style="width: 32px;"></div>
+          <div class="hero-header-spacer"></div>
         </div>
 
         <!-- Content -->
         <div class="create-import-content">
-          <!-- Critical Warning Info Box -->
-          <div class="hero-info-box error">
-            <div class="hero-info-box-icon">${ICONS.warning}</div>
-            <div>
-              <strong>${t('securityWarning')}</strong><br>
-              ${t('neverSharePrivateKey')}
-            </div>
-          </div>
+          ${createErrorBox({
+            icon: ICONS.warning,
+            title: t('securityWarning'),
+            message: t('neverSharePrivateKey')
+          })}
 
           <!-- Form Card -->
           <div class="create-import-card">
@@ -61,16 +62,10 @@ export function showExportKeyScreen(
   document.getElementById('exportBtn')!.addEventListener('click', () => handleExportPrivateKey(onExport, onBack));
 
   // Enter key handler
-  const passwordInput = document.getElementById('password') as HTMLInputElement;
-  passwordInput.addEventListener('keydown', (e: KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      e.stopPropagation();
-      handleExportPrivateKey(onExport, onBack);
-    }
-  });
+  addEnterKeyHandler('password', () => handleExportPrivateKey(onExport, onBack));
 
   // Focus password field
+  const passwordInput = document.getElementById('password') as HTMLInputElement;
   passwordInput.focus();
 }
 
@@ -82,29 +77,28 @@ async function handleExportPrivateKey(
   onBack: () => void
 ): Promise<void> {
   const password = (document.getElementById('password') as HTMLInputElement).value;
-  const errorEl = document.getElementById('error')!;
 
-  errorEl.innerHTML = '';
+  clearError('error');
 
   if (!password) {
-    errorEl.innerHTML = `${ICONS.warning} ${t('passwordRequired')}`;
+    displayError('error', t('passwordRequired'));
     return;
   }
 
-  try {
-    const exportBtn = document.getElementById('exportBtn') as HTMLButtonElement;
-    exportBtn.disabled = true;
-    exportBtn.textContent = t('verifying');
+  const result = await executeWithButtonLoading(
+    {
+      buttonId: 'exportBtn',
+      loadingText: t('verifying'),
+      originalText: t('showPrivateKey'),
+      errorElementId: 'error',
+      errorMessage: t('invalidPassword')
+    },
+    () => onExport(password)
+  );
 
-    const result = await onExport(password);
-
+  if (result) {
     // Show the private key
     showPrivateKeyExported(result.privateKey, result.address, onBack);
-  } catch (error: any) {
-    errorEl.innerHTML = `${ICONS.error} ${error.message || t('invalidPassword')}`;
-    const exportBtn = document.getElementById('exportBtn') as HTMLButtonElement;
-    exportBtn.disabled = false;
-    exportBtn.textContent = t('showPrivateKey');
   }
 }
 
@@ -135,33 +129,30 @@ function showPrivateKeyExported(privateKey: string, address: string, onBack: () 
               <img src="icons/icon48.png" class="create-import-header-icon" alt="Hoosat" />
               <h1>${t('yourPrivateKey')}</h1>
             </div>
-            <div style="width: 32px;"></div>
+            <div class="hero-header-spacer"></div>
           </div>
 
           <!-- Content -->
           <div class="create-import-content">
-            <!-- Critical Warning -->
-            <div class="hero-info-box error">
-              <div class="hero-info-box-icon">${ICONS.key}</div>
-              <div>
-                <strong>${t('keepThisKeySafe')}</strong><br>
-                ${t('keepKeySafeWarning')}
-              </div>
-            </div>
+            ${createErrorBox({
+              icon: ICONS.key,
+              title: t('keepThisKeySafe'),
+              message: t('keepKeySafeWarning')
+            })}
 
             <!-- Key Display Card -->
             <div class="create-import-card">
               <div class="create-import-form-group">
                 <label>${t('yourAddress')}</label>
-                <div style="padding: var(--spacing-md); background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(20, 184, 166, 0.3); border-radius: var(--radius-md); color: var(--text-secondary); font-size: var(--font-size-sm); font-family: 'Courier New', monospace; word-break: break-all;">${address}</div>
+                <div class="hero-code-block">${address}</div>
               </div>
 
               <div class="create-import-form-group">
                 <label>${t('privateKeyHex')}</label>
-                <div style="padding: var(--spacing-md); background: rgba(15, 23, 42, 0.8); border: 2px solid ${isKeyVisible ? 'var(--color-hoosat-teal)' : 'rgba(20, 184, 166, 0.3)'}; border-radius: var(--radius-md); color: var(--text-primary); font-size: var(--font-size-sm); font-family: 'Courier New', monospace; word-break: break-all; margin-bottom: var(--spacing-md);">
+                <div class="hero-code-block" style="border: 2px solid ${isKeyVisible ? 'var(--color-hoosat-teal)' : 'var(--color-teal-alpha-30)'}; color: var(--text-primary); margin-bottom: var(--spacing-md);">
                   ${isKeyVisible ? privateKey : '••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••'}
                 </div>
-                <button id="toggleKeyBtn" class="btn btn-secondary" style="width: 100%; margin-bottom: var(--spacing-md);">
+                <button id="toggleKeyBtn" class="btn btn-secondary hero-btn-full" style="margin-bottom: var(--spacing-md);">
                   ${isKeyVisible ? `${ICONS.eyeHide} ${t('hideKey')}` : `${ICONS.eye} ${t('showKey')}`}
                 </button>
               </div>
@@ -173,19 +164,18 @@ function showPrivateKeyExported(privateKey: string, address: string, onBack: () 
               }
             </div>
 
-            <!-- Best Practices -->
-            <div class="hero-info-box warning">
-              <div class="hero-info-box-icon">${ICONS.lightbulb}</div>
-              <div>
-                <strong>${t('bestPractices')}</strong><br>
-                • ${t('bestPractice1')}<br>
-                • ${t('bestPractice2')}<br>
-                • ${t('bestPractice3')}<br>
-                • ${t('bestPractice4')}
-              </div>
-            </div>
+            ${createWarningBox({
+              icon: ICONS.lightbulb,
+              title: t('bestPractices'),
+              listItems: [
+                t('bestPractice1'),
+                t('bestPractice2'),
+                t('bestPractice3'),
+                t('bestPractice4')
+              ]
+            })}
 
-            <button id="doneBtn" class="btn btn-secondary" style="width: 100%;">${t('done')}</button>
+            <button id="doneBtn" class="btn btn-secondary hero-btn-full">${t('done')}</button>
           </div>
         </div>
       </div>

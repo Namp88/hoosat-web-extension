@@ -3,6 +3,7 @@ import { getSelectedLanguage, saveLanguage, AVAILABLE_LANGUAGES, type SupportedL
 import { showAlertDialog } from '../components/modal';
 import { ICONS } from '../utils/icons';
 import { DEFAULT_CONSOLIDATION_THRESHOLD } from '../../shared/types';
+import { setButtonLoading } from '../utils/button-state';
 
 /**
  * Show settings screen (main menu)
@@ -36,7 +37,7 @@ export async function showSettingsScreen(
             <img src="icons/icon48.png" class="settings-header-icon" alt="Hoosat" />
             <h1>${t('settings')}</h1>
           </div>
-          <div style="width: 32px;"></div>
+          <div class="hero-header-spacer"></div>
         </div>
 
         <!-- Content -->
@@ -97,7 +98,7 @@ export async function showLanguageSettingsScreen(
             <img src="icons/icon48.png" class="settings-header-icon" alt="Hoosat" />
             <h1>${t('languageSettings')}</h1>
           </div>
-          <div style="width: 32px;"></div>
+          <div class="hero-header-spacer"></div>
         </div>
 
         <!-- Content -->
@@ -185,7 +186,7 @@ export async function showUtxoManagementScreen(
             <img src="icons/icon48.png" class="settings-header-icon" alt="Hoosat" />
             <h1>${t('utxoManagement')}</h1>
           </div>
-          <div style="width: 32px;"></div>
+          <div class="hero-header-spacer"></div>
         </div>
 
         <!-- Content -->
@@ -254,10 +255,8 @@ export async function showUtxoManagementScreen(
   const consolidateBtn = document.getElementById('consolidateBtn');
   if (consolidateBtn) {
     consolidateBtn.addEventListener('click', async () => {
-      const originalText = consolidateBtn.textContent;
       try {
-        consolidateBtn.textContent = t('consolidating');
-        (consolidateBtn as HTMLButtonElement).disabled = true;
+        setButtonLoading('consolidateBtn', true, t('consolidating'), t('consolidateUtxos'));
 
         const response = await chrome.runtime.sendMessage({
           type: 'CONSOLIDATE_UTXOS',
@@ -274,8 +273,7 @@ export async function showUtxoManagementScreen(
         console.error('Consolidation failed:', error);
         await showAlertDialog(t('error'), t('consolidationFailed') + ': ' + (error as Error).message, 'error');
         // Restore button state on error
-        consolidateBtn.textContent = originalText || t('consolidateUtxos');
-        (consolidateBtn as HTMLButtonElement).disabled = false;
+        setButtonLoading('consolidateBtn', false, t('consolidating'), t('consolidateUtxos'));
       }
     });
   }

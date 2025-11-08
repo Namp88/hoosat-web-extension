@@ -1,6 +1,9 @@
 import { ICONS } from '../utils/icons';
-import { validatePassword, calculatePasswordStrength, addPasswordStrengthIndicator } from '../utils';
+import { addPasswordStrengthIndicator, validateAndCheckPasswordStrength } from '../utils';
 import { t } from '../utils/i18n';
+import { displayError, clearError, validatePasswordMatch } from '../utils/error-handler';
+import { addEnterKeyHandler } from '../utils/keyboard';
+import { executeWithButtonLoading } from '../utils/button-state';
 
 /**
  * Show import wallet screen
@@ -28,7 +31,7 @@ export function showImportWalletScreen(
             <img src="icons/icon48.png" class="create-import-header-icon" alt="Hoosat" />
             <h1>${t('importWallet')}</h1>
           </div>
-          <div style="width: 32px;"></div>
+          <div class="hero-header-spacer"></div>
         </div>
 
         <!-- Content -->
@@ -75,58 +78,49 @@ export function showImportWalletScreen(
     const privateKey = (document.getElementById('privateKey') as HTMLInputElement).value.trim();
     const password = (document.getElementById('password') as HTMLInputElement).value;
     const confirmPassword = (document.getElementById('confirmPassword') as HTMLInputElement).value;
-    const errorEl = document.getElementById('error')!;
 
-    errorEl.innerHTML = '';
+    clearError('error');
 
     // Validation
     if (!privateKey) {
-      errorEl.innerHTML = `${ICONS.warning} ${t('privateKeyRequired')}`;
+      displayError('error', t('privateKeyRequired'));
       return;
     }
 
     if (!password || !confirmPassword) {
-      errorEl.innerHTML = `${ICONS.warning} ${t('passwordRequired')}`;
+      displayError('error', t('passwordRequired'));
       return;
     }
 
-    if (password !== confirmPassword) {
-      errorEl.innerHTML = `${ICONS.warning} ${t('passwordsDoNotMatch')}`;
+    if (!validatePasswordMatch(password, confirmPassword, 'error')) {
+      displayError('error', t('passwordsDoNotMatch'));
       return;
     }
 
-    // Use unified validation
-    const validation = validatePassword(password);
+    // Use unified validation with strength check
+    const validation = validateAndCheckPasswordStrength(password);
     if (!validation.valid) {
-      errorEl.innerHTML = `${ICONS.warning} ${validation.error!}`;
+      displayError('error', validation.error!);
       return;
     }
 
-    // Check strength (warn if too weak)
-    const strength = calculatePasswordStrength(password);
-    if (strength.score < 3) {
-      errorEl.innerHTML = `${ICONS.warning} ${t('passwordTooWeak')} ${strength.feedback.slice(0, 2).join(', ')}`;
-      return;
-    }
-
-    try {
-      await onImport(privateKey, password, confirmPassword);
-    } catch (error: any) {
-      errorEl.innerHTML = `${ICONS.error} ${error.message || t('failedToImportWallet')}`;
-    }
+    await executeWithButtonLoading(
+      {
+        buttonId: 'importWalletBtn',
+        loadingText: `${ICONS.spinner} ${t('importing')}`,
+        originalText: t('importWalletButton'),
+        errorElementId: 'error',
+        errorMessage: t('failedToImportWallet')
+      },
+      () => onImport(privateKey, password, confirmPassword)
+    );
   };
 
   document.getElementById('backBtn')!.addEventListener('click', onBack);
   document.getElementById('importWalletBtn')!.addEventListener('click', handleImport);
 
   // Enter key handler
-  document.getElementById('confirmPassword')!.addEventListener('keydown', (e: KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      e.stopPropagation();
-      handleImport();
-    }
-  });
+  addEnterKeyHandler('confirmPassword', handleImport);
 
   // Add password strength indicator
   addPasswordStrengthIndicator('password', 'passwordStrength');

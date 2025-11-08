@@ -86,7 +86,6 @@ export function showTransactionPreview(data: TransactionPreviewData): Promise<Tr
 
           <div class="tx-preview-section">
             <div class="tx-preview-label">${t('sendingTo')}</div>
-            <div class="tx-preview-value address-preview">${formatAddress(data.to)}</div>
             <div class="tx-preview-full">${data.to}</div>
           </div>
 
@@ -98,21 +97,23 @@ export function showTransactionPreview(data: TransactionPreviewData): Promise<Tr
           <div class="tx-preview-divider"></div>
 
           <div class="tx-preview-section">
-            <div class="tx-preview-label-row">
-              <div class="tx-preview-label">${t('networkFee')}</div>
-              ${isCustomFee && !isEditingFee ? '<div class="custom-fee-badge">' + t('custom') + '</div>' : ''}
-            </div>
+            <div class="tx-preview-label">${t('networkFee')}</div>
             ${
               !isEditingFee
                 ? `
-              <div class="fee-display">
-                <div class="tx-preview-value fee-value">${customFeeHTN.toFixed(8)} HTN</div>
-                ${
-                  data.inputs && data.outputs
-                    ? `<div class="tx-preview-note">${data.inputs} input${data.inputs > 1 ? 's' : ''} + ${data.outputs} output${data.outputs > 1 ? 's' : ''}</div>`
-                    : ''
-                }
-                <button id="editFeeBtn" class="btn-link-small">${t('editFee')}</button>
+              <div class="fee-display-row">
+                <div class="fee-display-left">
+                  <div class="tx-preview-value fee-value">
+                    ${customFeeHTN.toFixed(8)} HTN
+                    ${isCustomFee ? '<span class="custom-fee-badge">' + t('custom') + '</span>' : ''}
+                  </div>
+                  ${
+                    data.inputs && data.outputs
+                      ? `<div class="tx-preview-note">${data.inputs} input${data.inputs > 1 ? 's' : ''} + ${data.outputs} output${data.outputs > 1 ? 's' : ''}</div>`
+                      : ''
+                  }
+                </div>
+                <button id="editFeeBtn" class="btn-icon-edit" title="${t('editFee')}">${ICONS.edit}</button>
               </div>
             `
                 : `

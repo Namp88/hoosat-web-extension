@@ -1,7 +1,11 @@
 import { MIN_PASSWORD_LENGTH } from '../../shared/constants';
-import { calculatePasswordStrength } from '../utils';
+import { addPasswordStrengthIndicator, validateAndCheckPasswordStrength } from '../utils';
 import { t, tn } from '../utils/i18n';
 import { ICONS } from '../utils/icons';
+import { displayError, clearError, validatePasswordMatch } from '../utils/error-handler';
+import { addEnterKeyHandler } from '../utils/keyboard';
+import { executeWithButtonLoading } from '../utils/button-state';
+import { createWarningBox } from '../components/info-box';
 
 /**
  * Show change password screen
@@ -29,18 +33,16 @@ export function showChangePasswordScreen(
             <img src="icons/icon48.png" class="create-import-header-icon" alt="Hoosat" />
             <h1>${t('changePasswordTitle')}</h1>
           </div>
-          <div style="width: 32px;"></div>
+          <div class="hero-header-spacer"></div>
         </div>
 
         <!-- Content -->
         <div class="create-import-content">
-          <!-- Warning Info Box -->
-          <div class="hero-info-box warning">
-            <div class="hero-info-box-icon">${ICONS.warning}</div>
-            <div>
-              <strong>${t('important')}</strong> ${t('changePasswordWarning')}
-            </div>
-          </div>
+          ${createWarningBox({
+            icon: ICONS.warning,
+            title: t('important'),
+            message: t('changePasswordWarning')
+          })}
 
           <!-- Form Card -->
           <div class="create-import-card">
@@ -89,43 +91,13 @@ export function showChangePasswordScreen(
   document.getElementById('changePasswordBtn')!.addEventListener('click', () => handleChangePassword(onChangePassword));
 
   // Enter key handler
-  document.getElementById('confirmNewPassword')!.addEventListener('keydown', (e: KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      e.stopPropagation();
-      handleChangePassword(onChangePassword);
-    }
-  });
+  addEnterKeyHandler('confirmNewPassword', () => handleChangePassword(onChangePassword));
 
   // Focus current password field
   (document.getElementById('currentPassword') as HTMLInputElement).focus();
 
   // Password strength indicator
-  const newPasswordInput = document.getElementById('newPassword') as HTMLInputElement;
-  const strengthDiv = document.getElementById('passwordStrength')!;
-
-  newPasswordInput.addEventListener('input', () => {
-    const password = newPasswordInput.value;
-    const strength = calculatePasswordStrength(password);
-
-    strengthDiv.className = 'password-strength';
-
-    if (password.length === 0) {
-      strengthDiv.innerHTML = '';
-      return;
-    }
-
-    if (strength.score < 2) {
-      strengthDiv.classList.add('weak');
-      strengthDiv.innerHTML = `${ICONS.statusRed} ${t('weakPassword')}`;
-    } else if (strength.score < 4) {
-      strengthDiv.classList.add('medium');
-      strengthDiv.innerHTML = `${ICONS.statusYellow} ${t('mediumPassword')}`;
-    } else {
-      strengthDiv.classList.add('strong');
-      strengthDiv.innerHTML = `${ICONS.statusGreen} ${t('strongPassword')}`;
-    }
-  });
+  addPasswordStrengthIndicator('newPassword', 'passwordStrength');
 }
 
 /**
@@ -137,53 +109,50 @@ async function handleChangePassword(
   const currentPassword = (document.getElementById('currentPassword') as HTMLInputElement).value;
   const newPassword = (document.getElementById('newPassword') as HTMLInputElement).value;
   const confirmNewPassword = (document.getElementById('confirmNewPassword') as HTMLInputElement).value;
-  const errorEl = document.getElementById('error')!;
 
-  errorEl.innerHTML = '';
+  clearError('error');
 
   // Validation
   if (!currentPassword) {
-    errorEl.innerHTML = `${ICONS.warning} ${t('currentPasswordRequired')}`;
+    displayError('error', t('currentPasswordRequired'));
     return;
   }
 
   if (!newPassword || !confirmNewPassword) {
-    errorEl.innerHTML = `${ICONS.warning} ${t('newPasswordRequired')}`;
+    displayError('error', t('newPasswordRequired'));
     return;
   }
 
-  if (newPassword !== confirmNewPassword) {
-    errorEl.innerHTML = `${ICONS.warning} ${t('newPasswordsDoNotMatch')}`;
+  if (!validatePasswordMatch(newPassword, confirmNewPassword, 'error')) {
+    displayError('error', t('newPasswordsDoNotMatch'));
     return;
   }
 
   if (newPassword === currentPassword) {
-    errorEl.innerHTML = `${ICONS.warning} ${t('newPasswordMustBeDifferent')}`;
+    displayError('error', t('newPasswordMustBeDifferent'));
     return;
   }
 
   if (newPassword.length < MIN_PASSWORD_LENGTH) {
-    errorEl.innerHTML = `${ICONS.warning} ${tn('passwordMustBeAtLeast', MIN_PASSWORD_LENGTH.toString())}`;
+    displayError('error', tn('passwordMustBeAtLeast', MIN_PASSWORD_LENGTH.toString()));
     return;
   }
 
-  // Check password strength
-  const strength = calculatePasswordStrength(newPassword);
-  if (strength.score < 3) {
-    errorEl.innerHTML = `${ICONS.warning} ${t('passwordTooWeak')} ${strength.feedback.join(', ')}`;
+  // Use unified validation with strength check
+  const validation = validateAndCheckPasswordStrength(newPassword);
+  if (!validation.valid) {
+    displayError('error', validation.error!);
     return;
   }
 
-  try {
-    const changeBtn = document.getElementById('changePasswordBtn') as HTMLButtonElement;
-    changeBtn.disabled = true;
-    changeBtn.textContent = t('changingPassword');
-
-    await onChangePassword(currentPassword, newPassword, confirmNewPassword);
-  } catch (error: any) {
-    errorEl.innerHTML = `${ICONS.error} ${error.message || t('failedToChangePassword')}`;
-    const changeBtn = document.getElementById('changePasswordBtn') as HTMLButtonElement;
-    changeBtn.disabled = false;
-    changeBtn.textContent = t('changePasswordButton');
-  }
+  await executeWithButtonLoading(
+    {
+      buttonId: 'changePasswordBtn',
+      loadingText: t('changingPassword'),
+      originalText: t('changePasswordButton'),
+      errorElementId: 'error',
+      errorMessage: t('failedToChangePassword')
+    },
+    () => onChangePassword(currentPassword, newPassword, confirmNewPassword)
+  );
 }
