@@ -1697,3 +1697,95 @@ body {
     width: 100%;
     margin-top: 8px;
 }
+
+/* ================================================= */
+/* Utility Classes */
+/* ================================================= */
+
+/* Spacing Utilities */
+.m-0 {
+  margin: 0;
+}
+
+.mb-md {
+  margin-bottom: var(--spacing-md);
+}
+
+.mb-lg {
+  margin-bottom: var(--spacing-lg);
+}
+
+.mt-md {
+  margin-top: var(--spacing-md);
+}
+
+.mt-xs {
+  margin-top: var(--spacing-xs);
+}
+
+/* Text Color Utilities */
+.text-warning {
+  color: var(--color-warning);
+}
+
+.text-tertiary {
+  color: var(--text-tertiary);
+}
+
+/* Code Block Utilities */
+.hero-code-block-scrollable {
+  margin-top: var(--spacing-xs);
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.hero-code-truncated-note {
+  margin-top: var(--spacing-xs);
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+}
+
+/* Button Utilities */
+.btn-full-width {
+  width: 100%;
+  margin-bottom: var(--spacing-md);
+}
+
+/* Backup Key Components */
+.backup-confirm-label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(20, 184, 166, 0.2);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-bottom: var(--spacing-md);
+}
+
+.backup-confirm-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--color-hoosat-teal);
+}
+
+.backup-confirm-text {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+/* Export Key Components */
+.hero-code-block-visible {
+  border: 2px solid var(--color-hoosat-teal);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.hero-code-block-hidden {
+  border: 2px solid var(--color-teal-alpha-30);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+}

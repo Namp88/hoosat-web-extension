@@ -149,10 +149,10 @@ function showPrivateKeyExported(privateKey: string, address: string, onBack: () 
 
               <div class="create-import-form-group">
                 <label>${t('privateKeyHex')}</label>
-                <div class="hero-code-block" style="border: 2px solid ${isKeyVisible ? 'var(--color-hoosat-teal)' : 'var(--color-teal-alpha-30)'}; color: var(--text-primary); margin-bottom: var(--spacing-md);">
+                <div class="hero-code-block ${isKeyVisible ? 'hero-code-block-visible' : 'hero-code-block-hidden'}">
                   ${isKeyVisible ? privateKey : '••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••'}
                 </div>
-                <button id="toggleKeyBtn" class="btn btn-secondary hero-btn-full" style="margin-bottom: var(--spacing-md);">
+                <button id="toggleKeyBtn" class="btn btn-secondary hero-btn-full mb-md">
                   ${isKeyVisible ? `${ICONS.eyeHide} ${t('hideKey')}` : `${ICONS.eye} ${t('showKey')}`}
                 </button>
               </div>

@@ -58,9 +58,9 @@ export function showDAppConnectionScreen(
             <div class="hero-url-text">
               ${request.origin}
             </div>
-            <div class="hero-timestamp" style="margin-top: var(--spacing-md);">
+            <div class="hero-timestamp mt-md">
               ${ICONS.clock} ${t('requestedTime')} ${timeAgo}
-              ${isOld ? `<span style="color: var(--color-warning);">${ICONS.warning} ${t('oldRequestWarning')}</span>` : ''}
+              ${isOld ? `<span class="text-warning">${ICONS.warning} ${t('oldRequestWarning')}</span>` : ''}
             </div>
           </div>
 
@@ -80,7 +80,7 @@ export function showDAppConnectionScreen(
             message: t('maliciousSitesWarning')
           })}
 
-          <div class="create-import-error" id="error" style="margin: 0;"></div>
+          <div class="create-import-error m-0" id="error"></div>
 
           <!-- Action Buttons -->
           <div class="hero-btn-group-2col">

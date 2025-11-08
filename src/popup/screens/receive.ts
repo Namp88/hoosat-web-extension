@@ -29,7 +29,7 @@ export async function showReceiveScreen(
             <img src="icons/icon48.png" class="receive-header-icon" alt="Hoosat" />
             <h1>${t('receiveHTN')}</h1>
           </div>
-          <div style="width: 32px;"></div>
+          <div class="hero-header-spacer"></div>
         </div>
 
         <!-- Content -->

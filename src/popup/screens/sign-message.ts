@@ -65,9 +65,9 @@ export function showSignMessageScreen(
             <div class="hero-url-text">
               ${request.origin}
             </div>
-            <div class="hero-timestamp" style="margin-top: var(--spacing-md);">
+            <div class="hero-timestamp mt-md">
               ${ICONS.clock} ${t('requestedTime')} ${timeAgo}
-              ${isOld ? `<span style="color: var(--color-warning);">${ICONS.warning} ${t('oldRequestWarning')}</span>` : ''}
+              ${isOld ? `<span class="text-warning">${ICONS.warning} ${t('oldRequestWarning')}</span>` : ''}
             </div>
           </div>
 
@@ -75,7 +75,7 @@ export function showSignMessageScreen(
           ${createInfoInfoBox({
             icon: ICONS.fileSignature,
             title: t('messageToSign'),
-            message: `<div class="hero-code-block" style="margin-top: var(--spacing-xs); max-height: 200px; overflow-y: auto;">${displayMessage}</div>${message.length > 500 ? `<div style="margin-top: var(--spacing-xs); font-size: var(--font-size-xs); color: var(--text-tertiary);">${t('messageTruncated')}</div>` : ''}`,
+            message: `<div class="hero-code-block hero-code-block-scrollable">${displayMessage}</div>${message.length > 500 ? `<div class="hero-code-truncated-note">${t('messageTruncated')}</div>` : ''}`,
             style: 'margin-bottom: var(--spacing-md);'
           })}
 

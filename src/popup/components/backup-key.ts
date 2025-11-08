@@ -25,12 +25,12 @@ export function showBackupPrivateKey(
       <div class="create-import-container">
         <!-- Header -->
         <div class="create-import-header">
-          <div style="width: 32px;"></div>
+          <div class="hero-header-spacer"></div>
           <div class="create-import-header-title">
             <img src="icons/icon48.png" class="create-import-header-icon" alt="Hoosat" />
             <h1>${t('backupPrivateKey')}</h1>
           </div>
-          <div style="width: 32px;"></div>
+          <div class="hero-header-spacer"></div>
         </div>
 
         <!-- Content -->
@@ -48,18 +48,18 @@ export function showBackupPrivateKey(
           <div class="create-import-card">
             <div class="create-import-form-group">
               <label>${t('yourPrivateKey')}</label>
-              <div style="padding: var(--spacing-md); background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(20, 184, 166, 0.3); border-radius: var(--radius-md); color: var(--text-primary); font-size: var(--font-size-sm); font-family: 'Courier New', monospace; word-break: break-all; margin-bottom: var(--spacing-md);" id="keyValue">${privateKey}</div>
-              <button id="copyKeyBtn" class="btn btn-secondary" style="width: 100%; margin-bottom: var(--spacing-md);">${ICONS.copy} ${t('copyToClipboard')}</button>
+              <div class="hero-code-block mb-md" id="keyValue">${privateKey}</div>
+              <button id="copyKeyBtn" class="btn btn-secondary btn-full-width">${ICONS.copy} ${t('copyToClipboard')}</button>
             </div>
 
             <div class="create-import-form-group">
               <label>${t('yourAddress')}</label>
-              <div style="padding: var(--spacing-md); background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(20, 184, 166, 0.3); border-radius: var(--radius-md); color: var(--text-secondary); font-size: var(--font-size-sm); font-family: 'Courier New', monospace; word-break: break-all;" id="addressValue">${address}</div>
+              <div class="hero-code-block" id="addressValue">${address}</div>
             </div>
 
-            <label style="display: flex; align-items: center; gap: var(--spacing-md); padding: var(--spacing-md); background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(20, 184, 166, 0.2); border-radius: var(--radius-md); cursor: pointer; transition: all var(--transition-fast); margin-bottom: var(--spacing-md);" class="backup-confirm-label">
-              <input type="checkbox" id="confirmBackup" style="width: 20px; height: 20px; cursor: pointer; accent-color: var(--color-hoosat-teal);" />
-              <span style="font-size: var(--font-size-sm); color: var(--text-secondary);">${t('confirmBackup')}</span>
+            <label class="backup-confirm-label">
+              <input type="checkbox" id="confirmBackup" class="backup-confirm-checkbox" />
+              <span class="backup-confirm-text">${t('confirmBackup')}</span>
             </label>
 
             <button id="continueBtn" class="btn btn-primary create-import-submit-btn" disabled>${t('continue')}</button>

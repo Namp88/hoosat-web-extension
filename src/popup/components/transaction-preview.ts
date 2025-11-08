@@ -63,7 +63,7 @@ export function showTransactionPreview(data: TransactionPreviewData): Promise<Tr
           ${
             data.origin
               ? `
-          <div class="dapp-origin" style="margin-bottom: 16px;">
+          <div class="dapp-origin mb-md">
             <div class="dapp-origin-label">${t('requestedBy')}</div>
             <div class="dapp-origin-value">${domain}</div>
             <div class="dapp-origin-full">${data.origin}</div>
@@ -75,7 +75,7 @@ export function showTransactionPreview(data: TransactionPreviewData): Promise<Tr
           ${
             data.timestamp
               ? `
-          <div class="request-timestamp ${isOld ? 'old' : ''}" style="margin-bottom: 16px;">
+          <div class="request-timestamp ${isOld ? 'old' : ''} mb-md">
             <span class="timestamp-icon">${ICONS.clock}</span>
             <span class="timestamp-text">${t('requested')} ${timeAgo}</span>
             ${isOld ? '<span class="timestamp-warning">${ICONS.warning} ' + t('oldRequest') + '</span>' : ''}

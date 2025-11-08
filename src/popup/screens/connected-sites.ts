@@ -27,7 +27,7 @@ export async function showConnectedSitesScreen(app: HTMLElement, onBack: () => v
             <img src="icons/icon48.png" class="settings-header-icon" alt="Hoosat" />
             <h1>${t('connectedSitesTitle')}</h1>
           </div>
-          <div style="width: 32px;"></div>
+          <div class="hero-header-spacer"></div>
         </div>
 
         <!-- Content -->
@@ -42,7 +42,7 @@ export async function showConnectedSitesScreen(app: HTMLElement, onBack: () => v
           </div>
           `
               : `
-          <div class="hero-info-box warning" style="margin-bottom: var(--spacing-lg);">
+          <div class="hero-info-box warning mb-lg">
             <div class="hero-info-box-icon">${ICONS.info}</div>
             <div>
               ${t('connectedSitesInfo')}
