@@ -1104,5 +1104,29 @@
   "signMessageMessage": {
     "message": "Этот сайт хочет, чтобы вы подписали сообщение. Разблокируйте для проверки и подписи.",
     "description": "Unlock screen message for message signing"
+  },
+  "justNow": {
+    "message": "только что",
+    "description": "Time ago: just now"
+  },
+  "minutesAgo": {
+    "message": "$1 минуту назад|$1 минуты назад|$1 минут назад",
+    "description": "Time ago: minutes",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "hoursAgo": {
+    "message": "$1 час назад|$1 часа назад|$1 часов назад",
+    "description": "Time ago: hours",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
   }
 }

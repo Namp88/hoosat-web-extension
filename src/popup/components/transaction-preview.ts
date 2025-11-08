@@ -56,6 +56,7 @@ export function showTransactionPreview(data: TransactionPreviewData): Promise<Tr
 
       modal.innerHTML = `
         <div class="modal-header">
+          <div class="modal-icon">${ICONS.send}</div>
           <h2>${t('confirmTransaction')}</h2>
         </div>
         <div class="modal-body">

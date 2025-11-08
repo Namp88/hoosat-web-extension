@@ -287,10 +287,6 @@
 
 /* UTXO Info */
 .settings-utxo-info {
-  padding: var(--spacing-lg);
-  background: rgba(20, 184, 166, 0.1);
-  border: 1px solid rgba(20, 184, 166, 0.3);
-  border-radius: var(--radius-lg);
   margin-bottom: var(--spacing-lg);
 }
 

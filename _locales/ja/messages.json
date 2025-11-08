@@ -713,6 +713,22 @@
     "message": "Suomi (フィンランド語)",
     "description": "Finnish language name"
   },
+  "languageJapanese": {
+    "message": "日本語",
+    "description": "Japanese language name"
+  },
+  "languageKorean": {
+    "message": "한국어 (韓国語)",
+    "description": "Korean language name"
+  },
+  "languageTurkish": {
+    "message": "Türkçe (トルコ語)",
+    "description": "Turkish language name"
+  },
+  "languageGerman": {
+    "message": "Deutsch (ドイツ語)",
+    "description": "German language name"
+  },
   "failedToChangeLanguage": {
     "message": "言語の変更に失敗しました",
     "description": "Error message when language change fails"
@@ -862,171 +878,171 @@
     "description": "Error title"
   },
   "connectionRequest": {
-    "message": "Connection Request",
+    "message": "接続リクエスト",
     "description": "DApp connection request title"
   },
   "siteRequestingConnection": {
-    "message": "Site requesting connection:",
+    "message": "接続を要求しているサイト:",
     "description": "Label for site requesting connection"
   },
   "requestedTime": {
-    "message": "Requested",
+    "message": "リクエスト済み",
     "description": "Requested time prefix"
   },
   "oldRequestWarning": {
-    "message": "Old request",
+    "message": "古いリクエスト",
     "description": "Warning for old request"
   },
   "thisSiteWillBeAbleTo": {
-    "message": "This site will be able to:",
+    "message": "このサイトは以下が可能になります:",
     "description": "Permissions header"
   },
   "viewYourWalletAddress": {
-    "message": "View your wallet address",
+    "message": "ウォレットアドレスの表示",
     "description": "Permission: view address"
   },
   "requestTransactionApprovals": {
-    "message": "Request transaction approvals",
+    "message": "トランザクション承認のリクエスト",
     "description": "Permission: request transactions"
   },
   "viewAccountBalance": {
-    "message": "View your account balance",
+    "message": "アカウント残高の表示",
     "description": "Permission: view balance"
   },
   "onlyConnectTrustedSites": {
-    "message": "Only connect to websites you trust!",
+    "message": "信頼できるウェブサイトにのみ接続してください!",
     "description": "Trust warning"
   },
   "maliciousSitesWarning": {
-    "message": "Malicious websites may attempt to steal your funds.",
+    "message": "悪意のあるウェブサイトは資金を盗もうとする可能性があります。",
     "description": "Security warning for connections"
   },
   "reject": {
-    "message": "Reject",
+    "message": "拒否",
     "description": "Reject button"
   },
   "connect": {
-    "message": "Connect",
+    "message": "接続",
     "description": "Connect button"
   },
   "connecting": {
-    "message": "Connecting...",
+    "message": "接続中...",
     "description": "Connecting status"
   },
   "rejecting": {
-    "message": "Rejecting...",
+    "message": "拒否中...",
     "description": "Rejecting status"
   },
   "failedToApproveConnection": {
-    "message": "Failed to approve connection",
+    "message": "接続の承認に失敗しました",
     "description": "Error: failed to approve connection"
   },
   "failedToRejectConnection": {
-    "message": "Failed to reject connection",
+    "message": "接続の拒否に失敗しました",
     "description": "Error: failed to reject connection"
   },
   "signMessage": {
-    "message": "Sign Message",
+    "message": "メッセージに署名",
     "description": "Sign message title"
   },
   "siteRequestingSignature": {
-    "message": "Site requesting signature:",
+    "message": "署名を要求しているサイト:",
     "description": "Label for site requesting signature"
   },
   "messageToSign": {
-    "message": "Message to sign:",
+    "message": "署名するメッセージ:",
     "description": "Label for message to sign"
   },
   "messageTruncated": {
-    "message": "(Message truncated for display)",
+    "message": "(表示のためメッセージが省略されています)",
     "description": "Message truncated notice"
   },
   "signingProveOwnership": {
-    "message": "Signing this message proves you own this wallet address.",
+    "message": "このメッセージに署名することで、このウォレットアドレスの所有者であることを証明します。",
     "description": "Explanation of message signing"
   },
   "signingIsFree": {
-    "message": "This action is free and does not send a transaction.",
+    "message": "この操作は無料で、トランザクションを送信しません。",
     "description": "Info: signing is free"
   },
   "onlySignUnderstood": {
-    "message": "Only sign messages you understand!",
+    "message": "理解できるメッセージにのみ署名してください!",
     "description": "Warning about signing messages"
   },
   "maliciousSigningWarning": {
-    "message": "Malicious sites may trick you into signing harmful messages.",
+    "message": "悪意のあるサイトは、有害なメッセージに署名するようあなたを騙す可能性があります。",
     "description": "Security warning for message signing"
   },
   "signing": {
-    "message": "Signing...",
+    "message": "署名中...",
     "description": "Signing status"
   },
   "failedToSignMessage": {
-    "message": "Failed to sign message",
+    "message": "メッセージの署名に失敗しました",
     "description": "Error: failed to sign message"
   },
   "failedToReject": {
-    "message": "Failed to reject",
+    "message": "拒否に失敗しました",
     "description": "Error: failed to reject"
   },
   "welcomeBack": {
-    "message": "Welcome back!",
+    "message": "おかえりなさい!",
     "description": "Welcome back message"
   },
   "siteConnectedSuccessfully": {
-    "message": "Site connected successfully!",
+    "message": "サイトが正常に接続されました!",
     "description": "Success: site connected"
   },
   "connectionRejected": {
-    "message": "Connection rejected",
+    "message": "接続が拒否されました",
     "description": "Success: connection rejected"
   },
   "transactionApproved": {
-    "message": "Transaction approved!",
+    "message": "トランザクションが承認されました!",
     "description": "Success: transaction approved"
   },
   "transactionRejected": {
-    "message": "Transaction rejected",
+    "message": "トランザクションが拒否されました",
     "description": "Success: transaction rejected"
   },
   "messageSignedSuccessfully": {
-    "message": "Message signed successfully!",
+    "message": "メッセージが正常に署名されました!",
     "description": "Success: message signed"
   },
   "messageSigningRejected": {
-    "message": "Message signing rejected",
+    "message": "メッセージの署名が拒否されました",
     "description": "Success: message signing rejected"
   },
   "walletCreatedSuccessfully": {
-    "message": "Wallet created successfully!",
+    "message": "ウォレットが正常に作成されました!",
     "description": "Success: wallet created"
   },
   "walletImportedSuccessfully": {
-    "message": "Wallet imported successfully!",
+    "message": "ウォレットが正常にインポートされました!",
     "description": "Success: wallet imported"
   },
   "transactionSentTxId": {
-    "message": "Transaction sent! TX ID:",
+    "message": "トランザクションが送信されました! TX ID:",
     "description": "Success: transaction sent"
   },
   "passwordChangedSuccessfully": {
-    "message": "Password changed successfully!",
+    "message": "パスワードが正常に変更されました!",
     "description": "Success: password changed"
   },
   "transactionError": {
-    "message": "Transaction Error",
+    "message": "トランザクションエラー",
     "description": "Transaction error title"
   },
   "failedToProcessTransaction": {
-    "message": "Failed to process transaction request:",
+    "message": "トランザクションリクエストの処理に失敗しました:",
     "description": "Error: failed to process transaction"
   },
   "unknownError": {
-    "message": "Unknown error",
+    "message": "不明なエラー",
     "description": "Unknown error message"
   },
   "backToWallet": {
-    "message": "Back to Wallet",
+    "message": "ウォレットに戻る",
     "description": "Back to wallet button"
   },
   "qrCodeGenerationFailed": {
@@ -1060,5 +1076,29 @@
   "signMessageMessage": {
     "message": "このサイトがメッセージへの署名を要求しています。ロックを解除して確認および署名してください。",
     "description": "Unlock screen message for message signing"
+  },
+  "justNow": {
+    "message": "たった今",
+    "description": "Time ago: just now"
+  },
+  "minutesAgo": {
+    "message": "$1分前",
+    "description": "Time ago: minutes",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "hoursAgo": {
+    "message": "$1時間前",
+    "description": "Time ago: hours",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
   }
 }

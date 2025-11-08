@@ -2,6 +2,8 @@
  * UI helper functions for DOM manipulation
  */
 
+import { t, tn } from './i18n';
+
 /**
  * Show success toast message
  */
@@ -146,11 +148,11 @@ export function formatTimeAgo(timestamp: number): string {
   const hours = Math.floor(minutes / 60);
 
   if (seconds < 60) {
-    return 'just now';
+    return t('justNow');
   } else if (minutes < 60) {
-    return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+    return tn('minutesAgo', minutes);
   } else {
-    return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+    return tn('hoursAgo', hours);
   }
 }
 

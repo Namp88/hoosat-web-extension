@@ -30,7 +30,8 @@ export async function showConsolidationModal(
   modal.innerHTML = `
     <div class="modal-content consolidation-modal">
       <div class="modal-header">
-        <h2>${ICONS.warning} ${t('consolidationRecommended')}</h2>
+        <div class="modal-icon">${ICONS.warning}</div>
+        <h2>${t('consolidationRecommended')}</h2>
       </div>
 
       <div class="modal-body">

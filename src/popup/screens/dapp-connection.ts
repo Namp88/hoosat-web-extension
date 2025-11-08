@@ -62,7 +62,7 @@ export function showDAppConnectionScreen(
           </div>
 
           <!-- Permissions Info Box -->
-          <div class="hero-info-box warning" style="margin-bottom: var(--spacing-md);">
+          <div class="hero-info-box warning">
             <div class="hero-info-box-icon">${ICONS.warning}</div>
             <div>
               <strong>${t('thisSiteWillBeAbleTo')}</strong>
@@ -75,7 +75,7 @@ export function showDAppConnectionScreen(
           </div>
 
           <!-- Security Warning Info Box -->
-          <div class="hero-info-box error" style="margin-bottom: var(--spacing-md);">
+          <div class="hero-info-box error">
             <div class="hero-info-box-icon">${ICONS.lock}</div>
             <div>
               <strong>${t('onlyConnectTrustedSites')}</strong><br>
@@ -83,7 +83,7 @@ export function showDAppConnectionScreen(
             </div>
           </div>
 
-          <div class="create-import-error" id="error"></div>
+          <div class="create-import-error" id="error" style="margin: 0;"></div>
 
           <!-- Action Buttons -->
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-sm);">

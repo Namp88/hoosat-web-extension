@@ -1198,6 +1198,13 @@ body {
     color: #eab308;
 }
 
+/* Consolidation Modal Icon (Warning) */
+.consolidation-modal .modal-icon {
+    background: rgba(234, 179, 8, 0.15);
+    border-color: rgba(234, 179, 8, 0.3);
+    color: #eab308;
+}
+
 /* Transaction Preview Modal */
 .tx-preview-modal {
     max-width: 340px;

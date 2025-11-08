@@ -878,171 +878,171 @@
     "description": "Error title"
   },
   "connectionRequest": {
-    "message": "Connection Request",
+    "message": "Yhteyspyyntö",
     "description": "DApp connection request title"
   },
   "siteRequestingConnection": {
-    "message": "Site requesting connection:",
+    "message": "Sivusto pyytää yhteyttä:",
     "description": "Label for site requesting connection"
   },
   "requestedTime": {
-    "message": "Requested",
+    "message": "Pyydetty",
     "description": "Requested time prefix"
   },
   "oldRequestWarning": {
-    "message": "Old request",
+    "message": "Vanha pyyntö",
     "description": "Warning for old request"
   },
   "thisSiteWillBeAbleTo": {
-    "message": "This site will be able to:",
+    "message": "Tämä sivusto voi:",
     "description": "Permissions header"
   },
   "viewYourWalletAddress": {
-    "message": "View your wallet address",
+    "message": "Nähdä lompakkosi osoitteen",
     "description": "Permission: view address"
   },
   "requestTransactionApprovals": {
-    "message": "Request transaction approvals",
+    "message": "Pyytää tapahtumien hyväksyntöjä",
     "description": "Permission: request transactions"
   },
   "viewAccountBalance": {
-    "message": "View your account balance",
+    "message": "Nähdä tilisi saldon",
     "description": "Permission: view balance"
   },
   "onlyConnectTrustedSites": {
-    "message": "Only connect to websites you trust!",
+    "message": "Yhdistä vain luotettaviin sivustoihin!",
     "description": "Trust warning"
   },
   "maliciousSitesWarning": {
-    "message": "Malicious websites may attempt to steal your funds.",
+    "message": "Haitalliset sivustot voivat yrittää varastaa varasi.",
     "description": "Security warning for connections"
   },
   "reject": {
-    "message": "Reject",
+    "message": "Hylkää",
     "description": "Reject button"
   },
   "connect": {
-    "message": "Connect",
+    "message": "Yhdistä",
     "description": "Connect button"
   },
   "connecting": {
-    "message": "Connecting...",
+    "message": "Yhdistetään...",
     "description": "Connecting status"
   },
   "rejecting": {
-    "message": "Rejecting...",
+    "message": "Hylätään...",
     "description": "Rejecting status"
   },
   "failedToApproveConnection": {
-    "message": "Failed to approve connection",
+    "message": "Yhteyden hyväksyminen epäonnistui",
     "description": "Error: failed to approve connection"
   },
   "failedToRejectConnection": {
-    "message": "Failed to reject connection",
+    "message": "Yhteyden hylkääminen epäonnistui",
     "description": "Error: failed to reject connection"
   },
   "signMessage": {
-    "message": "Sign Message",
+    "message": "Allekirjoita Viesti",
     "description": "Sign message title"
   },
   "siteRequestingSignature": {
-    "message": "Site requesting signature:",
+    "message": "Sivusto pyytää allekirjoitusta:",
     "description": "Label for site requesting signature"
   },
   "messageToSign": {
-    "message": "Message to sign:",
+    "message": "Allekirjoitettava viesti:",
     "description": "Label for message to sign"
   },
   "messageTruncated": {
-    "message": "(Message truncated for display)",
+    "message": "(Viesti lyhennetty näyttöä varten)",
     "description": "Message truncated notice"
   },
   "signingProveOwnership": {
-    "message": "Signing this message proves you own this wallet address.",
+    "message": "Tämän viestin allekirjoittaminen todistaa, että omistat tämän lompakon osoitteen.",
     "description": "Explanation of message signing"
   },
   "signingIsFree": {
-    "message": "This action is free and does not send a transaction.",
+    "message": "Tämä toiminto on ilmainen eikä lähetä tapahtumaa.",
     "description": "Info: signing is free"
   },
   "onlySignUnderstood": {
-    "message": "Only sign messages you understand!",
+    "message": "Allekirjoita vain viestejä, jotka ymmärrät!",
     "description": "Warning about signing messages"
   },
   "maliciousSigningWarning": {
-    "message": "Malicious sites may trick you into signing harmful messages.",
+    "message": "Haitalliset sivustot voivat huijata sinut allekirjoittamaan vaarallisia viestejä.",
     "description": "Security warning for message signing"
   },
   "signing": {
-    "message": "Signing...",
+    "message": "Allekirjoitetaan...",
     "description": "Signing status"
   },
   "failedToSignMessage": {
-    "message": "Failed to sign message",
+    "message": "Viestin allekirjoitus epäonnistui",
     "description": "Error: failed to sign message"
   },
   "failedToReject": {
-    "message": "Failed to reject",
+    "message": "Hylkääminen epäonnistui",
     "description": "Error: failed to reject"
   },
   "welcomeBack": {
-    "message": "Welcome back!",
+    "message": "Tervetuloa takaisin!",
     "description": "Welcome back message"
   },
   "siteConnectedSuccessfully": {
-    "message": "Site connected successfully!",
+    "message": "Sivusto yhdistetty onnistuneesti!",
     "description": "Success: site connected"
   },
   "connectionRejected": {
-    "message": "Connection rejected",
+    "message": "Yhteys hylätty",
     "description": "Success: connection rejected"
   },
   "transactionApproved": {
-    "message": "Transaction approved!",
+    "message": "Tapahtuma hyväksytty!",
     "description": "Success: transaction approved"
   },
   "transactionRejected": {
-    "message": "Transaction rejected",
+    "message": "Tapahtuma hylätty",
     "description": "Success: transaction rejected"
   },
   "messageSignedSuccessfully": {
-    "message": "Message signed successfully!",
+    "message": "Viesti allekirjoitettu onnistuneesti!",
     "description": "Success: message signed"
   },
   "messageSigningRejected": {
-    "message": "Message signing rejected",
+    "message": "Viestin allekirjoitus hylätty",
     "description": "Success: message signing rejected"
   },
   "walletCreatedSuccessfully": {
-    "message": "Wallet created successfully!",
+    "message": "Lompakko luotu onnistuneesti!",
     "description": "Success: wallet created"
   },
   "walletImportedSuccessfully": {
-    "message": "Wallet imported successfully!",
+    "message": "Lompakko tuotu onnistuneesti!",
     "description": "Success: wallet imported"
   },
   "transactionSentTxId": {
-    "message": "Transaction sent! TX ID:",
+    "message": "Tapahtuma lähetetty! TX ID:",
     "description": "Success: transaction sent"
   },
   "passwordChangedSuccessfully": {
-    "message": "Password changed successfully!",
+    "message": "Salasana vaihdettu onnistuneesti!",
     "description": "Success: password changed"
   },
   "transactionError": {
-    "message": "Transaction Error",
+    "message": "Tapahtumavirhe",
     "description": "Transaction error title"
   },
   "failedToProcessTransaction": {
-    "message": "Failed to process transaction request:",
+    "message": "Tapahtumapyynnön käsittely epäonnistui:",
     "description": "Error: failed to process transaction"
   },
   "unknownError": {
-    "message": "Unknown error",
+    "message": "Tuntematon virhe",
     "description": "Unknown error message"
   },
   "backToWallet": {
-    "message": "Back to Wallet",
+    "message": "Takaisin Lompakkoon",
     "description": "Back to wallet button"
   },
   "qrCodeGenerationFailed": {
@@ -1076,5 +1076,29 @@
   "signMessageMessage": {
     "message": "Tämä sivusto haluaa sinun allekirjoittavan viestin. Avaa lukitus tarkistaaksesi ja allekirjoittaaksesi.",
     "description": "Unlock screen message for message signing"
+  },
+  "justNow": {
+    "message": "juuri nyt",
+    "description": "Time ago: just now"
+  },
+  "minutesAgo": {
+    "message": "$1 minuutti sitten|$1 minuuttia sitten",
+    "description": "Time ago: minutes",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "hoursAgo": {
+    "message": "$1 tunti sitten|$1 tuntia sitten",
+    "description": "Time ago: hours",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
   }
 }

@@ -26,58 +26,80 @@ export function showSignMessageScreen(
   const isOld = isRequestOld(request.timestamp);
 
   app.innerHTML = `
-    <div class="screen">
-      <div class="header">
-        <div class="header-center">
-          <img src="icons/icon48.png" class="header-icon" alt="Hoosat" />
-          <h1>${t('signMessage')}</h1>
-        </div>
+    <div class="create-import-hero">
+      <!-- Static Background -->
+      <div class="create-import-background">
+        <div class="create-import-gradient-orb create-import-orb-1"></div>
+        <div class="create-import-gradient-orb create-import-orb-2"></div>
+        <div class="create-import-grid-pattern"></div>
       </div>
 
-      <div class="content">
-        <div class="dapp-request-container">
-          <div class="dapp-icon">${ICONS.signature}</div>
-
-          <div class="dapp-origin">
-            <div class="dapp-origin-label">${t('siteRequestingSignature')}</div>
-            <div class="dapp-origin-value">${domain}</div>
-            <div class="dapp-origin-full">${request.origin}</div>
+      <!-- Container -->
+      <div class="create-import-container">
+        <!-- Header -->
+        <div class="create-import-header">
+          <div style="width: 32px;"></div>
+          <div class="create-import-header-title">
+            <img src="icons/icon48.png" class="create-import-header-icon" alt="Hoosat" />
+            <h1>${t('signMessage')}</h1>
           </div>
+          <div style="width: 32px;"></div>
+        </div>
 
-          <div class="request-timestamp ${isOld ? 'old' : ''}">
-            <span class="timestamp-icon">${ICONS.clock}</span>
-            <span class="timestamp-text">${t('requestedTime')} ${timeAgo}</span>
-            ${isOld ? `<span class="timestamp-warning">${ICONS.warning} ${t('oldRequestWarning')}</span>` : ''}
-          </div>
-
-          <div class="info-box info">
-            <div class="info-icon">${ICONS.fileSignature}</div>
-            <div class="info-text">
-              <strong>${t('messageToSign')}</strong>
-              <div class="message-content">${displayMessage}</div>
-              ${message.length > 500 ? `<div class="message-truncated">${t('messageTruncated')}</div>` : ''}
+        <!-- Content -->
+        <div class="create-import-content">
+          <!-- Site Info Card -->
+          <div class="create-import-card" style="text-align: center; margin-bottom: var(--spacing-md);">
+            <div style="width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; background: rgba(20, 184, 166, 0.15); border: 2px solid rgba(20, 184, 166, 0.3); border-radius: 50%; margin: 0 auto var(--spacing-md); font-size: 36px; color: var(--color-hoosat-teal);">
+              ${ICONS.signature}
+            </div>
+            <div style="margin-bottom: var(--spacing-xs); font-size: var(--font-size-sm); color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px;">
+              ${t('siteRequestingSignature')}
+            </div>
+            <div style="font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: var(--text-primary); margin-bottom: var(--spacing-xs);">
+              ${domain}
+            </div>
+            <div style="font-size: var(--font-size-xs); color: var(--text-tertiary); word-break: break-all;">
+              ${request.origin}
+            </div>
+            <div style="display: flex; align-items: center; justify-content: center; gap: var(--spacing-xs); margin-top: var(--spacing-md); font-size: var(--font-size-xs); color: var(--text-tertiary);">
+              ${ICONS.clock} ${t('requestedTime')} ${timeAgo}
+              ${isOld ? `<span style="color: #eab308;">${ICONS.warning} ${t('oldRequestWarning')}</span>` : ''}
             </div>
           </div>
 
-          <div class="info-box warning">
-            <div class="info-icon">${ICONS.info}</div>
-            <div class="info-text">
-              ${t('signingProveOwnership')}
+          <!-- Message to Sign -->
+          <div class="hero-info-box" style="margin-bottom: var(--spacing-md);">
+            <div class="hero-info-box-icon">${ICONS.fileSignature}</div>
+            <div>
+              <strong>${t('messageToSign')}</strong>
+              <div style="margin-top: var(--spacing-xs); padding: var(--spacing-sm); background: rgba(15, 23, 42, 0.6); border-radius: var(--radius-sm); font-family: monospace; font-size: var(--font-size-xs); word-break: break-all; max-height: 200px; overflow-y: auto;">${displayMessage}</div>
+              ${message.length > 500 ? `<div style="margin-top: var(--spacing-xs); font-size: var(--font-size-xs); color: var(--text-tertiary);">${t('messageTruncated')}</div>` : ''}
+            </div>
+          </div>
+
+          <!-- Info Box -->
+          <div class="hero-info-box" style="margin-bottom: var(--spacing-md);">
+            <div class="hero-info-box-icon">${ICONS.info}</div>
+            <div>
+              ${t('signingProveOwnership')}<br>
               ${t('signingIsFree')}
             </div>
           </div>
 
-          <div class="info-box critical">
-            <div class="info-icon">${ICONS.warning}</div>
-            <div class="info-text">
+          <!-- Security Warning Info Box -->
+          <div class="hero-info-box error" style="margin-bottom: var(--spacing-md);">
+            <div class="hero-info-box-icon">${ICONS.warning}</div>
+            <div>
               <strong>${t('onlySignUnderstood')}</strong><br>
               ${t('maliciousSigningWarning')}
             </div>
           </div>
 
-          <div class="error" id="error"></div>
+          <div class="create-import-error" id="error"></div>
 
-          <div class="dapp-actions">
+          <!-- Action Buttons -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-sm);">
             <button id="rejectBtn" class="btn btn-secondary">${t('reject')}</button>
             <button id="approveBtn" class="btn btn-primary">${t('signMessage')}</button>
           </div>
@@ -106,7 +128,7 @@ async function handleApprove(onApprove: () => Promise<void>): Promise<void> {
 
     await onApprove();
   } catch (error: any) {
-    errorEl.textContent = error.message || t('failedToSignMessage');
+    errorEl.innerHTML = `${ICONS.error} ${error.message || t('failedToSignMessage')}`;
     approveBtn.disabled = false;
     rejectBtn.disabled = false;
     approveBtn.textContent = t('signMessage');
@@ -128,7 +150,7 @@ async function handleReject(onReject: () => Promise<void>): Promise<void> {
 
     await onReject();
   } catch (error: any) {
-    errorEl.textContent = error.message || t('failedToReject');
+    errorEl.innerHTML = `${ICONS.error} ${error.message || t('failedToReject')}`;
     approveBtn.disabled = false;
     rejectBtn.disabled = false;
     rejectBtn.textContent = t('reject');

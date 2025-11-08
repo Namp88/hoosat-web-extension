@@ -878,171 +878,171 @@
     "description": "Error title"
   },
   "connectionRequest": {
-    "message": "Connection Request",
+    "message": "连接请求",
     "description": "DApp connection request title"
   },
   "siteRequestingConnection": {
-    "message": "Site requesting connection:",
+    "message": "请求连接的网站:",
     "description": "Label for site requesting connection"
   },
   "requestedTime": {
-    "message": "Requested",
+    "message": "已请求",
     "description": "Requested time prefix"
   },
   "oldRequestWarning": {
-    "message": "Old request",
+    "message": "旧请求",
     "description": "Warning for old request"
   },
   "thisSiteWillBeAbleTo": {
-    "message": "This site will be able to:",
+    "message": "该网站将能够:",
     "description": "Permissions header"
   },
   "viewYourWalletAddress": {
-    "message": "View your wallet address",
+    "message": "查看您的钱包地址",
     "description": "Permission: view address"
   },
   "requestTransactionApprovals": {
-    "message": "Request transaction approvals",
+    "message": "请求交易批准",
     "description": "Permission: request transactions"
   },
   "viewAccountBalance": {
-    "message": "View your account balance",
+    "message": "查看您的账户余额",
     "description": "Permission: view balance"
   },
   "onlyConnectTrustedSites": {
-    "message": "Only connect to websites you trust!",
+    "message": "仅连接您信任的网站!",
     "description": "Trust warning"
   },
   "maliciousSitesWarning": {
-    "message": "Malicious websites may attempt to steal your funds.",
+    "message": "恶意网站可能会试图窃取您的资金。",
     "description": "Security warning for connections"
   },
   "reject": {
-    "message": "Reject",
+    "message": "拒绝",
     "description": "Reject button"
   },
   "connect": {
-    "message": "Connect",
+    "message": "连接",
     "description": "Connect button"
   },
   "connecting": {
-    "message": "Connecting...",
+    "message": "连接中...",
     "description": "Connecting status"
   },
   "rejecting": {
-    "message": "Rejecting...",
+    "message": "拒绝中...",
     "description": "Rejecting status"
   },
   "failedToApproveConnection": {
-    "message": "Failed to approve connection",
+    "message": "批准连接失败",
     "description": "Error: failed to approve connection"
   },
   "failedToRejectConnection": {
-    "message": "Failed to reject connection",
+    "message": "拒绝连接失败",
     "description": "Error: failed to reject connection"
   },
   "signMessage": {
-    "message": "Sign Message",
+    "message": "签署消息",
     "description": "Sign message title"
   },
   "siteRequestingSignature": {
-    "message": "Site requesting signature:",
+    "message": "请求签名的网站:",
     "description": "Label for site requesting signature"
   },
   "messageToSign": {
-    "message": "Message to sign:",
+    "message": "待签署消息:",
     "description": "Label for message to sign"
   },
   "messageTruncated": {
-    "message": "(Message truncated for display)",
+    "message": "(消息已截断以便显示)",
     "description": "Message truncated notice"
   },
   "signingProveOwnership": {
-    "message": "Signing this message proves you own this wallet address.",
+    "message": "签署此消息可证明您拥有此钱包地址。",
     "description": "Explanation of message signing"
   },
   "signingIsFree": {
-    "message": "This action is free and does not send a transaction.",
+    "message": "此操作是免费的，不会发送交易。",
     "description": "Info: signing is free"
   },
   "onlySignUnderstood": {
-    "message": "Only sign messages you understand!",
+    "message": "仅签署您理解的消息!",
     "description": "Warning about signing messages"
   },
   "maliciousSigningWarning": {
-    "message": "Malicious sites may trick you into signing harmful messages.",
+    "message": "恶意网站可能会欺骗您签署有害消息。",
     "description": "Security warning for message signing"
   },
   "signing": {
-    "message": "Signing...",
+    "message": "签署中...",
     "description": "Signing status"
   },
   "failedToSignMessage": {
-    "message": "Failed to sign message",
+    "message": "签署消息失败",
     "description": "Error: failed to sign message"
   },
   "failedToReject": {
-    "message": "Failed to reject",
+    "message": "拒绝失败",
     "description": "Error: failed to reject"
   },
   "welcomeBack": {
-    "message": "Welcome back!",
+    "message": "欢迎回来!",
     "description": "Welcome back message"
   },
   "siteConnectedSuccessfully": {
-    "message": "Site connected successfully!",
+    "message": "网站连接成功!",
     "description": "Success: site connected"
   },
   "connectionRejected": {
-    "message": "Connection rejected",
+    "message": "连接已拒绝",
     "description": "Success: connection rejected"
   },
   "transactionApproved": {
-    "message": "Transaction approved!",
+    "message": "交易已批准!",
     "description": "Success: transaction approved"
   },
   "transactionRejected": {
-    "message": "Transaction rejected",
+    "message": "交易已拒绝",
     "description": "Success: transaction rejected"
   },
   "messageSignedSuccessfully": {
-    "message": "Message signed successfully!",
+    "message": "消息签署成功!",
     "description": "Success: message signed"
   },
   "messageSigningRejected": {
-    "message": "Message signing rejected",
+    "message": "消息签署已拒绝",
     "description": "Success: message signing rejected"
   },
   "walletCreatedSuccessfully": {
-    "message": "Wallet created successfully!",
+    "message": "钱包创建成功!",
     "description": "Success: wallet created"
   },
   "walletImportedSuccessfully": {
-    "message": "Wallet imported successfully!",
+    "message": "钱包导入成功!",
     "description": "Success: wallet imported"
   },
   "transactionSentTxId": {
-    "message": "Transaction sent! TX ID:",
+    "message": "交易已发送! TX ID:",
     "description": "Success: transaction sent"
   },
   "passwordChangedSuccessfully": {
-    "message": "Password changed successfully!",
+    "message": "密码修改成功!",
     "description": "Success: password changed"
   },
   "transactionError": {
-    "message": "Transaction Error",
+    "message": "交易错误",
     "description": "Transaction error title"
   },
   "failedToProcessTransaction": {
-    "message": "Failed to process transaction request:",
+    "message": "处理交易请求失败:",
     "description": "Error: failed to process transaction"
   },
   "unknownError": {
-    "message": "Unknown error",
+    "message": "未知错误",
     "description": "Unknown error message"
   },
   "backToWallet": {
-    "message": "Back to Wallet",
+    "message": "返回钱包",
     "description": "Back to wallet button"
   },
   "qrCodeGenerationFailed": {
@@ -1076,5 +1076,29 @@
   "signMessageMessage": {
     "message": "此网站希望您签署消息。解锁以查看和签署。",
     "description": "Unlock screen message for message signing"
+  },
+  "justNow": {
+    "message": "刚刚",
+    "description": "Time ago: just now"
+  },
+  "minutesAgo": {
+    "message": "$1分钟前",
+    "description": "Time ago: minutes",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "hoursAgo": {
+    "message": "$1小时前",
+    "description": "Time ago: hours",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
   }
 }

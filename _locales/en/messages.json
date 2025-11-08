@@ -1105,5 +1105,29 @@
   "signMessageMessage": {
     "message": "This site wants you to sign a message. Unlock to review and sign.",
     "description": "Unlock screen message for message signing"
+  },
+  "justNow": {
+    "message": "just now",
+    "description": "Time ago: just now"
+  },
+  "minutesAgo": {
+    "message": "$1 minute ago|$1 minutes ago",
+    "description": "Time ago: minutes",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "hoursAgo": {
+    "message": "$1 hour ago|$1 hours ago",
+    "description": "Time ago: hours",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
   }
 }

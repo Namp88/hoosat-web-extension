@@ -878,171 +878,171 @@
     "description": "Error title"
   },
   "connectionRequest": {
-    "message": "Connection Request",
+    "message": "Solicitud de Conexión",
     "description": "DApp connection request title"
   },
   "siteRequestingConnection": {
-    "message": "Site requesting connection:",
+    "message": "Sitio solicitando conexión:",
     "description": "Label for site requesting connection"
   },
   "requestedTime": {
-    "message": "Requested",
+    "message": "Solicitado",
     "description": "Requested time prefix"
   },
   "oldRequestWarning": {
-    "message": "Old request",
+    "message": "Solicitud antigua",
     "description": "Warning for old request"
   },
   "thisSiteWillBeAbleTo": {
-    "message": "This site will be able to:",
+    "message": "Este sitio podrá:",
     "description": "Permissions header"
   },
   "viewYourWalletAddress": {
-    "message": "View your wallet address",
+    "message": "Ver la dirección de tu billetera",
     "description": "Permission: view address"
   },
   "requestTransactionApprovals": {
-    "message": "Request transaction approvals",
+    "message": "Solicitar aprobaciones de transacciones",
     "description": "Permission: request transactions"
   },
   "viewAccountBalance": {
-    "message": "View your account balance",
+    "message": "Ver el saldo de tu cuenta",
     "description": "Permission: view balance"
   },
   "onlyConnectTrustedSites": {
-    "message": "Only connect to websites you trust!",
+    "message": "¡Solo conéctate a sitios web de confianza!",
     "description": "Trust warning"
   },
   "maliciousSitesWarning": {
-    "message": "Malicious websites may attempt to steal your funds.",
+    "message": "Los sitios web maliciosos pueden intentar robar tus fondos.",
     "description": "Security warning for connections"
   },
   "reject": {
-    "message": "Reject",
+    "message": "Rechazar",
     "description": "Reject button"
   },
   "connect": {
-    "message": "Connect",
+    "message": "Conectar",
     "description": "Connect button"
   },
   "connecting": {
-    "message": "Connecting...",
+    "message": "Conectando...",
     "description": "Connecting status"
   },
   "rejecting": {
-    "message": "Rejecting...",
+    "message": "Rechazando...",
     "description": "Rejecting status"
   },
   "failedToApproveConnection": {
-    "message": "Failed to approve connection",
+    "message": "Error al aprobar la conexión",
     "description": "Error: failed to approve connection"
   },
   "failedToRejectConnection": {
-    "message": "Failed to reject connection",
+    "message": "Error al rechazar la conexión",
     "description": "Error: failed to reject connection"
   },
   "signMessage": {
-    "message": "Sign Message",
+    "message": "Firmar Mensaje",
     "description": "Sign message title"
   },
   "siteRequestingSignature": {
-    "message": "Site requesting signature:",
+    "message": "Sitio solicitando firma:",
     "description": "Label for site requesting signature"
   },
   "messageToSign": {
-    "message": "Message to sign:",
+    "message": "Mensaje a firmar:",
     "description": "Label for message to sign"
   },
   "messageTruncated": {
-    "message": "(Message truncated for display)",
+    "message": "(Mensaje truncado para visualización)",
     "description": "Message truncated notice"
   },
   "signingProveOwnership": {
-    "message": "Signing this message proves you own this wallet address.",
+    "message": "Firmar este mensaje demuestra que eres propietario de esta dirección de billetera.",
     "description": "Explanation of message signing"
   },
   "signingIsFree": {
-    "message": "This action is free and does not send a transaction.",
+    "message": "Esta acción es gratuita y no envía una transacción.",
     "description": "Info: signing is free"
   },
   "onlySignUnderstood": {
-    "message": "Only sign messages you understand!",
+    "message": "¡Solo firma mensajes que entiendas!",
     "description": "Warning about signing messages"
   },
   "maliciousSigningWarning": {
-    "message": "Malicious sites may trick you into signing harmful messages.",
+    "message": "Los sitios maliciosos pueden engañarte para que firmes mensajes dañinos.",
     "description": "Security warning for message signing"
   },
   "signing": {
-    "message": "Signing...",
+    "message": "Firmando...",
     "description": "Signing status"
   },
   "failedToSignMessage": {
-    "message": "Failed to sign message",
+    "message": "Error al firmar el mensaje",
     "description": "Error: failed to sign message"
   },
   "failedToReject": {
-    "message": "Failed to reject",
+    "message": "Error al rechazar",
     "description": "Error: failed to reject"
   },
   "welcomeBack": {
-    "message": "Welcome back!",
+    "message": "¡Bienvenido de nuevo!",
     "description": "Welcome back message"
   },
   "siteConnectedSuccessfully": {
-    "message": "Site connected successfully!",
+    "message": "¡Sitio conectado exitosamente!",
     "description": "Success: site connected"
   },
   "connectionRejected": {
-    "message": "Connection rejected",
+    "message": "Conexión rechazada",
     "description": "Success: connection rejected"
   },
   "transactionApproved": {
-    "message": "Transaction approved!",
+    "message": "¡Transacción aprobada!",
     "description": "Success: transaction approved"
   },
   "transactionRejected": {
-    "message": "Transaction rejected",
+    "message": "Transacción rechazada",
     "description": "Success: transaction rejected"
   },
   "messageSignedSuccessfully": {
-    "message": "Message signed successfully!",
+    "message": "¡Mensaje firmado exitosamente!",
     "description": "Success: message signed"
   },
   "messageSigningRejected": {
-    "message": "Message signing rejected",
+    "message": "Firma de mensaje rechazada",
     "description": "Success: message signing rejected"
   },
   "walletCreatedSuccessfully": {
-    "message": "Wallet created successfully!",
+    "message": "¡Billetera creada exitosamente!",
     "description": "Success: wallet created"
   },
   "walletImportedSuccessfully": {
-    "message": "Wallet imported successfully!",
+    "message": "¡Billetera importada exitosamente!",
     "description": "Success: wallet imported"
   },
   "transactionSentTxId": {
-    "message": "Transaction sent! TX ID:",
+    "message": "¡Transacción enviada! TX ID:",
     "description": "Success: transaction sent"
   },
   "passwordChangedSuccessfully": {
-    "message": "Password changed successfully!",
+    "message": "¡Contraseña cambiada exitosamente!",
     "description": "Success: password changed"
   },
   "transactionError": {
-    "message": "Transaction Error",
+    "message": "Error de Transacción",
     "description": "Transaction error title"
   },
   "failedToProcessTransaction": {
-    "message": "Failed to process transaction request:",
+    "message": "Error al procesar la solicitud de transacción:",
     "description": "Error: failed to process transaction"
   },
   "unknownError": {
-    "message": "Unknown error",
+    "message": "Error desconocido",
     "description": "Unknown error message"
   },
   "backToWallet": {
-    "message": "Back to Wallet",
+    "message": "Volver a la Billetera",
     "description": "Back to wallet button"
   },
   "qrCodeGenerationFailed": {
@@ -1076,5 +1076,29 @@
   "signMessageMessage": {
     "message": "Este sitio quiere que firmes un mensaje. Desbloquea para revisar y firmar.",
     "description": "Unlock screen message for message signing"
+  },
+  "justNow": {
+    "message": "ahora mismo",
+    "description": "Time ago: just now"
+  },
+  "minutesAgo": {
+    "message": "hace $1 minuto|hace $1 minutos",
+    "description": "Time ago: minutes",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "hoursAgo": {
+    "message": "hace $1 hora|hace $1 horas",
+    "description": "Time ago: hours",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
   }
 }

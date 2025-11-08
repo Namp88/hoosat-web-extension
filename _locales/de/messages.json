@@ -713,6 +713,22 @@
     "message": "Suomi (Finnisch)",
     "description": "Finnish language name"
   },
+  "languageJapanese": {
+    "message": "日本語 (Japanisch)",
+    "description": "Japanese language name"
+  },
+  "languageKorean": {
+    "message": "한국어 (Koreanisch)",
+    "description": "Korean language name"
+  },
+  "languageTurkish": {
+    "message": "Türkçe (Türkisch)",
+    "description": "Turkish language name"
+  },
+  "languageGerman": {
+    "message": "Deutsch (German)",
+    "description": "German language name"
+  },
   "failedToChangeLanguage": {
     "message": "Sprachänderung fehlgeschlagen",
     "description": "Error message when language change fails"
@@ -862,171 +878,171 @@
     "description": "Error title"
   },
   "connectionRequest": {
-    "message": "Connection Request",
+    "message": "Verbindungsanfrage",
     "description": "DApp connection request title"
   },
   "siteRequestingConnection": {
-    "message": "Site requesting connection:",
+    "message": "Website fordert Verbindung an:",
     "description": "Label for site requesting connection"
   },
   "requestedTime": {
-    "message": "Requested",
+    "message": "Angefragt",
     "description": "Requested time prefix"
   },
   "oldRequestWarning": {
-    "message": "Old request",
+    "message": "Alte Anfrage",
     "description": "Warning for old request"
   },
   "thisSiteWillBeAbleTo": {
-    "message": "This site will be able to:",
+    "message": "Diese Website wird in der Lage sein:",
     "description": "Permissions header"
   },
   "viewYourWalletAddress": {
-    "message": "View your wallet address",
+    "message": "Ihre Wallet-Adresse einsehen",
     "description": "Permission: view address"
   },
   "requestTransactionApprovals": {
-    "message": "Request transaction approvals",
+    "message": "Transaktionsgenehmigungen anfordern",
     "description": "Permission: request transactions"
   },
   "viewAccountBalance": {
-    "message": "View your account balance",
+    "message": "Ihren Kontostand einsehen",
     "description": "Permission: view balance"
   },
   "onlyConnectTrustedSites": {
-    "message": "Only connect to websites you trust!",
+    "message": "Nur mit vertrauenswürdigen Websites verbinden!",
     "description": "Trust warning"
   },
   "maliciousSitesWarning": {
-    "message": "Malicious websites may attempt to steal your funds.",
+    "message": "Bösartige Websites können versuchen, Ihre Gelder zu stehlen.",
     "description": "Security warning for connections"
   },
   "reject": {
-    "message": "Reject",
+    "message": "Ablehnen",
     "description": "Reject button"
   },
   "connect": {
-    "message": "Connect",
+    "message": "Verbinden",
     "description": "Connect button"
   },
   "connecting": {
-    "message": "Connecting...",
+    "message": "Verbinde...",
     "description": "Connecting status"
   },
   "rejecting": {
-    "message": "Rejecting...",
+    "message": "Lehne ab...",
     "description": "Rejecting status"
   },
   "failedToApproveConnection": {
-    "message": "Failed to approve connection",
+    "message": "Verbindung konnte nicht genehmigt werden",
     "description": "Error: failed to approve connection"
   },
   "failedToRejectConnection": {
-    "message": "Failed to reject connection",
+    "message": "Verbindung konnte nicht abgelehnt werden",
     "description": "Error: failed to reject connection"
   },
   "signMessage": {
-    "message": "Sign Message",
+    "message": "Nachricht signieren",
     "description": "Sign message title"
   },
   "siteRequestingSignature": {
-    "message": "Site requesting signature:",
+    "message": "Website fordert Signatur an:",
     "description": "Label for site requesting signature"
   },
   "messageToSign": {
-    "message": "Message to sign:",
+    "message": "Zu signierende Nachricht:",
     "description": "Label for message to sign"
   },
   "messageTruncated": {
-    "message": "(Message truncated for display)",
+    "message": "(Nachricht zur Anzeige gekürzt)",
     "description": "Message truncated notice"
   },
   "signingProveOwnership": {
-    "message": "Signing this message proves you own this wallet address.",
+    "message": "Das Signieren dieser Nachricht beweist, dass Sie Eigentümer dieser Wallet-Adresse sind.",
     "description": "Explanation of message signing"
   },
   "signingIsFree": {
-    "message": "This action is free and does not send a transaction.",
+    "message": "Diese Aktion ist kostenlos und sendet keine Transaktion.",
     "description": "Info: signing is free"
   },
   "onlySignUnderstood": {
-    "message": "Only sign messages you understand!",
+    "message": "Signieren Sie nur Nachrichten, die Sie verstehen!",
     "description": "Warning about signing messages"
   },
   "maliciousSigningWarning": {
-    "message": "Malicious sites may trick you into signing harmful messages.",
+    "message": "Bösartige Websites können Sie dazu verleiten, schädliche Nachrichten zu signieren.",
     "description": "Security warning for message signing"
   },
   "signing": {
-    "message": "Signing...",
+    "message": "Signiere...",
     "description": "Signing status"
   },
   "failedToSignMessage": {
-    "message": "Failed to sign message",
+    "message": "Nachricht konnte nicht signiert werden",
     "description": "Error: failed to sign message"
   },
   "failedToReject": {
-    "message": "Failed to reject",
+    "message": "Ablehnung fehlgeschlagen",
     "description": "Error: failed to reject"
   },
   "welcomeBack": {
-    "message": "Welcome back!",
+    "message": "Willkommen zurück!",
     "description": "Welcome back message"
   },
   "siteConnectedSuccessfully": {
-    "message": "Site connected successfully!",
+    "message": "Website erfolgreich verbunden!",
     "description": "Success: site connected"
   },
   "connectionRejected": {
-    "message": "Connection rejected",
+    "message": "Verbindung abgelehnt",
     "description": "Success: connection rejected"
   },
   "transactionApproved": {
-    "message": "Transaction approved!",
+    "message": "Transaktion genehmigt!",
     "description": "Success: transaction approved"
   },
   "transactionRejected": {
-    "message": "Transaction rejected",
+    "message": "Transaktion abgelehnt",
     "description": "Success: transaction rejected"
   },
   "messageSignedSuccessfully": {
-    "message": "Message signed successfully!",
+    "message": "Nachricht erfolgreich signiert!",
     "description": "Success: message signed"
   },
   "messageSigningRejected": {
-    "message": "Message signing rejected",
+    "message": "Nachrichtensignierung abgelehnt",
     "description": "Success: message signing rejected"
   },
   "walletCreatedSuccessfully": {
-    "message": "Wallet created successfully!",
+    "message": "Wallet erfolgreich erstellt!",
     "description": "Success: wallet created"
   },
   "walletImportedSuccessfully": {
-    "message": "Wallet imported successfully!",
+    "message": "Wallet erfolgreich importiert!",
     "description": "Success: wallet imported"
   },
   "transactionSentTxId": {
-    "message": "Transaction sent! TX ID:",
+    "message": "Transaktion gesendet! TX ID:",
     "description": "Success: transaction sent"
   },
   "passwordChangedSuccessfully": {
-    "message": "Password changed successfully!",
+    "message": "Passwort erfolgreich geändert!",
     "description": "Success: password changed"
   },
   "transactionError": {
-    "message": "Transaction Error",
+    "message": "Transaktionsfehler",
     "description": "Transaction error title"
   },
   "failedToProcessTransaction": {
-    "message": "Failed to process transaction request:",
+    "message": "Transaktionsanfrage konnte nicht verarbeitet werden:",
     "description": "Error: failed to process transaction"
   },
   "unknownError": {
-    "message": "Unknown error",
+    "message": "Unbekannter Fehler",
     "description": "Unknown error message"
   },
   "backToWallet": {
-    "message": "Back to Wallet",
+    "message": "Zurück zum Wallet",
     "description": "Back to wallet button"
   },
   "qrCodeGenerationFailed": {
@@ -1060,5 +1076,29 @@
   "signMessageMessage": {
     "message": "Diese Website möchte, dass Sie eine Nachricht signieren. Entsperren Sie zur Überprüfung und Signierung.",
     "description": "Unlock screen message for message signing"
+  },
+  "justNow": {
+    "message": "gerade eben",
+    "description": "Time ago: just now"
+  },
+  "minutesAgo": {
+    "message": "vor $1 Minute|vor $1 Minuten",
+    "description": "Time ago: minutes",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "hoursAgo": {
+    "message": "vor $1 Stunde|vor $1 Stunden",
+    "description": "Time ago: hours",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
   }
 }
